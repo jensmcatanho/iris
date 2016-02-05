@@ -21,20 +21,20 @@ class World {
 
 		World();
 		~World();
-		void add_object(Object*);
+		void addObject(Object*);
 		void build();
-		void render_scene() const;
-		RGBColor max_to_one(const RGBColor&) const;
-		RGBColor clamp_to_color(const RGBColor&) const;
-		void display_pixel(const int, const int, const RGBColor&) const;
-		ShadeRecord hit_objects(const Ray&);
+		void renderScene() const;
+		RGBColor maxToOne(const RGBColor&) const;
+		RGBColor clampToColor(const RGBColor&) const;
+		void displayPixel(const int, const int, const RGBColor&) const;
+		ShadeRecord hitObjects(const Ray&);
 
 	private:
-		void delete_objects();
+		void deleteObjects();
 
 };
 
-inline void World::add_object(Object* objPtr) {  
+inline void World::addObject(Object* objPtr) {  
 	objects.push_back(objPtr);	
 }
 

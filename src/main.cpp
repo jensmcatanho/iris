@@ -81,7 +81,7 @@ int thisone;
 int main(int argc, char *argv[]) {
 	World w;
 	w.build();
-	w.render_scene();
+	w.renderScene();
 	int dpi = 72;
 
 	save_bitmap("../scene.bmp", w.vp.hres, w.vp.vres, dpi, w.pixels);	

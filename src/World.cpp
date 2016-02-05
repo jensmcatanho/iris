@@ -17,10 +17,10 @@ World::~World() {
 		tracerPtr = NULL;
 	}
 
-	delete_objects();
+	deleteObjects();
 }
 
-void World::render_scene() const {
+void World::renderScene() const {
 	RGBColor pixelColor;
 	Ray ray;
 	int hres = vp.hres;
@@ -34,57 +34,52 @@ void World::render_scene() const {
 		for (int c = 0; c <= hres; c++) {
 			ray.origin = glm::vec3(s * (c - hres/2.0 + 0.5), s * (r - vres/2.0 + 0.5), zw);
 			pixelColor = tracerPtr->trace_ray(ray);
-			display_pixel(r, c, pixelColor);
+			displayPixel(r, c, pixelColor);
 		}
 }
 
-RGBColor World::max_to_one(const RGBColor& c) const {
-	float max_value = max(c.r, max(c.g, c.b));
+RGBColor World::maxToOne(const RGBColor& raw_color) const {
+	float max_value = glm::max(raw_color.r, glm::max(raw_color.g, raw_color.b));
 	
 	if (max_value > 1.0)
-		return RGBColor(c.r/max_value, c.g/max_value, c.b/max_value);
+		return RGBColor(raw_color.r/max_value, raw_color.g/max_value, raw_color.b/max_value);
 	else
-		return (c);
+		return (raw_color);
 
 }
 
-RGBColor
-World::clamp_to_color(const RGBColor& raw_color) const {
+RGBColor World::clampToColor(const RGBColor& raw_color) const {
 	RGBColor c(raw_color);
 	
 	if (raw_color.r > 1.0 || raw_color.g > 1.0 || raw_color.b > 1.0) {
-		c.r = 1.0; c.g = 0.0; c.b = 0.0;
+		c.r = 1.0;
+		c.g = 0.0;
+		c.b = 0.0;
 	}
 		
 	return (c);
 }
 
-void
-World::display_pixel(const int row, const int column, const RGBColor& raw_color) const {
+void World::displayPixel(const int row, const int column, const RGBColor& raw_color) const {
 	RGBColor mapped_color;
 
 	if (vp.show_out_of_gamut)
-		mapped_color = clamp_to_color(raw_color);
+		mapped_color = clampToColor(raw_color);
 	else
-		mapped_color = max_to_one(raw_color);
+		mapped_color = maxToOne(raw_color);
 	
 	if (vp.gamma != 1.0)
-		mapped_color = RGBColor(glm::pow(mapped_color.r, vp.inv_gamma), glm::pow(mapped_color.g, vp.inv_gamma), glm::pow(mapped_color.b, vp.inv_gamma));
-	
-   //have to start from max y coordinate to convert to screen coordinates
-   //int x = column;
-   //int y = vp.vres - row - 1;
+		mapped_color = RGBColor(glm::pow(mapped_color.r, vp.inv_gamma),
+					glm::pow(mapped_color.g, vp.inv_gamma),
+					glm::pow(mapped_color.b, vp.inv_gamma));
 
-   pixels[column * vp.hres + row].r = mapped_color.r;
-   pixels[column * vp.hres + row].g = mapped_color.g;
-   pixels[column * vp.hres + row].b = mapped_color.b;
+	pixels[row * vp.hres + column].r = mapped_color.r;
+	pixels[row * vp.hres + column].g = mapped_color.g;
+	pixels[row * vp.hres + column].b = mapped_color.b;
 
-  // paintArea->setPixel(x, y, (int)(mapped_color.r * 255),
-  //                           (int)(mapped_color.g * 255),
-  //                           (int)(mapped_color.b * 255));
 }
 
-ShadeRecord World::hit_objects(const Ray& ray) {
+ShadeRecord World::hitObjects(const Ray& ray) {
 	ShadeRecord sr(*this); 
 	double t; 			
 	float tmin = 1000000;
@@ -100,14 +95,14 @@ ShadeRecord World::hit_objects(const Ray& ray) {
 	return (sr);
 }
 
-void
-World::delete_objects(void) {
+void World::deleteObjects(void) {
 	int num_objects = objects.size();
 	
 	for (int j = 0; j < num_objects; j++) {
 		delete objects[j];
 		objects[j] = NULL;
-	}	
+	}
 	
-	objects.erase (objects.begin(), objects.end());
+	objects.erase(objects.begin(), objects.end());
+
 }
