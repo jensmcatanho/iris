@@ -48,13 +48,13 @@ RGBColor World::maxToOne(const RGBColor& raw_color) const {
 
 }
 
-RGBColor World::clampToColor(const RGBColor& raw_color) const {
+RGBColor World::clampToColor(const RGBColor& raw_color, const RGBColor& target_color) const {
 	RGBColor c(raw_color);
 	
 	if (raw_color.r > 1.0 || raw_color.g > 1.0 || raw_color.b > 1.0) {
-		c.r = 1.0;
-		c.g = 0.0;
-		c.b = 0.0;
+		c.r = target_color.r;
+		c.g = target_color.g;
+		c.b = target_color.b;
 	}
 		
 	return (c);

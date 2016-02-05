@@ -25,7 +25,7 @@ class World {
 		void build();
 		void renderScene() const;
 		RGBColor maxToOne(const RGBColor&) const;
-		RGBColor clampToColor(const RGBColor&) const;
+		RGBColor clampToColor(const RGBColor&, const RGBColor&) const;
 		void displayPixel(const int, const int, const RGBColor&) const;
 		ShadeRecord hitObjects(const Ray&);
 
