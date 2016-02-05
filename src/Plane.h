@@ -11,7 +11,7 @@ class Plane : public Object {
 		virtual Plane* clone() const;
 		Plane& operator=(const Plane&);
 		virtual ~Plane();
-		virtual bool hit(const Ray&, double&, ShadeRec&) const;
+		virtual bool hit(const Ray&, double&, ShadeRecord&) const;
 
 	public:
 		glm::vec3 point;

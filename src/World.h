@@ -27,7 +27,7 @@ class World {
 		RGBColor max_to_one(const RGBColor&) const;
 		RGBColor clamp_to_color(const RGBColor&) const;
 		void display_pixel(const int, const int, const RGBColor&) const;
-		ShadeRec hit_objects(const Ray&);
+		ShadeRecord hit_objects(const Ray&);
 
 	private:
 		void delete_objects();

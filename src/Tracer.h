@@ -3,7 +3,7 @@
 
 #include "Ray.h"
 #include "RGBColor.h"
-#include "ShadeRec.h"
+#include "ShadeRecord.h"
 
 class World;
 

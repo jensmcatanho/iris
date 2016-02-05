@@ -11,7 +11,7 @@ class Sphere : public Object {
 		virtual Sphere* clone() const;
 		virtual ~Sphere();
 		Sphere& operator=(const Sphere&);
-		virtual bool hit(const Ray&, double&, ShadeRec&) const;
+		virtual bool hit(const Ray&, double&, ShadeRecord&) const;
 		void setCenter(const glm::vec3&);
 		void setRadius(const double);
 

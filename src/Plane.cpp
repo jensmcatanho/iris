@@ -40,7 +40,7 @@ Plane& Plane::operator=(const Plane& plane) {
 Plane::~Plane()
 {}
 
-bool Plane::hit(const Ray& ray, double& tmin, ShadeRec& sr) const {
+bool Plane::hit(const Ray& ray, double& tmin, ShadeRecord& sr) const {
 	float t = glm::dot(point - ray.origin, normal) / glm::dot(ray.direction, normal);
 
 	if (t > kEpsilon) {

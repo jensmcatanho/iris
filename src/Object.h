@@ -2,7 +2,7 @@
 #define OBJECT_H
 
 #include "Ray.h"
-#include "ShadeRec.h"
+#include "ShadeRecord.h"
 
 class Object {
 	public:
@@ -10,7 +10,7 @@ class Object {
 		Object(const Object& obj);
 		virtual Object* clone() const = 0;
 		virtual ~Object();
-		virtual bool hit(const Ray& ray, double& t, ShadeRec& s) const = 0;
+		virtual bool hit(const Ray& ray, double& t, ShadeRecord& s) const = 0;
 		void setColor(const float r, const float g, const float b);
 		void setColor(const RGBColor c);
 		RGBColor getColor();

@@ -84,32 +84,21 @@ World::display_pixel(const int row, const int column, const RGBColor& raw_color)
   //                           (int)(mapped_color.b * 255));
 }
 
-
-
-// ----------------------------------------------------------------------------- hit_bare_bones_objects
-
-ShadeRec									
-World::hit_objects(const Ray& ray) {
-	ShadeRec	sr(*this); 
-	double		t; 			
-	float		tmin 			= 1000000;
-	int 		num_objects 	= objects.size();
+ShadeRecord World::hit_objects(const Ray& ray) {
+	ShadeRecord sr(*this); 
+	double t; 			
+	float tmin = 1000000;
+	int num_objects = objects.size();
 	
 	for (int j = 0; j < num_objects; j++)
 		if (objects[j]->hit(ray, t, sr) && (t < tmin)) {
-			sr.hit                    	= true;
-			tmin 				= t; 
-			sr.color			= objects[j]->getColor(); 
+			sr.hit =  true;
+			tmin = t;
+			sr.color = objects[j]->getColor();
 		}
 		
 	return (sr);
 }
-
-
-//------------------------------------------------------------------ delete_objects
-
-// Deletes the objects in the objects array, and erases the array.
-// The objects array still exists, because it's an automatic variable, but it's empty 
 
 void
 World::delete_objects(void) {

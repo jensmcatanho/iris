@@ -1,5 +1,5 @@
 CC = g++
-OBJS = MultipleObjects.o Object.o Plane.o Ray.o RGBColor.o ShadeRec.o Sphere.o Tracer.o ViewPlane.o World.o
+OBJS = MultipleObjects.o Object.o Plane.o Ray.o RGBColor.o ShadeRecord.o Sphere.o Tracer.o ViewPlane.o World.o
 LIBS = ./libRayTracer.so
 
 all: ${OBJS} RayTracer.so main
@@ -19,8 +19,8 @@ Ray.o:
 RGBColor.o:
 	${CC} RGBColor.cpp -c
 
-ShadeRec.o:
-	${CC} ShadeRec.cpp -c
+ShadeRecord.o:
+	${CC} ShadeRecord.cpp -c
 
 Sphere.o:
 	${CC} Sphere.cpp -c

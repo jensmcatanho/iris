@@ -40,7 +40,7 @@ Sphere& Sphere::operator=(const Sphere& sphere) {
 Sphere::~Sphere()
 {}
 
-bool Sphere::hit(const Ray& ray, double& tmin, ShadeRec& sr) const {
+bool Sphere::hit(const Ray& ray, double& tmin, ShadeRecord& sr) const {
 	float t;
 	glm::vec3 temp = ray.origin - center;
 	double a = glm::dot(ray.direction, ray.direction);
