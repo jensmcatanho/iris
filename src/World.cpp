@@ -62,9 +62,10 @@ RGBColor World::clampToColor(const RGBColor& raw_color, const RGBColor& target_c
 
 void World::displayPixel(const int row, const int column, const RGBColor& raw_color) const {
 	RGBColor mapped_color;
+	RGBColor target_color(1.0f, 0.0f, 0.0f); //To do: Set target color in build member function
 
 	if (vp.show_out_of_gamut)
-		mapped_color = clampToColor(raw_color);
+		mapped_color = clampToColor(raw_color, target_color);
 	else
 		mapped_color = maxToOne(raw_color);
 	
