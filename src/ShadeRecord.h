@@ -7,8 +7,8 @@ class World;
 
 class ShadeRecord {
 	public:
-		ShadeRec(World&);
-		ShadeRec(const ShadeRecord&);
+		ShadeRecord(World&);
+		ShadeRecord(const ShadeRecord&);
 
 		bool hit;
 		glm::vec3 hitPoint;
