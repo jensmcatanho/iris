@@ -7,7 +7,8 @@
 World::World()
 	: backgroundColor(0.0f, 0.0f, 0.0f),
 	  tracerPtr(NULL) {
-	pixels = new RGBColor[vp.hres * vp.vres];
+
+	pixels = new RGBColor[vp.width * vp.height];
 
 }
 
@@ -23,16 +24,16 @@ World::~World() {
 void World::renderScene() const {
 	RGBColor pixelColor;
 	Ray ray;
-	int hres = vp.hres;
-	int vres = vp.vres;
-	float s = vp.s;
+	int width = vp.width;
+	int height = vp.height;
+	float s = vp.pixel_size;
 	float zw = 100.0f;
 
 	ray.direction = glm::vec3(0.0f, 0.0f, -1.0f);
 
-	for (int r = 0; r < vres; r++)
-		for (int c = 0; c <= hres; c++) {
-			ray.origin = glm::vec3(s * (c - hres/2.0 + 0.5), s * (r - vres/2.0 + 0.5), zw);
+	for (int r = 0; r < height; r++)
+		for (int c = 0; c <= width; c++) {
+			ray.origin = glm::vec3(s * (c - width/2.0 + 0.5), s * (r - height/2.0 + 0.5), zw);
 			pixelColor = tracerPtr->trace_ray(ray);
 			displayPixel(r, c, pixelColor);
 		}
@@ -62,9 +63,9 @@ RGBColor World::clampToColor(const RGBColor& raw_color, const RGBColor& target_c
 
 void World::displayPixel(const int row, const int column, const RGBColor& raw_color) const {
 	RGBColor mapped_color;
-	RGBColor target_color(1.0f, 0.0f, 0.0f); //To do: Set target color in build member function
+	RGBColor target_color(1.0f, 0.0f, 0.0f); //TODO: Set target color in build member function
 
-	if (vp.show_out_of_gamut)
+	if (vp.out_of_gamut)
 		mapped_color = clampToColor(raw_color, target_color);
 	else
 		mapped_color = maxToOne(raw_color);
@@ -74,9 +75,9 @@ void World::displayPixel(const int row, const int column, const RGBColor& raw_co
 					glm::pow(mapped_color.g, vp.inv_gamma),
 					glm::pow(mapped_color.b, vp.inv_gamma));
 
-	pixels[row * vp.hres + column].r = mapped_color.r;
-	pixels[row * vp.hres + column].g = mapped_color.g;
-	pixels[row * vp.hres + column].b = mapped_color.b;
+	pixels[row * vp.width + column].r = mapped_color.r;
+	pixels[row * vp.width + column].g = mapped_color.g;
+	pixels[row * vp.width + column].b = mapped_color.b;
 
 }
 

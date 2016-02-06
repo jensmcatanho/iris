@@ -2,9 +2,9 @@
 #include "../src/Plane.h"
 
 void World::build() {
-	vp.set_hres(200);
-	vp.set_vres(200);
-	vp.set_pixel_size(1.0);
+	vp.setWidth(200);
+	vp.setHeight(200);
+	vp.setPixelSize(1.0);
 	tracerPtr = new MultipleObjects(this); 
 	backgroundColor = RGBColor(0.0f, 0.0f, 0.0f);
 	

@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
 	w.renderScene();
 	int dpi = 72;
 
-	save_bitmap("../scene.bmp", w.vp.hres, w.vp.vres, dpi, w.pixels);	
+	save_bitmap("../scene.bmp", w.vp.width, w.vp.height, dpi, w.pixels);	
 
 	return 0;
 }
