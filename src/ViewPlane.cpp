@@ -6,7 +6,8 @@ ViewPlane::ViewPlane()
 	  s(1.0),
 	  gamma(1.0),
 	  inv_gamma(1.0),
-	  show_out_of_gamut(false)
+	  show_out_of_gamut(false),
+	  numSamples(1)
 {}
 
 ViewPlane::ViewPlane(const ViewPlane& vp)   
@@ -15,8 +16,12 @@ ViewPlane::ViewPlane(const ViewPlane& vp)
 	  s(vp.s),
 	  gamma(vp.gamma),
 	  inv_gamma(vp.inv_gamma),
-	  show_out_of_gamut(vp.show_out_of_gamut)
-{}
+	  show_out_of_gamut(vp.show_out_of_gamut),
+	  numSamples(vp.numSamples) {
+	
+	if (vp.samplerPtr != NULL)
+		samplerPtr = vp.samplerPtr->clone();
+}
 
 ViewPlane& ViewPlane::operator=(const ViewPlane& vp) {
 	if (this == &vp)
@@ -32,4 +37,31 @@ ViewPlane& ViewPlane::operator=(const ViewPlane& vp) {
 	return (*this);
 }
 
-ViewPlane::~ViewPlane(void) {}
+ViewPlane::~ViewPlane(void)
+{}
+
+void ViewPlane::setSamples(const int n) {
+	numSamples = n;
+
+	if (samplerPtr) {
+		delete samplerPtr;
+		samplerPtr = NULL;
+	}
+
+	// TODO: Implement MultiJittered and Regular classes
+	//if (numSamples > 1)
+		//samplerPtr = new MultiJittered(numSamples);
+	//else
+		//samplerPtr = new Regular(1);
+
+}
+
+void ViewPlane::setSampler(Sampler* sp) {
+	if (samplerPtr) {
+		delete samplerPtr;
+		samplerPtr = NULL;
+	}
+
+	numSamples = sp->getNumSamples();
+	samplerPtr = sp;
+}
