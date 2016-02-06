@@ -85,3 +85,8 @@ glm::vec2 Sampler::sampleUnitSquare() {
 	return samples[/*jump*/ + count++ % (numSamples * numSets)];
 
 }
+
+
+int Sampler::getNumSamples() {
+	return numSamples;
+}

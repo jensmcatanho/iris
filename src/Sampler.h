@@ -21,6 +21,7 @@ class Sampler {
 		void setupShuffledIndices();
 		void shuffleSamples();
 		glm::vec2 sampleUnitSquare();
+		int getNumSamples();
 		
 	protected:
 		int numSamples;
