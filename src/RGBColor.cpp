@@ -18,7 +18,7 @@ RGBColor::RGBColor(const double color)
 	  b(color)
 {}
 
-RGBColor::RGBColor(const RGBColor& color)
+RGBColor::RGBColor(const RGBColor &color)
 	: r(color.r),
 	  g(color.g),
 	  b(color.b)
@@ -27,7 +27,7 @@ RGBColor::RGBColor(const RGBColor& color)
 RGBColor::~RGBColor()
 {}
 
-RGBColor& RGBColor::operator=(const RGBColor& color) {
+RGBColor &RGBColor::operator=(const RGBColor &color) {
 	if (this == &color)
 		return (*this);
 

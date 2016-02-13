@@ -9,7 +9,7 @@ ViewPlane::ViewPlane()
 	  out_of_gamut(false)
 {}
 
-ViewPlane::ViewPlane(const ViewPlane& vp)   
+ViewPlane::ViewPlane(const ViewPlane &vp)   
 	: width(vp.width),
 	  height(vp.height),
 	  pixel_size(vp.pixel_size),
@@ -18,7 +18,10 @@ ViewPlane::ViewPlane(const ViewPlane& vp)
 	  out_of_gamut(vp.out_of_gamut)
 {}
 
-ViewPlane& ViewPlane::operator=(const ViewPlane& vp) {
+ViewPlane::~ViewPlane()
+{}
+
+ViewPlane &ViewPlane::operator=(const ViewPlane &vp) {
 	if (this == &vp)
 		return (*this);
 		
@@ -31,6 +34,3 @@ ViewPlane& ViewPlane::operator=(const ViewPlane& vp) {
 	
 	return (*this);
 }
-
-ViewPlane::~ViewPlane()
-{}

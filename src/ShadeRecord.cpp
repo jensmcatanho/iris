@@ -1,7 +1,7 @@
 #include "ShadeRecord.h"
 #include "World.h"
 
-ShadeRecord::ShadeRecord(World& wr)
+ShadeRecord::ShadeRecord(World &wr)
 	: hit(false),
 	  hitPoint(),
 	  normal(),
@@ -9,9 +9,12 @@ ShadeRecord::ShadeRecord(World& wr)
 	  w(wr)
 {}
 
-ShadeRecord::ShadeRecord(const ShadeRecord& sr)
+ShadeRecord::ShadeRecord(const ShadeRecord &sr)
 	: hit(sr.hit),
 	  hitPoint(sr.hitPoint),
 	  color(sr.color),
 	  w(sr.w)
+{}
+
+ShadeRecord::~ShadeRecord()
 {}

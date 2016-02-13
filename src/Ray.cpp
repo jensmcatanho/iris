@@ -15,7 +15,10 @@ Ray::Ray(const Ray &ray)
 	  direction(ray.direction)
 {}
 
-Ray& Ray::operator=(const Ray &ray) {
+Ray::~Ray() 
+{}
+
+Ray &Ray::operator=(const Ray &ray) {
 	if (this == &ray)
 		return (*this);
 
@@ -23,8 +26,4 @@ Ray& Ray::operator=(const Ray &ray) {
 	direction = ray.direction;
 
 	return (*this);
-}
-
-Ray::~Ray() {
-
 }

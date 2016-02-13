@@ -4,11 +4,11 @@ Object::Object()
 	: color(0.0f, 0.0f, 0.0f)
 {}
 
-Object::Object(const Object& obj)
+Object::Object(const Object &obj)
 	: color(obj.color)
 {}
 
-Object& Object::operator=(const Object& obj) {
+Object &Object::operator=(const Object &obj) {
 	if (this == &obj)
 		return (*this);
 

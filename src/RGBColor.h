@@ -10,21 +10,20 @@ class RGBColor {
 		RGBColor();
 		RGBColor(const double, const double, const double);
 		RGBColor(const double);
-		RGBColor(const RGBColor&);
+		RGBColor(const RGBColor &);
 		~RGBColor();
 
-		// Operations
-		RGBColor& operator=(const RGBColor&);
-		bool operator==(const RGBColor&) const;
+		RGBColor &operator=(const RGBColor &);
+		bool operator==(const RGBColor &) const;
 
-		RGBColor operator+(const RGBColor&) const;
-		RGBColor operator-(const RGBColor&) const;
-		RGBColor operator*(const RGBColor&) const;
+		RGBColor operator+(const RGBColor &) const;
+		RGBColor operator-(const RGBColor &) const;
+		RGBColor operator*(const RGBColor &) const;
 		RGBColor operator*(const float) const;
 		RGBColor operator/(const float) const;
 
-		RGBColor operator+=(const RGBColor&);
-		RGBColor operator-=(const RGBColor&);
+		RGBColor operator+=(const RGBColor &);
+		RGBColor operator-=(const RGBColor &);
 		RGBColor operator*=(const float);
 		RGBColor operator/=(const float);
 
@@ -33,22 +32,22 @@ class RGBColor {
 
 };
 
-inline bool RGBColor::operator==(const RGBColor& c) const {
+inline bool RGBColor::operator==(const RGBColor &c) const {
 	return (r == c.r) && (g == c.g) && (b == c.b);
 
 }
 
-inline RGBColor RGBColor::operator+(const RGBColor& c) const {
+inline RGBColor RGBColor::operator+(const RGBColor &c) const {
 	return RGBColor(r + c.r, g + c.g, b + c.b);
 
 }
 
-inline RGBColor RGBColor::operator-(const RGBColor& c) const {
+inline RGBColor RGBColor::operator-(const RGBColor &c) const {
 	return RGBColor(r - c.r, g - c.g, b - c.b);
 
 }
 
-inline RGBColor RGBColor::operator*(const RGBColor& c) const {
+inline RGBColor RGBColor::operator*(const RGBColor &c) const {
 	return RGBColor(r * c.r, g * c.g, b * c.b);
 
 }
@@ -63,7 +62,7 @@ inline RGBColor RGBColor::operator/(const float f) const {
 
 }
 
-inline RGBColor RGBColor::operator+=(const RGBColor& c) {
+inline RGBColor RGBColor::operator+=(const RGBColor &c) {
 	r += c.r;
 	g += c.g;
 	b += c.b;
@@ -71,7 +70,7 @@ inline RGBColor RGBColor::operator+=(const RGBColor& c) {
 	return (*this);
 }
 
-inline RGBColor RGBColor::operator-=(const RGBColor& c) {
+inline RGBColor RGBColor::operator-=(const RGBColor &c) {
 	r -= c.r;
 	g -= c.g;
 	b -= c.b;

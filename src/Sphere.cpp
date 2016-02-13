@@ -14,18 +14,16 @@ Sphere::Sphere(glm::vec3 c, double r)
 	  radius(r)
 {}
 
-Sphere* Sphere::clone() const {
-	return (new Sphere(*this));
-
-}
-
-Sphere::Sphere(const Sphere& sphere)
+Sphere::Sphere(const Sphere &sphere)
 	: Object(sphere),
 	  center(sphere.center),
 	  radius(sphere.radius)
 {}
 
-Sphere& Sphere::operator=(const Sphere& sphere) {
+Sphere::~Sphere()
+{}
+
+Sphere &Sphere::operator=(const Sphere &sphere) {
 	if (this == &sphere)
 		return (*this);
 
@@ -37,10 +35,12 @@ Sphere& Sphere::operator=(const Sphere& sphere) {
 	return (*this);
 }
 
-Sphere::~Sphere()
-{}
+Sphere *Sphere::clone() const {
+	return (new Sphere(*this));
 
-bool Sphere::hit(const Ray& ray, double& tmin, ShadeRecord& sr) const {
+}
+
+bool Sphere::hit(const Ray &ray, double &tmin, ShadeRecord &sr) const {
 	float t;
 	glm::vec3 temp = ray.origin - center;
 	double a = glm::dot(ray.direction, ray.direction);

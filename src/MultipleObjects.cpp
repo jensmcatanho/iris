@@ -4,14 +4,14 @@ MultipleObjects::MultipleObjects()
 	: Tracer()
 {}
 
-MultipleObjects::MultipleObjects(World* _worldPtr)
-	: Tracer(_worldPtr)
+MultipleObjects::MultipleObjects(World *wPtr)
+	: Tracer(wPtr)
 {}
 
 MultipleObjects::~MultipleObjects()
 {}
 
-RGBColor MultipleObjects::trace_ray(const Ray& ray) const {
+RGBColor MultipleObjects::trace_ray(const Ray &ray) const {
 	ShadeRecord sr(worldPtr->hitObjects(ray));
 
 	if (sr.hit)

@@ -6,7 +6,7 @@
 
 World::World()
 	: backgroundColor(0.0f, 0.0f, 0.0f),
-	  tracerPtr(NULL) {
+	  tracerPtr(nullptr) {
 
 	pixels = new RGBColor[vp.width * vp.height];
 
@@ -15,7 +15,7 @@ World::World()
 World::~World() {
 	if (tracerPtr) {
 		delete tracerPtr;
-		tracerPtr = NULL;
+		tracerPtr = nullptr;
 	}
 
 	deleteObjects();
@@ -39,29 +39,7 @@ void World::renderScene() const {
 		}
 }
 
-RGBColor World::maxToOne(const RGBColor& raw_color) const {
-	float max_value = glm::max(raw_color.r, glm::max(raw_color.g, raw_color.b));
-	
-	if (max_value > 1.0)
-		return RGBColor(raw_color.r/max_value, raw_color.g/max_value, raw_color.b/max_value);
-	else
-		return (raw_color);
-
-}
-
-RGBColor World::clampToColor(const RGBColor& raw_color, const RGBColor& target_color) const {
-	RGBColor c(raw_color);
-	
-	if (raw_color.r > 1.0 || raw_color.g > 1.0 || raw_color.b > 1.0) {
-		c.r = target_color.r;
-		c.g = target_color.g;
-		c.b = target_color.b;
-	}
-		
-	return (c);
-}
-
-void World::displayPixel(const int row, const int column, const RGBColor& raw_color) const {
+void World::displayPixel(const int row, const int column, const RGBColor &raw_color) const {
 	RGBColor mapped_color;
 	RGBColor target_color(1.0f, 0.0f, 0.0f); //TODO: Set target color in build member function
 
@@ -81,7 +59,7 @@ void World::displayPixel(const int row, const int column, const RGBColor& raw_co
 
 }
 
-ShadeRecord World::hitObjects(const Ray& ray) {
+ShadeRecord World::hitObjects(const Ray &ray) {
 	ShadeRecord sr(*this); 
 	double t; 			
 	float tmin = 1000000;
@@ -102,9 +80,31 @@ void World::deleteObjects(void) {
 	
 	for (int j = 0; j < num_objects; j++) {
 		delete objects[j];
-		objects[j] = NULL;
+		objects[j] = nullptr;
 	}
 	
 	objects.erase(objects.begin(), objects.end());
 
+}
+
+RGBColor World::maxToOne(const RGBColor &raw_color) const {
+	float max_value = glm::max(raw_color.r, glm::max(raw_color.g, raw_color.b));
+	
+	if (max_value > 1.0)
+		return RGBColor(raw_color.r/max_value, raw_color.g/max_value, raw_color.b/max_value);
+	else
+		return (raw_color);
+
+}
+
+RGBColor World::clampToColor(const RGBColor &raw_color, const RGBColor &target_color) const {
+	RGBColor c(raw_color);
+	
+	if (raw_color.r > 1.0 || raw_color.g > 1.0 || raw_color.b > 1.0) {
+		c.r = target_color.r;
+		c.g = target_color.g;
+		c.b = target_color.b;
+	}
+		
+	return (c);
 }

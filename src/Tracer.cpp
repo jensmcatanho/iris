@@ -1,20 +1,20 @@
 #include "Tracer.h"
 #include "World.h"
 
-Tracer::Tracer(void)
-	: worldPtr(NULL)
+Tracer::Tracer()
+	: worldPtr(nullptr)
 {}
 
-Tracer::Tracer(World* _worldPtr)
-	: worldPtr(_worldPtr)
+Tracer::Tracer(World  *wPtr)
+	: worldPtr(wPtr)
 {}
 
-Tracer::~Tracer(void) {
+Tracer::~Tracer() {
 	if (worldPtr)
-		worldPtr = NULL;
+		worldPtr = nullptr;
 }
 
-RGBColor Tracer::trace_ray(const Ray& ray) const {
+RGBColor Tracer::trace_ray(const Ray &ray) const {
 	return RGBColor(0.0f, 0.0f, 0.0f);
 
 }

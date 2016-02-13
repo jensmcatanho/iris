@@ -6,12 +6,14 @@
 class Plane : public Object {
 	public:
 		Plane();
-		Plane(const glm::vec3&, const glm::vec3&);
-		Plane(const Plane&);
-		virtual Plane* clone() const;
-		Plane& operator=(const Plane&);
+		Plane(const glm::vec3 &, const glm::vec3 &);
+		Plane(const Plane &);
 		virtual ~Plane();
-		virtual bool hit(const Ray&, double&, ShadeRecord&) const;
+
+		virtual Plane* clone() const;
+		Plane &operator=(const Plane &);
+
+		virtual bool hit(const Ray &, double &, ShadeRecord &) const;
 
 	public:
 		glm::vec3 point;

@@ -7,12 +7,14 @@ class Sphere : public Object {
 	public:
 		Sphere();
 		Sphere(glm::vec3, double);
-		Sphere(const Sphere&);
-		virtual Sphere* clone() const;
+		Sphere(const Sphere &);
 		virtual ~Sphere();
-		Sphere& operator=(const Sphere&);
-		virtual bool hit(const Ray&, double&, ShadeRecord&) const;
-		void setCenter(const glm::vec3&);
+
+		Sphere &operator=(const Sphere &);
+		virtual Sphere *clone() const;
+
+		virtual bool hit(const Ray &, double &, ShadeRecord &) const;
+		void setCenter(const glm::vec3 &);
 		void setRadius(const double);
 
 	public:
@@ -22,7 +24,7 @@ class Sphere : public Object {
 
 };
 
-inline void Sphere::setCenter(const glm::vec3& c) {
+inline void Sphere::setCenter(const glm::vec3 &c) {
 	center = c;
 }
 		

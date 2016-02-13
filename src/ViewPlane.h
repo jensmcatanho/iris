@@ -4,9 +4,10 @@
 class ViewPlane {
 	public:
 		ViewPlane();
-		ViewPlane(const ViewPlane&);
-		ViewPlane& operator=(const ViewPlane&);
+		ViewPlane(const ViewPlane &);
 		~ViewPlane();
+
+		ViewPlane &operator=(const ViewPlane &);
 
 		void setWidth(const int);
 		void setHeight(const int);
