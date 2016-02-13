@@ -20,7 +20,6 @@ class Sphere : public Object {
 	public:
 		glm::vec3 center;
 		double radius;
-		static const double kEpsilon;
 
 };
 

@@ -1,7 +1,5 @@
 #include "Plane.h"
 
-const double Plane::kEpsilon = 0.001f;
-
 Plane::Plane()
 	: Object(),
 	  point(0.0f, 0.0f, 0.0f),
@@ -20,7 +18,7 @@ Plane::Plane(const Plane &plane)
 	  normal(plane.normal)
 {}
 
-Plane* Plane::clone() const {
+Plane *Plane::clone() const {
 	return (new Plane(*this));
 
 }

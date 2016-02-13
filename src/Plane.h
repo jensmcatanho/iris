@@ -18,7 +18,6 @@ class Plane : public Object {
 	public:
 		glm::vec3 point;
 		glm::vec3 normal;
-		static const double kEpsilon;
 
 };
 

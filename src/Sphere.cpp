@@ -1,7 +1,5 @@
 #include "Sphere.h"
 
-const double Sphere::kEpsilon = 0.001;
-
 Sphere::Sphere()
 	: Object(),
 	  center(0.0f, 0.0f, 0.0f),

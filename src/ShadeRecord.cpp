@@ -5,7 +5,7 @@ ShadeRecord::ShadeRecord(World &wr)
 	: hit(false),
 	  hitPoint(),
 	  normal(),
-	  color(0.0f, 0.0f, 0.0f),
+	  color(BLACK),
 	  w(wr)
 {}
 

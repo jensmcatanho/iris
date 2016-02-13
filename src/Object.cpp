@@ -1,7 +1,7 @@
 #include "Object.h"
 
 Object::Object()
-	: color(0.0f, 0.0f, 0.0f)
+	: color(BLACK)
 {}
 
 Object::Object(const Object &obj)

@@ -1,6 +1,7 @@
 #ifndef SHADERECORD_H
 #define SHADERECORD_H
 
+#include "Constants.h"
 #include "RGBColor.h"
 
 class World;

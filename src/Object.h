@@ -1,6 +1,7 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include "Constants.h"
 #include "Ray.h"
 #include "ShadeRecord.h"
 

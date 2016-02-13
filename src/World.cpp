@@ -5,7 +5,7 @@
 #include "../Builds/BuildMultipleObjects.cpp"
 
 World::World()
-	: backgroundColor(0.0f, 0.0f, 0.0f),
+	: backgroundColor(BLACK),
 	  tracerPtr(nullptr) {
 
 	pixels = new RGBColor[vp.width * vp.height];

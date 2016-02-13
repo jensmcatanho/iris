@@ -1,3 +1,6 @@
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
 #include <glm/gtc/constants.hpp>
 #include "RGBColor.h"
 
@@ -16,3 +19,5 @@ const RGBColor WHITE(1.0f, 1.0f, 1.0f);
 const RGBColor RED(1.0f, 0.0f, 0.0f);
 const RGBColor GREEN(0.0f, 1.0f, 0.0f);
 const RGBColor BLUE(0.0f, 0.0f, 1.0f);
+
+#endif
