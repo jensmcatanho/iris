@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -86,7 +87,7 @@ int main(int argc, char *argv[]) {
 
 	save_bitmap("../scene.bmp", w.vp.width, w.vp.height, dpi, w.pixels);	
 
-	return 0;
+	return EXIT_SUCCESS;
 }
 
 /*int main(int argc, char *argv[]) {
