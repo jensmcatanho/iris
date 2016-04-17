@@ -6,7 +6,7 @@ Sphere::Sphere()
 	  radius(1.0f)
 {}
 
-Sphere::Sphere(glm::vec3 c, double r)
+Sphere::Sphere(glm::vec3 c, float r)
 	: Object(),
 	  center(c),
 	  radius(r)
@@ -54,8 +54,8 @@ bool Sphere::hit(const Ray &ray, double &tmin, ShadeRecord &sr) const {
 	if (t > kEpsilon) {
 		tmin = t;
 		sr.normal = temp + t * ray.direction;
-		sr.normal = glm::vec3(sr.normal.x/radius, sr.normal.y/radius, sr.normal.z/radius);
-		sr.hitPoint = ray.origin + glm::vec3(t * ray.direction.x, t * ray.direction.y, t * ray.direction.z);
+		sr.normal = sr.normal * (1.0f/radius);
+		sr.hitPoint = ray.origin + ray.direction * t;
 		return true;
 
 	}
@@ -65,8 +65,8 @@ bool Sphere::hit(const Ray &ray, double &tmin, ShadeRecord &sr) const {
 	if (t > kEpsilon) {
 		tmin = t;
 		sr.normal = temp + t * ray.direction;
-		sr.normal = glm::vec3(sr.normal.x/radius, sr.normal.y/radius, sr.normal.z/radius);
-		sr.hitPoint = ray.origin + glm::vec3(t * ray.direction.x, t * ray.direction.y, t * ray.direction.z);
+		sr.normal = sr.normal * (1.0f/radius);
+		sr.hitPoint = ray.origin + ray.direction * t;
 		return true;
 
 	}

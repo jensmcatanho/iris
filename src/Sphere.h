@@ -6,7 +6,7 @@
 class Sphere : public Object {
 	public:
 		Sphere();
-		Sphere(glm::vec3, double);
+		Sphere(glm::vec3, float);
 		Sphere(const Sphere &);
 		virtual ~Sphere();
 
@@ -15,11 +15,11 @@ class Sphere : public Object {
 
 		virtual bool hit(const Ray &, double &, ShadeRecord &) const;
 		void setCenter(const glm::vec3 &);
-		void setRadius(const double);
+		void setRadius(const float);
 
 	public:
 		glm::vec3 center;
-		double radius;
+		float radius;
 
 };
 
@@ -27,7 +27,7 @@ inline void Sphere::setCenter(const glm::vec3 &c) {
 	center = c;
 }
 		
-inline void Sphere::setRadius(const double r) {
+inline void Sphere::setRadius(const float r) {
 	radius = r;
 }
 
