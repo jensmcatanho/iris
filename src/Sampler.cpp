@@ -58,7 +58,7 @@ Sampler& Sampler::operator=(const Sampler& sp) {
 	return (*this);
 }
 
-void Sampler::setupShuffledIndices() {
+void Sampler::setupShuffledIndices() {/*
 	shuffledIndices.reserve(numSamples * numSets);
 	std::vector<int> indices;
 
@@ -70,7 +70,7 @@ void Sampler::setupShuffledIndices() {
 
 		for (int j = 0; j < numSamples; j++)
 			shuffledIndices.push_back(indices[j]);
-	}
+	}*/
 }
 
 void Sampler::shuffleSamples() {
@@ -89,4 +89,16 @@ glm::vec2 Sampler::sampleUnitSquare() {
 
 int Sampler::getNumSamples() {
 	return numSamples;
+}
+
+int Sampler::randInt() {
+	randEngine.seed(std::chrono::steady_clock::now().time_since_epoch().count());
+	return randEngine();
+}
+
+float Sampler::randFloat() {
+	randEngine.seed(std::chrono::steady_clock::now().time_since_epoch().count());
+	std::uniform_real_distribution<float> realDistr(randEngine.min(), randEngine.max());
+	return realDistr(randEngine);
+
 }

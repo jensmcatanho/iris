@@ -1,11 +1,12 @@
 CC = g++
-OBJS = MultipleObjects.o Object.o Plane.o Ray.o RGBColor.o ShadeRecord.o Sphere.o Tracer.o ViewPlane.o World.o
+OBJS = MultipleObjects.o Object.o Plane.o Ray.o RGBColor.o Sampler.o ShadeRecord.o Sphere.o Tracer.o ViewPlane.o World.o
 LIBS = ./libRayTracer.so
+C11FLAG = -std=c++11
 
 all: ${OBJS} RayTracer.so main
 
 MultipleObjects.o:
-	${CC} MultipleObjects.cpp -c
+	${CC} MultipleObjects.cpp -c ${C11FLAG}
 
 Object.o:
 	${CC} Object.cpp -c
@@ -19,26 +20,29 @@ Ray.o:
 RGBColor.o:
 	${CC} RGBColor.cpp -c
 
+Sampler.o:
+	${CC} Sampler.cpp -c ${C11FLAG}
+
 ShadeRecord.o:
-	${CC} ShadeRecord.cpp -c
+	${CC} ShadeRecord.cpp -c ${C11FLAG}
 
 Sphere.o:
 	${CC} Sphere.cpp -c
 
 Tracer.o:
-	${CC} Tracer.cpp -c
+	${CC} Tracer.cpp -c ${C11FLAG}
 
 ViewPlane.o:
-	${CC} ViewPlane.cpp -c
+	${CC} ViewPlane.cpp -c ${C11FLAG}
 
-World.o: 
-	${CC} World.cpp -c
+World.o:
+	${CC} World.cpp -c ${C11FLAG}
 
 RayTracer.so: ${OBJS}
 	${CC} ${OBJS} -shared -fPIC -o ./libRayTracer.so
 
 main: RayTracer.so
-	${CC} main.cpp ${LIBS} -o main
+	${CC} main.cpp ${LIBS} ${C11FLAG} -o main
 
 clean:
 	rm *.o *~

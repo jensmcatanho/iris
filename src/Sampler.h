@@ -1,10 +1,12 @@
 #ifndef SAMPLER_H
 #define SAMPLER_H
 
-#include <algorithm>
+#include <chrono>
+#include <random>
 #include <vector>
 
 #include <glm/glm.hpp>
+#include <glm/gtc/random.hpp>
 
 class Sampler {
 	public:
@@ -22,6 +24,11 @@ class Sampler {
 		void shuffleSamples();
 		glm::vec2 sampleUnitSquare();
 		int getNumSamples();
+
+
+	protected:
+		int randInt();
+		float randFloat();
 		
 	protected:
 		int numSamples;
@@ -30,6 +37,9 @@ class Sampler {
 		std::vector<int> shuffledIndices;
 		unsigned long count;
 		int jump;
+
+		std::mt19937 randEngine;
+
 };
 
 #endif
