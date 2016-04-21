@@ -1,5 +1,8 @@
 #include "../src/Sphere.h"
 #include "../src/Plane.h"
+#include <iostream>
+
+using namespace std;
 
 void World::build() {
 	vp.set_hres(200);
@@ -14,7 +17,9 @@ void World::build() {
 	sphere_ptr->setColor(1, 0, 0);
 	addObject(sphere_ptr);
 	
-	sphere_ptr = new Sphere(glm::vec3(0.0f, 30.0f, 0.0f), 60.0f);
+	sphere_ptr = new Sphere;
+	sphere_ptr->setCenter(glm::vec3(0.0f, 30.0f, 0.0f));
+	sphere_ptr->setRadius(60);
 	sphere_ptr->setColor(1, 1, 0);
 	addObject(sphere_ptr);
 	
