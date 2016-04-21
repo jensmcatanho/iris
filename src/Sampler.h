@@ -1,6 +1,7 @@
 #ifndef SAMPLER_H
 #define SAMPLER_H
 
+#include <algorithm>
 #include <chrono>
 #include <random>
 #include <vector>

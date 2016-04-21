@@ -58,7 +58,7 @@ Sampler& Sampler::operator=(const Sampler& sp) {
 	return (*this);
 }
 
-void Sampler::setupShuffledIndices() {/*
+void Sampler::setupShuffledIndices() {
 	shuffledIndices.reserve(numSamples * numSets);
 	std::vector<int> indices;
 
@@ -70,7 +70,7 @@ void Sampler::setupShuffledIndices() {/*
 
 		for (int j = 0; j < numSamples; j++)
 			shuffledIndices.push_back(indices[j]);
-	}*/
+	}
 }
 
 void Sampler::shuffleSamples() {
