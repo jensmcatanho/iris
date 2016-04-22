@@ -78,11 +78,10 @@ void Sampler::shuffleSamples() {
 }
 
 glm::vec2 Sampler::sampleUnitSquare() {
-	//Needs implementation of rand_int()
-	//if (count % numSamples == 0)
-	//	jump = (rand_int() % numSets) * numSamples;
+	if (count % numSamples == 0)
+		jump = (randInt() % numSets) * numSamples;
 
-	return samples[/*jump*/ + count++ % (numSamples * numSets)];
+	return samples[jump + count++ % (numSamples * numSets)];
 
 }
 
