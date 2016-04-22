@@ -29,7 +29,9 @@ class Sampler {
 
 	protected:
 		int randInt();
+		int randInt(const int, const int);
 		float randFloat();
+		float randFloat(const float, const float);
 		
 	protected:
 		int numSamples;

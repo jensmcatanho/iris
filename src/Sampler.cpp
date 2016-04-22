@@ -101,3 +101,16 @@ float Sampler::randFloat() {
 	return realDistr(randEngine);
 
 }
+
+int Sampler::randInt(const int min, const int max) {
+	randEngine.seed(std::chrono::steady_clock::now().time_since_epoch().count());
+	std::uniform_int_distribution<int> intDistr(min, max);
+	return intDistr(randEngine);
+}
+
+float Sampler::randFloat(const float min, const float max) {
+	randEngine.seed(std::chrono::steady_clock::now().time_since_epoch().count());
+	std::uniform_real_distribution<float> realDistr(min, max);
+	return realDistr(randEngine);
+
+}
