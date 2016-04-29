@@ -1,4 +1,7 @@
 #include "ViewPlane.h"
+#include <iostream>
+
+using namespace std;
 
 ViewPlane::ViewPlane()							
 	: hres(400), 
@@ -48,20 +51,21 @@ void ViewPlane::setSamples(const int n) {
 		samplerPtr = NULL;
 	}
 
-	// TODO: Implement MultiJittered and Regular classes
-	//if (numSamples > 1)
-		//samplerPtr = new MultiJittered(numSamples);
-	//else
-		//samplerPtr = new Regular(1);
+	if (numSamples > 1)
+		samplerPtr = new MultiJittered(numSamples);
+	else
+		samplerPtr = new Regular(1);
 
 }
 
 void ViewPlane::setSampler(Sampler* sp) {
-	if (samplerPtr) {
-		delete samplerPtr;
-		samplerPtr = NULL;
-	}
+	//if (samplerPtr) {
+	//	delete samplerPtr;
+	//	samplerPtr = NULL;
+	//}
 
 	numSamples = sp->getNumSamples();
 	samplerPtr = sp;
+
+	//cout << "debug" << endl;
 }

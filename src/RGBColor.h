@@ -2,6 +2,9 @@
 #define RGBCOLOR_H
 
 #include <glm/glm.hpp>
+#include <iostream>
+
+using namespace std;
 
 class RGBColor {
 	public:

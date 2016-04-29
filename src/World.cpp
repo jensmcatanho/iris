@@ -1,5 +1,8 @@
 #include "World.h"
 #include "MultipleObjects.h"
+#include <iostream>
+
+using namespace std;
 
 //#include "BuildSingleSphere.cpp"
 #include "../Builds/BuildMultipleObjects.cpp"
@@ -23,17 +26,27 @@ World::~World() {
 void World::renderScene() const {
 	RGBColor pixelColor;
 	Ray ray;
-	int hres = vp.hres;
-	int vres = vp.vres;
-	float s = vp.s;
 	float zw = 100.0f;
+	glm::vec2 samplePoint;
 
 	ray.direction = glm::vec3(0.0f, 0.0f, -1.0f);
 
-	for (int r = 0; r < vres; r++)
-		for (int c = 0; c <= hres; c++) {
-			ray.origin = glm::vec3(s * (c - hres/2.0 + 0.5), s * (r - vres/2.0 + 0.5), zw);
-			pixelColor = tracerPtr->trace_ray(ray);
+	for (int r = 0; r < vp.vres; r++)
+		for (int c = 0; c <= vp.hres; c++) {
+			pixelColor = BLACK;
+
+			for (int i = 0; i < vp.numSamples; i++) {
+				samplePoint = vp.samplerPtr->sampleUnitSquare();
+				ray.origin = glm::vec3(vp.s * (c - 0.5 * vp.hres + samplePoint.x), vp.s * (r - 0.5 * vp.vres + samplePoint.y), zw);
+				pixelColor += tracerPtr->trace_ray(ray);
+				
+			}
+			
+
+			pixelColor.r /= vp.numSamples;
+			pixelColor.g /= vp.numSamples;
+			pixelColor.b /= vp.numSamples;
+			//cout << "x: " << r << " " << "y: " << c << endl;
 			displayPixel(r, c, pixelColor);
 		}
 }
@@ -73,6 +86,8 @@ void World::displayPixel(const int row, const int column, const RGBColor& raw_co
 		mapped_color = RGBColor(glm::pow(mapped_color.r, vp.inv_gamma),
 					glm::pow(mapped_color.g, vp.inv_gamma),
 					glm::pow(mapped_color.b, vp.inv_gamma));
+
+	cout << "displayPixel" << endl;
 
 	pixels[row * vp.hres + column].r = mapped_color.r;
 	pixels[row * vp.hres + column].g = mapped_color.g;
