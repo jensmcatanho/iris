@@ -1,12 +1,10 @@
 #include "../src/Sphere.h"
 #include "../src/Plane.h"
-#include <iostream>
-
-using namespace std;
 
 void World::build() {
 	vp.set_hres(200);
 	vp.set_vres(200);
+	vp.setSampler(new MultiJittered(256));
 	vp.set_pixel_size(1.0);
 	tracerPtr = new MultipleObjects(this); 
 	backgroundColor = RGBColor(0.0f, 0.0f, 0.0f);

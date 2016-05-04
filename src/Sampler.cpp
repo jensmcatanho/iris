@@ -1,5 +1,9 @@
 #include "Sampler.h"
 
+#include <iostream>
+
+using namespace std;
+
 Sampler::Sampler()
 	: numSamples(1),
 	  numSets(83),
@@ -78,10 +82,13 @@ void Sampler::shuffleSamples() {
 }
 
 glm::vec2 Sampler::sampleUnitSquare() {
-	if (count % numSamples == 0)
+	if (count % numSamples == 0) {
 		jump = (randInt() % numSets) * numSamples;
+		jump = jump >= 0 ? jump : -jump;
 
-	return samples[jump + count++ % (numSamples * numSets)];
+	}
+
+	return samples[jump + shuffledIndices[jump + count++ % numSamples]];
 
 }
 
