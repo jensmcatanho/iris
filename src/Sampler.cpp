@@ -77,8 +77,26 @@ void Sampler::setupShuffledIndices() {
 	}
 }
 
-void Sampler::shuffleSamples() {
-	
+void Sampler::shuffle_X() {
+	for (int i = 0; i < numSets; i++)
+		for (int j = 0; j < numSamples - 1; j++) {
+			int target = randInt() % numSamples + i * numSamples;
+			target = target >= 0 ? target : -target;
+			float temp = samples[j + i * numSamples + 1].x;
+			samples[j + i * numSamples + 1].x = samples[target].x;
+			samples[target].x = temp;
+		}
+}
+
+void Sampler::shuffle_Y() {
+	for (int i = 0; i < numSets; i++)
+		for (int j = 0; j < numSamples - 1; j++) {
+			int target = randInt() % numSamples + i * numSamples;
+			target = target >= 0 ? target : -target;
+			float temp = samples[j + i * numSamples + 1].y;
+			samples[j + i * numSamples + 1].x = samples[target].y;
+			samples[target].y = temp;
+		}
 }
 
 glm::vec2 Sampler::sampleUnitSquare() {

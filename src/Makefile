@@ -4,7 +4,7 @@ LIBS = ./libRayTracer.so
 C11FLAG = -std=c++11
 
 GOBJECTS = Object.o Plane.o Sphere.o
-SAMPLERS = Jittered.o MultiJittered.o PureRandom.o Regular.o Sampler.o 
+SAMPLERS = Hammersley.o Jittered.o MultiJittered.o NRooks.o PureRandom.o Regular.o Sampler.o 
 TRACERS = MultipleObjects.o Tracer.o
 UTIL = Ray.o RGBColor.o ShadeRecord.o
 WORLD = ViewPlane.o World.o
@@ -21,12 +21,18 @@ Sphere.o:
 	${CC} Sphere.cpp -c
 
 # Samplers
-Jittered.o:
+Hammersley.o:
 	@echo "\nSamplers"
+	${CC} Hammersley.cpp -c ${C11FLAG}
+
+Jittered.o:
 	${CC} Jittered.cpp -c ${C11FLAG}
 
 MultiJittered.o:
 	${CC} MultiJittered.cpp -c ${C11FLAG}
+
+NRooks.o:
+	${CC} NRooks.cpp -c ${C11FLAG}
 
 PureRandom.o:
 	${CC} PureRandom.cpp -c ${C11FLAG}

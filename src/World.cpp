@@ -42,11 +42,9 @@ void World::renderScene() const {
 				
 			}
 			
-
 			pixelColor.r /= vp.numSamples;
 			pixelColor.g /= vp.numSamples;
 			pixelColor.b /= vp.numSamples;
-			//cout << "x: " << r << " " << "y: " << c << endl;
 			displayPixel(r, c, pixelColor);
 		}
 }
@@ -86,8 +84,6 @@ void World::displayPixel(const int row, const int column, const RGBColor& raw_co
 		mapped_color = RGBColor(glm::pow(mapped_color.r, vp.inv_gamma),
 					glm::pow(mapped_color.g, vp.inv_gamma),
 					glm::pow(mapped_color.b, vp.inv_gamma));
-
-	cout << "displayPixel" << endl;
 
 	pixels[row * vp.hres + column].r = mapped_color.r;
 	pixels[row * vp.hres + column].g = mapped_color.g;
