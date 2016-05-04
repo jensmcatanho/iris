@@ -1,4 +1,7 @@
 #include "ViewPlane.h"
+#include <iostream>
+
+using namespace std;
 
 ViewPlane::ViewPlane()							
 	: width(400), 
@@ -7,6 +10,7 @@ ViewPlane::ViewPlane()
 	  gamma(1.0),
 	  inv_gamma(1.0),
 	  out_of_gamut(false)
+	  numSamples(1)
 {}
 
 ViewPlane::ViewPlane(const ViewPlane &vp)   
@@ -15,8 +19,12 @@ ViewPlane::ViewPlane(const ViewPlane &vp)
 	  pixel_size(vp.pixel_size),
 	  gamma(vp.gamma),
 	  inv_gamma(vp.inv_gamma),
-	  out_of_gamut(vp.out_of_gamut)
-{}
+	  out_of_gamut(vp.out_of_gamut),
+	  numSamples(vp.numSamples) {
+	
+	if (vp.samplerPtr != NULL)
+		samplerPtr = vp.samplerPtr->clone();
+}
 
 ViewPlane::~ViewPlane()
 {}
@@ -33,4 +41,34 @@ ViewPlane &ViewPlane::operator=(const ViewPlane &vp) {
 	out_of_gamut = vp.out_of_gamut;
 	
 	return (*this);
+}
+
+ViewPlane::~ViewPlane(void)
+{}
+
+void ViewPlane::setSamples(const int n) {
+	numSamples = n;
+
+	if (samplerPtr) {
+		delete samplerPtr;
+		samplerPtr = NULL;
+	}
+
+	if (numSamples > 1)
+		samplerPtr = new MultiJittered(numSamples);
+	else
+		samplerPtr = new Regular(1);
+
+}
+
+void ViewPlane::setSampler(Sampler* sp) {
+	//if (samplerPtr) {
+	//	delete samplerPtr;
+	//	samplerPtr = NULL;
+	//}
+
+	numSamples = sp->getNumSamples();
+	samplerPtr = sp;
+
+	//cout << "debug" << endl;
 }

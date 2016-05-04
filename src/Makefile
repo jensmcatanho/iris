@@ -1,45 +1,88 @@
 CC = g++
-OBJS = MultipleObjects.o Object.o Plane.o Ray.o RGBColor.o ShadeRecord.o Sphere.o Tracer.o ViewPlane.o World.o
+OBJS = ${GOBJECTS} ${SAMPLERS} ${TRACERS} ${UTIL} ${WORLD}
 LIBS = ./libRayTracer.so
 C11FLAG = -std=c++11
 
-all: ${OBJS} RayTracer.so main
+GOBJECTS = Object.o Plane.o Sphere.o
+SAMPLERS = Hammersley.o Jittered.o MultiJittered.o NRooks.o PureRandom.o Regular.o Sampler.o 
+TRACERS = MultipleObjects.o Tracer.o
+UTIL = Ray.o RGBColor.o ShadeRecord.o
+WORLD = ViewPlane.o World.o
 
-MultipleObjects.o:
-	${CC} MultipleObjects.cpp -c
-
+# Geometric Objects
 Object.o:
+	@echo "Geometric Objects"
 	${CC} Object.cpp -c
 
 Plane.o:
 	${CC} Plane.cpp -c
 
+Sphere.o:
+	${CC} Sphere.cpp -c
+
+# Samplers
+Hammersley.o:
+	@echo "\nSamplers"
+	${CC} Hammersley.cpp -c ${C11FLAG}
+
+Jittered.o:
+	${CC} Jittered.cpp -c ${C11FLAG}
+
+MultiJittered.o:
+	${CC} MultiJittered.cpp -c ${C11FLAG}
+
+NRooks.o:
+	${CC} NRooks.cpp -c ${C11FLAG}
+
+PureRandom.o:
+	${CC} PureRandom.cpp -c ${C11FLAG}
+
+Regular.o:
+	${CC} Regular.cpp -c ${C11FLAG}
+
+Sampler.o:
+	${CC} Sampler.cpp -c ${C11FLAG}
+
+
+# Tracers
+MultipleObjects.o:
+	@echo "\nTracers"
+	${CC} MultipleObjects.cpp -c ${C11FLAG}
+
+Tracer.o:
+	${CC} Tracer.cpp -c ${C11FLAG}
+
+# Utilities
 Ray.o:
+	@echo "\nUtilities"
 	${CC} Ray.cpp -c
 
 RGBColor.o:
 	${CC} RGBColor.cpp -c
 
 ShadeRecord.o:
-	${CC} ShadeRecord.cpp -c
+	${CC} ShadeRecord.cpp -c ${C11FLAG}
 
-Sphere.o:
-	${CC} Sphere.cpp -c
-
-Tracer.o:
-	${CC} Tracer.cpp -c ${C11FLAG}
-
+# World
 ViewPlane.o:
-	${CC} ViewPlane.cpp -c
+	@echo "\nWorld"
+	${CC} ViewPlane.cpp -c ${C11FLAG}
 
-World.o: 
+World.o:
 	${CC} World.cpp -c ${C11FLAG}
 
+# Shared library
 RayTracer.so: ${OBJS}
+	@echo "\nShared library"
 	${CC} ${OBJS} -shared -fPIC -o ./libRayTracer.so
 
+# Main
 main: RayTracer.so
-	${CC} main.cpp ${LIBS} -o main
+	@echo "\nMain program"
+	${CC} main.cpp ${LIBS} ${C11FLAG} -o main
+
+# all and clean targets
+all: ${OBJS} RayTracer.so main
 
 clean:
 	rm *.o *~

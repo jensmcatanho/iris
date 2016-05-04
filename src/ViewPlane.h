@@ -1,12 +1,17 @@
 #ifndef VIEWPLANE_H
 #define VIEWPLANE_H
 
+#include "Sampler.h"
+#include "MultiJittered.h"
+#include "Regular.h"
+
 class ViewPlane {
 	public:
 		ViewPlane();
 		ViewPlane(const ViewPlane &);
 		~ViewPlane();
 
+<<<<<<< HEAD
 		ViewPlane &operator=(const ViewPlane &);
 
 		void setWidth(const int);
@@ -14,6 +19,8 @@ class ViewPlane {
 		void setPixelSize(const float);
 		void setGamma(const float);
 		void setGamutDisplay(const bool);
+		void setSamples(const int);
+		void setSampler(Sampler*);
 				
 	public:
 		int width;
@@ -22,6 +29,8 @@ class ViewPlane {
 		float gamma;
 		float inv_gamma;
 		bool out_of_gamut;
+		int numSamples;
+		Sampler* samplerPtr;
 
 };
 

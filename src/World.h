@@ -3,6 +3,7 @@
 
 #include <vector>
 
+#include "Constants.h"
 #include "ViewPlane.h"
 #include "RGBColor.h"
 #include "Object.h"

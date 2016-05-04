@@ -1,5 +1,8 @@
 #include "World.h"
 #include "MultipleObjects.h"
+#include <iostream>
+
+using namespace std;
 
 //#include "BuildSingleSphere.cpp"
 #include "../Builds/BuildMultipleObjects.cpp"
@@ -24,17 +27,24 @@ World::~World() {
 void World::renderScene() const {
 	RGBColor pixelColor;
 	Ray ray;
-	int width = vp.width;
-	int height = vp.height;
-	float s = vp.pixel_size;
 	float zw = 100.0f;
-
+	glm::vec2 samplePoint;
 	ray.direction = glm::vec3(0.0f, 0.0f, -1.0f);
 
-	for (int r = 0; r < height; r++)
-		for (int c = 0; c <= width; c++) {
-			ray.origin = glm::vec3(s * (c - width/2.0 + 0.5), s * (r - height/2.0 + 0.5), zw);
-			pixelColor = tracerPtr->trace_ray(ray);
+	for (int r = 0; r < vp.height; r++)
+		for (int c = 0; c <= vp.width; c++) {
+			pixelColor = BLACK;
+
+			for (int i = 0; i < vp.numSamples; i++) {
+				samplePoint = vp.samplerPtr->sampleUnitSquare();
+				ray.origin = glm::vec3(vp.s * (c - 0.5 * vp.hres + samplePoint.x), vp.s * (r - 0.5 * vp.vres + samplePoint.y), zw);
+				pixelColor += tracerPtr->trace_ray(ray);
+				
+			}
+			
+			pixelColor.r /= vp.numSamples;
+			pixelColor.g /= vp.numSamples;
+			pixelColor.b /= vp.numSamples;
 			displayPixel(r, c, pixelColor);
 		}
 }

@@ -4,6 +4,7 @@
 void World::build() {
 	vp.setWidth(200);
 	vp.setHeight(200);
+	vp.setSampler(new MultiJittered(256));
 	vp.setPixelSize(1.0);
 	tracerPtr = new MultipleObjects(this); 
 	backgroundColor = RGBColor(0.0f, 0.0f, 0.0f);
@@ -14,7 +15,9 @@ void World::build() {
 	sphere_ptr->setColor(1, 0, 0);
 	addObject(sphere_ptr);
 	
-	sphere_ptr = new Sphere(glm::vec3(0.0f, 30.0f, 0.0f), 60.0f);
+	sphere_ptr = new Sphere;
+	sphere_ptr->setCenter(glm::vec3(0.0f, 30.0f, 0.0f));
+	sphere_ptr->setRadius(60);
 	sphere_ptr->setColor(1, 1, 0);
 	addObject(sphere_ptr);
 	
