@@ -1,4 +1,6 @@
 #include "Plane.h"
+#include "Ray.h"
+#include "ShadeRecord.h"
 
 Plane::Plane()
 	: Object(),

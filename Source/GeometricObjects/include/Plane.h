@@ -11,7 +11,7 @@ class Plane : public Object {
 		Plane &operator=(const Plane &);
 
 		virtual bool hit(const Ray &, double &, ShadeRecord &) const;
-
+		
 	public:
 		glm::vec3 point;
 		glm::vec3 normal;

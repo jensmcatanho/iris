@@ -1,4 +1,6 @@
 #include "Sphere.h"
+#include "Ray.h"
+#include "ShadeRecord.h"
 
 Sphere::Sphere()
 	: Object(),
