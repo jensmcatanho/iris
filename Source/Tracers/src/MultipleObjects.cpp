@@ -1,4 +1,6 @@
 #include "MultipleObjects.h"
+#include "ShadeRecord.h"
+#include "World.h"
 
 MultipleObjects::MultipleObjects()
 	: Tracer() {

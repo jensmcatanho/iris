@@ -2,7 +2,6 @@
 #define MULTIPLEOBJECTS_H
 
 #include "Tracer.h"
-#include "World.h"
 
 class MultipleObjects : public Tracer {
 	public:

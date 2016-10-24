@@ -1,12 +1,7 @@
 #ifndef TRACER_H
 #define TRACER_H
 
-#include "Constants.h"
-#include "Ray.h"
-#include "RGBColor.h"
-#include "ShadeRecord.h"
-
-class World;
+#include "Prerequisites.h"
 
 class Tracer {
 	public:

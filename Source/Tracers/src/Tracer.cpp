@@ -1,4 +1,5 @@
 #include "Tracer.h"
+#include "Ray.h"
 #include "World.h"
 
 Tracer::Tracer()
