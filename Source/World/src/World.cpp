@@ -1,10 +1,11 @@
 #include "World.h"
+
+#include "MultiJittered.h"
 #include "MultipleObjects.h"
 #include "Plane.h"
+#include "Ray.h"
+#include "ShadeRecord.h"
 #include "Sphere.h"
-#include <iostream>
-
-using namespace std;
 
 void World::build() {
 	vp.setWidth(200);
@@ -33,7 +34,7 @@ void World::build() {
 }
 
 World::World()
-	: backgroundColor(BLACK),
+	: backgroundColor(RGBColor::Black),
 	  tracerPtr(nullptr) {
 
 	pixels = new RGBColor[vp.width * vp.height];
@@ -57,7 +58,7 @@ void World::renderScene() const {
 
 	for (int r = 0; r < vp.height; r++)
 		for (int c = 0; c <= vp.width; c++) {
-			pixelColor = BLACK;
+			pixelColor = RGBColor::Black;
 
 			for (int i = 0; i < vp.numSamples; i++) {
 				samplePoint = vp.samplerPtr->sampleUnitSquare();

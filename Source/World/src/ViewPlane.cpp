@@ -1,7 +1,8 @@
 #include "ViewPlane.h"
-#include <iostream>
 
-using namespace std;
+#include "MultiJittered.h"
+#include "Regular.h"
+#include "Sampler.h"
 
 ViewPlane::ViewPlane()							
 	: width(400), 

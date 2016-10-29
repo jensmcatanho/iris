@@ -1,9 +1,7 @@
 #ifndef VIEWPLANE_H
 #define VIEWPLANE_H
 
-#include "Sampler.h"
-#include "MultiJittered.h"
-#include "Regular.h"
+#include "Prerequisites.h"
 
 class ViewPlane {
 	public:

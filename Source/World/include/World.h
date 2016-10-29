@@ -1,23 +1,16 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include <vector>
-
-#include "Constants.h"
-#include "ViewPlane.h"
+#include "Prerequisites.h"
 #include "RGBColor.h"
-#include "Object.h"
-
-class Tracer;
-
-using namespace std;
+#include "ViewPlane.h"
 
 class World {
 	public:
 		ViewPlane vp;
 		RGBColor backgroundColor;
 		Tracer *tracerPtr;
-		vector<Object *> objects;
+		std::vector<Object *> objects;
 		RGBColor *pixels;
 
 	public:
