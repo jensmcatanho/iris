@@ -1,10 +1,8 @@
 #ifndef SHADERECORD_H
 #define SHADERECORD_H
 
-#include "Constants.h"
+#include "Prerequisites.h"
 #include "RGBColor.h"
-
-class World;
 
 class ShadeRecord {
 	public:
@@ -16,7 +14,6 @@ class ShadeRecord {
 		glm::vec3 normal;
 		RGBColor color;
 		World &w;
-
 };
 
 #endif

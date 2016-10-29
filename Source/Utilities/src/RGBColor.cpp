@@ -1,5 +1,12 @@
 #include "RGBColor.h"
 
+// Color constants
+const RGBColor RGBColor::Black(0.0f, 0.0f, 0.0f);
+const RGBColor RGBColor::White(1.0f, 1.0f, 1.0f);
+const RGBColor RGBColor::Red(1.0f, 0.0f, 0.0f);
+const RGBColor RGBColor::Green(0.0f, 1.0f, 0.0f);
+const RGBColor RGBColor::Blue(0.0f, 0.0f, 1.0f);
+
 RGBColor::RGBColor()
 	: r(0.0f),
 	  g(0.0f),

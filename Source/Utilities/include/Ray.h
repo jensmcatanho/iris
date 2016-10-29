@@ -1,7 +1,7 @@
 #ifndef RAY_H
 #define RAY_H
 
-#include <glm/glm.hpp>
+#include "Prerequisites.h"
 
 class Ray {
 	public:

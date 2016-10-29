@@ -1,10 +1,7 @@
 #ifndef RGBCOLOR_H
 #define RGBCOLOR_H
 
-#include <glm/glm.hpp>
-#include <iostream>
-
-using namespace std;
+#include "Prerequisites.h"
 
 class RGBColor {
 	public:
@@ -32,6 +29,12 @@ class RGBColor {
 		RGBColor pow(const float) const;
 		float average() const;
 
+		// Color constants
+		static const RGBColor Black;
+		static const RGBColor White;
+		static const RGBColor Red;
+		static const RGBColor Green;
+		static const RGBColor Blue;
 };
 
 inline bool RGBColor::operator==(const RGBColor &c) const {
