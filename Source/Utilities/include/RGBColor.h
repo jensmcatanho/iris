@@ -5,14 +5,10 @@
 
 class RGBColor {
 	public:
-		double r, g, b;
-
 		RGBColor();
 		RGBColor(const double, const double, const double);
 		RGBColor(const double);
-		RGBColor(const RGBColor &);
 		
-		RGBColor &operator=(const RGBColor &);
 		bool operator==(const RGBColor &) const;
 
 		RGBColor operator+(const RGBColor &) const;
@@ -26,8 +22,12 @@ class RGBColor {
 		RGBColor operator*=(const float);
 		RGBColor operator/=(const float);
 
-		RGBColor pow(const float) const;
-		float average() const;
+		RGBColor Pow(const float) const;
+		float Average() const;
+
+		double r;
+		double g; 
+		double b;
 
 		// Color constants
 		static const RGBColor Black;
@@ -99,7 +99,7 @@ inline RGBColor RGBColor::operator/=(const float f) {
 	return (*this);
 }
 
-inline float RGBColor::average() const {
+inline float RGBColor::Average() const {
 	return (float)(0.333333333333f * (r + g + b));
 
 }

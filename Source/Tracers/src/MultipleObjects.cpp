@@ -12,11 +12,11 @@ MultipleObjects::MultipleObjects(World *wPtr)
 
 }
 
-RGBColor MultipleObjects::trace_ray(const Ray &ray) const {
-	ShadeRecord sr(worldPtr->hitObjects(ray));
+RGBColor MultipleObjects::TraceRay(const Ray &ray) const {
+	ShadeRecord sr(m_WorldPtr->HitObjects(ray));
 
-	if (sr.hit)
-		return sr.color;
+	if (sr.m_Hit)
+		return sr.m_Color;
 	else
-		return worldPtr->backgroundColor;
+		return m_WorldPtr->m_BackgroundColor;
 }

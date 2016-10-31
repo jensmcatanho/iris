@@ -6,15 +6,18 @@
 class Hammersley : public Sampler {
 	public:
 		Hammersley();
-		Hammersley(const int);
-		Hammersley(const Hammersley &);
-		Hammersley &operator=(const Hammersley &);
-		virtual Hammersley *clone() const;
 
-		double phi(int);
+		// Constructs a Hammersley sampler with the passed number of samples.
+		Hammersley(const int);
+
+		// Constructs a Hammersley sampler with the passed number of samples and sets.
+		Hammersley(const int, const int);
 
 	private:
-		virtual void generateSamples();
+		virtual void GenerateSamples();
+
+		// Radical-inverse function of an integer in base 2.
+		double Phi(int) const;
 };
 
 #endif

@@ -7,25 +7,25 @@ class Sphere : public Object {
 	public:
 		Sphere();
 		Sphere(glm::vec3, float);
-		Sphere(const Sphere &);
-		Sphere &operator=(const Sphere &);
 
-		virtual bool hit(const Ray &, double &, ShadeRecord &) const;
-		void setCenter(const glm::vec3 &);
-		void setRadius(const float);
+		// Check if a ray intersects with this Object and returns it's shading information.
+		virtual bool Hit(const Ray &, double &, ShadeRecord &) const;
+
+		void SetCenter(const glm::vec3 &);
+		void SetRadius(const float);
 
 	public:
-		glm::vec3 center;
-		float radius;
+		glm::vec3 m_Center;
+		float m_Radius;
 
 };
 
-inline void Sphere::setCenter(const glm::vec3 &c) {
-	center = c;
+inline void Sphere::SetCenter(const glm::vec3 &center) {
+	m_Center = center;
 }
 		
-inline void Sphere::setRadius(const float r) {
-	radius = r;
+inline void Sphere::SetRadius(const float radius) {
+	m_Radius = radius;
 }
 
 #endif

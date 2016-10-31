@@ -6,49 +6,57 @@
 class ViewPlane {
 	public:
 		ViewPlane();
-		ViewPlane(const ViewPlane &);
 
-		ViewPlane &operator=(const ViewPlane &);
+		void SetWidth(const int);
+		void SetHeight(const int);
+		void SetPixelSize(const float);
+		void SetGamma(const float);
+		void SetGamutDisplay(const bool);
+		void SetSamples(const int);
+		void SetSampler(std::shared_ptr<Sampler>);
 
-		void setWidth(const int);
-		void setHeight(const int);
-		void setPixelSize(const float);
-		void setGamma(const float);
-		void setGamutDisplay(const bool);
-		void setSamples(const int);
-		void setSampler(Sampler*);
-				
-	public:
-		int width;
-		int height;
-		float pixel_size;
-		float gamma;
-		float inv_gamma;
-		bool out_of_gamut;
-		int numSamples;
-		Sampler* samplerPtr;
+		// Horizontal image resolution.
+		int m_Width;
 
+		// Vertical image resolution.
+		int m_Height;
+
+		float m_PixelSize;
+
+		// Gamma correction factor.
+		float m_Gamma;
+
+		// Inverse of the gamma correction factor.
+		float m_InvGamma;
+
+		// Checks if RGBColor is out of gamut.
+		bool m_OutOfGamut;
+
+		std::shared_ptr<Sampler> m_SamplerPtr;
+		
+		// Number of samples per pixel.
+		int m_NumSamples;
 };
 
-inline void ViewPlane::setWidth(const int new_w) {
-	width = new_w;
+inline void ViewPlane::SetWidth(const int width) {
+	m_Width = width;
 }
 
-inline void ViewPlane::setHeight(const int new_h) {
-	height = new_h;
+inline void ViewPlane::SetHeight(const int height) {
+	m_Height = height;
 }
 
-inline void ViewPlane::setPixelSize(const float size) {
-	pixel_size = size;
+inline void ViewPlane::SetPixelSize(const float pixel_size) {
+	m_PixelSize = pixel_size;
 }
 
-inline void ViewPlane::setGamma(const float g) {
-	gamma = g;
-	inv_gamma = (float)(1.0 / gamma);
+inline void ViewPlane::SetGamma(const float gamma) {
+	m_Gamma = gamma;
+	m_InvGamma = static_cast<float>(1.0 / gamma);
 }
 
-inline void ViewPlane::setGamutDisplay(const bool out) {
-	out_of_gamut = out;
+inline void ViewPlane::SetGamutDisplay(const bool out_of_gamut) {
+	m_OutOfGamut = out_of_gamut;
 }
 
 #endif

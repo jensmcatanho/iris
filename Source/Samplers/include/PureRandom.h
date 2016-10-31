@@ -6,13 +6,15 @@
 class PureRandom : public Sampler {
 	public:
 		PureRandom();
+
+		// Constructs a PureRandom sampler with the passed number of samples.
 		PureRandom(const int);
-		PureRandom(const PureRandom &);
-		PureRandom &operator=(const PureRandom &);
-		virtual PureRandom *clone() const;
+
+		// Constructs a PureRandom sampler with the passed number of samples and sets.
+		PureRandom(const int, const int);
 
 	private:
-		virtual void generateSamples();
+		virtual void GenerateSamples();
 };
 
 #endif

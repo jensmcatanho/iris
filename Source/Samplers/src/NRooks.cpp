@@ -5,39 +5,28 @@ NRooks::NRooks()
 
 }
 
-NRooks::NRooks(const int n)
-	: Sampler(n) {
+NRooks::NRooks(const int numSamples)
+	: Sampler(numSamples) {
 
-	generateSamples();
+	GenerateSamples();
 }
 
-NRooks::NRooks(const NRooks &nr)
-	: Sampler(nr) {
+NRooks::NRooks(const int numSamples, const int numSets)
+	: Sampler(numSamples, numSets) {
 
-	generateSamples();
+	GenerateSamples();
 }
 
-NRooks &NRooks::operator=(const NRooks &nr) {
-	if (this == &nr)
-		return (*this);
-
-	Sampler::operator=(nr);
-
-	return (*this);
-}
-
-NRooks *NRooks::clone() const {
-	return (new NRooks(*this));
-
-}
-
-void NRooks::generateSamples() {
-	for (int i = 0; i < numSets; i++)
-		for (int j = 0; j < numSamples; j++) {
-			glm::vec2 point( (j + randFloat())/numSamples,  (j + randFloat())/numSamples );
-			samples.push_back(point);
+void NRooks::GenerateSamples() {
+	for (int i = 0; i < m_NumSets; i++)
+		for (int j = 0; j < m_NumSamples; j++) {
+			float x = (j + RandFloat()) / m_NumSamples;
+			float y = (j + RandFloat()) / m_NumSamples;		
+			
+			glm::vec2 point(x, y);
+			m_Samples.push_back(point);
 		}
 
-	shuffle_X();
-	shuffle_Y();
+	ShuffleX();
+	ShuffleY();
 }

@@ -5,73 +5,53 @@ MultiJittered::MultiJittered()
 
 }
 
-MultiJittered::MultiJittered(const int numSp)
-	: Sampler(numSp) {
+MultiJittered::MultiJittered(const int numSamples)
+	: Sampler(numSamples) {
 
-	generateSamples();
+	GenerateSamples();
 }
 
-MultiJittered::MultiJittered(const int numSp, const int numSt)
-	: Sampler(numSp, numSt) {
+MultiJittered::MultiJittered(const int numSamples, const int numSets)
+	: Sampler(numSamples, numSets) {
 
-	generateSamples();
+	GenerateSamples();
 }
 
-MultiJittered::MultiJittered(const MultiJittered &mj)
-	: Sampler(mj) {
-
-	generateSamples();
-}
-
-MultiJittered &MultiJittered::operator=(const MultiJittered &mj) {
-	if (this == &mj)
-		return (*this);
-
-	Sampler::operator=(mj);
-
-	return (*this);
-}
-
-MultiJittered *MultiJittered::clone() const {
-	return (new MultiJittered(*this));
-
-}
-
-void MultiJittered::generateSamples() {
-	int n = (int)sqrt(numSamples);
-	float subcell_width = 1.0 / (float)numSamples;
+void MultiJittered::GenerateSamples() {
+	int n = static_cast<int>(sqrt(m_NumSamples));
+	float subcell_width = 1.0 / static_cast<float>(m_NumSamples);
 
 	glm::vec2 fill_point;
-	for (int i = 0; i < numSamples * numSets; i++)
-		samples.push_back(fill_point);
+	for (int i = 0; i < m_NumSamples * m_NumSets; i++)
+		m_Samples.push_back(fill_point);
 
 
-	for (int i = 0; i < numSets; i++)
+	for (int i = 0; i < m_NumSets; i++)
 		for (int j = 0; j < n; j++)
 			for (int k = 0; k < n; k++) {
-				samples[j * n + k + i * numSamples].x = (j * n + k) * subcell_width + randFloat(0.0f, subcell_width);
-				samples[j * n + k + i * numSamples].y = (k * n + j) * subcell_width + randFloat(0.0f, subcell_width);
+				m_Samples[j * n + k + i * m_NumSamples].x = (j * n + k) * subcell_width + RandFloat(0.0f, subcell_width);
+				m_Samples[j * n + k + i * m_NumSamples].y = (k * n + j) * subcell_width + RandFloat(0.0f, subcell_width);
 
 			}
 
 	// Shuffle X coordinates
-	for (int i = 0; i < numSets; i++)
+	for (int i = 0; i < m_NumSets; i++)
 		for (int j = 0; j < n; j++)
 			for (int k = 0; k < n; k++) {
-				int jump = randInt(k, n - 1);
-				float temp = samples[j * n + k + i * numSamples].x;
-				samples[j * n + k + i * numSamples].x = samples[j * n + jump + i * numSamples].x;
-				samples[j * n + jump + i * numSamples].x = temp;
+				int jump = RandInt(k, n - 1);
+				float temp = m_Samples[j * n + k + i * m_NumSamples].x;
+				m_Samples[j * n + k + i * m_NumSamples].x = m_Samples[j * n + jump + i * m_NumSamples].x;
+				m_Samples[j * n + jump + i * m_NumSamples].x = temp;
 			}
 
 	// Shuffle Y coordinates
-	for (int i = 0; i < numSets; i++)
+	for (int i = 0; i < m_NumSets; i++)
 		for (int j = 0; j < n; j++)
 			for (int k = 0; k < n; k++) {
-				int jump = randInt(k, n - 1);
-				float temp = samples[j * n + k + i * numSamples].y;
-				samples[j * n + k + i * numSamples].y = samples[j * n + jump + i * numSamples].y;
-				samples[j * n + jump + i * numSamples].y = temp;
+				int jump = RandInt(k, n - 1);
+				float temp = m_Samples[j * n + k + i * m_NumSamples].y;
+				m_Samples[j * n + k + i * m_NumSamples].y = m_Samples[j * n + jump + i * m_NumSamples].y;
+				m_Samples[j * n + jump + i * m_NumSamples].y = temp;
 				
 			}
 }

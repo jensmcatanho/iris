@@ -4,43 +4,24 @@
 
 Sphere::Sphere()
 	: Object(),
-	  center(0.0f, 0.0f, 0.0f),
-	  radius(1.0f) {
+	  m_Center(0.0f, 0.0f, 0.0f),
+	  m_Radius(1.0f) {
 
 }
 
 Sphere::Sphere(glm::vec3 c, float r)
 	: Object(),
-	  center(c),
-	  radius(r) {
+	  m_Center(c),
+	  m_Radius(r) {
 
 }
 
-Sphere::Sphere(const Sphere &sphere)
-	: Object(sphere),
-	  center(sphere.center),
-	  radius(sphere.radius) {
-
-}
-
-Sphere &Sphere::operator=(const Sphere &sphere) {
-	if (this == &sphere)
-		return (*this);
-
-	Object::operator=(sphere);
-
-	center = sphere.center;
-	radius = sphere.radius;
-
-	return (*this);
-}
-
-bool Sphere::hit(const Ray &ray, double &tmin, ShadeRecord &sr) const {
+bool Sphere::Hit(const Ray &ray, double &tmin, ShadeRecord &sr) const {
 	float t;
-	glm::vec3 temp = ray.origin - center;
-	double a = glm::dot(ray.direction, ray.direction);
-	double b = glm::dot(2.0f * temp, ray.direction);
-	double c = glm::dot(temp, temp) - radius * radius;
+	glm::vec3 temp = ray.m_Origin - m_Center;
+	double a = glm::dot(ray.m_Direction, ray.m_Direction);
+	double b = glm::dot(2.0f * temp, ray.m_Direction);
+	double c = glm::dot(temp, temp) - m_Radius * m_Radius;
 	double discriminant = b * b - (4 * a * c);
 
 	if (discriminant < 0.0f)
@@ -50,9 +31,9 @@ bool Sphere::hit(const Ray &ray, double &tmin, ShadeRecord &sr) const {
 
 	if (t > kEpsilon) {
 		tmin = t;
-		sr.normal = temp + t * ray.direction;
-		sr.normal = sr.normal * (1.0f/radius);
-		sr.hitPoint = ray.origin + ray.direction * t;
+		sr.m_Normal = temp + t * ray.m_Direction;
+		sr.m_Normal = sr.m_Normal * (1.0f / m_Radius);
+		sr.m_HitPoint = ray.m_Origin + ray.m_Direction * t;
 		return true;
 
 	}
@@ -61,9 +42,9 @@ bool Sphere::hit(const Ray &ray, double &tmin, ShadeRecord &sr) const {
 
 	if (t > kEpsilon) {
 		tmin = t;
-		sr.normal = temp + t * ray.direction;
-		sr.normal = sr.normal * (1.0f/radius);
-		sr.hitPoint = ray.origin + ray.direction * t;
+		sr.m_Normal = temp + t * ray.m_Direction;
+		sr.m_Normal = sr.m_Normal * (1.0f / m_Radius);
+		sr.m_HitPoint = ray.m_Origin + ray.m_Direction * t;
 		return true;
 
 	}

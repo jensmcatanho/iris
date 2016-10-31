@@ -4,44 +4,25 @@
 
 Plane::Plane()
 	: Object(),
-	  point(0.0f, 0.0f, 0.0f),
-	  normal(0.0f, 1.0f, 0.0f) {
+	  m_Point(0.0f, 0.0f, 0.0f),
+	  m_Normal(0.0f, 1.0f, 0.0f) {
 
 }
 
-Plane::Plane(const glm::vec3 &p, const glm::vec3 &n)
+Plane::Plane(const glm::vec3 &point, const glm::vec3 &normal)
 	: Object(),
-	  point(p),
-	  normal(glm::normalize(n)) {
+	  m_Point(point),
+	  m_Normal(glm::normalize(normal)) {
 
 }
 
-Plane::Plane(const Plane &plane)
-	: Object(plane),
-	  point(plane.point),
-	  normal(plane.normal) {
-
-}
-
-Plane &Plane::operator=(const Plane &plane) {
-	if (this == &plane)
-		return (*this);
-
-	Object::operator=(plane);
-
-	point = plane.point;
-	normal = plane.normal;
-
-	return (*this);
-}
-
-bool Plane::hit(const Ray &ray, double &tmin, ShadeRecord &sr) const {
-	float t = glm::dot(point - ray.origin, normal) / glm::dot(ray.direction, normal);
+bool Plane::Hit(const Ray &ray, double &tmin, ShadeRecord &sr) const {
+	float t = glm::dot(m_Point - ray.m_Origin, m_Normal) / glm::dot(ray.m_Direction, m_Normal);
 
 	if (t > kEpsilon) {
 		tmin = t;
-		sr.normal = normal;
-		sr.hitPoint = ray.origin + t * ray.direction;
+		sr.m_Normal = m_Normal;
+		sr.m_HitPoint = ray.m_Origin + t * ray.m_Direction;
 
 		return true;
 	}

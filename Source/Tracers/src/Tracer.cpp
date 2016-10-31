@@ -3,27 +3,16 @@
 #include "World.h"
 
 Tracer::Tracer()
-	: worldPtr(nullptr) {
+	: m_WorldPtr(nullptr) {
 
 }
 
-Tracer::Tracer(World  *wPtr)
-	: worldPtr(wPtr) {
+Tracer::Tracer(World *worldPtr)
+	: m_WorldPtr(worldPtr) {
 
 }
 
-Tracer::~Tracer() {
-	if (worldPtr)
-		worldPtr = nullptr;
-
-}
-
-RGBColor Tracer::trace_ray(const Ray &ray) const {
-	return RGBColor(RGBColor::Black);
-
-}
-
-RGBColor Tracer::trace_ray(const Ray ray, const int depth) const {
+RGBColor Tracer::TraceRay(const Ray &ray) const {
 	return RGBColor(RGBColor::Black);
 
 }

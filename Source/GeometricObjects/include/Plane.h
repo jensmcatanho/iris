@@ -6,15 +6,14 @@
 class Plane : public Object {
 	public:
 		Plane();
-		Plane(const glm::vec3 &, const glm::vec3 &);
-		Plane(const Plane &);
-		Plane &operator=(const Plane &);
+		Plane(const glm::vec3 &point, const glm::vec3 &normal);
 
-		virtual bool hit(const Ray &, double &, ShadeRecord &) const;
+		// Check if a ray intersects with this Object and returns it's shading information.
+		virtual bool Hit(const Ray &, double &, ShadeRecord &) const;
 		
 	public:
-		glm::vec3 point;
-		glm::vec3 normal;
+		glm::vec3 m_Point;
+		glm::vec3 m_Normal;
 
 };
 

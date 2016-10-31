@@ -6,14 +6,15 @@
 class MultiJittered : public Sampler {
 	public:
 		MultiJittered();
+
+		// Constructs a MultiJittered sampler with the passed number of samples.
 		MultiJittered(const int);
+
+		// Constructs a MultiJittered sampler with the passed number of samples and sets.
 		MultiJittered(const int, const int);
-		MultiJittered(const MultiJittered &);
-		MultiJittered &operator=(const MultiJittered &);
-		virtual MultiJittered *clone() const;
 
 	private:
-		virtual void generateSamples();
+		virtual void GenerateSamples();
 };
 
 #endif

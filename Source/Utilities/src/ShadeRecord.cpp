@@ -1,18 +1,10 @@
 #include "ShadeRecord.h"
 
 ShadeRecord::ShadeRecord(World &wr)
-	: hit(false),
-	  hitPoint(),
-	  normal(),
-	  color(RGBColor::Black),
+	: m_Hit(false),
+	  m_HitPoint(),
+	  m_Normal(),
+	  m_Color(RGBColor::Black),
 	  w(wr) {
-
-}
-
-ShadeRecord::ShadeRecord(const ShadeRecord &sr)
-	: hit(sr.hit),
-	  hitPoint(sr.hitPoint),
-	  color(sr.color),
-	  w(sr.w) {
 
 }

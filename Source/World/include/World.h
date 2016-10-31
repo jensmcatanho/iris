@@ -5,35 +5,39 @@
 #include "RGBColor.h"
 #include "ViewPlane.h"
 
-class World {
-	public:
-		ViewPlane vp;
-		RGBColor backgroundColor;
-		Tracer *tracerPtr;
-		std::vector<Object *> objects;
-		RGBColor *pixels;
+typedef std::vector<std::shared_ptr<Object>> ObjectList;
 
+class World {
 	public:
 		World();
 		~World();
 
-		void build();
-		void renderScene() const;
-		void displayPixel(const int, const int, const RGBColor &) const;
-		
-		ShadeRecord hitObjects(const Ray &);
-		void addObject(Object *);
+		void Build();
+		void RenderScene() const;
+		ShadeRecord HitObjects(const Ray &);
 
-		RGBColor maxToOne(const RGBColor &) const;
-		RGBColor clampToColor(const RGBColor &, const RGBColor &) const;
+		ViewPlane m_ViewPlane;
+
+		RGBColor m_BackgroundColor;
+
+		Tracer *m_TracerPtr;
+
+		// List of the pixels in the view plane.
+		RGBColor *m_Pixels;
+
+		// List of the objects in the scene.
+		ObjectList m_Objects;
+
 
 	private:
-		void deleteObjects();
-
+		void DisplayPixel(const int, const int, const RGBColor &) const;
+		void AddObject(std::shared_ptr<Object>);
+		RGBColor MaxToOne(const RGBColor &) const;
+		RGBColor ClampToColor(const RGBColor &, const RGBColor &) const;
 };
 
-inline void World::addObject(Object *objPtr) {
-	objects.push_back(objPtr);
+inline void World::AddObject(std::shared_ptr<Object> objPtr) {
+	m_Objects.push_back(objPtr);
 
 }
 

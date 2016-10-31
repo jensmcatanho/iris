@@ -7,13 +7,11 @@ class Tracer {
 	public:
 		Tracer();
 		Tracer(World *);
-		virtual ~Tracer();
 
-		virtual RGBColor trace_ray(const Ray &) const;
-		virtual RGBColor trace_ray(const Ray, const int) const;
+		virtual RGBColor TraceRay(const Ray &) const;
 
 	protected:
-		World *worldPtr;
+		World *m_WorldPtr;
 };
 
 #endif

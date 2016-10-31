@@ -5,42 +5,27 @@ Regular::Regular()
 
 }
 
-Regular::Regular(const int numSp)
-	: Sampler(numSp) {
+Regular::Regular(const int numSamples)
+	: Sampler(numSamples) {
 
-	generateSamples();
+	GenerateSamples();
 }
 
-Regular::Regular(const Regular &r)
-	: Sampler(r) {
+Regular::Regular(const int numSamples, const int numSets)
+	: Sampler(numSamples, numSets) {
 
-	generateSamples();
+	GenerateSamples();
 }
 
-Regular &Regular::operator=(const Regular &r) {
-	if (this == &r)
-		return (*this);
+void Regular::GenerateSamples() {
+	int n = static_cast<int>(sqrt(m_NumSamples));
 
-	Sampler::operator=(r);
-
-	return (*this);
-}
-
-Regular *Regular::clone() const {
-	return (new Regular(*this));
-
-}
-
-void Regular::generateSamples() {
-	int n = (int)sqrt(numSamples);
-	int x, y;
-
-	for (int p = 0; p < numSets; p++)
+	for (int i = 0; i < m_NumSets; i++)
 		for (int j = 0; j < n; j++)
 			for (int k = 0; k < n; k++) {
-				x = (k + 0.5) / n;
-				y = (j + 0.5) / n;
+				int x = (k + 0.5) / n;
+				int y = (j + 0.5) / n;
 
-				samples.push_back( glm::vec2(x, y) );
+				m_Samples.push_back( glm::vec2(x, y) );
 			}
 }

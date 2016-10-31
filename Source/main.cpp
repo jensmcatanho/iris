@@ -16,7 +16,7 @@ struct RGBType {
 	
 };
 
-void save_bitmap(const char *filename, int w, int h, int dpi, RGBColor *data) {
+void save_bitmap(const char *filename, int w, int h, int dpi, shared_ptr<World> world) {
 	FILE *f;
 	int k = w * h;
 	int s = 4 * k;
@@ -63,9 +63,9 @@ void save_bitmap(const char *filename, int w, int h, int dpi, RGBColor *data) {
 	fwrite(bmpinfoheader, 1, 40, f);
 	
 	for (int i = 0; i < k; i++) {		
-		double red = (data[i].r) * 255;
-		double green = (data[i].g) * 255;
-		double blue = (data[i].b) * 255;
+		double red = (world->m_Pixels[i].r) * 255;
+		double green = (world->m_Pixels[i].g) * 255;
+		double blue = (world->m_Pixels[i].b) * 255;
 		
 		unsigned char color[4] = {(int)floor(blue), (int)floor(green),(int)floor(red)};
 		
@@ -80,12 +80,13 @@ void save_bitmap(const char *filename, int w, int h, int dpi, RGBColor *data) {
 int thisone;
 
 int main(int argc, char *argv[]) {
-	World w;
-	w.build();
-	w.renderScene();
+	std::shared_ptr<World> w(new World());
+	
+	w->Build();
+	w->RenderScene();
 	int dpi = 72;
 
-	save_bitmap("scene.bmp", w.vp.width, w.vp.height, dpi, w.pixels);	
+	save_bitmap("scene.bmp", w->m_ViewPlane.m_Width, w->m_ViewPlane.m_Height, dpi, w);	
 
 	return EXIT_SUCCESS;
 }

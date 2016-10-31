@@ -6,14 +6,15 @@
 class Jittered : public Sampler {
 	public:
 		Jittered();
+
+		// Constructs a Jittered sampler with the passed number of samples.
 		Jittered(const int);
+
+		// Constructs a Jittered sampler with the passed number of samples and sets.
 		Jittered(const int, const int);
-		Jittered(const Jittered &);
-		Jittered &operator=(const Jittered &);
-		virtual Jittered *clone() const;
 
 	private:
-		virtual void generateSamples();
+		virtual void GenerateSamples();
 };
 
 #endif

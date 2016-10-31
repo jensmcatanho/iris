@@ -5,48 +5,28 @@ Jittered::Jittered()
 
 }
 
-Jittered::Jittered(const int numSp)
-	: Sampler(numSp) {
+Jittered::Jittered(const int numSamples)
+	: Sampler(numSamples) {
 
-	generateSamples();
+	GenerateSamples();
 }
 
-Jittered::Jittered(const int numSp, const int numSt)
-	: Sampler(numSp, numSt) {
+Jittered::Jittered(const int numSamples, const int numSets)
+	: Sampler(numSamples, numSets) {
 
-	generateSamples();
+	GenerateSamples();
 }
 
-Jittered::Jittered(const Jittered &j)
-	: Sampler(j) {
-
-	generateSamples();
-}
-
-Jittered &Jittered::operator=(const Jittered &j) {
-	if (this == &j)
-		return (*this);
-
-	Sampler::operator=(j);
-
-	return (*this);
-}
-
-Jittered *Jittered::clone() const {
-	return (new Jittered(*this));
-
-}
-
-void Jittered::generateSamples() {
-	int n = (int)sqrt(numSamples);
+void Jittered::GenerateSamples() {
+	int n = (int)sqrt(m_NumSamples);
 	int x, y;
 
-	for (int p = 0; p < numSets; p++)
+	for (int p = 0; p < m_NumSets; p++)
 		for (int j = 0; j < n; j++)
 			for (int k = 0; k < n; k++) {
-				x = (k + randFloat()) / n;
-				y = (j + randFloat()) / n;
+				x = (k + RandFloat()) / n;
+				y = (j + RandFloat()) / n;
 
-				samples.push_back( glm::vec2(x, y) );
+				m_Samples.push_back( glm::vec2(x, y) );
 			}
 }

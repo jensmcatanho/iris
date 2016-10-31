@@ -5,33 +5,21 @@ Hammersley::Hammersley()
 
 }
 
-Hammersley::Hammersley(const int n)
-	: Sampler(n) {
+Hammersley::Hammersley(const int numSamples)
+	: Sampler(numSamples) {
 
-	generateSamples();
+	GenerateSamples();
 }
 
-Hammersley::Hammersley(const Hammersley &h)
-	: Sampler(h) {
+Hammersley::Hammersley(const int numSamples, const int numSets)
+	: Sampler(numSamples, numSets) {
 
-	generateSamples();
+	GenerateSamples();
 }
 
-Hammersley &Hammersley::operator=(const Hammersley &h) {
-	if (this == &h)
-		return (*this);
-
-	Sampler::operator=(h);
-
-	return (*this);
-}
-
-Hammersley *Hammersley::clone() const {
-	return (new Hammersley(*this));
-
-}
-
-double Hammersley::phi(int j) {
+double Hammersley::Phi(int j) const {
+	// References: http://holger.dammertz.org/stuff/notes_HammersleyOnHemisphere.html
+	// http://math.stackexchange.com/questions/849848/why-is-the-formula-for-generating-van-der-corput-sequences-called-an-inverse-rad
 	double x = 0.0;
 	double f = 0.5;
 
@@ -44,10 +32,11 @@ double Hammersley::phi(int j) {
 	return x;
 }
 
-void Hammersley::generateSamples() {
-	for (int i = 0; i < numSets; i++)
-		for (int j = 0; j < numSamples; j++) {
-			glm::vec2 point( (float)j / (float)numSamples, phi(j) );
-			samples.push_back(point);
+void Hammersley::GenerateSamples() {
+	for (int i = 0; i < m_NumSets; i++)
+		for (int j = 0; j < m_NumSamples; j++) {
+			glm::vec2 point((float)j / (float)m_NumSamples, Phi(j));  //Pi = (xi, yi) = [1/n,	Phi2(i)]
+
+			m_Samples.push_back(point);
 		}
 }

@@ -5,34 +5,20 @@ PureRandom::PureRandom()
 
 }
 
-PureRandom::PureRandom(const int numSp)
-	: Sampler(numSp) {
+PureRandom::PureRandom(const int numSamples)
+	: Sampler(numSamples) {
 
-	generateSamples();
+	GenerateSamples();
 }
 
-PureRandom::PureRandom(const PureRandom &pr)
-	: Sampler(pr) {
+PureRandom::PureRandom(const int numSamples, const int numSets)
+	: Sampler(numSamples, numSets) {
 
-	generateSamples();
+	GenerateSamples();
 }
 
-PureRandom &PureRandom::operator=(const PureRandom &pr) {
-	if (this == &pr)
-		return (*this);
-
-	Sampler::operator=(pr);
-
-	return (*this);
-}
-
-PureRandom *PureRandom::clone() const {
-	return (new PureRandom(*this));
-
-}
-
-void PureRandom::generateSamples() {
-	for (int p = 0; p < numSets; p++)
-		for (int q = 0; q < numSamples; q++)
-			samples.push_back(glm::vec2(randFloat(), randFloat()));
+void PureRandom::GenerateSamples() {
+	for (int i = 0; i < m_NumSets; i++)
+		for (int j = 0; j < m_NumSamples; j++)
+			m_Samples.push_back(glm::vec2( RandFloat(), RandFloat() ));
 }

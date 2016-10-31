@@ -7,134 +7,121 @@
 #include "ShadeRecord.h"
 #include "Sphere.h"
 
-void World::build() {
-	vp.setWidth(200);
-	vp.setHeight(200);
-	vp.setSampler(new MultiJittered(256));
-	vp.setPixelSize(1.0);
-	tracerPtr = new MultipleObjects(this);
-	backgroundColor = RGBColor(0.0f, 0.0f, 0.0f);
+void World::Build() {
+	m_ViewPlane.SetWidth(200);
+	m_ViewPlane.SetHeight(200);
+	
+	std::shared_ptr<MultiJittered> newSampler(new MultiJittered(256));
+	m_ViewPlane.SetSampler(newSampler);
+	m_ViewPlane.SetPixelSize(1.0);
 
-	Sphere* sphere_ptr = new Sphere;
-	sphere_ptr->setCenter(glm::vec3(0.0f, 0.0f, 0.0f));
-	sphere_ptr->setRadius(80);
-	sphere_ptr->setColor(0, 1, 0);
-	addObject(sphere_ptr);
+	m_TracerPtr = new MultipleObjects(this);
+	m_BackgroundColor = RGBColor(0.0f, 0.0f, 0.0f);
+
+	std::shared_ptr<Sphere> sphere_ptr(new Sphere);
+	sphere_ptr->SetCenter(glm::vec3(0.0f, 0.0f, 0.0f));
+	sphere_ptr->SetRadius(80);
+	sphere_ptr->SetColor(0, 1, 0);
+	AddObject(sphere_ptr);
 
 	// Back
-	Plane* plane_ptr = new Plane(glm::vec3(0.0f, 0.0f, -80.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-	plane_ptr->setColor(0.1f, 0.1f, 0.1f);
-	addObject(plane_ptr);
+	std::shared_ptr<Plane> plane_ptr(new Plane(glm::vec3(0.0f, 0.0f, -80.0f), glm::vec3(0.0f, 0.0f, 1.0f)));
+	plane_ptr->SetColor(0.1f, 0.1f, 0.1f);
+	AddObject(plane_ptr);
 
 	// Top
-	Plane* plane_ptr2 = new Plane(glm::vec3(0.0f, 80.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.2f));
-	plane_ptr2->setColor(1.0f, 1.0f, 1.0f);
-	addObject(plane_ptr2);
+	std::shared_ptr<Plane> plane_ptr2(new Plane(glm::vec3(0.0f, 80.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.2f)));
+	plane_ptr2->SetColor(1.0f, 1.0f, 1.0f);
+	AddObject(plane_ptr2);
 
 	// Bottom
-	Plane* plane_ptr3 = new Plane(glm::vec3(0.0f, -80.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.2f));
-	plane_ptr3->setColor(1.0f, 1.0f, 1.0f);
-	addObject(plane_ptr3);
+	std::shared_ptr<Plane> plane_ptr3(new Plane(glm::vec3(0.0f, -80.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.2f)));
+	plane_ptr3->SetColor(1.0f, 1.0f, 1.0f);
+	AddObject(plane_ptr3);
 
 	// Left
-	Plane* plane_ptr4 = new Plane(glm::vec3(-80.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.2f));
-	plane_ptr4->setColor(1.0f, 0.0f, 0.0f);
-	addObject(plane_ptr4);
+	std::shared_ptr<Plane> plane_ptr4(new Plane(glm::vec3(-80.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.2f)));
+	plane_ptr4->SetColor(1.0f, 0.0f, 0.0f);
+	AddObject(plane_ptr4);
 
 	// Right
-	Plane* plane_ptr5 = new Plane(glm::vec3(80.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 0.2f));
-	plane_ptr5->setColor(0.0f, 0.0f, 1.0f);
-	addObject(plane_ptr5);
+	std::shared_ptr<Plane> plane_ptr5(new Plane(glm::vec3(80.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 0.2f)));
+	plane_ptr5->SetColor(0.0f, 0.0f, 1.0f);
+	AddObject(plane_ptr5);
 }
 
 World::World()
-	: backgroundColor(RGBColor::Black),
-	  tracerPtr(nullptr) {
+	: m_BackgroundColor(RGBColor::Black),
+	  m_TracerPtr(nullptr) {
 
-	pixels = new RGBColor[vp.width * vp.height];
+	m_Pixels = new RGBColor[m_ViewPlane.m_Width * m_ViewPlane.m_Height];
 }
 
 World::~World() {
-	if (tracerPtr) {
-		delete tracerPtr;
-		tracerPtr = nullptr;
-	}
-
-	deleteObjects();
 }
 
-void World::renderScene() const {
+void World::RenderScene() const {
 	RGBColor pixelColor;
 	Ray ray;
 	float zw = 100.0f;
 	glm::vec2 samplePoint;
-	ray.direction = glm::vec3(0.0f, 0.0f, -1.0f);
+	ray.m_Direction = glm::vec3(0.0f, 0.0f, -1.0f);
 
-	for (int r = 0; r < vp.height; r++)
-		for (int c = 0; c <= vp.width; c++) {
+	for (int r = 0; r < m_ViewPlane.m_Height; r++)
+		for (int c = 0; c <= m_ViewPlane.m_Width; c++) {
 			pixelColor = RGBColor::Black;
 
-			for (int i = 0; i < vp.numSamples; i++) {
-				samplePoint = vp.samplerPtr->sampleUnitSquare();
-				ray.origin = glm::vec3(vp.pixel_size * (c - 0.5 * vp.width + samplePoint.x), vp.pixel_size * (r - 0.5 * vp.height + samplePoint.y), zw);
-				pixelColor += tracerPtr->trace_ray(ray);
+			for (int i = 0; i < m_ViewPlane.m_NumSamples; i++) {
+				samplePoint = m_ViewPlane.m_SamplerPtr->SampleUnitSquare();
+				ray.m_Origin = glm::vec3(m_ViewPlane.m_PixelSize * (c - 0.5 * m_ViewPlane.m_Width + samplePoint.x),
+					                     m_ViewPlane.m_PixelSize * (r - 0.5 * m_ViewPlane.m_Height + samplePoint.y), zw);
+				pixelColor += m_TracerPtr->TraceRay(ray);
 				
 			}
 			
-			pixelColor.r /= vp.numSamples;
-			pixelColor.g /= vp.numSamples;
-			pixelColor.b /= vp.numSamples;
-			displayPixel(r, c, pixelColor);
+			pixelColor.r /= m_ViewPlane.m_NumSamples;
+			pixelColor.g /= m_ViewPlane.m_NumSamples;
+			pixelColor.b /= m_ViewPlane.m_NumSamples;
+			DisplayPixel(r, c, pixelColor);
 		}
 }
 
-void World::displayPixel(const int row, const int column, const RGBColor &raw_color) const {
+void World::DisplayPixel(const int row, const int column, const RGBColor &raw_color) const {
 	RGBColor mapped_color;
 	RGBColor target_color(1.0f, 0.0f, 0.0f); //TODO: Set target color in build member function
 
-	if (vp.out_of_gamut)
-		mapped_color = clampToColor(raw_color, target_color);
+	if (m_ViewPlane.m_OutOfGamut)
+		mapped_color = ClampToColor(raw_color, target_color);
 	else
-		mapped_color = maxToOne(raw_color);
+		mapped_color = MaxToOne(raw_color);
 	
-	if (vp.gamma != 1.0)
-		mapped_color = RGBColor(glm::pow(mapped_color.r, vp.inv_gamma),
-					glm::pow(mapped_color.g, vp.inv_gamma),
-					glm::pow(mapped_color.b, vp.inv_gamma));
+	if (m_ViewPlane.m_Gamma != 1.0)
+		mapped_color = RGBColor(glm::pow(mapped_color.r, m_ViewPlane.m_InvGamma),
+								glm::pow(mapped_color.g, m_ViewPlane.m_InvGamma),
+								glm::pow(mapped_color.b, m_ViewPlane.m_InvGamma));
 
-	pixels[row * vp.width + column].r = mapped_color.r;
-	pixels[row * vp.width + column].g = mapped_color.g;
-	pixels[row * vp.width + column].b = mapped_color.b;
+	m_Pixels[row * m_ViewPlane.m_Width + column].r = mapped_color.r;
+	m_Pixels[row * m_ViewPlane.m_Width + column].g = mapped_color.g;
+	m_Pixels[row * m_ViewPlane.m_Width + column].b = mapped_color.b;
 }
 
-ShadeRecord World::hitObjects(const Ray &ray) {
+ShadeRecord World::HitObjects(const Ray &ray) {
 	ShadeRecord sr(*this); 
 	double t; 			
 	double tmin = 1000000;
-	int num_objects = objects.size();
+	int num_objects = m_Objects.size();
 	
 	for (int j = 0; j < num_objects; j++)
-		if (objects[j]->hit(ray, t, sr) && (t < tmin)) {
-			sr.hit =  true;
+		if (m_Objects[j]->Hit(ray, t, sr) && (t < tmin)) {
+			sr.m_Hit =  true;
 			tmin = t;
-			sr.color = objects[j]->getColor();
+			sr.m_Color = m_Objects[j]->GetColor();
 		}
 		
 	return (sr);
 }
 
-void World::deleteObjects(void) {
-	int num_objects = objects.size();
-	
-	for (int j = 0; j < num_objects; j++) {
-		delete objects[j];
-		objects[j] = nullptr;
-	}
-	
-	objects.erase(objects.begin(), objects.end());
-}
-
-RGBColor World::maxToOne(const RGBColor &raw_color) const {
+RGBColor World::MaxToOne(const RGBColor &raw_color) const {
 	float max_value = (float)glm::max(raw_color.r, glm::max(raw_color.g, raw_color.b));
 	
 	if (max_value > 1.0)
@@ -143,7 +130,7 @@ RGBColor World::maxToOne(const RGBColor &raw_color) const {
 		return (raw_color);
 }
 
-RGBColor World::clampToColor(const RGBColor &raw_color, const RGBColor &target_color) const {
+RGBColor World::ClampToColor(const RGBColor &raw_color, const RGBColor &target_color) const {
 	RGBColor c(raw_color);
 	
 	if (raw_color.r > 1.0 || raw_color.g > 1.0 || raw_color.b > 1.0) {

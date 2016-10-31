@@ -5,135 +5,107 @@
 using namespace std;
 
 Sampler::Sampler()
-	: numSamples(1),
-	  numSets(83),
-	  count(0),
-	  jump(0) {
+	: m_NumSamples(1),
+	  m_NumSets(83),
+	  m_Count(0),
+	  m_Jump(0) {
 
-	samples.reserve(numSets); // No need to multiply here, result already known
-	setupShuffledIndices();
-
+	m_Samples.reserve(m_NumSets);  // No need to multiply here, result already known.
+	SetupShuffledIndices();
 }
 
-Sampler::Sampler(const int numSp)
-	: numSamples(numSp),
-	  numSets(83),
-	  count(0),
-	  jump(0) {
+Sampler::Sampler(const int numSamples)
+	: m_NumSamples(numSamples),
+	  m_NumSets(83),
+	  m_Count(0),
+	  m_Jump(0) {
 
-	samples.reserve(numSamples * numSets);
-	setupShuffledIndices();
-
+	m_Samples.reserve(m_NumSamples * m_NumSets);
+	SetupShuffledIndices();
 }
 
-Sampler::Sampler(const int numSp, const int numSt)
-	: numSamples(numSp),
-	  numSets(numSt),
-	  count(0),
-	  jump(0) {
+Sampler::Sampler(const int numSamples, const int numSets)
+	: m_NumSamples(numSamples),
+	  m_NumSets(numSets),
+	  m_Count(0),
+	  m_Jump(0) {
 
-	samples.reserve(numSamples * numSets);
-	setupShuffledIndices();
-
+	m_Samples.reserve(m_NumSamples * m_NumSets);
+	SetupShuffledIndices();
 }
 
-Sampler::Sampler(const Sampler& sp)
-	: numSamples(sp.numSamples),
-	  numSets(sp.numSets),
-	  samples(sp.samples),
-	  shuffledIndices(sp.shuffledIndices),
-	  count(sp.count),
-	  jump(sp.jump) {
-
-}
-
-Sampler& Sampler::operator=(const Sampler& sp) {
-	if (this == &sp)
-		return (*this);
-
-	numSamples = sp.numSamples;
-	numSets = sp.numSets;
-	samples = sp.samples;
-	count = sp.count;
-	jump = sp.jump;
-
-	return (*this);
-}
-
-void Sampler::setupShuffledIndices() {
-	shuffledIndices.reserve(numSamples * numSets);
+void Sampler::SetupShuffledIndices() {
+	m_ShuffledIndices.reserve(m_NumSamples * m_NumSets);
 	std::vector<int> indices;
 
-	for (int i = 0; i < numSamples; i++)
+	for (int i = 0; i < m_NumSamples; i++)
 		indices.push_back(i);
 
-	for (int i = 0; i < numSets; i++) {
+	for (int i = 0; i < m_NumSets; i++) {
 		std::random_shuffle(indices.begin(), indices.end());
 
-		for (int j = 0; j < numSamples; j++)
-			shuffledIndices.push_back(indices[j]);
+		for (int j = 0; j < m_NumSamples; j++)
+			m_ShuffledIndices.push_back(indices[j]);
 	}
 }
 
-void Sampler::shuffle_X() {
-	for (int i = 0; i < numSets; i++)
-		for (int j = 0; j < numSamples - 1; j++) {
-			int target = randInt() % numSamples + i * numSamples;
+void Sampler::ShuffleX() {
+	for (int i = 0; i < m_NumSets; i++)
+		for (int j = 0; j < m_NumSamples - 1; j++) {
+			int target = RandInt() % m_NumSamples + i * m_NumSamples;
 			target = target >= 0 ? target : -target;
-			float temp = samples[j + i * numSamples + 1].x;
-			samples[j + i * numSamples + 1].x = samples[target].x;
-			samples[target].x = temp;
+
+			float temp = m_Samples[j + i * m_NumSamples + 1].x;
+			m_Samples[j + i * m_NumSamples + 1].x = m_Samples[target].x;
+			m_Samples[target].x = temp;
 		}
 }
 
-void Sampler::shuffle_Y() {
-	for (int i = 0; i < numSets; i++)
-		for (int j = 0; j < numSamples - 1; j++) {
-			int target = randInt() % numSamples + i * numSamples;
+void Sampler::ShuffleY() {
+	for (int i = 0; i < m_NumSets; i++)
+		for (int j = 0; j < m_NumSamples - 1; j++) {
+			int target = RandInt() % m_NumSamples + i * m_NumSamples;
 			target = target >= 0 ? target : -target;
-			float temp = samples[j + i * numSamples + 1].y;
-			samples[j + i * numSamples + 1].x = samples[target].y;
-			samples[target].y = temp;
+
+			float temp = m_Samples[j + i * m_NumSamples + 1].y;
+			m_Samples[j + i * m_NumSamples + 1].x = m_Samples[target].y;
+			m_Samples[target].y = temp;
 		}
 }
 
-glm::vec2 Sampler::sampleUnitSquare() {
-	if (count % numSamples == 0) {
-		jump = (randInt() % numSets) * numSamples;
-		jump = jump >= 0 ? jump : -jump;
+glm::vec2 Sampler::SampleUnitSquare() {
+	if (m_Count % m_NumSamples == 0) {
+		m_Jump = (RandInt() % m_NumSets) * m_NumSamples;
+		m_Jump = m_Jump >= 0 ? m_Jump : -m_Jump;
 
 	}
 
-	return samples[jump + shuffledIndices[jump + count++ % numSamples]];
-
+	return m_Samples[m_Jump + m_ShuffledIndices[m_Jump + m_Count++ % m_NumSamples]];
 }
 
+int Sampler::RandInt() {
+	m_RandEngine.seed((unsigned long)std::chrono::steady_clock::now().time_since_epoch().count());
 
-int Sampler::getNumSamples() {
-	return numSamples;
+	return m_RandEngine();
 }
 
-int Sampler::randInt() {
-	randEngine.seed((unsigned long)std::chrono::steady_clock::now().time_since_epoch().count());
-	return randEngine();
+float Sampler::RandFloat() {
+	m_RandEngine.seed((unsigned long)std::chrono::steady_clock::now().time_since_epoch().count());
+	std::uniform_real_distribution<float> realDistr((float)m_RandEngine.min(), (float)m_RandEngine.max());
+
+	return realDistr(m_RandEngine);
 }
 
-float Sampler::randFloat() {
-	randEngine.seed((unsigned long)std::chrono::steady_clock::now().time_since_epoch().count());
-	std::uniform_real_distribution<float> realDistr((float)randEngine.min(), (float)randEngine.max());
-	return realDistr(randEngine);
-
-}
-
-int Sampler::randInt(const int min, const int max) {
-	randEngine.seed((unsigned long)std::chrono::steady_clock::now().time_since_epoch().count());
+int Sampler::RandInt(const int min, const int max) {
+	m_RandEngine.seed((unsigned long)std::chrono::steady_clock::now().time_since_epoch().count());
 	std::uniform_int_distribution<int> intDistr(min, max);
-	return intDistr(randEngine);
+
+	return intDistr(m_RandEngine);
 }
 
-float Sampler::randFloat(const float min, const float max) {
-	randEngine.seed((unsigned long)std::chrono::steady_clock::now().time_since_epoch().count());
+float Sampler::RandFloat(const float min, const float max) {
+	m_RandEngine.seed((unsigned long)std::chrono::steady_clock::now().time_since_epoch().count());
 	std::uniform_real_distribution<float> realDistr(min, max);
-	return realDistr(randEngine);
 
+	return realDistr(m_RandEngine);
 }

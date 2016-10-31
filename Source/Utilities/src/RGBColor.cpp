@@ -28,25 +28,7 @@ RGBColor::RGBColor(const double color)
 
 }
 
-RGBColor::RGBColor(const RGBColor &color)
-	: r(color.r),
-	  g(color.g),
-	  b(color.b) {
-
-}
-
-RGBColor &RGBColor::operator=(const RGBColor &color) {
-	if (this == &color)
-		return (*this);
-
-	r = color.r;
-	g = color.g;
-	b = color.b;
-
-	return (*this);
-}
-
-RGBColor RGBColor::pow(const float exponent) const {
+RGBColor RGBColor::Pow(const float exponent) const {
 	return RGBColor(glm::pow(r, exponent), glm::pow(g, exponent), glm::pow(b, exponent));
 
 }

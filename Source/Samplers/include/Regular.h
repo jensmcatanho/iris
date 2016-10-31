@@ -6,13 +6,15 @@
 class Regular : public Sampler {
 	public:
 		Regular();
+
+		// Constructs a Regular sampler with the passed number of samples.
 		Regular(const int);
-		Regular(const Regular &);
-		Regular &operator=(const Regular &);
-		virtual Regular *clone() const;
+
+		// Constructs a Regular sampler with the passed number of samples and sets.
+		Regular(const int, const int);
 
 	private:
-		virtual void generateSamples();
+		virtual void GenerateSamples();
 };
 
 #endif

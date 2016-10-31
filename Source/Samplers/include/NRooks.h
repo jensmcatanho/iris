@@ -6,13 +6,15 @@
 class NRooks : public Sampler {
 	public:
 		NRooks();
+
+		// Constructs a n-Rooks sampler with the passed number of samples.
 		NRooks(const int);
-		NRooks(const NRooks &);
-		NRooks &operator=(const NRooks &);
-		virtual NRooks *clone() const;
+
+		// Constructs a n-Rooks sampler with the passed number of samples and sets.
+		NRooks(const int, const int);
 
 	private:
-		virtual void generateSamples();
+		virtual void GenerateSamples();
 };
 
 #endif
