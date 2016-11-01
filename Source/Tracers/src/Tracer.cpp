@@ -3,11 +3,11 @@
 #include "World.h"
 
 Tracer::Tracer()
-	: m_WorldPtr(nullptr) {
+	: m_WorldPtr() {
 
 }
 
-Tracer::Tracer(World *worldPtr)
+Tracer::Tracer(std::shared_ptr<World> worldPtr)
 	: m_WorldPtr(worldPtr) {
 
 }

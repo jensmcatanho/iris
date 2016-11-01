@@ -15,7 +15,8 @@ void World::Build() {
 	m_ViewPlane.SetSampler(newSampler);
 	m_ViewPlane.SetPixelSize(1.0);
 
-	m_TracerPtr = new MultipleObjects(this);
+	std::shared_ptr<MultipleObjects> newTracer(new MultipleObjects(shared_from_this()));
+	m_TracerPtr = newTracer;
 	m_BackgroundColor = RGBColor(0.0f, 0.0f, 0.0f);
 
 	std::shared_ptr<Sphere> sphere_ptr(new Sphere);

@@ -6,12 +6,12 @@
 class Tracer {
 	public:
 		Tracer();
-		Tracer(World *);
+		Tracer(std::shared_ptr<World>);
 
 		virtual RGBColor TraceRay(const Ray &) const;
 
 	protected:
-		World *m_WorldPtr;
+		std::weak_ptr<World> m_WorldPtr;
 };
 
 #endif

@@ -6,7 +6,7 @@
 class MultipleObjects : public Tracer {
 	public:
 		MultipleObjects();
-		MultipleObjects(World *);
+		MultipleObjects(std::shared_ptr<World>);
 		
 		virtual RGBColor TraceRay(const Ray &) const;
 };

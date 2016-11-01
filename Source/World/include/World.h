@@ -7,7 +7,7 @@
 
 typedef std::vector<std::shared_ptr<Object>> ObjectList;
 
-class World {
+class World : public std::enable_shared_from_this<World> {
 	public:
 		World();
 		~World();
@@ -20,7 +20,7 @@ class World {
 
 		RGBColor m_BackgroundColor;
 
-		Tracer *m_TracerPtr;
+		std::shared_ptr<Tracer> m_TracerPtr;
 
 		// List of the pixels in the view plane.
 		RGBColor *m_Pixels;
