@@ -73,4 +73,10 @@ class World;
 #include "Constants.h"
 #include "Logger.h"
 
+// Lua
+extern "C" {
+# include "lua.h"
+# include "lauxlib.h"
+# include "lualib.h"
+}
 #endif
