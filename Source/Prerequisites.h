@@ -58,4 +58,11 @@ class World;
 #include <glm/glm.hpp>
 #include <glm/gtc/random.hpp>
 
+// Lua
+extern "C" {
+# include "lua.h"
+# include "lauxlib.h"
+# include "lualib.h"
+}
+
 #endif
