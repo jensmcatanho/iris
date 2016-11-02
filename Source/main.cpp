@@ -113,6 +113,8 @@ int main(int argc, char *argv[]) {
 
 	save_bitmap("scene.bmp", w->m_ViewPlane.m_Width, w->m_ViewPlane.m_Height, dpi, w);	
 
+	Logger::SaveLog();
+
 	return EXIT_SUCCESS;
 }
 

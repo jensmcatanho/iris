@@ -23,43 +23,29 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef PREREQUISITES_H
-#define PREREQUISITES_H
+#ifndef LOGGER_H
+#define LOGGER_H
 
-// Tracer version related defines.
-#define DRACO_MAJOR_VERSION 1
-#define DRACO_MINOR_VERSION 0
-#define DRACO_PATCH_VERSION 0
-#define DRACO_VERSION (DRACO_MAJOR_VERSION << 8) | (DRACO_MINOR_VERSION << 4) | DRACO_PATCH_VERSION
+#include "Prerequisites.h"
 
-// Forward declarations.
-class Hammersley;
-class Jittered;
-class MultiJittered;
-class MultipleObjects;
-class NRooks;
-class Object;
-class Plane;
-class PureRandom;
-class Ray;
-class Regular;
-class RGBColor;
-class Sampler;
-class ShadeRecord;
-class Sphere;
-class Tracer;
-class ViewPlane;
-class World;
+// enum LogDetail { LD_LOW, LD_NORMAL, LD_HIGH };  // Check the need for this in the future.
+// enum LogRelevance { LR_TRIVIAL, LR_NORMAL, LR_IMPORTANT };  // Different highlights.
+enum LogType { LT_DEBUG, LT_ERROR, LT_INFO };  // Different prefixes.
 
-// STL
-#include "StandardHeaders.h"
+class Logger {
+	public:
+		static void Log(LogType, std::string, std::string);
 
-// GLM
-#include <glm/glm.hpp>
-#include <glm/gtc/random.hpp>
+		static void DebugLog(std::string message, std::string component);
 
-// Draconian
-#include "Constants.h"
-#include "Logger.h"
+		static void ErrorLog(std::string message, std::string component);
+
+		static void InfoLog(std::string message, std::string component);
+
+		static void SaveLog();
+
+	private:
+		static std::stringstream m_Log;
+};
 
 #endif

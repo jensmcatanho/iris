@@ -35,7 +35,7 @@ SOFTWARE.
 void World::Build() {
 	m_ViewPlane.SetWidth(200);
 	m_ViewPlane.SetHeight(200);
-	
+
 	std::shared_ptr<MultiJittered> newSampler(new MultiJittered(256));
 	m_ViewPlane.SetSampler(newSampler);
 	m_ViewPlane.SetPixelSize(1.0);

@@ -23,43 +23,46 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef PREREQUISITES_H
-#define PREREQUISITES_H
-
-// Tracer version related defines.
-#define DRACO_MAJOR_VERSION 1
-#define DRACO_MINOR_VERSION 0
-#define DRACO_PATCH_VERSION 0
-#define DRACO_VERSION (DRACO_MAJOR_VERSION << 8) | (DRACO_MINOR_VERSION << 4) | DRACO_PATCH_VERSION
-
-// Forward declarations.
-class Hammersley;
-class Jittered;
-class MultiJittered;
-class MultipleObjects;
-class NRooks;
-class Object;
-class Plane;
-class PureRandom;
-class Ray;
-class Regular;
-class RGBColor;
-class Sampler;
-class ShadeRecord;
-class Sphere;
-class Tracer;
-class ViewPlane;
-class World;
-
-// STL
-#include "StandardHeaders.h"
-
-// GLM
-#include <glm/glm.hpp>
-#include <glm/gtc/random.hpp>
-
-// Draconian
-#include "Constants.h"
 #include "Logger.h"
 
-#endif
+std::stringstream Logger::m_Log;
+
+void Logger::Log(LogType type, std::string message, std::string component) {
+	switch (type) {
+	case LT_DEBUG:
+		DebugLog(message, component);
+		break;
+
+	case LT_ERROR:
+		ErrorLog(message, component);
+		break;
+
+	case LT_INFO:
+		InfoLog(message, component);
+		break;
+
+	default:
+		ErrorLog("", "Logger.Log()");
+		break;
+	}
+}
+
+void Logger::DebugLog(std::string message, std::string component) {
+	m_Log << "[debug]" << " [" << component << "] " << message << std::endl;
+}
+
+void Logger::ErrorLog(std::string message, std::string component) {
+	m_Log << "[error]" << " [" << component << "] " << message << std::endl;
+}
+
+void Logger::InfoLog(std::string message, std::string component) {
+	m_Log << "[info]" << " [" << component << "] " << message << std::endl;
+}
+
+void Logger::SaveLog() {
+	std::ofstream output_stream;
+
+	output_stream.open("output.log", std::ofstream::out | std::ofstream::app);
+	output_stream << m_Log.str();
+	output_stream.close();
+}
