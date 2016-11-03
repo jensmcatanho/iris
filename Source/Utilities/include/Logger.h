@@ -32,20 +32,18 @@ SOFTWARE.
 // enum LogRelevance { LR_TRIVIAL, LR_NORMAL, LR_IMPORTANT };  // Different highlights.
 enum LogType { LT_DEBUG, LT_ERROR, LT_INFO };  // Different prefixes.
 
-class Logger {
-	public:
-		static void Log(LogType, std::string, std::string);
+namespace Logger {
+	void StartLog();
 
-		static void DebugLog(std::string message, std::string component);
+	void Log(LogType, std::string, std::string);
 
-		static void ErrorLog(std::string message, std::string component);
+	void DebugLog(std::string message, std::string component);
 
-		static void InfoLog(std::string message, std::string component);
+	void ErrorLog(std::string message, std::string component);
 
-		static void SaveLog();
+	void InfoLog(std::string message, std::string component);
 
-	private:
-		static std::stringstream m_Log;
-};
+	void SaveLog();
+}
 
 #endif

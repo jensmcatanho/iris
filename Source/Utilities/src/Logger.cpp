@@ -25,44 +25,60 @@ SOFTWARE.
 */
 #include "Logger.h"
 
-std::stringstream Logger::m_Log;
+namespace Logger {
+	namespace {
+		std::stringstream m_Log;
 
-void Logger::Log(LogType type, std::string message, std::string component) {
-	switch (type) {
-	case LT_DEBUG:
-		DebugLog(message, component);
-		break;
+		std::chrono::time_point<std::chrono::system_clock> m_StartTime;
 
-	case LT_ERROR:
-		ErrorLog(message, component);
-		break;
-
-	case LT_INFO:
-		InfoLog(message, component);
-		break;
-
-	default:
-		ErrorLog("", "Logger.Log()");
-		break;
+		std::time_t CurrentTime() {
+			return std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+		}
 	}
-}
 
-void Logger::DebugLog(std::string message, std::string component) {
-	m_Log << "[debug]" << " [" << component << "] " << message << std::endl;
-}
+	void StartLog() {
+		m_StartTime = std::chrono::system_clock::now();
+	}
 
-void Logger::ErrorLog(std::string message, std::string component) {
-	m_Log << "[error]" << " [" << component << "] " << message << std::endl;
-}
+	void Log(LogType type, std::string message, std::string component) {
+		switch (type) {
+		case LT_DEBUG:
+			DebugLog(message, component);
+			break;
 
-void Logger::InfoLog(std::string message, std::string component) {
-	m_Log << "[info]" << " [" << component << "] " << message << std::endl;
-}
+		case LT_ERROR:
+			ErrorLog(message, component);
+			break;
 
-void Logger::SaveLog() {
-	std::ofstream output_stream;
+		case LT_INFO:
+			InfoLog(message, component);
+			break;
 
-	output_stream.open("output.log", std::ofstream::out | std::ofstream::app);
-	output_stream << m_Log.str();
-	output_stream.close();
+		default:
+			ErrorLog("", "Logger.Log()");
+			break;
+		}
+	}
+
+	void DebugLog(std::string message, std::string component) {
+		std::time_t time = CurrentTime();
+
+		m_Log << "[" << std::ctime(&time) << "] " << "[debug]" << " [" << component << "] " << message << std::endl;
+	}
+
+	void ErrorLog(std::string message, std::string component) {
+		m_Log << "[error]" << " [" << component << "] " << message << std::endl;
+	}
+
+	void InfoLog(std::string message, std::string component) {
+		m_Log << "[info]" << " [" << component << "] " << message << std::endl;
+	}
+
+	void SaveLog() {
+		std::ofstream output_stream;
+
+		output_stream.open("output.log", std::ofstream::out);
+		output_stream << m_Log.str();
+		output_stream.close();
+	}
 }
