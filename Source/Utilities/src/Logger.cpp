@@ -31,8 +31,16 @@ namespace Logger {
 
 		std::chrono::time_point<std::chrono::system_clock> m_StartTime;
 
-		std::time_t CurrentTime() {
-			return std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+		std::chrono::time_point<std::chrono::system_clock> CurrentTime() {
+			return std::chrono::system_clock::now();
+		}
+
+		std::string DateString() {
+			std::time_t time = std::chrono::system_clock::to_time_t(CurrentTime());
+			char *dateString = std::ctime(&time);
+			dateString[(strlen(dateString) - 1)] = '\0';
+
+			return dateString;
 		}
 	}
 
@@ -61,22 +69,23 @@ namespace Logger {
 	}
 
 	void DebugLog(std::string message, std::string component) {
-		std::time_t time = CurrentTime();
-
-		m_Log << "[" << std::ctime(&time) << "] " << "[debug]" << " [" << component << "] " << message << std::endl;
+		m_Log << "[" << DateString() << "] " << "[DEBUG]" << " - " << component << " - " << message << std::endl;
 	}
 
 	void ErrorLog(std::string message, std::string component) {
-		m_Log << "[error]" << " [" << component << "] " << message << std::endl;
+
+		m_Log << "[" << DateString() << "] " << "[ERROR]" << " - " << component << " - " << message << std::endl;
 	}
 
 	void InfoLog(std::string message, std::string component) {
-		m_Log << "[info]" << " [" << component << "] " << message << std::endl;
+		m_Log << "[" << DateString() << "] " << "[INFO]" << " - " << component << " - " << message << std::endl;
 	}
 
 	void SaveLog() {
-		std::ofstream output_stream;
+		std::chrono::duration<double> elapsedTime = CurrentTime() - m_StartTime;
+		m_Log << std::endl << "Approximated runtime: " << elapsedTime.count() << std::endl;
 
+		std::ofstream output_stream;
 		output_stream.open("output.log", std::ofstream::out);
 		output_stream << m_Log.str();
 		output_stream.close();

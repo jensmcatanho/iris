@@ -106,13 +106,15 @@ int thisone;
 
 int main(int argc, char *argv[]) {
 	std::shared_ptr<World> w(new World());
-	
+	Logger::StartLog();
+	Logger::DebugLog("Starting World::Build().", "int main(int argc, char *argv[])");
 	w->Build();
 	w->RenderScene();
 	int dpi = 72;
-
+	Logger::DebugLog("Starting save_bitmap().", "int main(int argc, char *argv[])");
 	save_bitmap("scene.bmp", w->m_ViewPlane.m_Width, w->m_ViewPlane.m_Height, dpi, w);	
 
+	Logger::DebugLog("Saving log.", "int main(int argc, char *argv[])");
 	Logger::SaveLog();
 
 	return EXIT_SUCCESS;
