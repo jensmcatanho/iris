@@ -23,61 +23,32 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef PREREQUISITES_H
-#define PREREQUISITES_H
+#include "State.h"
 
-// Tracer version related defines.
-#define DRACO_MAJOR_VERSION 1
-#define DRACO_MINOR_VERSION 0
-#define DRACO_PATCH_VERSION 0
-#define DRACO_VERSION (DRACO_MAJOR_VERSION << 8) | (DRACO_MINOR_VERSION << 4) | DRACO_PATCH_VERSION
+State::State()
+	: m_luaState(nullptr) {
 
-// Forward declarations.
-class Ambient;
-class BRDF;
-class Camera;
-class GlossySpecular;
-class Hammersley;
-class Jittered;
-class Lambertian;
-class Light;
-class Material;
-class Matte;
-class MultiJittered;
-class MultipleObjects;
-class NRooks;
-class Object;
-class Pinhole;
-class Plane;
-class PointLight;
-class PureRandom;
-class Ray;
-class RayCast;
-class Regular;
-class RGBColor;
-class Sampler;
-class ShadeRecord;
-class Sphere;
-class Tracer;
-class ViewPlane;
-class World;
-
-// STL
-#include "StandardHeaders.h"
-
-// GLM
-#include <glm/glm.hpp>
-#include <glm/gtc/random.hpp>
-
-// Lua
-extern "C" {
-	#include "lua.h"
-	#include "lauxlib.h"
-	#include "lualib.h"
+	m_luaState = luaL_newstate();  // Creates a new Lua state (may cause memory allocation error).
+	luaL_openlibs(m_luaState);  // Opens all standard Lua libraries into the given state. 
 }
 
-// Draconian
-#include "Constants.h"
-#include "Logger.h"
+State::~State() {
+	lua_close(m_luaState);
 
-#endif
+	m_luaState = nullptr;
+}
+
+bool State::Load(const std::string &filename) {
+	// Loads a file as a Lua chunk.
+	if (luaL_loadfile(m_luaState, filename.c_str()) != LUA_OK) {
+		Logger::ErrorLog(lua_tostring(m_luaState, -1), "State::Load()");
+		return false;
+	}
+
+	if (lua_pcall(m_luaState, 0, 0, 0) == LUA_OK)
+		return true;
+
+	Logger::ErrorLog(lua_tostring(m_luaState, -1), "State::Load()");
+
+	return false;
+}

@@ -34,15 +34,10 @@ SOFTWARE.
 
 #include "World.h"
 #include "Camera.h"
+#include "State.h"
 
-using namespace std;
 
-struct RGBType {
-	double r, g, b;
-	
-};
-
-void save_bitmap(const char *filename, int w, int h, int dpi, shared_ptr<World> world) {
+void save_bitmap(const char *filename, int w, int h, int dpi, std::shared_ptr<World> world) {
 	FILE *f;
 	int k = w * h;
 	int s = 4 * k;
@@ -108,14 +103,15 @@ int thisone;
 int main(int argc, char *argv[]) {
 	std::shared_ptr<World> w(new World());
 	Logger::StartLog();
-	Logger::DebugLog("Starting World::Build().", "int main(int argc, char *argv[])");
+	std::shared_ptr<State> luaState(new State());
+	luaState->Load("../Source/Scenes/TestScene.lua");
+	
 	w->Build();
 	w->m_CameraPtr->RenderScene(*w);
 	int dpi = 72;
-	Logger::DebugLog("Starting save_bitmap().", "int main(int argc, char *argv[])");
+
 	save_bitmap("scene.bmp", w->m_ViewPlane.m_Width, w->m_ViewPlane.m_Height, dpi, w);	
 
-	Logger::DebugLog("Saving log.", "int main(int argc, char *argv[])");
 	Logger::SaveLog();
 
 	return EXIT_SUCCESS;
