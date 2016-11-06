@@ -17,8 +17,9 @@ function SceneManager:new()
 	return instance
 end
 
-function SceneManager:addObject(new_obj)
+function SceneManager:AddObject(new_obj)
 	table.insert(self.Objects, new_obj)
+	numObjects = numObjects + 1
 end
 
 return SceneManager

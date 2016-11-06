@@ -97,8 +97,6 @@ void save_bitmap(const char *filename, int w, int h, int dpi, std::shared_ptr<Wo
 	
 }
 
-int thisone;
-
 int main(int argc, char *argv[]) {
 	std::shared_ptr<World> w(new World());
 	Logger::StartLog();
