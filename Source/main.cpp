@@ -33,15 +33,10 @@ SOFTWARE.
 #include <limits>
 
 #include "World.h"
+#include "State.h"
 
-using namespace std;
 
-struct RGBType {
-	double r, g, b;
-	
-};
-
-void save_bitmap(const char *filename, int w, int h, int dpi, shared_ptr<World> world) {
+void save_bitmap(const char *filename, int w, int h, int dpi, std::shared_ptr<World> world) {
 	FILE *f;
 	int k = w * h;
 	int s = 4 * k;
@@ -107,40 +102,16 @@ int thisone;
 int main(int argc, char *argv[]) {
 	std::shared_ptr<World> w(new World());
 	Logger::StartLog();
-	Logger::DebugLog("Starting World::Build().", "int main(int argc, char *argv[])");
+	std::shared_ptr<State> luaState(new State());
+	luaState->Load("../Source/Scenes/TestScene.lua");
+	
 	w->Build();
 	w->RenderScene();
 	int dpi = 72;
-	Logger::DebugLog("Starting save_bitmap().", "int main(int argc, char *argv[])");
+
 	save_bitmap("scene.bmp", w->m_ViewPlane.m_Width, w->m_ViewPlane.m_Height, dpi, w);	
 
-	Logger::DebugLog("Saving log.", "int main(int argc, char *argv[])");
 	Logger::SaveLog();
 
 	return EXIT_SUCCESS;
 }
-
-/*int main(int argc, char *argv[]) {
-	int dpi = 72;
-	int width = 640;
-	int height = 480;
-	int n = width * height;
-	RGBType *pixels = new RGBType[n];
-	
-	for (int x = 0; x < width; x++) {
-		for (int y = 0; y < height; y++) {
-			thisone = y*width + x;
-			
-			pixels[thisone].r = 1;
-			pixels[thisone].g = 0;
-			pixels[thisone].b = 0;
-			
-		}
-		
-	}
-	
-	save_bitmap("scene.bmp", width, height, dpi, pixels);
-	
-	return 0;
-};
-*/

@@ -23,50 +23,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef PREREQUISITES_H
-#define PREREQUISITES_H
+#ifndef STATE_H
+#define STATE_H
 
-// Tracer version related defines.
-#define DRACO_MAJOR_VERSION 1
-#define DRACO_MINOR_VERSION 0
-#define DRACO_PATCH_VERSION 0
-#define DRACO_VERSION (DRACO_MAJOR_VERSION << 8) | (DRACO_MINOR_VERSION << 4) | DRACO_PATCH_VERSION
+#include "Prerequisites.h"
 
-// Forward declarations.
-class Hammersley;
-class Jittered;
-class MultiJittered;
-class MultipleObjects;
-class NRooks;
-class Object;
-class Plane;
-class PureRandom;
-class Ray;
-class Regular;
-class RGBColor;
-class Sampler;
-class ShadeRecord;
-class Sphere;
-class Tracer;
-class ViewPlane;
-class World;
+class State {
+	public:
+		State();
+		~State();
 
-// STL
-#include "StandardHeaders.h"
+		bool Load(const std::string &);
 
-// GLM
-#include <glm/glm.hpp>
-#include <glm/gtc/random.hpp>
-
-// Lua
-extern "C" {
-	#include "lua.h"
-	#include "lauxlib.h"
-	#include "lualib.h"
-}
-
-// Draconian
-#include "Constants.h"
-#include "Logger.h"
+	private:
+		lua_State *m_luaState;
+};
 
 #endif
