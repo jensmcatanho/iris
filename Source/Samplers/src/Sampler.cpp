@@ -27,15 +27,13 @@ SOFTWARE.
 
 #include <iostream>
 
-using namespace std;
-
 Sampler::Sampler()
 	: m_NumSamples(1),
 	  m_NumSets(83),
 	  m_Count(0),
 	  m_Jump(0) {
 
-	m_Samples.reserve(m_NumSets);  // No need to multiply here, result already known.
+	m_Samples.reserve(m_NumSets);
 	SetupShuffledIndices();
 }
 
@@ -57,6 +55,55 @@ Sampler::Sampler(const int numSamples, const int numSets)
 
 	m_Samples.reserve(m_NumSamples * m_NumSets);
 	SetupShuffledIndices();
+}
+
+void Sampler::MapToUnitDisk() {
+	int size = m_Samples.size();
+	glm::vec2 samplePoint;
+
+	// Polar coordinates.
+	float radius;
+	float phi;
+
+	m_DiskSamples.reserve(size);
+
+	for (int i = 0; i < size; i++) {
+		samplePoint.x = 2.0 * m_Samples[i].x - 1.0;
+		samplePoint.y = 2.0 * m_Samples[i].y - 1.0;
+
+		if (samplePoint.x > -samplePoint.y) {
+			if (samplePoint.x > samplePoint.y) {
+				// Sector 1.
+				radius = samplePoint.x;
+				phi = samplePoint.y / samplePoint.x;
+
+			}
+			else {
+				// Sector 2.
+				radius = samplePoint.y;
+				phi = 2.0 - samplePoint.x / samplePoint.y;
+			}
+
+		}
+		else {
+			if (samplePoint.x < samplePoint.y) {
+				// Sector 3.
+				radius = -samplePoint.x;
+				phi = 4.0 + samplePoint.y / samplePoint.x;
+
+			}
+			else {
+				// Sector 4.
+				radius = -samplePoint.y;
+				phi = samplePoint.y != 0.0 ? 6.0 - samplePoint.x / samplePoint.y : 0.0;
+			}
+		}
+
+		phi *= PI / 4.0;
+		m_DiskSamples.push_back(glm::vec2(radius * cos(phi), radius * sin(phi)));
+	}
+
+	m_Samples.erase(m_Samples.begin(), m_Samples.end());
 }
 
 void Sampler::SetupShuffledIndices() {
@@ -106,6 +153,15 @@ glm::vec2 Sampler::SampleUnitSquare() {
 	}
 
 	return m_Samples[m_Jump + m_ShuffledIndices[m_Jump + m_Count++ % m_NumSamples]];
+}
+
+glm::vec2 Sampler::SampleUnitDisk() {
+	if (m_Count % m_NumSamples == 0) {
+		m_Jump = (RandInt() % m_NumSets) * m_NumSamples;
+		m_Jump = m_Jump >= 0 ? m_Jump : -m_Jump;
+	}
+
+	return m_DiskSamples[m_Jump + m_ShuffledIndices[m_Jump + m_Count++ % m_NumSamples]];
 }
 
 int Sampler::RandInt() {

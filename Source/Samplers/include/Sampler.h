@@ -41,6 +41,9 @@ class Sampler {
 		// Generate samples patterns in a unit square.
 		virtual void GenerateSamples() = 0;
 
+		// Map the 2D sample points in the unit square to a unit disk. 
+		void MapToUnitDisk();
+
 		// Sets up randomly shuffled indices for the samples array.
 		void SetupShuffledIndices();
 
@@ -52,6 +55,9 @@ class Sampler {
 
 		// Returns shuffled values in a unit square with a random jump.
 		glm::vec2 SampleUnitSquare();
+
+		// Returns shuffled values in a unit disk with a random jump.
+		glm::vec2 SampleUnitDisk();
 
 		inline int GetNumOfSamples() const;
 		
@@ -76,6 +82,9 @@ class Sampler {
 
 		// Sample points in a unit square.
 		std::vector<glm::vec2> m_Samples;
+
+		// Sample points in a unit disk.
+		std::vector<glm::vec2> m_DiskSamples;
 
 	private:
 		// Shuffled array of indices.
