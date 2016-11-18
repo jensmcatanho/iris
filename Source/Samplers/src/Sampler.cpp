@@ -25,8 +25,6 @@ SOFTWARE.
 */
 #include "Sampler.h"
 
-#include <iostream>
-
 Sampler::Sampler()
 	: m_NumSamples(1),
 	  m_NumSets(83),
@@ -106,6 +104,29 @@ void Sampler::MapToUnitDisk() {
 	m_Samples.erase(m_Samples.begin(), m_Samples.end());
 }
 
+void Sampler::MapToHemisphere(const float e) {
+	int size = m_Samples.size();
+	m_HemisphereSamples.reserve(size);
+
+	for (int i = 0; i < size; i++) {
+		// Phi
+		float phi = 2.0 * PI * m_Samples[i].x;
+		float cos_phi = glm::cos(phi);
+		float sin_phi = glm::sin(phi);
+
+		// Theta
+		float cos_theta = glm::pow(1.0 - m_Samples[i].y, 1.0 / (e + 1.0));
+		float sin_theta = glm::sqrt(1.0 - cos_theta * cos_theta);  //sin² + cos² = 1
+
+		// Point p
+		float pu = sin_theta * cos_phi;
+		float pv = sin_theta * sin_phi;
+		float pw = cos_theta;
+
+		m_HemisphereSamples.push_back(glm::vec3(pu, pv, pw));
+	}
+}
+
 void Sampler::SetupShuffledIndices() {
 	m_ShuffledIndices.reserve(m_NumSamples * m_NumSets);
 	std::vector<int> indices;
@@ -146,22 +167,28 @@ void Sampler::ShuffleY() {
 }
 
 glm::vec2 Sampler::SampleUnitSquare() {
-	if (m_Count % m_NumSamples == 0) {
-		m_Jump = (RandInt() % m_NumSets) * m_NumSamples;
-		m_Jump = m_Jump >= 0 ? m_Jump : -m_Jump;
-
-	}
+	SetJump();
 
 	return m_Samples[m_Jump + m_ShuffledIndices[m_Jump + m_Count++ % m_NumSamples]];
 }
 
 glm::vec2 Sampler::SampleUnitDisk() {
+	SetJump();
+
+	return m_DiskSamples[m_Jump + m_ShuffledIndices[m_Jump + m_Count++ % m_NumSamples]];
+}
+
+glm::vec3 Sampler::SampleHemisphere() {
+	SetJump();
+
+	return m_HemisphereSamples[m_Jump + m_ShuffledIndices[m_Jump + m_Count++ % m_NumSamples]];
+}
+
+void Sampler::SetJump() {
 	if (m_Count % m_NumSamples == 0) {
 		m_Jump = (RandInt() % m_NumSets) * m_NumSamples;
 		m_Jump = m_Jump >= 0 ? m_Jump : -m_Jump;
 	}
-
-	return m_DiskSamples[m_Jump + m_ShuffledIndices[m_Jump + m_Count++ % m_NumSamples]];
 }
 
 int Sampler::RandInt() {

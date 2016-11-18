@@ -44,6 +44,9 @@ class Sampler {
 		// Map the 2D sample points in the unit square to a unit disk. 
 		void MapToUnitDisk();
 
+		// Map the 2D sample points in the unit square to a hemisphere.
+		void MapToHemisphere(const float);
+
 		// Sets up randomly shuffled indices for the samples array.
 		void SetupShuffledIndices();
 
@@ -59,9 +62,15 @@ class Sampler {
 		// Returns shuffled values in a unit disk with a random jump.
 		glm::vec2 SampleUnitDisk();
 
+		// Returns shuffled values in a hemisphere with a random jump.
+		glm::vec3 SampleHemisphere();
+
 		inline int GetNumOfSamples() const;
 		
 	protected:
+		// Sets the index jump.
+		void SetJump();
+
 		// Returns a random integer.
 		int RandInt();
 
@@ -85,6 +94,9 @@ class Sampler {
 
 		// Sample points in a unit disk.
 		std::vector<glm::vec2> m_DiskSamples;
+
+		// Sample points in a hemisphere.
+		std::vector<glm::vec3> m_HemisphereSamples;
 
 	private:
 		// Shuffled array of indices.
