@@ -35,8 +35,8 @@ class Pinhole : public Camera {
 
 		virtual void RenderScene(const World &);
 
-		inline void SetDistance(const float);
-		inline void SetZoom(const float);
+		void SetDistance(const float);
+		void SetZoom(const float);
 
 	private:
 		glm::vec3 RayDirection(const glm::vec2 &) const;
@@ -47,5 +47,13 @@ class Pinhole : public Camera {
 		// Zoom factor.
 		float m_Zoom;
 };
+
+inline void Pinhole::SetDistance(const float distance) {
+	m_Distance = distance;
+}
+
+inline void Pinhole::SetZoom(const float zoom) {
+	m_Zoom = zoom;
+}
 
 #endif

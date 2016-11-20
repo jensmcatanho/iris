@@ -36,11 +36,11 @@ class Camera {
 		virtual void RenderScene(const World &w) = 0;
 		void ComputeUVW();
 
-		inline void SetEye(const glm::vec3 &);
-		inline void LookAt(const glm::vec3 &);
-		inline void SetUpVector(const glm::vec3 &);
-		inline void SetRollAngle(const float);
-		inline void SetExposureTime(const float);
+		void SetEye(const glm::vec3 &);
+		void LookAt(const glm::vec3 &);
+		void SetUpVector(const glm::vec3 &);
+		void SetRollAngle(const float);
+		void SetExposureTime(const float);
 
 	protected:
 		glm::vec3 m_Eye;
@@ -50,5 +50,25 @@ class Camera {
 		float m_RollAngle;
 		float m_ExposureTime;
 };
+
+inline void Camera::SetEye(const glm::vec3 &eye) {
+	m_Eye = eye;
+}
+
+inline void Camera::LookAt(const glm::vec3 &lookat) {
+	m_LookAt = lookat;
+}
+
+inline void Camera::SetUpVector(const glm::vec3 &up) {
+	m_UpVector = up;
+}
+
+inline void Camera::SetRollAngle(const float roll) {
+	m_RollAngle = roll;
+}
+
+inline void Camera::SetExposureTime(const float etime) {
+	m_ExposureTime = etime;
+}
 
 #endif
