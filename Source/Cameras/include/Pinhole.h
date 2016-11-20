@@ -33,7 +33,7 @@ class Pinhole : public Camera {
 		Pinhole();
 		Pinhole(glm::vec3, glm::vec3);
 
-		virtual void RenderScene(const World &);
+		virtual void RenderScene(const World &) const;
 
 		void SetDistance(const float);
 		void SetZoom(const float);

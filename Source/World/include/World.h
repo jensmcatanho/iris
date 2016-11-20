@@ -40,12 +40,16 @@ class World : public std::enable_shared_from_this<World> {
 		void Build();
 		void RenderScene() const;
 		ShadeRecord HitObjects(const Ray &);
+		void DisplayPixel(const int, const int, const RGBColor &) const;
+		inline void SetCamera(std::shared_ptr<Camera>);
 
 		ViewPlane m_ViewPlane;
 
 		RGBColor m_BackgroundColor;
 
 		std::shared_ptr<Tracer> m_TracerPtr;
+
+		std::shared_ptr<Camera> m_CameraPtr;
 
 		// List of the pixels in the view plane.
 		RGBColor *m_Pixels;
@@ -55,11 +59,14 @@ class World : public std::enable_shared_from_this<World> {
 
 
 	private:
-		void DisplayPixel(const int, const int, const RGBColor &) const;
-		void AddObject(std::shared_ptr<Object>);
+		inline void AddObject(std::shared_ptr<Object>);
 		RGBColor MaxToOne(const RGBColor &) const;
 		RGBColor ClampToColor(const RGBColor &, const RGBColor &) const;
 };
+
+inline void World::SetCamera(std::shared_ptr<Camera> camera) {
+	m_CameraPtr = camera;
+}
 
 inline void World::AddObject(std::shared_ptr<Object> objPtr) {
 	m_Objects.push_back(objPtr);

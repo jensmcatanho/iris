@@ -33,6 +33,7 @@ SOFTWARE.
 #include <limits>
 
 #include "World.h"
+#include "Camera.h"
 
 using namespace std;
 
@@ -109,7 +110,7 @@ int main(int argc, char *argv[]) {
 	Logger::StartLog();
 	Logger::DebugLog("Starting World::Build().", "int main(int argc, char *argv[])");
 	w->Build();
-	w->RenderScene();
+	w->m_CameraPtr->RenderScene(*w);
 	int dpi = 72;
 	Logger::DebugLog("Starting save_bitmap().", "int main(int argc, char *argv[])");
 	save_bitmap("scene.bmp", w->m_ViewPlane.m_Width, w->m_ViewPlane.m_Height, dpi, w);	
@@ -119,28 +120,3 @@ int main(int argc, char *argv[]) {
 
 	return EXIT_SUCCESS;
 }
-
-/*int main(int argc, char *argv[]) {
-	int dpi = 72;
-	int width = 640;
-	int height = 480;
-	int n = width * height;
-	RGBType *pixels = new RGBType[n];
-	
-	for (int x = 0; x < width; x++) {
-		for (int y = 0; y < height; y++) {
-			thisone = y*width + x;
-			
-			pixels[thisone].r = 1;
-			pixels[thisone].g = 0;
-			pixels[thisone].b = 0;
-			
-		}
-		
-	}
-	
-	save_bitmap("scene.bmp", width, height, dpi, pixels);
-	
-	return 0;
-};
-*/

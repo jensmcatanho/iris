@@ -33,7 +33,7 @@ class Camera {
 		Camera();
 		Camera(glm::vec3, glm::vec3);
 
-		virtual void RenderScene(const World &w) = 0;
+		virtual void RenderScene(const World &w) const = 0;
 		void ComputeUVW();
 
 		void SetEye(const glm::vec3 &);

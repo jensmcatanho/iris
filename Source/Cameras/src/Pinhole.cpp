@@ -43,7 +43,7 @@ Pinhole::Pinhole(glm::vec3 eye, glm::vec3 lookat) :
 
 }
 
-void Pinhole::RenderScene(const World &w) {
+void Pinhole::RenderScene(const World &w) const {
 	Ray ray;
 	RGBColor pixelColor;
 	glm::vec2 samplePoint;

@@ -42,6 +42,7 @@ RGBColor Tracer::TraceRay(const Ray &ray) const {
 
 }
 
+RGBColor Tracer::TraceRay(const Ray &ray, const int depth) const {
+	return RGBColor(RGBColor::Black);
 
-
-
+}
