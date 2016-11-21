@@ -35,6 +35,7 @@ class Tracer {
 
 		virtual RGBColor TraceRay(const Ray &) const;
 		virtual RGBColor TraceRay(const Ray &, const int) const;
+		virtual RGBColor TraceRay(const Ray &, const int, float &) const;
 
 	protected:
 		std::weak_ptr<World> m_WorldPtr;

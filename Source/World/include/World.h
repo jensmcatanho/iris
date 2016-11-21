@@ -31,6 +31,7 @@ SOFTWARE.
 #include "ViewPlane.h"
 
 typedef std::vector<std::shared_ptr<Object>> ObjectList;
+typedef std::vector<std::shared_ptr<Light>> LightList;
 
 class World : public std::enable_shared_from_this<World> {
 	public:
@@ -47,9 +48,11 @@ class World : public std::enable_shared_from_this<World> {
 
 		RGBColor m_BackgroundColor;
 
-		std::shared_ptr<Tracer> m_TracerPtr;
+		std::shared_ptr<Light> m_AmbientPtr;
 
 		std::shared_ptr<Camera> m_CameraPtr;
+
+		std::shared_ptr<Tracer> m_TracerPtr;
 
 		// List of the pixels in the view plane.
 		RGBColor *m_Pixels;
@@ -57,9 +60,17 @@ class World : public std::enable_shared_from_this<World> {
 		// List of the objects in the scene.
 		ObjectList m_Objects;
 
+		// List of the lights in the scene.
+		LightList m_Lights;
+
 
 	private:
-		inline void AddObject(std::shared_ptr<Object>);
+		// Add an object to the scene.
+		void AddObject(std::shared_ptr<Object>);
+		
+		// Add a light to the scene.
+		void AddLight(std::shared_ptr<Light>);
+		
 		RGBColor MaxToOne(const RGBColor &) const;
 		RGBColor ClampToColor(const RGBColor &, const RGBColor &) const;
 };
@@ -70,7 +81,10 @@ inline void World::SetCamera(std::shared_ptr<Camera> camera) {
 
 inline void World::AddObject(std::shared_ptr<Object> objPtr) {
 	m_Objects.push_back(objPtr);
+}
 
+inline void World::AddLight(std::shared_ptr<Light> lightPtr) {
+	m_Lights.push_back(lightPtr);
 }
 
 #endif

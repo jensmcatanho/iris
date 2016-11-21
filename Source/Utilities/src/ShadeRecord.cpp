@@ -25,11 +25,17 @@ SOFTWARE.
 */
 #include "ShadeRecord.h"
 
-ShadeRecord::ShadeRecord(World &wr)
-	: m_Hit(false),
-	  m_HitPoint(),
-	  m_Normal(),
-	  m_Color(RGBColor::Black),
-	  w(wr) {
+ShadeRecord::ShadeRecord(World &wr)	:
+	m_Hit(false),
+	//m_MaterialPtr(nullptr),
+	m_HitPoint(),
+	m_LocalHitPoint(),
+	m_Normal(),
+	m_Color(RGBColor::Black),
+	m_Ray(),
+	m_Depth(0),
+	m_T(0.0),
+	m_Direction(),
+	w(wr) {
 
 }

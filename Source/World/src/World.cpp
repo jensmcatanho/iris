@@ -24,6 +24,7 @@ SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #include "World.h"
+#include "Ambient.h"
 #include "MultiJittered.h"
 #include "MultipleObjects.h"
 #include "Pinhole.h"
@@ -82,9 +83,11 @@ void World::Build() {
 	AddObject(plane_ptr5);
 }
 
-World::World()
-	: m_BackgroundColor(RGBColor::Black),
-	  m_TracerPtr(nullptr) {
+World::World() :
+	m_BackgroundColor(RGBColor::Black),
+	m_AmbientPtr(new Ambient),
+	m_CameraPtr(nullptr),
+	m_TracerPtr(nullptr) {
 
 	m_Pixels = new RGBColor[m_ViewPlane.m_Width * m_ViewPlane.m_Height];
 }
@@ -136,38 +139,52 @@ void World::DisplayPixel(const int row, const int column, const RGBColor &raw_co
 }
 
 ShadeRecord World::HitObjects(const Ray &ray) {
-	ShadeRecord sr(*this); 
+	ShadeRecord sr(*this);
 	double t; 			
-	double tmin = 1000000;
+	double tmin = kHugeValue;
+	glm::vec3 normal;
+	glm::vec3 local_hit_point;
 	int num_objects = m_Objects.size();
 	
-	for (int j = 0; j < num_objects; j++)
-		if (m_Objects[j]->Hit(ray, t, sr) && (t < tmin)) {
-			sr.m_Hit =  true;
+	for (int i = 0; i < num_objects; i++)
+		if (m_Objects[i]->Hit(ray, t, sr) && t < tmin) {
+			sr.m_Hit = true;
 			tmin = t;
-			sr.m_Color = m_Objects[j]->GetColor();
+
+			// sr.m_MaterialPtr = m_Objects[i]->GetMaterial();
+			sr.m_HitPoint = ray.m_Origin + static_cast<float>(t) * ray.m_Direction;
+			sr.m_Color = m_Objects[i]->GetColor();
+
+			normal = sr.m_Normal;
+			local_hit_point = sr.m_LocalHitPoint;
 		}
-		
-	return (sr);
+
+	if (sr.m_Hit) {
+		sr.m_T = tmin;
+		sr.m_Normal = normal;
+		sr.m_LocalHitPoint = local_hit_point;
+	}
+
+	return sr;
 }
 
 RGBColor World::MaxToOne(const RGBColor &raw_color) const {
 	float max_value = (float)glm::max(raw_color.r, glm::max(raw_color.g, raw_color.b));
 	
 	if (max_value > 1.0)
-		return RGBColor(raw_color.r/max_value, raw_color.g/max_value, raw_color.b/max_value);
+		return raw_color / max_value;
 	else
-		return (raw_color);
+		return raw_color;
 }
 
 RGBColor World::ClampToColor(const RGBColor &raw_color, const RGBColor &target_color) const {
-	RGBColor c(raw_color);
+	RGBColor clamped_color(raw_color);
 	
 	if (raw_color.r > 1.0 || raw_color.g > 1.0 || raw_color.b > 1.0) {
-		c.r = target_color.r;
-		c.g = target_color.g;
-		c.b = target_color.b;
+		clamped_color.r = target_color.r;
+		clamped_color.g = target_color.g;
+		clamped_color.b = target_color.b;
 	}
 		
-	return (c);
+	return clamped_color;
 }
