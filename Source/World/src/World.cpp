@@ -24,9 +24,9 @@ SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #include "World.h"
-
 #include "MultiJittered.h"
 #include "MultipleObjects.h"
+#include "Pinhole.h"
 #include "Plane.h"
 #include "Ray.h"
 #include "ShadeRecord.h"
@@ -35,6 +35,12 @@ SOFTWARE.
 void World::Build() {
 	m_ViewPlane.SetWidth(200);
 	m_ViewPlane.SetHeight(200);
+
+	std::shared_ptr<Pinhole> pinhole_ptr(new Pinhole);
+	pinhole_ptr->SetEye(glm::vec3(0.0, 0.0, 60.0));
+	pinhole_ptr->LookAt(glm::vec3(0.0, 0.0, -1.0));
+	pinhole_ptr->SetViewPlaneDistance(50.0);
+	SetCamera(pinhole_ptr);
 
 	std::shared_ptr<MultiJittered> newSampler(new MultiJittered(16));
 	m_ViewPlane.SetSampler(newSampler);
@@ -46,32 +52,32 @@ void World::Build() {
 
 	std::shared_ptr<Sphere> sphere_ptr(new Sphere);
 	sphere_ptr->SetCenter(glm::vec3(0.0f, 0.0f, 0.0f));
-	sphere_ptr->SetRadius(80);
+	sphere_ptr->SetRadius(50);
 	sphere_ptr->SetColor(0, 1, 0);
 	AddObject(sphere_ptr);
 
 	// Back
-	std::shared_ptr<Plane> plane_ptr(new Plane(glm::vec3(0.0f, 0.0f, -80.0f), glm::vec3(0.0f, 0.0f, 1.0f)));
+	std::shared_ptr<Plane> plane_ptr(new Plane(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)));
 	plane_ptr->SetColor(0.1f, 0.1f, 0.1f);
 	AddObject(plane_ptr);
 
 	// Top
-	std::shared_ptr<Plane> plane_ptr2(new Plane(glm::vec3(0.0f, 80.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.2f)));
+	std::shared_ptr<Plane> plane_ptr2(new Plane(glm::vec3(0.0f, 80.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
 	plane_ptr2->SetColor(1.0f, 1.0f, 1.0f);
 	AddObject(plane_ptr2);
 
 	// Bottom
-	std::shared_ptr<Plane> plane_ptr3(new Plane(glm::vec3(0.0f, -80.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.2f)));
+	std::shared_ptr<Plane> plane_ptr3(new Plane(glm::vec3(0.0f, -80.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)));
 	plane_ptr3->SetColor(1.0f, 1.0f, 1.0f);
 	AddObject(plane_ptr3);
 
 	// Left
-	std::shared_ptr<Plane> plane_ptr4(new Plane(glm::vec3(-80.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.2f)));
+	std::shared_ptr<Plane> plane_ptr4(new Plane(glm::vec3(-80.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f)));
 	plane_ptr4->SetColor(1.0f, 0.0f, 0.0f);
 	AddObject(plane_ptr4);
 
 	// Right
-	std::shared_ptr<Plane> plane_ptr5(new Plane(glm::vec3(80.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 0.2f)));
+	std::shared_ptr<Plane> plane_ptr5(new Plane(glm::vec3(80.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 0.0f)));
 	plane_ptr5->SetColor(0.0f, 0.0f, 1.0f);
 	AddObject(plane_ptr5);
 }
@@ -105,9 +111,7 @@ void World::RenderScene() const {
 				
 			}
 			
-			pixelColor.r /= m_ViewPlane.m_NumSamples;
-			pixelColor.g /= m_ViewPlane.m_NumSamples;
-			pixelColor.b /= m_ViewPlane.m_NumSamples;
+			pixelColor /= m_ViewPlane.m_NumSamples;
 			DisplayPixel(r, c, pixelColor);
 		}
 }

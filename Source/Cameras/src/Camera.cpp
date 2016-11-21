@@ -23,21 +23,45 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef TRACER_H
-#define TRACER_H
+#include "Camera.h"
 
-#include "Prerequisites.h"
+Camera::Camera() :
+	Camera(glm::vec3(0.0, 0.0, 500.0), glm::vec3(0.0, 0.0, 0.0)) {
 
-class Tracer {
-	public:
-		Tracer();
-		Tracer(std::shared_ptr<World>);
+}
 
-		virtual RGBColor TraceRay(const Ray &) const;
-		virtual RGBColor TraceRay(const Ray &, const int) const;
+Camera::Camera(glm::vec3 eye, glm::vec3 lookat) :
+	m_Eye(eye),
+	m_LookAt(lookat),
+	m_UpVector(0.0, 1.0, 0.0),
+	m_U(1.0, 0.0, 0.0),
+	m_V(0.0, 1.0, 0.0),
+	m_W(0.0, 0.0, 1.0),
+	m_Yaw(0.0),
+	m_Pitch(0.0),
+	m_Roll(0.0),
+	m_ExposureTime(1.0) {
 
-	protected:
-		std::weak_ptr<World> m_WorldPtr;
-};
+}
 
-#endif
+void Camera::ComputeUVW() {
+	// Handles singularity of view direction being parallel to the up vector.
+	if (m_Eye.x == m_LookAt.x && m_Eye.z == m_LookAt.z && m_Eye.y > m_LookAt.y) {
+		// Looking vertically down.
+		m_U = glm::vec3(0.0, 0.0, 1.0);
+		m_V = glm::vec3(1.0, 0.0, 0.0);
+		m_W = glm::vec3(0.0, 1.0, 0.0);
+	
+	} else if (m_Eye.x == m_LookAt.x && m_Eye.z == m_LookAt.z && m_Eye.y < m_LookAt.y) {
+		// Looking vertically up.
+		m_U = glm::vec3(1.0, 0.0, 0.0);
+		m_V = glm::vec3(0.0, 0.0, 1.0);
+		m_W = glm::vec3(0.0, -1.0, 0.0);
+
+	} else {
+		// General case.
+		m_W = glm::normalize(m_Eye - m_LookAt);
+		m_U = glm::normalize(glm::cross(m_UpVector, m_W));
+		m_V = glm::cross(m_W, m_U);
+	}
+}

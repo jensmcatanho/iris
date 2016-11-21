@@ -23,21 +23,39 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef TRACER_H
-#define TRACER_H
+#ifndef PINHOLE_H
+#define PINHOLE_H
 
-#include "Prerequisites.h"
+#include "Camera.h"
 
-class Tracer {
+class Pinhole : public Camera {
 	public:
-		Tracer();
-		Tracer(std::shared_ptr<World>);
+		Pinhole();
+		Pinhole(glm::vec3, glm::vec3);
 
-		virtual RGBColor TraceRay(const Ray &) const;
-		virtual RGBColor TraceRay(const Ray &, const int) const;
+		virtual void RenderScene(const World &);
 
-	protected:
-		std::weak_ptr<World> m_WorldPtr;
+		// Setters.
+		void SetViewPlaneDistance(const float);
+		void SetZoom(const float);
+
+	private:
+		// Calculates the ray direction given a sample point.
+		glm::vec3 RayDirection(const glm::vec2 &) const;
+
+		// Distance from the eye to the view plane.
+		float m_vpDistance;
+
+		// Zoom factor.
+		float m_Zoom;
 };
+
+inline void Pinhole::SetViewPlaneDistance(const float distance) {
+	m_vpDistance = distance;
+}
+
+inline void Pinhole::SetZoom(const float zoom) {
+	m_Zoom = zoom;
+}
 
 #endif

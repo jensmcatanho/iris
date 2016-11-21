@@ -23,21 +23,59 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef TRACER_H
-#define TRACER_H
+#include "Pinhole.h"
+#include "Ray.h"
+#include "Sampler.h"
+#include "Tracer.h"
+#include "World.h"
 
-#include "Prerequisites.h"
+Pinhole::Pinhole() :
+	Camera(),
+	m_vpDistance(500.0),
+	m_Zoom(1.0) {
 
-class Tracer {
-	public:
-		Tracer();
-		Tracer(std::shared_ptr<World>);
+}
 
-		virtual RGBColor TraceRay(const Ray &) const;
-		virtual RGBColor TraceRay(const Ray &, const int) const;
+Pinhole::Pinhole(glm::vec3 eye, glm::vec3 lookat) :
+	Camera(eye, lookat),
+	m_vpDistance(500.0),
+	m_Zoom(1.0) {
 
-	protected:
-		std::weak_ptr<World> m_WorldPtr;
-};
+}
 
-#endif
+void Pinhole::RenderScene(const World &w) {
+	Ray ray;
+	RGBColor pixelColor;
+	glm::vec2 samplePoint;
+	ViewPlane vp(w.m_ViewPlane);
+
+	ComputeUVW();
+
+	vp.m_PixelSize /= m_Zoom;
+	ray.m_Origin = m_Eye;
+
+	for (int r = 0; r < vp.m_Height; r++) {
+		for(int c = 0; c < vp.m_Width; c++) {
+			pixelColor = RGBColor::Black;
+
+			for (int i = 0; i < vp.m_NumSamples; i++) {
+				samplePoint = vp.m_SamplerPtr->SampleUnitSquare();
+
+				ray.m_Direction = RayDirection(glm::vec2(vp.m_PixelSize * (c - 0.5 * vp.m_Width + samplePoint.x),
+														 vp.m_PixelSize * (r - 0.5 * vp.m_Height + samplePoint.y)));
+
+				pixelColor += w.m_TracerPtr->TraceRay(ray);
+			}
+
+			pixelColor /= vp.m_NumSamples;
+			pixelColor *= m_ExposureTime;
+			w.DisplayPixel(r, c, pixelColor);
+		}
+	}
+}
+
+glm::vec3 Pinhole::RayDirection(const glm::vec2 &sample_point) const {
+	glm::vec3 direction = glm::normalize(sample_point.x * m_U + sample_point.y * m_V - m_vpDistance * m_W);
+
+	return direction;
+}
