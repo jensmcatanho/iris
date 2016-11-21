@@ -33,21 +33,36 @@ class Camera {
 		Camera();
 		Camera(glm::vec3, glm::vec3);
 
-		virtual void RenderScene(const World &w) const = 0;
-		void ComputeUVW();
+		virtual void RenderScene(const World &w) = 0;
 
+		// Setters.
 		void SetEye(const glm::vec3 &);
 		void LookAt(const glm::vec3 &);
 		void SetUpVector(const glm::vec3 &);
-		void SetRollAngle(const float);
+		void SetYaw(const float);
+		void SetPitch(const float);
+		void SetRoll(const float);
 		void SetExposureTime(const float);
 
 	protected:
+		// Computes the orthornormal basis given the eye point, the lookat point and the up vector.
+		void ComputeUVW();
+		
+		// Location in world coordinates.
 		glm::vec3 m_Eye;
+
+		// Direction in which the camera is looking.
 		glm::vec3 m_LookAt;
+
+		// World's up vector.
 		glm::vec3 m_UpVector;
+
+		// Orthonormal basis vectors.
 		glm::vec3 m_U, m_V, m_W;
-		float m_RollAngle;
+
+		// Angles for rotation.
+		float m_Yaw, m_Pitch, m_Roll;
+
 		float m_ExposureTime;
 };
 
@@ -63,8 +78,16 @@ inline void Camera::SetUpVector(const glm::vec3 &up) {
 	m_UpVector = up;
 }
 
-inline void Camera::SetRollAngle(const float roll) {
-	m_RollAngle = roll;
+inline void Camera::SetYaw(const float yaw) {
+	m_Yaw = yaw;
+}
+
+inline void Camera::SetPitch(const float pitch) {
+	m_Pitch = pitch;
+}
+
+inline void Camera::SetRoll(const float roll) {
+	m_Roll = roll;
 }
 
 inline void Camera::SetExposureTime(const float etime) {

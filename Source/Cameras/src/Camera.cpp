@@ -37,29 +37,31 @@ Camera::Camera(glm::vec3 eye, glm::vec3 lookat) :
 	m_U(1.0, 0.0, 0.0),
 	m_V(0.0, 1.0, 0.0),
 	m_W(0.0, 0.0, 1.0),
-	m_RollAngle(0.0),
+	m_Yaw(0.0),
+	m_Pitch(0.0),
+	m_Roll(0.0),
 	m_ExposureTime(1.0) {
 
 }
 
 void Camera::ComputeUVW() {
-	m_W = glm::normalize(m_Eye - m_LookAt);
-	m_U = glm::normalize(glm::cross(m_UpVector, m_W));
-	m_V = glm::cross(m_W, m_U);
-
-
 	// Handles singularity of view direction being parallel to the up vector.
 	if (m_Eye.x == m_LookAt.x && m_Eye.z == m_LookAt.z && m_Eye.y > m_LookAt.y) {
 		// Looking vertically down.
 		m_U = glm::vec3(0.0, 0.0, 1.0);
 		m_V = glm::vec3(1.0, 0.0, 0.0);
 		m_W = glm::vec3(0.0, 1.0, 0.0);
-	}
-
-	if (m_Eye.x == m_LookAt.x && m_Eye.z == m_LookAt.z && m_Eye.y < m_LookAt.y) {
+	
+	} else if (m_Eye.x == m_LookAt.x && m_Eye.z == m_LookAt.z && m_Eye.y < m_LookAt.y) {
 		// Looking vertically up.
 		m_U = glm::vec3(1.0, 0.0, 0.0);
 		m_V = glm::vec3(0.0, 0.0, 1.0);
 		m_W = glm::vec3(0.0, -1.0, 0.0);
+
+	} else {
+		// General case.
+		m_W = glm::normalize(m_Eye - m_LookAt);
+		m_U = glm::normalize(glm::cross(m_UpVector, m_W));
+		m_V = glm::cross(m_W, m_U);
 	}
 }

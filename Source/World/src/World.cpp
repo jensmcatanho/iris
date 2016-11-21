@@ -39,8 +39,7 @@ void World::Build() {
 	std::shared_ptr<Pinhole> pinhole_ptr(new Pinhole);
 	pinhole_ptr->SetEye(glm::vec3(0.0, 0.0, 60.0));
 	pinhole_ptr->LookAt(glm::vec3(0.0, 0.0, -1.0));
-	pinhole_ptr->SetDistance(50.0);
-	pinhole_ptr->ComputeUVW();
+	pinhole_ptr->SetViewPlaneDistance(50.0);
 	SetCamera(pinhole_ptr);
 
 	std::shared_ptr<MultiJittered> newSampler(new MultiJittered(16));

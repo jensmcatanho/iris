@@ -31,23 +31,25 @@ SOFTWARE.
 
 Pinhole::Pinhole() :
 	Camera(),
-	m_Distance(500.0),
+	m_vpDistance(500.0),
 	m_Zoom(1.0) {
 
 }
 
 Pinhole::Pinhole(glm::vec3 eye, glm::vec3 lookat) :
 	Camera(eye, lookat),
-	m_Distance(500.0),
+	m_vpDistance(500.0),
 	m_Zoom(1.0) {
 
 }
 
-void Pinhole::RenderScene(const World &w) const {
+void Pinhole::RenderScene(const World &w) {
 	Ray ray;
 	RGBColor pixelColor;
 	glm::vec2 samplePoint;
 	ViewPlane vp(w.m_ViewPlane);
+
+	ComputeUVW();
 
 	vp.m_PixelSize /= m_Zoom;
 	ray.m_Origin = m_Eye;
@@ -73,7 +75,7 @@ void Pinhole::RenderScene(const World &w) const {
 }
 
 glm::vec3 Pinhole::RayDirection(const glm::vec2 &sample_point) const {
-	glm::vec3 direction = glm::normalize(sample_point.x * m_U + sample_point.y * m_V - m_Distance * m_W);
+	glm::vec3 direction = glm::normalize(sample_point.x * m_U + sample_point.y * m_V - m_vpDistance * m_W);
 
 	return direction;
 }
