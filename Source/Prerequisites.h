@@ -34,9 +34,11 @@ SOFTWARE.
 
 // Forward declarations.
 class Ambient;
+class BRDF;
 class Camera;
 class Hammersley;
 class Jittered;
+class Lambertian;
 class Light;
 class Material;
 class Matte;

@@ -47,4 +47,8 @@ class BRDF {
 		std::shared_ptr<Sampler> m_SamplerPtr;
 };
 
+inline void BRDF::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
+	m_SamplerPtr = sampler_ptr;
+}
+
 #endif

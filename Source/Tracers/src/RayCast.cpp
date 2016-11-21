@@ -24,6 +24,7 @@ SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #include "RayCast.h"
+#include "Material.h"
 #include "ShadeRecord.h"
 #include "World.h"
 
@@ -44,8 +45,7 @@ RGBColor RayCast::TraceRay(const Ray &ray) const {
 
 	if (sr.m_Hit) {
 		sr.m_Ray = ray;
-		// return sr.m_MaterialPtr->Shade(sr);
-		return sr.m_Color;
+		return sr.m_MaterialPtr->Shade(sr);
 
 	} else {
 		return worldPtr->m_BackgroundColor;

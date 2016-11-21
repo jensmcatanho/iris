@@ -36,15 +36,15 @@ BRDF::BRDF(std::shared_ptr<Sampler> sampler_ptr) :
 
 }
 
-RGBColor BRDF::f(const ShadeRecord &sr, const glm::vec3 &wo, const glm::vec3 &wi) const {
+RGBColor BRDF::f(const ShadeRecord &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
 	return RGBColor::Black;
 }
 
-RGBColor BRDF::SampleF(ShadeRecord &sr, const glm::vec3 &wo, glm::vec3 &wi) {
+RGBColor BRDF::SampleF(ShadeRecord &sr, const glm::vec3 &wi, glm::vec3 &wo) {
 	return RGBColor::Black;
 }
 
-RGBColor BRDF::SampleF(ShadeRecord &sr, const glm::vec3 &wo, glm::vec3 &wi, float &pdf) {
+RGBColor BRDF::SampleF(ShadeRecord &sr, const glm::vec3 &wi, glm::vec3 &wo, float &pdf) {
 	return RGBColor::Black;
 }
 

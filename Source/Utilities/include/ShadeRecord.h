@@ -39,7 +39,7 @@ class ShadeRecord {
 		// Check if the ray hit an object.
 		bool m_Hit;
 
-		//std::shared_ptr<Material> m_MaterialPtr;
+		std::shared_ptr<Material> m_MaterialPtr;
 
 		// Hit point in world coordinates.
 		glm::vec3 m_HitPoint;

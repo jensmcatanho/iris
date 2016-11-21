@@ -151,7 +151,7 @@ ShadeRecord World::HitObjects(const Ray &ray) {
 			sr.m_Hit = true;
 			tmin = t;
 
-			// sr.m_MaterialPtr = m_Objects[i]->GetMaterial();
+			sr.m_MaterialPtr = m_Objects[i]->GetMaterial();
 			sr.m_HitPoint = ray.m_Origin + static_cast<float>(t) * ray.m_Direction;
 			sr.m_Color = m_Objects[i]->GetColor();
 

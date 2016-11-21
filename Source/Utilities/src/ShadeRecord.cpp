@@ -27,7 +27,7 @@ SOFTWARE.
 
 ShadeRecord::ShadeRecord(World &wr)	:
 	m_Hit(false),
-	//m_MaterialPtr(nullptr),
+	m_MaterialPtr(nullptr),
 	m_HitPoint(),
 	m_LocalHitPoint(),
 	m_Normal(),
