@@ -33,7 +33,7 @@ class Matte : public Material{
 	public:
 		Matte();
 
-		virtual RGBColor Shade(ShadeRecord &);
+		virtual RGBColor Shade(ShadeRecord &) const;
 
 		// Setters.
 		void SetAmbientReflection(const float);

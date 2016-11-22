@@ -35,7 +35,7 @@ Matte::Matte() :
 
 }
 
-RGBColor Matte::Shade(ShadeRecord &sr) {
+RGBColor Matte::Shade(ShadeRecord &sr) const {
 	glm::vec3 wo = -sr.m_Ray.m_Direction;
 	RGBColor  L = m_Ambient->rho(sr, wo) * sr.w.m_AmbientPtr->L(sr);
 	int num_lights = sr.w.m_Lights.size();

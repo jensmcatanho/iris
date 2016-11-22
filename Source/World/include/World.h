@@ -36,7 +36,6 @@ typedef std::vector<std::shared_ptr<Light>> LightList;
 class World : public std::enable_shared_from_this<World> {
 	public:
 		World();
-		~World();
 
 		void Build();
 		void RenderScene() const;

@@ -37,10 +37,27 @@ class PointLight : public Light {
 		virtual glm::vec3 GetDirection(ShadeRecord &);
 		virtual RGBColor L(ShadeRecord &);
 
+		// Setters.
+		void SetRadiance(const float);
+		void SetColor(const RGBColor &);
+		void SetPosition(const glm::vec3 &);
+
 	private:
 		float m_Ls;
 		RGBColor m_Color;
 		glm::vec3 m_Position;
 };
+
+inline void PointLight::SetRadiance(const float radiance) {
+	m_Ls = radiance;
+}
+
+inline void PointLight::SetColor(const RGBColor &color) {
+	m_Color = color;
+}
+
+inline void PointLight::SetPosition(const glm::vec3 &pos) {
+	m_Position = pos;
+}
 
 #endif
