@@ -23,19 +23,31 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "ShadeRecord.h"
+#include "BRDF.h"
+#include "RGBColor.h"
 
-ShadeRecord::ShadeRecord(World &wr)	:
-	m_Hit(false),
-	m_MaterialPtr(nullptr),
-	m_HitPoint(),
-	m_LocalHitPoint(),
-	m_Normal(),
-	m_Color(RGBColor::Black),
-	m_Ray(),
-	m_Depth(0),
-	m_T(0.0),
-	m_Direction(),
-	w(wr) {
+BRDF::BRDF() :
+	m_SamplerPtr(nullptr) {
 
+}
+
+BRDF::BRDF(std::shared_ptr<Sampler> sampler_ptr) :
+	m_SamplerPtr(sampler_ptr) {
+
+}
+
+RGBColor BRDF::f(const ShadeRecord &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
+	return RGBColor::Black;
+}
+
+RGBColor BRDF::SampleF(ShadeRecord &sr, const glm::vec3 &wi, glm::vec3 &wo) {
+	return RGBColor::Black;
+}
+
+RGBColor BRDF::SampleF(ShadeRecord &sr, const glm::vec3 &wi, glm::vec3 &wo, float &pdf) {
+	return RGBColor::Black;
+}
+
+RGBColor BRDF::rho(const ShadeRecord &sr, const glm::vec3 &wo) const {
+	return RGBColor::Black;
 }

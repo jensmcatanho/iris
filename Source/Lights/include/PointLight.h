@@ -23,19 +23,41 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "ShadeRecord.h"
+#ifndef POINTLIGHT_H
+#define POINTLIGHT_H
 
-ShadeRecord::ShadeRecord(World &wr)	:
-	m_Hit(false),
-	m_MaterialPtr(nullptr),
-	m_HitPoint(),
-	m_LocalHitPoint(),
-	m_Normal(),
-	m_Color(RGBColor::Black),
-	m_Ray(),
-	m_Depth(0),
-	m_T(0.0),
-	m_Direction(),
-	w(wr) {
+#include "Light.h"
+#include "RGBColor.h"
 
+class PointLight : public Light {
+	public:
+		PointLight();
+		PointLight(bool);
+
+		virtual glm::vec3 GetDirection(ShadeRecord &);
+		virtual RGBColor L(ShadeRecord &);
+
+		// Setters.
+		void SetRadiance(const float);
+		void SetColor(const RGBColor &);
+		void SetPosition(const glm::vec3 &);
+
+	private:
+		float m_Ls;
+		RGBColor m_Color;
+		glm::vec3 m_Position;
+};
+
+inline void PointLight::SetRadiance(const float radiance) {
+	m_Ls = radiance;
 }
+
+inline void PointLight::SetColor(const RGBColor &color) {
+	m_Color = color;
+}
+
+inline void PointLight::SetPosition(const glm::vec3 &pos) {
+	m_Position = pos;
+}
+
+#endif

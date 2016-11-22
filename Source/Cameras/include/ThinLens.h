@@ -23,19 +23,52 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "ShadeRecord.h"
+#ifndef THINLENS_H
+#define THINLENS_H
 
-ShadeRecord::ShadeRecord(World &wr)	:
-	m_Hit(false),
-	m_MaterialPtr(nullptr),
-	m_HitPoint(),
-	m_LocalHitPoint(),
-	m_Normal(),
-	m_Color(RGBColor::Black),
-	m_Ray(),
-	m_Depth(0),
-	m_T(0.0),
-	m_Direction(),
-	w(wr) {
+#include "Camera.h"
 
+class ThinLens : public Camera {
+	public:
+		ThinLens();
+		ThinLens(glm::vec3, glm::vec3);
+		
+		virtual void RenderScene(const World &);
+
+		void SetSampler(std::shared_ptr<Sampler>);
+		void SetLensRadius(const float);
+		void SetViewPlaneDistance(const float);
+		void SetFocalPlaneDistance(const float);
+		void SetZoom(const float);
+
+	private:
+		glm::vec3 RayDirection(const glm::vec2 &, const glm::vec2 &) const;
+
+		std::shared_ptr<Sampler> m_SamplerPtr;
+
+		float m_LensRadius;
+
+		float m_vpDistance;
+
+		float m_fpDistance;
+
+		float m_Zoom;
+};
+
+inline void ThinLens::SetLensRadius(const float lens_radius) {
+	m_LensRadius = lens_radius;
 }
+
+inline void ThinLens::SetViewPlaneDistance(const float vp_distance) {
+	m_vpDistance = vp_distance;
+}
+
+inline void ThinLens::SetFocalPlaneDistance(const float fp_distance) {
+	m_fpDistance = fp_distance;
+}
+
+inline void ThinLens::SetZoom(const float zoom) {
+	float m_Zoom;
+}
+
+#endif

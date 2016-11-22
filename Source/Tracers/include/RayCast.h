@@ -23,19 +23,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "ShadeRecord.h"
+#ifndef RAYCAST_H
+#define RAYCAST_H
 
-ShadeRecord::ShadeRecord(World &wr)	:
-	m_Hit(false),
-	m_MaterialPtr(nullptr),
-	m_HitPoint(),
-	m_LocalHitPoint(),
-	m_Normal(),
-	m_Color(RGBColor::Black),
-	m_Ray(),
-	m_Depth(0),
-	m_T(0.0),
-	m_Direction(),
-	w(wr) {
+#include "Tracer.h"
 
-}
+class RayCast : public Tracer {
+	public:
+		RayCast();
+		RayCast(std::shared_ptr<World>);
+
+		virtual RGBColor TraceRay(const Ray &) const;
+};
+
+#endif

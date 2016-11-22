@@ -23,19 +23,31 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
+#include "Matte.h"
+#include "Light.h"
 #include "ShadeRecord.h"
+#include "World.h"
 
-ShadeRecord::ShadeRecord(World &wr)	:
-	m_Hit(false),
-	m_MaterialPtr(nullptr),
-	m_HitPoint(),
-	m_LocalHitPoint(),
-	m_Normal(),
-	m_Color(RGBColor::Black),
-	m_Ray(),
-	m_Depth(0),
-	m_T(0.0),
-	m_Direction(),
-	w(wr) {
+Matte::Matte() :
+	Material(),
+	m_Ambient(new Lambertian),
+	m_Diffuse(new Lambertian) {
 
+}
+
+RGBColor Matte::Shade(ShadeRecord &sr) const {
+	glm::vec3 wo = -sr.m_Ray.m_Direction;
+	RGBColor  L = m_Ambient->rho(sr, wo) * sr.w.m_AmbientPtr->L(sr);
+	int num_lights = sr.w.m_Lights.size();
+
+	for (int i = 0; i < num_lights; i++) {
+		glm::vec3 wi(sr.w.m_Lights[i]->GetDirection(sr));
+		float ndotwi = glm::dot(sr.m_Normal, wi);
+		float ndotwo = glm::dot(sr.m_Normal, wo);
+
+		if (ndotwi > 0.0 && ndotwo > 0.0)
+			L += m_Diffuse->f(sr, wo, wi) * sr.w.m_Lights[i]->L(sr) * ndotwi;
+	}
+
+	return L;
 }

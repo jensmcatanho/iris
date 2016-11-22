@@ -23,19 +23,22 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "ShadeRecord.h"
+#ifndef LIGHT_H
+#define LIGHT_H
 
-ShadeRecord::ShadeRecord(World &wr)	:
-	m_Hit(false),
-	m_MaterialPtr(nullptr),
-	m_HitPoint(),
-	m_LocalHitPoint(),
-	m_Normal(),
-	m_Color(RGBColor::Black),
-	m_Ray(),
-	m_Depth(0),
-	m_T(0.0),
-	m_Direction(),
-	w(wr) {
+#include "Prerequisites.h"
 
-}
+class Light {
+	public:
+		Light();
+		Light(bool);
+
+		virtual glm::vec3 GetDirection(ShadeRecord &) = 0;
+		virtual RGBColor L(ShadeRecord &);
+
+	protected:
+		bool m_Shadows;
+
+};
+
+#endif

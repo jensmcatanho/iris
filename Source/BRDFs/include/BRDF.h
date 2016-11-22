@@ -23,19 +23,32 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "ShadeRecord.h"
+#ifndef BRDF_H
+#define BRDF_H
 
-ShadeRecord::ShadeRecord(World &wr)	:
-	m_Hit(false),
-	m_MaterialPtr(nullptr),
-	m_HitPoint(),
-	m_LocalHitPoint(),
-	m_Normal(),
-	m_Color(RGBColor::Black),
-	m_Ray(),
-	m_Depth(0),
-	m_T(0.0),
-	m_Direction(),
-	w(wr) {
+#include "Prerequisites.h"
 
+class BRDF {
+	public:
+		BRDF();
+		BRDF(std::shared_ptr<Sampler>);
+
+		virtual RGBColor f(const ShadeRecord &, const glm::vec3 &, const glm::vec3 &) const;
+
+		virtual RGBColor SampleF(ShadeRecord &, const glm::vec3 &, glm::vec3 &);
+
+		virtual RGBColor SampleF(ShadeRecord &, const glm::vec3 &, glm::vec3 &, float &);
+
+		virtual RGBColor rho(const ShadeRecord &, const glm::vec3 &) const;
+
+		void SetSampler(std::shared_ptr<Sampler>);
+
+	protected:
+		std::shared_ptr<Sampler> m_SamplerPtr;
+};
+
+inline void BRDF::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
+	m_SamplerPtr = sampler_ptr;
 }
+
+#endif

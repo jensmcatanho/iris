@@ -33,17 +33,25 @@ SOFTWARE.
 #define DRACO_VERSION (DRACO_MAJOR_VERSION << 8) | (DRACO_MINOR_VERSION << 4) | DRACO_PATCH_VERSION
 
 // Forward declarations.
+class Ambient;
+class BRDF;
 class Camera;
 class Hammersley;
 class Jittered;
+class Lambertian;
+class Light;
+class Material;
+class Matte;
 class MultiJittered;
 class MultipleObjects;
 class NRooks;
 class Object;
 class Pinhole;
 class Plane;
+class PointLight;
 class PureRandom;
 class Ray;
+class RayCast;
 class Regular;
 class RGBColor;
 class Sampler;

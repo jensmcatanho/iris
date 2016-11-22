@@ -42,9 +42,16 @@ class Object {
 
 		RGBColor GetColor() const;
 
+		std::shared_ptr<Material> GetMaterial() const;
+
+		virtual void SetMaterial(std::shared_ptr<Material>);
+
 	protected:
 		// Color of the object.
 		RGBColor m_Color;
+
+		// Material of the object.
+		std::shared_ptr<Material> m_MaterialPtr;
 
 };
 
@@ -61,6 +68,10 @@ inline void Object::SetColor(const RGBColor color) {
 
 inline RGBColor Object::GetColor() const {
 	return (m_Color);
+}
+
+inline std::shared_ptr<Material> Object::GetMaterial() const {
+	return m_MaterialPtr;
 }
 
 #endif

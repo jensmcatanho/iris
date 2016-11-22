@@ -23,19 +23,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "ShadeRecord.h"
+#include "Lambertian.h"
 
-ShadeRecord::ShadeRecord(World &wr)	:
-	m_Hit(false),
-	m_MaterialPtr(nullptr),
-	m_HitPoint(),
-	m_LocalHitPoint(),
-	m_Normal(),
-	m_Color(RGBColor::Black),
-	m_Ray(),
-	m_Depth(0),
-	m_T(0.0),
-	m_Direction(),
-	w(wr) {
+Lambertian::Lambertian() :
+	BRDF(),
+	m_DiffuseReflection(0.0),
+	m_DiffuseColor(0.0) {
+
+}
+
+Lambertian::Lambertian(std::shared_ptr<Sampler> sampler_ptr) :
+	BRDF(sampler_ptr),
+	m_DiffuseReflection(0.0),
+	m_DiffuseColor(0.0) {
 
 }

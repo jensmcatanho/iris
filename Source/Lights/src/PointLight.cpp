@@ -23,19 +23,29 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
+#include "PointLight.h"
 #include "ShadeRecord.h"
 
-ShadeRecord::ShadeRecord(World &wr)	:
-	m_Hit(false),
-	m_MaterialPtr(nullptr),
-	m_HitPoint(),
-	m_LocalHitPoint(),
-	m_Normal(),
-	m_Color(RGBColor::Black),
-	m_Ray(),
-	m_Depth(0),
-	m_T(0.0),
-	m_Direction(),
-	w(wr) {
+PointLight::PointLight() :
+	Light(),
+	m_Ls(1.0),
+	m_Color(1.0),
+	m_Position(0.0) {
 
+}
+
+PointLight::PointLight(bool shadows) :
+	Light(shadows),
+	m_Ls(1.0),
+	m_Color(1.0),
+	m_Position(0.0) {
+
+}
+
+glm::vec3 PointLight::GetDirection(ShadeRecord &sr) {
+	return glm::normalize(m_Position - sr.m_HitPoint);
+}
+
+RGBColor PointLight::L(ShadeRecord &sr) {
+	return m_Color * m_Ls;
 }

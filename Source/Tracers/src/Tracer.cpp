@@ -38,11 +38,13 @@ Tracer::Tracer(std::shared_ptr<World> worldPtr)
 }
 
 RGBColor Tracer::TraceRay(const Ray &ray) const {
-	return RGBColor(RGBColor::Black);
-
+	return RGBColor::Black;
 }
 
 RGBColor Tracer::TraceRay(const Ray &ray, const int depth) const {
-	return RGBColor(RGBColor::Black);
+	return RGBColor::Black;
+}
 
+RGBColor Tracer::TraceRay(const Ray &ray, const int depth, float &tmin) const {
+	return RGBColor::Black;
 }

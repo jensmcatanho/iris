@@ -23,19 +23,31 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
+#include "RayCast.h"
+#include "Material.h"
 #include "ShadeRecord.h"
+#include "World.h"
 
-ShadeRecord::ShadeRecord(World &wr)	:
-	m_Hit(false),
-	m_MaterialPtr(nullptr),
-	m_HitPoint(),
-	m_LocalHitPoint(),
-	m_Normal(),
-	m_Color(RGBColor::Black),
-	m_Ray(),
-	m_Depth(0),
-	m_T(0.0),
-	m_Direction(),
-	w(wr) {
+RayCast::RayCast() :
+	Tracer() {
 
+}
+
+RayCast::RayCast(std::shared_ptr<World> world_ptr) :
+	Tracer(world_ptr) {
+
+}
+
+RGBColor RayCast::TraceRay(const Ray &ray) const {
+	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	assert(worldPtr);
+	ShadeRecord sr(worldPtr->HitObjects(ray));
+
+	if (sr.m_Hit) {
+		sr.m_Ray = ray;
+		return sr.m_MaterialPtr->Shade(sr);
+
+	} else {
+		return worldPtr->m_BackgroundColor;
+	}
 }

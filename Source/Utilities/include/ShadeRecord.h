@@ -29,16 +29,42 @@ SOFTWARE.
 // TODO: Check if ShadeRecord needs to be a class instead of a struct.
 
 #include "Prerequisites.h"
+#include "Ray.h"
 #include "RGBColor.h"
 
 class ShadeRecord {
 	public:
 		ShadeRecord(World &);
 
+		// Check if the ray hit an object.
 		bool m_Hit;
+
+		std::shared_ptr<Material> m_MaterialPtr;
+
+		// Hit point in world coordinates.
 		glm::vec3 m_HitPoint;
+
+		// ?
+		glm::vec3 m_LocalHitPoint;
+
+		// Normal vector on the hit point.
 		glm::vec3 m_Normal;
+
+		// Color on the hit point.
 		RGBColor m_Color;
+
+		// "For specular highlights".
+		Ray m_Ray;
+
+		// Recursion depth.
+		int m_Depth;
+
+		// Ray parameter.
+		float m_T;
+
+		// "For area lights".
+		glm::vec3 m_Direction;
+
 		World &w;  // TODO: Check if this reference to World is necessary.
 };
 

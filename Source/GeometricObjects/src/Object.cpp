@@ -29,3 +29,7 @@ Object::Object()
 	: m_Color(RGBColor::Black) {
 
 }
+
+void Object::SetMaterial(std::shared_ptr<Material> material_ptr) {
+	m_MaterialPtr = material_ptr;
+}

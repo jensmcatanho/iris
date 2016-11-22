@@ -27,13 +27,13 @@ SOFTWARE.
 #include "ShadeRecord.h"
 #include "World.h"
 
-MultipleObjects::MultipleObjects()
-	: Tracer() {
+MultipleObjects::MultipleObjects() :
+	Tracer() {
 
 }
 
-MultipleObjects::MultipleObjects(std::shared_ptr<World> worldPtr)
-	: Tracer(worldPtr) {
+MultipleObjects::MultipleObjects(std::shared_ptr<World> worldPtr) :
+	Tracer(worldPtr) {
 
 }
 
