@@ -41,6 +41,7 @@ class GlossySpecular : public BRDF {
 		void SetSpecularColor(const RGBColor &);
 		void SetSpecularColor(const float);
 		void SetSpecularColor(const float, const float, const float);
+		void SetSpecularExponent(const float);
 
 	private:
 		// Specular reflection coefficient.
@@ -53,8 +54,8 @@ class GlossySpecular : public BRDF {
 		float m_SpecularExp;
 };
 
-inline void GlossySpecular::SetSpecularReflection(const float kdr) {
-	m_SpecularReflection = kdr;
+inline void GlossySpecular::SetSpecularReflection(const float ksr) {
+	m_SpecularReflection = ksr;
 }
 
 inline void GlossySpecular::SetSpecularColor(const RGBColor &color) {
@@ -71,6 +72,10 @@ inline void GlossySpecular::SetSpecularColor(const float r, const float g, const
 	m_SpecularColor.r = r;
 	m_SpecularColor.g = g;
 	m_SpecularColor.b = b;
+}
+
+inline void GlossySpecular::SetSpecularExponent(const float ksexp) {
+	m_SpecularExp = ksexp;
 }
 
 #endif

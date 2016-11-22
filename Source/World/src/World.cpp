@@ -29,6 +29,7 @@ SOFTWARE.
 #include "Matte.h"
 #include "MultiJittered.h"
 #include "MultipleObjects.h"
+#include "Phong.h"
 #include "Pinhole.h"
 #include "Plane.h"
 #include "PointLight.h"
@@ -63,10 +64,11 @@ void World::Build() {
 	light_ptr->SetRadiance(3.0);
 	AddLight(light_ptr);
 
-	std::shared_ptr<Matte> matte_ptr1(new Matte);
+	std::shared_ptr<Phong> matte_ptr1(new Phong);
 	matte_ptr1->SetAmbientReflection(0.25);
 	matte_ptr1->SetDiffuseReflection(0.65);
 	matte_ptr1->SetDiffuseColor(1.0, 1.0, 0.0);
+	matte_ptr1->SetSpecularReflection(0.05);
 	std::shared_ptr<Sphere> sphere_ptr(new Sphere);
 	sphere_ptr->SetCenter(glm::vec3(10.0, -5.0, 0.0));
 	sphere_ptr->SetRadius(27);

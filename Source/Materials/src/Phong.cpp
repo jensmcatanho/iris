@@ -23,54 +23,32 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef PREREQUISITES_H
-#define PREREQUISITES_H
+#include "Phong.h"
+#include "Light.h"
+#include "ShadeRecord.h"
+#include "World.h"
 
-// Tracer version related defines.
-#define DRACO_MAJOR_VERSION 1
-#define DRACO_MINOR_VERSION 0
-#define DRACO_PATCH_VERSION 0
-#define DRACO_VERSION (DRACO_MAJOR_VERSION << 8) | (DRACO_MINOR_VERSION << 4) | DRACO_PATCH_VERSION
+Phong::Phong() :
+	Material(),
+	m_Ambient(new Lambertian),
+	m_Diffuse(new Lambertian),
+	m_Specular(new GlossySpecular) {
 
-// Forward declarations.
-class Ambient;
-class BRDF;
-class Camera;
-class GlossySpecular;
-class Hammersley;
-class Jittered;
-class Lambertian;
-class Light;
-class Material;
-class Matte;
-class MultiJittered;
-class MultipleObjects;
-class NRooks;
-class Object;
-class Pinhole;
-class Plane;
-class PointLight;
-class PureRandom;
-class Ray;
-class RayCast;
-class Regular;
-class RGBColor;
-class Sampler;
-class ShadeRecord;
-class Sphere;
-class Tracer;
-class ViewPlane;
-class World;
+}
 
-// STL
-#include "StandardHeaders.h"
+RGBColor Phong::Shade(ShadeRecord &sr) const {
+	glm::vec3 wo = -sr.m_Ray.m_Direction;
+	RGBColor  L = m_Ambient->rho(sr, wo) * sr.w.m_AmbientPtr->L(sr);
+	int num_lights = sr.w.m_Lights.size();
 
-// GLM
-#include <glm/glm.hpp>
-#include <glm/gtc/random.hpp>
+	for (int i = 0; i < num_lights; i++) {
+		glm::vec3 wi(sr.w.m_Lights[i]->GetDirection(sr));
+		float ndotwi = glm::dot(sr.m_Normal, wi);
+		float ndotwo = glm::dot(sr.m_Normal, wo);
 
-// Draconian
-#include "Constants.h"
-#include "Logger.h"
+		if (ndotwi > 0.0 && ndotwo > 0.0)
+			L += (m_Diffuse->f(sr, wo, wi) + m_Specular->f(sr, wo, wi) ) * sr.w.m_Lights[i]->L(sr) * ndotwi;
+	}
 
-#endif
+	return L;
+}
