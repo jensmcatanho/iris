@@ -25,6 +25,7 @@ SOFTWARE.
 */
 #include "World.h"
 #include "Ambient.h"
+#include "Directional.h"
 #include "Matte.h"
 #include "MultiJittered.h"
 #include "MultipleObjects.h"
