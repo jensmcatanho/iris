@@ -42,7 +42,7 @@ SOFTWARE.
 void World::Build() {
 	std::shared_ptr<LuaState> luaState(new LuaState());
 	luaState->Start("../Source/Scenes/TestScene.lua");
-	luaState->LoadScene(*this);
+	//luaState->LoadScene(*this);
 	
 	m_ViewPlane.SetWidth(400);
 	m_ViewPlane.SetHeight(400);
