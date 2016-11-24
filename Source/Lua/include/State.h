@@ -33,10 +33,16 @@ class State {
 		State();
 		~State();
 
-		bool Load(const std::string &);
+		bool Start(const std::string &);
+		void LoadScene(World &);
 
 	private:
-		lua_State *m_luaState;
+		lua_State *m_L;
+
+		void LoadImage(World &);
+		void LoadSampler(World &w);
+		void CheckSampler(World &w);
+		void CheckTracer(World &w);
 };
 
 #endif

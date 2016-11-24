@@ -25,30 +25,43 @@ SOFTWARE.
 */
 #include "State.h"
 
-State::State()
-	: m_luaState(nullptr) {
+#include "Hammersley.h"
+#include "Jittered.h"
+#include "MultiJittered.h"
+#include "NRooks.h"
+#include "PureRandom.h"
+#include "Regular.h"
 
-	m_luaState = luaL_newstate();  // Creates a new Lua state (may cause memory allocation error).
-	luaL_openlibs(m_luaState);  // Opens all standard Lua libraries into the given state. 
+#include "MultipleObjects.h"
+#include "RayCast.h"
+
+#include "ViewPlane.h"
+#include "World.h"
+
+State::State()
+	: m_L(nullptr) {
+
+	m_L = luaL_newstate();  // Creates a new Lua state (may cause memory allocation error).
+	luaL_openlibs(m_L);  // Opens all standard Lua libraries into the given state. 
 }
 
 State::~State() {
-	lua_close(m_luaState);
+	lua_close(m_L);
 
-	m_luaState = nullptr;
+	m_L = nullptr;
 }
 
-bool State::Load(const std::string &filename) {
+bool State::Start(const std::string &filename) {
 	// Loads a file as a Lua chunk.
-	if (luaL_loadfile(m_luaState, filename.c_str()) != LUA_OK) {
-		Logger::ErrorLog(lua_tostring(m_luaState, -1), "State::Load()");
+	if (luaL_loadfile(m_L, filename.c_str()) != LUA_OK) {
+		Logger::ErrorLog(lua_tostring(m_L, -1), "State::Load()");
 		return false;
 	}
 
-	if (lua_pcall(m_luaState, 0, 0, 0) == LUA_OK)
+	if (lua_pcall(m_L, 0, 0, 0) == LUA_OK)
 		return true;
 
-	Logger::ErrorLog(lua_tostring(m_luaState, -1), "State::Load()");
+	Logger::ErrorLog(lua_tostring(m_L, -1), "State::Load()");
 
 	return false;
 }
