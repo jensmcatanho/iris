@@ -41,6 +41,7 @@ class Hammersley;
 class Jittered;
 class Lambertian;
 class Light;
+class LuaState;
 class Material;
 class Matte;
 class MultiJittered;

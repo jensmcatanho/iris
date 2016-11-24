@@ -23,15 +23,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef STATE_H
-#define STATE_H
+#ifndef LUASTATE_H
+#define LUASTATE_H
 
 #include "Prerequisites.h"
 
-class State {
+class LuaState {
 	public:
-		State();
-		~State();
+		LuaState();
+		~LuaState();
 
 		bool Start(const std::string &);
 		void LoadScene(World &);
@@ -43,6 +43,8 @@ class State {
 		void LoadSampler(World &w);
 		void CheckSampler(World &w);
 		void CheckTracer(World &w);
+		void LoadCamera(World &w);
+		glm::vec3 ReadVec();
 };
 
 #endif

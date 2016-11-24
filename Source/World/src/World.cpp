@@ -26,6 +26,7 @@ SOFTWARE.
 #include "World.h"
 #include "Ambient.h"
 #include "Directional.h"
+#include "LuaState.h"
 #include "Matte.h"
 #include "MultiJittered.h"
 #include "MultipleObjects.h"
@@ -39,6 +40,10 @@ SOFTWARE.
 #include "Sphere.h"
 
 void World::Build() {
+	std::shared_ptr<LuaState> luaState(new LuaState());
+	luaState->Start("../Source/Scenes/TestScene.lua");
+	luaState->LoadScene(*this);
+	
 	m_ViewPlane.SetWidth(400);
 	m_ViewPlane.SetHeight(400);
 	m_ViewPlane.SetPixelSize(0.5);

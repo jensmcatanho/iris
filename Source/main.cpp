@@ -34,7 +34,6 @@ SOFTWARE.
 
 #include "World.h"
 #include "Camera.h"
-#include "State.h"
 
 
 void save_bitmap(const char *filename, int w, int h, int dpi, std::shared_ptr<World> world) {
@@ -103,8 +102,6 @@ int thisone;
 int main(int argc, char *argv[]) {
 	std::shared_ptr<World> w(new World());
 	Logger::StartLog();
-	std::shared_ptr<State> luaState(new State());
-	luaState->Load("../Source/Scenes/TestScene.lua");
 	
 	w->Build();
 	w->m_CameraPtr->RenderScene(*w);

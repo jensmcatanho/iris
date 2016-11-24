@@ -51,6 +51,8 @@ class World : public std::enable_shared_from_this<World> {
 
 		std::shared_ptr<Camera> m_CameraPtr;
 
+		std::shared_ptr<LuaState> m_LuaStatePtr;
+
 		std::shared_ptr<Tracer> m_TracerPtr;
 
 		// List of the pixels in the view plane.
