@@ -40,9 +40,11 @@ SOFTWARE.
 #include "Sphere.h"
 
 void World::Build() {
-	std::shared_ptr<LuaState> luaState(new LuaState());
-	luaState->Start("../Source/Scenes/TestScene.lua");
-	luaState->LoadScene(*this);
+	std::shared_ptr<LuaState> luaState(new LuaState(shared_from_this()));
+	m_LuaStatePtr = luaState;
+	m_LuaStatePtr->Start("../Source/Scenes/TestScene.lua");
+	m_LuaStatePtr->LoadScene();
+
 	/*
 	m_ViewPlane.SetWidth(400);
 	m_ViewPlane.SetHeight(400);
@@ -53,19 +55,20 @@ void World::Build() {
 	
 	std::shared_ptr<MultiJittered> newSampler(new MultiJittered(16));
 	m_ViewPlane.SetSampler(newSampler);
-	*/
+
 	std::shared_ptr<RayCast> newTracer(new RayCast(shared_from_this()));
 	m_TracerPtr = newTracer;
+	
 	m_BackgroundColor = RGBColor(0.0f, 0.0f, 0.0f);
-
-	std::shared_ptr<Ambient> ambient_ptr(new Ambient);
-	m_AmbientPtr = ambient_ptr;
 
 	std::shared_ptr<Pinhole> pinhole_ptr(new Pinhole);
 	pinhole_ptr->SetEye(glm::vec3(0.0, 0.0, 500.0));
 	pinhole_ptr->LookAt(glm::vec3(-5.0, 0.0, 0.0));
 	pinhole_ptr->SetViewPlaneDistance(850.0);
 	SetCamera(pinhole_ptr);
+	*/
+	std::shared_ptr<Ambient> ambient_ptr(new Ambient);
+	m_AmbientPtr = ambient_ptr;
 
 	std::shared_ptr<PointLight> light_ptr(new PointLight);
 	light_ptr->SetPosition(glm::vec3(100.0, 50.0, 100.0));
@@ -235,6 +238,7 @@ World::World() :
 	m_BackgroundColor(RGBColor::Black),
 	m_AmbientPtr(new Ambient),
 	m_CameraPtr(nullptr),
+	m_LuaStatePtr(nullptr),
 	m_TracerPtr(nullptr) {
 
 	m_Pixels = new RGBColor[m_ViewPlane.m_Width * m_ViewPlane.m_Height];

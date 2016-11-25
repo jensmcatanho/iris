@@ -30,21 +30,23 @@ SOFTWARE.
 
 class LuaState {
 	public:
-		LuaState();
+		LuaState(std::shared_ptr<World>);
 		~LuaState();
 
 		bool Start(const std::string &);
-		void LoadScene(World &);
+		void LoadScene();
 
 	private:
 		lua_State *m_L;
+		std::weak_ptr<World> m_WorldPtr;
 
-		void LoadImage(World &);
-		void LoadSampler(World &w);
-		void CheckSampler(World &w);
-		void CheckTracer(World &w);
-		void LoadCamera(World &w);
-		glm::vec3 ReadVec();
+		void ParseImage();
+		void ParseSampler();
+		void ParseTracer();
+		void ParseCamera();
+
+		glm::vec3 ParseVector();
+		RGBColor ParseColor();
 };
 
 #endif

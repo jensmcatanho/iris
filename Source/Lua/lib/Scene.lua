@@ -31,11 +31,12 @@ function Scene.new()
 	-- Private member variables
 	local ObjectList = {}
 	local LightList = {}
-	local camera = Pinhole.new()
 
 	-- Public member variables
 	self.tracer = Tracer.RayCast
 	self.image = Image.new(200, 200)
+	self.camera = Pinhole.new()
+	self.ambient = AmbientLight.new()
 
 	-- Private methods
 

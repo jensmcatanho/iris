@@ -41,8 +41,9 @@ SOFTWARE.
 #include "ViewPlane.h"
 #include "World.h"
 
-LuaState::LuaState()
-	: m_L(nullptr) {
+LuaState::LuaState(std::shared_ptr<World> world_ptr) :
+	m_L(nullptr),
+	m_WorldPtr(world_ptr) {
 
 	m_L = luaL_newstate();  // Creates a new Lua State (may cause memory allocation error).
 	luaL_openlibs(m_L);  // Opens all standard Lua libraries into the given LuaState. 
@@ -69,122 +70,130 @@ bool LuaState::Start(const std::string &filename) {
 	return false;
 }
 
-void LuaState::LoadScene(World &w) {
+void LuaState::LoadScene() {
 	lua_getglobal(m_L, "scene");
 	luaL_checktype(m_L, -1, LUA_TTABLE);
-	//CheckTracer(w);
-	LoadImage(w);
-	//LoadCamera(w);
+	ParseImage();
+	ParseTracer();
+	ParseCamera();
 
 	lua_pop(m_L, 1);
 }
 
-void LuaState::LoadImage(World &w) {
+void LuaState::ParseImage() {
+	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	assert(worldPtr);
+
 	lua_getfield(m_L, -1, "image");
 	luaL_checktype(m_L, -1, LUA_TTABLE);
 
 	lua_getfield(m_L, -1, "width");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	w.m_ViewPlane.SetWidth(static_cast<int>(lua_tonumber(m_L, -1)));
-	Logger::DebugLog(std::to_string(w.m_ViewPlane.m_Width), "LoadImage()");
+	worldPtr->m_ViewPlane.SetWidth(static_cast<int>(lua_tonumber(m_L, -1)));
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "height");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	w.m_ViewPlane.SetHeight(static_cast<int>(lua_tonumber(m_L, -1)));
-	Logger::DebugLog(std::to_string(w.m_ViewPlane.m_Height), "LoadImage()");
+	worldPtr->m_ViewPlane.SetHeight(static_cast<int>(lua_tonumber(m_L, -1)));
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "pixel_size");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	w.m_ViewPlane.SetPixelSize(static_cast<float>(lua_tonumber(m_L, -1)));
-	Logger::DebugLog(std::to_string(w.m_ViewPlane.m_PixelSize), "LoadImage()");
+	worldPtr->m_ViewPlane.SetPixelSize(static_cast<float>(lua_tonumber(m_L, -1)));
 	lua_pop(m_L, 1);
 
-	LoadSampler(w);
+	lua_getfield(m_L, -1, "background_color");
+	luaL_checktype(m_L, -1, LUA_TTABLE);
+	worldPtr->m_BackgroundColor = ParseColor();
+	lua_pop(m_L, 1);
+
+	ParseSampler();
 	lua_pop(m_L, 1);
 }
 
-void LuaState::LoadSampler(World &w) {
+void LuaState::ParseSampler() {
+	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	assert(worldPtr);
+
 	lua_getfield(m_L, -1, "should_sample");
 	luaL_checktype(m_L, -1, LUA_TBOOLEAN);
 
 	if (static_cast<bool>(lua_toboolean(m_L, -1))) {
 		lua_pop(m_L, 1);
-		CheckSampler(w);
+
+		lua_getfield(m_L, -1, "samples");
+		luaL_checktype(m_L, -1, LUA_TNUMBER);
+		int num_samples = static_cast<int>(lua_tonumber(m_L, -1));
+		lua_pop(m_L, 1);
+
+		lua_getfield(m_L, -1, "sets");
+		luaL_checktype(m_L, -1, LUA_TNUMBER);
+		int num_sets = static_cast<int>(lua_tonumber(m_L, -1));
+		lua_pop(m_L, 1);
+
+		lua_getfield(m_L, -1, "sampler");
+		luaL_checktype(m_L, -1, LUA_TNUMBER);
+		int sampler = static_cast<int>(lua_tonumber(m_L, -1));
+
+		if (sampler == 1) {
+			std::shared_ptr<Hammersley> newSampler(new Hammersley(num_samples, num_sets));
+			worldPtr->m_ViewPlane.SetSampler(newSampler);
+	
+		} else if (sampler == 2) {
+			std::shared_ptr<Jittered> newSampler(new Jittered(num_samples, num_sets));
+			worldPtr->m_ViewPlane.SetSampler(newSampler);
+	
+		} else if (sampler == 3) {
+			std::shared_ptr<MultiJittered> newSampler(new MultiJittered(num_samples, num_sets));
+			worldPtr->m_ViewPlane.SetSampler(newSampler);
+	
+		} else if (sampler == 4) {
+			std::shared_ptr<NRooks> newSampler(new NRooks(num_samples, num_sets));
+			worldPtr->m_ViewPlane.SetSampler(newSampler);
+	
+		} else if (sampler == 5) {
+			std::shared_ptr<PureRandom> newSampler(new PureRandom(num_samples, num_sets));
+			worldPtr->m_ViewPlane.SetSampler(newSampler);
+	
+		} else {
+			std::shared_ptr<Regular> newSampler(new Regular(num_samples, num_sets));
+			worldPtr->m_ViewPlane.SetSampler(newSampler);
+		}
+
+		lua_pop(m_L, 1);
 	
 	} else {
 		lua_pop(m_L, 1);
 	
 		std::shared_ptr<Regular> newSampler(new Regular(1));
-		w.m_ViewPlane.SetSampler(newSampler);
+		worldPtr->m_ViewPlane.SetSampler(newSampler);
 	}
 }
 
-void LuaState::CheckSampler(World &w) {
-	lua_getfield(m_L, -1, "samples");
-	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	int num_samples = static_cast<int>(lua_tonumber(m_L, -1));
-	lua_pop(m_L, 1);
+void LuaState::ParseTracer() {
+	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	assert(worldPtr);
 
-	lua_getfield(m_L, -1, "sets");
-	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	int num_sets = static_cast<int>(lua_tonumber(m_L, -1));
-	lua_pop(m_L, 1);
-
-	lua_getfield(m_L, -1, "sampler");
-	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	int sampler = static_cast<int>(lua_tonumber(m_L, -1));
-
-	if (sampler == 1) {
-		std::shared_ptr<Hammersley> newSampler(new Hammersley(num_samples, num_sets));
-		w.m_ViewPlane.SetSampler(newSampler);
-	
-	} else if (sampler == 2) {
-		std::shared_ptr<Jittered> newSampler(new Jittered(num_samples, num_sets));
-		w.m_ViewPlane.SetSampler(newSampler);
-	
-	} else if (sampler == 3) {
-		std::shared_ptr<MultiJittered> newSampler(new MultiJittered(num_samples, num_sets));
-		w.m_ViewPlane.SetSampler(newSampler);
-	
-	} else if (sampler == 4) {
-		std::shared_ptr<NRooks> newSampler(new NRooks(num_samples, num_sets));
-		w.m_ViewPlane.SetSampler(newSampler);
-	
-	} else if (sampler == 5) {
-		std::shared_ptr<PureRandom> newSampler(new PureRandom(num_samples, num_sets));
-		w.m_ViewPlane.SetSampler(newSampler);
-	
-	} else {
-		std::shared_ptr<Regular> newSampler(new Regular(num_samples, num_sets));
-		w.m_ViewPlane.SetSampler(newSampler);
-	
-	}
-
-	lua_pop(m_L, 1);
-}
-
-void LuaState::CheckTracer(World &w) {
 	lua_getfield(m_L, -1, "tracer");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
 	int tracer = static_cast<int>(lua_tonumber(m_L, -1));
 
 	if (tracer == 2) {
-		std::shared_ptr<MultipleObjects> newTracer(new MultipleObjects(std::make_shared<World>(w)));
-		w.m_TracerPtr = newTracer;
+		std::shared_ptr<MultipleObjects> newTracer(new MultipleObjects(worldPtr));
+		worldPtr->m_TracerPtr = newTracer;
 	
 	} else {
-		std::shared_ptr<World> worldPtr(&w);
 		std::shared_ptr<RayCast> newTracer(new RayCast(worldPtr));
-		w.m_TracerPtr = newTracer;
-	
+		worldPtr->m_TracerPtr = newTracer;
 	}
 
 	lua_pop(m_L, 1);
 }
 
-void LuaState::LoadCamera(World &w) {
+void LuaState::ParseCamera() {
+	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	assert(worldPtr);
+
 	std::shared_ptr<Pinhole> pinhole_ptr(new Pinhole);
 
 	lua_getfield(m_L, -1, "camera");
@@ -192,12 +201,12 @@ void LuaState::LoadCamera(World &w) {
 
 	lua_getfield(m_L, -1, "eye");
 	luaL_checktype(m_L, -1, LUA_TTABLE);
-	pinhole_ptr->SetEye(ReadVec());
+	pinhole_ptr->SetEye(ParseVector());
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "look_at");
 	luaL_checktype(m_L, -1, LUA_TTABLE);
-	pinhole_ptr->LookAt(ReadVec());
+	pinhole_ptr->LookAt(ParseVector());
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "yaw");
@@ -230,11 +239,11 @@ void LuaState::LoadCamera(World &w) {
 	pinhole_ptr->SetZoom(static_cast<float>(lua_tonumber(m_L, -1)));
 	lua_pop(m_L, 1);
 
-	w.SetCamera(pinhole_ptr);
+	worldPtr->SetCamera(pinhole_ptr);
 	lua_pop(m_L, 1);
 }
 
-glm::vec3 LuaState::ReadVec() {
+glm::vec3 LuaState::ParseVector() {
 	glm::vec3 vec;
 
 	lua_getfield(m_L, -1, "x");
@@ -253,4 +262,25 @@ glm::vec3 LuaState::ReadVec() {
 	lua_pop(m_L, 1);
 
 	return vec;
+}
+
+RGBColor LuaState::ParseColor() {
+	RGBColor color;
+
+	lua_getfield(m_L, -1, "r");
+	luaL_checktype(m_L, -1, LUA_TNUMBER);
+	color.r = static_cast<float>(lua_tonumber(m_L, -1));
+	lua_pop(m_L, 1);
+
+	lua_getfield(m_L, -1, "g");
+	luaL_checktype(m_L, -1, LUA_TNUMBER);
+	color.g = static_cast<float>(lua_tonumber(m_L, -1));
+	lua_pop(m_L, 1);
+
+	lua_getfield(m_L, -1, "b");
+	luaL_checktype(m_L, -1, LUA_TNUMBER);
+	color.b = static_cast<float>(lua_tonumber(m_L, -1));
+	lua_pop(m_L, 1);
+
+	return color;
 }
