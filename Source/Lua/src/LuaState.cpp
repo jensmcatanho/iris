@@ -61,7 +61,7 @@ bool LuaState::Start(const std::string &filename) {
 		return false;
 	}
 
-	if (lua_pcall(m_L, 0, 0, 0) == LUA_OK)
+	if (lua_pcall(m_L, 0, LUA_MULTRET, 0) == LUA_OK)
 		return true;
 
 	Logger::ErrorLog(lua_tostring(m_L, -1), "LuaState::Load()");
@@ -72,9 +72,9 @@ bool LuaState::Start(const std::string &filename) {
 void LuaState::LoadScene(World &w) {
 	lua_getglobal(m_L, "scene");
 	luaL_checktype(m_L, -1, LUA_TTABLE);
-	CheckTracer(w);
+	//CheckTracer(w);
 	LoadImage(w);
-	LoadCamera(w);
+	//LoadCamera(w);
 
 	lua_pop(m_L, 1);
 }
@@ -86,16 +86,19 @@ void LuaState::LoadImage(World &w) {
 	lua_getfield(m_L, -1, "width");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
 	w.m_ViewPlane.SetWidth(static_cast<int>(lua_tonumber(m_L, -1)));
+	Logger::DebugLog(std::to_string(w.m_ViewPlane.m_Width), "LoadImage()");
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "height");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
 	w.m_ViewPlane.SetHeight(static_cast<int>(lua_tonumber(m_L, -1)));
+	Logger::DebugLog(std::to_string(w.m_ViewPlane.m_Height), "LoadImage()");
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "pixel_size");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	w.m_ViewPlane.SetPixelSize(static_cast<int>(lua_tonumber(m_L, -1)));
+	w.m_ViewPlane.SetPixelSize(static_cast<float>(lua_tonumber(m_L, -1)));
+	Logger::DebugLog(std::to_string(w.m_ViewPlane.m_PixelSize), "LoadImage()");
 	lua_pop(m_L, 1);
 
 	LoadSampler(w);
@@ -172,7 +175,8 @@ void LuaState::CheckTracer(World &w) {
 		w.m_TracerPtr = newTracer;
 	
 	} else {
-		std::shared_ptr<RayCast> newTracer(new RayCast(std::make_shared<World>(w)));
+		std::shared_ptr<World> worldPtr(&w);
+		std::shared_ptr<RayCast> newTracer(new RayCast(worldPtr));
 		w.m_TracerPtr = newTracer;
 	
 	}

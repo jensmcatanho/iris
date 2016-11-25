@@ -42,15 +42,18 @@ SOFTWARE.
 void World::Build() {
 	std::shared_ptr<LuaState> luaState(new LuaState());
 	luaState->Start("../Source/Scenes/TestScene.lua");
-	//luaState->LoadScene(*this);
-	
+	luaState->LoadScene(*this);
+	/*
 	m_ViewPlane.SetWidth(400);
 	m_ViewPlane.SetHeight(400);
 	m_ViewPlane.SetPixelSize(0.5);
-
+	Logger::DebugLog(std::to_string(m_ViewPlane.m_Width), "Build()");
+	Logger::DebugLog(std::to_string(m_ViewPlane.m_Height), "Build()");
+	Logger::DebugLog(std::to_string(m_ViewPlane.m_PixelSize), "Build()");
+	
 	std::shared_ptr<MultiJittered> newSampler(new MultiJittered(16));
 	m_ViewPlane.SetSampler(newSampler);
-
+	*/
 	std::shared_ptr<RayCast> newTracer(new RayCast(shared_from_this()));
 	m_TracerPtr = newTracer;
 	m_BackgroundColor = RGBColor(0.0f, 0.0f, 0.0f);
