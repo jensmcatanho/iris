@@ -34,6 +34,8 @@ typedef std::vector<std::shared_ptr<Object>> ObjectList;
 typedef std::vector<std::shared_ptr<Light>> LightList;
 
 class World : public std::enable_shared_from_this<World> {
+	friend class LuaState;
+
 	public:
 		World();
 

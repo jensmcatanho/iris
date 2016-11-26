@@ -44,9 +44,12 @@ class LuaState {
 		void ParseSampler();
 		void ParseTracer();
 		void ParseCamera();
+		void ParseLights();
+		void ParseObjects();
 
 		glm::vec3 ParseVector();
 		RGBColor ParseColor();
+		std::shared_ptr<Material> ParseMaterial();
 };
 
 #endif

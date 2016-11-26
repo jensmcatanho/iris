@@ -66,9 +66,10 @@ void World::Build() {
 	pinhole_ptr->LookAt(glm::vec3(-5.0, 0.0, 0.0));
 	pinhole_ptr->SetViewPlaneDistance(850.0);
 	SetCamera(pinhole_ptr);
-	*/
+
 	std::shared_ptr<Ambient> ambient_ptr(new Ambient);
 	m_AmbientPtr = ambient_ptr;
+	*/
 
 	std::shared_ptr<PointLight> light_ptr(new PointLight);
 	light_ptr->SetPosition(glm::vec3(100.0, 50.0, 100.0));
@@ -95,7 +96,7 @@ void World::Build() {
 	sphere_ptr2->SetRadius(27);
 	sphere_ptr2->SetMaterial(matte_ptr2);
 	AddObject(sphere_ptr2);
-
+	
 	std::shared_ptr<Matte> matte_ptr3(new Matte);
 	matte_ptr3->SetAmbientReflection(0.15);
 	matte_ptr3->SetDiffuseReflection(0.50);

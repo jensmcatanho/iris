@@ -25,8 +25,17 @@ SOFTWARE.
 */
 #include "LuaState.h"
 
-#include "Camera.h"
 #include "Pinhole.h"
+
+#include "Sphere.h"
+#include "Plane.h"
+
+#include "Ambient.h"
+#include "Directional.h"
+#include "PointLight.h"
+
+#include "Matte.h"
+#include "Phong.h"
 
 #include "Hammersley.h"
 #include "Jittered.h"
@@ -71,11 +80,20 @@ bool LuaState::Start(const std::string &filename) {
 }
 
 void LuaState::LoadScene() {
+	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	assert(worldPtr);
+
 	lua_getglobal(m_L, "scene");
 	luaL_checktype(m_L, -1, LUA_TTABLE);
+
+	// TODO: Implement setters here so it makes sense to parse Ambient from Lua.
+	std::shared_ptr<Ambient> ambient_ptr(new Ambient);
+	worldPtr->m_AmbientPtr = ambient_ptr;
+
 	ParseImage();
 	ParseTracer();
 	ParseCamera();
+	//ParseObjects();
 
 	lua_pop(m_L, 1);
 }
@@ -243,6 +261,57 @@ void LuaState::ParseCamera() {
 	lua_pop(m_L, 1);
 }
 
+void LuaState::ParseObjects() {
+	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	assert(worldPtr);
+
+	lua_getfield(m_L, -1, "object_list");
+	luaL_checktype(m_L, -1, LUA_TTABLE);
+
+	for (int i = 1; ; ++i) {
+		// Get the next object in the list.
+		lua_rawgeti(m_L, -1, i);
+
+		// Check if the list is over.
+		if (lua_isnil(m_L, -1)) {
+			lua_pop(m_L, -1);
+			break;
+		}
+
+		luaL_checktype(m_L, -1, LUA_TTABLE);
+
+		lua_getfield(m_L, -1, "name");
+		luaL_checktype(m_L, -1, LUA_TSTRING);
+		std::string name = lua_tostring(m_L, -1);
+		lua_pop(m_L, -1);
+
+		if (name == "Plane") {
+
+			lua_getfield(m_L, -1, "point");
+			luaL_checktype(m_L, -1, LUA_TTABLE);
+			glm::vec3 point(ParseVector());
+			lua_pop(m_L, 1);
+
+			lua_getfield(m_L, -1, "normal");
+			luaL_checktype(m_L, -1, LUA_TTABLE);
+			glm::vec3 normal(ParseVector());
+			lua_pop(m_L, 1);
+
+			std::shared_ptr<Material> material_ptr(ParseMaterial());
+			std::shared_ptr<Plane> plane_ptr(new Plane(point, normal));
+
+			plane_ptr->SetMaterial(material_ptr);
+			worldPtr->AddObject(plane_ptr);
+
+		} else if (name == "Sphere") {
+		
+		}
+
+	}
+
+	lua_pop(m_L, 1);
+}
+
 glm::vec3 LuaState::ParseVector() {
 	glm::vec3 vec;
 
@@ -283,4 +352,89 @@ RGBColor LuaState::ParseColor() {
 	lua_pop(m_L, 1);
 
 	return color;
+}
+
+std::shared_ptr<Material> LuaState::ParseMaterial() {
+	lua_getfield(m_L, -1, "material");
+	luaL_checktype(m_L, -1, LUA_TTABLE);
+
+	lua_getfield(m_L, -1, "name");
+	luaL_checktype(m_L, -1, LUA_TSTRING);
+	std::string name = lua_tostring(m_L, -1);
+	lua_pop(m_L, -1);
+
+	// TODO: Find a way to better reuse code here.
+	if (name == "Matte") {
+		std::shared_ptr<Matte> material_ptr(new Matte);
+
+		lua_getfield(m_L, -1, "diffuse_color");
+		luaL_checktype(m_L, -1, LUA_TTABLE);
+		material_ptr->SetDiffuseColor(ParseColor());
+		lua_pop(m_L, 1);
+
+		lua_getfield(m_L, -1, "diffuse_reflection");
+		luaL_checktype(m_L, -1, LUA_TNUMBER);
+		material_ptr->SetDiffuseReflection(static_cast<float>(lua_tonumber(m_L, -1)));
+		lua_pop(m_L, 1);
+
+		/* TODO: Implement SetAmbientColor()
+		lua_getfield(m_L, -1, "ambient_color");
+		luaL_checktype(m_L, -1, LUA_TTABLE);
+		material_ptr->SetAmbientColor(ParseColor());
+		lua_pop(m_L, 1);
+		*/
+
+		lua_getfield(m_L, -1, "ambient_reflection");
+		luaL_checktype(m_L, -1, LUA_TNUMBER);
+		material_ptr->SetAmbientReflection(static_cast<float>(lua_tonumber(m_L, -1)));
+		lua_pop(m_L, 1);
+
+		lua_pop(m_L, 1);
+		return material_ptr;
+
+	} else if (name == "Phong") {
+		std::shared_ptr<Phong> material_ptr(new Phong);
+
+		lua_getfield(m_L, -1, "diffuse_color");
+		luaL_checktype(m_L, -1, LUA_TTABLE);
+		material_ptr->SetDiffuseColor(ParseColor());
+		lua_pop(m_L, 1);
+
+		lua_getfield(m_L, -1, "diffuse_reflection");
+		luaL_checktype(m_L, -1, LUA_TNUMBER);
+		material_ptr->SetDiffuseReflection(static_cast<float>(lua_tonumber(m_L, -1)));
+		lua_pop(m_L, 1);
+
+		/* TODO: Implement SetAmbientColor()
+		lua_getfield(m_L, -1, "ambient_color");
+		luaL_checktype(m_L, -1, LUA_TTABLE);
+		material_ptr->SetAmbientColor(ParseColor());
+		lua_pop(m_L, 1);
+		*/
+
+		lua_getfield(m_L, -1, "ambient_reflection");
+		luaL_checktype(m_L, -1, LUA_TNUMBER);
+		material_ptr->SetAmbientReflection(static_cast<float>(lua_tonumber(m_L, -1)));
+		lua_pop(m_L, 1);
+
+		/* TODO: Implement SetSpecularColor()
+		lua_getfield(m_L, -1, "specular_color");
+		luaL_checktype(m_L, -1, LUA_TTABLE);
+		material_ptr->SetSpecularColor(ParseColor());
+		lua_pop(m_L, 1);
+		*/
+
+		lua_getfield(m_L, -1, "specular_reflection");
+		luaL_checktype(m_L, -1, LUA_TNUMBER);
+		material_ptr->SetSpecularReflection(static_cast<float>(lua_tonumber(m_L, -1)));
+		lua_pop(m_L, 1);
+
+		lua_getfield(m_L, -1, "specular_exp");
+		luaL_checktype(m_L, -1, LUA_TNUMBER);
+		material_ptr->SetSpecularExponent(static_cast<float>(lua_tonumber(m_L, -1)));
+		lua_pop(m_L, 1);
+
+		lua_pop(m_L, 1);
+		return material_ptr;
+	}
 }

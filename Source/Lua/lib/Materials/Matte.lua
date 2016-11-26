@@ -3,6 +3,9 @@ Matte = {}
 function Matte.new()
 	local self = {}
 
+	-- Private member variables
+	local name = "Matte"
+	
 	-- Public member variables
 	self.diffuse_color = {r = 0.0, g = 0.0, b = 0.0}
 	self.diffuse_reflection = 1.0

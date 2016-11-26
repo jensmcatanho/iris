@@ -29,8 +29,8 @@ function Scene.new()
 	local self = {}
 
 	-- Private member variables
-	local ObjectList = {}
-	local LightList = {}
+	self.object_list = {}
+	self.light_list = {}
 
 	-- Public member variables
 	self.tracer = Tracer.RayCast
@@ -42,11 +42,11 @@ function Scene.new()
 
 	-- Public methods
 	function self.AddObject(obj)
-		table.insert(ObjectList, obj)
+		table.insert(object_list, obj)
 	end
 
 	function self.AddLight(light)
-		table.insert(LightList, light)
+		table.insert(light_list, light)
 	end
 
 	return self

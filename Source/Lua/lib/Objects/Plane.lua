@@ -5,9 +5,12 @@ Plane = {}
 function Plane.new()
 	local self = Object.new()
 
+	-- Private member variables
+	local name = "Plane"
+	
 	-- Public member variables
-	point = {x = 0.0, y = 0.0, z = 0.0}
-	normal = {x = 0.0, y = 1.0, z = 0.0}
+	self.point = {x = 0.0, y = 0.0, z = 0.0}
+	self.normal = {x = 0.0, y = 1.0, z = 0.0}
 
 	return self
 end
