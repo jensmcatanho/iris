@@ -23,57 +23,41 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef MATTE_H
-#define MATTE_H
+#ifndef DIRECTIONAL_H
+#define DIRECTIONAL_H
 
-#include "Material.h"
-#include "Lambertian.h"
+#include "Light.h"
+#include "RGBColor.h"
 
-class Matte : public Material{
+class Directional : public Light {
 	public:
-		Matte();
+		Directional();
+		Directional(bool);
 
-		virtual RGBColor Shade(ShadeRecord &) const;
+		virtual glm::vec3 GetDirection(ShadeRecord &);
+		virtual RGBColor L(ShadeRecord &);
 
 		// Setters.
-		void SetAmbientReflection(const float);
-		void SetDiffuseReflection(const float);
-		void SetDiffuseColor(const RGBColor &);
-		void SetDiffuseColor(const float);
-		void SetDiffuseColor(const float, const float, const float);
-		void SetSampler(std::shared_ptr<Sampler>);
+		void SetRadiance(const float);
+		void SetColor(const RGBColor &);
+		void SetDirection(const glm::vec3 &);
 
 	private:
-		std::shared_ptr<Lambertian> m_Ambient;
-		std::shared_ptr<Lambertian> m_Diffuse;
+		float m_Radiance;
+		RGBColor m_Color;
+		glm::vec3 m_Direction;
 };
 
-inline void Matte::SetAmbientReflection(const float kdr) {
-	m_Ambient->SetDiffuseReflection(kdr);
+inline void Directional::SetRadiance(const float radiance) {
+	m_Radiance = radiance;
 }
 
-inline void Matte::SetDiffuseReflection(const float kdr) {
-	m_Diffuse->SetDiffuseReflection(kdr);
+inline void Directional::SetColor(const RGBColor &color) {
+	m_Color = color;
 }
 
-inline void Matte::SetDiffuseColor(const RGBColor &color) {
-	m_Ambient->SetDiffuseColor(color);
-	m_Diffuse->SetDiffuseColor(color);
-}
-
-inline void Matte::SetDiffuseColor(const float color) {
-	m_Ambient->SetDiffuseColor(color);
-	m_Diffuse->SetDiffuseColor(color);
-}
-
-inline void Matte::SetDiffuseColor(const float r, const float g, const float b) {
-	m_Ambient->SetDiffuseColor(r, g, b);
-	m_Diffuse->SetDiffuseColor(r, g, b);
-}
-
-inline void Matte::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
-	m_Ambient->SetSampler(sampler_ptr);
-	m_Diffuse->SetSampler(sampler_ptr);
+inline void Directional::SetDirection(const glm::vec3 &dir) {
+	m_Direction = glm::normalize(dir);
 }
 
 #endif

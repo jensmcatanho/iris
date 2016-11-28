@@ -23,26 +23,33 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "RayCast.h"
-#include "Material.h"
-#include "ShadeRecord.h"
-#include "World.h"
+#ifndef LUASTATE_H
+#define LUASTATE_H
 
-RayCast::RayCast(std::shared_ptr<World> world_ptr) :
-	Tracer(world_ptr) {
+#include "Prerequisites.h"
 
-}
+class LuaState {
+	public:
+		LuaState(std::shared_ptr<World>);
+		~LuaState();
 
-RGBColor RayCast::TraceRay(const Ray &ray) const {
-	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
-	assert(worldPtr);
-	ShadeRecord sr(worldPtr->HitObjects(ray));
+		bool Start(const std::string &);
+		void LoadScene();
 
-	if (sr.m_Hit) {
-		sr.m_Ray = ray;
-		return sr.m_MaterialPtr->Shade(sr);
+	private:
+		lua_State *m_L;
+		std::weak_ptr<World> m_WorldPtr;
 
-	} else {
-		return worldPtr->m_BackgroundColor;
-	}
-}
+		void ParseImage();
+		void ParseSampler();
+		void ParseTracer();
+		void ParseCamera();
+		void ParseLights();
+		void ParseObjects();
+
+		glm::vec3 ParseVector();
+		RGBColor ParseColor();
+		std::shared_ptr<Material> ParseMaterial();
+};
+
+#endif

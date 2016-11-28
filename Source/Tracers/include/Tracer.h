@@ -30,12 +30,10 @@ SOFTWARE.
 
 class Tracer {
 	public:
-		Tracer();
 		Tracer(std::shared_ptr<World>);
 
+		// Standard tracing method. Returns black if not overloaded.
 		virtual RGBColor TraceRay(const Ray &) const;
-		virtual RGBColor TraceRay(const Ray &, const int) const;
-		virtual RGBColor TraceRay(const Ray &, const int, float &) const;
 
 	protected:
 		std::weak_ptr<World> m_WorldPtr;

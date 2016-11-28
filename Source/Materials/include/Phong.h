@@ -23,15 +23,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef MATTE_H
-#define MATTE_H
+#ifndef PHONG_H
+#define PHONG_H
 
 #include "Material.h"
 #include "Lambertian.h"
+#include "GlossySpecular.h"
 
-class Matte : public Material{
+class Phong : public Material {
 	public:
-		Matte();
+		Phong();
 
 		virtual RGBColor Shade(ShadeRecord &) const;
 
@@ -41,39 +42,50 @@ class Matte : public Material{
 		void SetDiffuseColor(const RGBColor &);
 		void SetDiffuseColor(const float);
 		void SetDiffuseColor(const float, const float, const float);
+		void SetSpecularReflection(const float);
+		void SetSpecularExponent(const float);
 		void SetSampler(std::shared_ptr<Sampler>);
 
 	private:
 		std::shared_ptr<Lambertian> m_Ambient;
 		std::shared_ptr<Lambertian> m_Diffuse;
+		std::shared_ptr<GlossySpecular> m_Specular;
 };
 
-inline void Matte::SetAmbientReflection(const float kdr) {
+inline void Phong::SetAmbientReflection(const float kdr) {
 	m_Ambient->SetDiffuseReflection(kdr);
 }
 
-inline void Matte::SetDiffuseReflection(const float kdr) {
+inline void Phong::SetDiffuseReflection(const float kdr) {
 	m_Diffuse->SetDiffuseReflection(kdr);
 }
 
-inline void Matte::SetDiffuseColor(const RGBColor &color) {
+inline void Phong::SetDiffuseColor(const RGBColor &color) {
 	m_Ambient->SetDiffuseColor(color);
 	m_Diffuse->SetDiffuseColor(color);
 }
 
-inline void Matte::SetDiffuseColor(const float color) {
+inline void Phong::SetDiffuseColor(const float color) {
 	m_Ambient->SetDiffuseColor(color);
 	m_Diffuse->SetDiffuseColor(color);
 }
 
-inline void Matte::SetDiffuseColor(const float r, const float g, const float b) {
+inline void Phong::SetDiffuseColor(const float r, const float g, const float b) {
 	m_Ambient->SetDiffuseColor(r, g, b);
 	m_Diffuse->SetDiffuseColor(r, g, b);
 }
 
-inline void Matte::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
+inline void Phong::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
 	m_Ambient->SetSampler(sampler_ptr);
 	m_Diffuse->SetSampler(sampler_ptr);
+}
+
+inline void Phong::SetSpecularReflection(const float ksr) {
+	m_Specular->SetSpecularReflection(ksr);
+}
+
+inline void Phong::SetSpecularExponent(const float ksexp) {
+	m_Specular->SetSpecularExponent(ksexp);
 }
 
 #endif

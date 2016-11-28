@@ -23,26 +23,32 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "RayCast.h"
-#include "Material.h"
+#include "Phong.h"
+#include "Light.h"
 #include "ShadeRecord.h"
 #include "World.h"
 
-RayCast::RayCast(std::shared_ptr<World> world_ptr) :
-	Tracer(world_ptr) {
+Phong::Phong() :
+	Material(),
+	m_Ambient(new Lambertian),
+	m_Diffuse(new Lambertian),
+	m_Specular(new GlossySpecular) {
 
 }
 
-RGBColor RayCast::TraceRay(const Ray &ray) const {
-	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
-	assert(worldPtr);
-	ShadeRecord sr(worldPtr->HitObjects(ray));
+RGBColor Phong::Shade(ShadeRecord &sr) const {
+	glm::vec3 wo = -sr.m_Ray.m_Direction;
+	RGBColor  L = m_Ambient->rho(sr, wo) * sr.w.m_AmbientPtr->L(sr);
+	int num_lights = sr.w.m_Lights.size();
 
-	if (sr.m_Hit) {
-		sr.m_Ray = ray;
-		return sr.m_MaterialPtr->Shade(sr);
+	for (int i = 0; i < num_lights; i++) {
+		glm::vec3 wi(sr.w.m_Lights[i]->GetDirection(sr));
+		float ndotwi = glm::dot(sr.m_Normal, wi);
+		float ndotwo = glm::dot(sr.m_Normal, wo);
 
-	} else {
-		return worldPtr->m_BackgroundColor;
+		if (ndotwi > 0.0 && ndotwo > 0.0)
+			L += (m_Diffuse->f(sr, wo, wi) + m_Specular->f(sr, wo, wi) ) * sr.w.m_Lights[i]->L(sr) * ndotwi;
 	}
+
+	return L;
 }

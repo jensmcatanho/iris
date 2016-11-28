@@ -23,26 +23,32 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "RayCast.h"
-#include "Material.h"
-#include "ShadeRecord.h"
-#include "World.h"
+#include "State.h"
 
-RayCast::RayCast(std::shared_ptr<World> world_ptr) :
-	Tracer(world_ptr) {
+State::State()
+	: m_luaState(nullptr) {
 
+	m_luaState = luaL_newstate();  // Creates a new Lua state (may cause memory allocation error).
+	luaL_openlibs(m_luaState);  // Opens all standard Lua libraries into the given state. 
 }
 
-RGBColor RayCast::TraceRay(const Ray &ray) const {
-	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
-	assert(worldPtr);
-	ShadeRecord sr(worldPtr->HitObjects(ray));
+State::~State() {
+	lua_close(m_luaState);
 
-	if (sr.m_Hit) {
-		sr.m_Ray = ray;
-		return sr.m_MaterialPtr->Shade(sr);
+	m_luaState = nullptr;
+}
 
-	} else {
-		return worldPtr->m_BackgroundColor;
+bool State::Load(const std::string &filename) {
+	// Loads a file as a Lua chunk.
+	if (luaL_loadfile(m_luaState, filename.c_str()) != LUA_OK) {
+		Logger::ErrorLog(lua_tostring(m_luaState, -1), "State::Load()");
+		return false;
 	}
+
+	if (lua_pcall(m_luaState, 0, 0, 0) == LUA_OK)
+		return true;
+
+	Logger::ErrorLog(lua_tostring(m_luaState, -1), "State::Load()");
+
+	return false;
 }

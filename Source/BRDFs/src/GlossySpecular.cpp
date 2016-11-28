@@ -23,26 +23,33 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "RayCast.h"
-#include "Material.h"
+#include "GlossySpecular.h"
 #include "ShadeRecord.h"
-#include "World.h"
 
-RayCast::RayCast(std::shared_ptr<World> world_ptr) :
-	Tracer(world_ptr) {
+GlossySpecular::GlossySpecular() :
+	BRDF(),
+	m_SpecularReflection(0.0),
+	m_SpecularColor(0.0),
+	m_SpecularExp(1.0) {
 
 }
 
-RGBColor RayCast::TraceRay(const Ray &ray) const {
-	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
-	assert(worldPtr);
-	ShadeRecord sr(worldPtr->HitObjects(ray));
+GlossySpecular::GlossySpecular(std::shared_ptr<Sampler> sampler_ptr) :
+	BRDF(sampler_ptr),
+	m_SpecularReflection(0.0),
+	m_SpecularColor(0.0),
+	m_SpecularExp(1.0) {
 
-	if (sr.m_Hit) {
-		sr.m_Ray = ray;
-		return sr.m_MaterialPtr->Shade(sr);
+}
 
-	} else {
-		return worldPtr->m_BackgroundColor;
-	}
+inline RGBColor GlossySpecular::f(const ShadeRecord &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
+	RGBColor L;
+
+	glm::vec3 r = -wi + (2.0f * glm::dot(sr.m_Normal, wo) * sr.m_Normal);
+	float rdotwo = glm::dot(r, wo);
+
+	if (rdotwo > 0.0)
+		L = m_SpecularReflection * glm::pow(rdotwo, m_SpecularExp);
+
+	return L;
 }

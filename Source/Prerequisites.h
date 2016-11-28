@@ -36,10 +36,12 @@ SOFTWARE.
 class Ambient;
 class BRDF;
 class Camera;
+class GlossySpecular;
 class Hammersley;
 class Jittered;
 class Lambertian;
 class Light;
+class LuaState;
 class Material;
 class Matte;
 class MultiJittered;
@@ -67,6 +69,13 @@ class World;
 // GLM
 #include <glm/glm.hpp>
 #include <glm/gtc/random.hpp>
+
+// Lua
+extern "C" {
+	#include "lua.h"
+	#include "lauxlib.h"
+	#include "lualib.h"
+}
 
 // Draconian
 #include "Constants.h"

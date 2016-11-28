@@ -23,57 +23,59 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef MATTE_H
-#define MATTE_H
+#ifndef GLOSSYSPECULAR_H
+#define GLOSSYSPECULAR_H
 
-#include "Material.h"
-#include "Lambertian.h"
+#include "BRDF.h"
+#include "RGBColor.h"
 
-class Matte : public Material{
+class GlossySpecular : public BRDF {
 	public:
-		Matte();
+		GlossySpecular();
+		GlossySpecular(std::shared_ptr<Sampler>);
 
-		virtual RGBColor Shade(ShadeRecord &) const;
+		virtual RGBColor f(const ShadeRecord &, const glm::vec3 &, const glm::vec3 &) const;
 
 		// Setters.
-		void SetAmbientReflection(const float);
-		void SetDiffuseReflection(const float);
-		void SetDiffuseColor(const RGBColor &);
-		void SetDiffuseColor(const float);
-		void SetDiffuseColor(const float, const float, const float);
-		void SetSampler(std::shared_ptr<Sampler>);
+		void SetSpecularReflection(const float);
+		void SetSpecularColor(const RGBColor &);
+		void SetSpecularColor(const float);
+		void SetSpecularColor(const float, const float, const float);
+		void SetSpecularExponent(const float);
 
 	private:
-		std::shared_ptr<Lambertian> m_Ambient;
-		std::shared_ptr<Lambertian> m_Diffuse;
+		// Specular reflection coefficient.
+		float m_SpecularReflection;
+
+		// Specular color.
+		RGBColor m_SpecularColor;
+
+		// Specular exponent.
+		float m_SpecularExp;
 };
 
-inline void Matte::SetAmbientReflection(const float kdr) {
-	m_Ambient->SetDiffuseReflection(kdr);
+inline void GlossySpecular::SetSpecularReflection(const float ksr) {
+	m_SpecularReflection = ksr;
 }
 
-inline void Matte::SetDiffuseReflection(const float kdr) {
-	m_Diffuse->SetDiffuseReflection(kdr);
+inline void GlossySpecular::SetSpecularColor(const RGBColor &color) {
+	m_SpecularColor = color;
 }
 
-inline void Matte::SetDiffuseColor(const RGBColor &color) {
-	m_Ambient->SetDiffuseColor(color);
-	m_Diffuse->SetDiffuseColor(color);
+inline void GlossySpecular::SetSpecularColor(const float color) {
+	m_SpecularColor.r = color;
+	m_SpecularColor.g = color;
+	m_SpecularColor.b = color;
 }
 
-inline void Matte::SetDiffuseColor(const float color) {
-	m_Ambient->SetDiffuseColor(color);
-	m_Diffuse->SetDiffuseColor(color);
+inline void GlossySpecular::SetSpecularColor(const float r, const float g, const float b) {
+	m_SpecularColor.r = r;
+	m_SpecularColor.g = g;
+	m_SpecularColor.b = b;
 }
 
-inline void Matte::SetDiffuseColor(const float r, const float g, const float b) {
-	m_Ambient->SetDiffuseColor(r, g, b);
-	m_Diffuse->SetDiffuseColor(r, g, b);
-}
-
-inline void Matte::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
-	m_Ambient->SetSampler(sampler_ptr);
-	m_Diffuse->SetSampler(sampler_ptr);
+inline void GlossySpecular::SetSpecularExponent(const float ksexp) {
+	m_SpecularExp = ksexp;
 }
 
 #endif

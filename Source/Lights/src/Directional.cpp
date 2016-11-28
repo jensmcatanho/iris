@@ -23,26 +23,29 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "RayCast.h"
-#include "Material.h"
+#include "Directional.h"
 #include "ShadeRecord.h"
-#include "World.h"
 
-RayCast::RayCast(std::shared_ptr<World> world_ptr) :
-	Tracer(world_ptr) {
+Directional::Directional() :
+	Light(),
+	m_Radiance(1.0),
+	m_Color(1.0),
+	m_Direction(0.0, -1.0, 0.0) {
 
 }
 
-RGBColor RayCast::TraceRay(const Ray &ray) const {
-	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
-	assert(worldPtr);
-	ShadeRecord sr(worldPtr->HitObjects(ray));
+Directional::Directional(bool shadows) :
+	Light(shadows),
+	m_Radiance(1.0),
+	m_Color(1.0),
+	m_Direction(0.0, -1.0, 0.0) {
 
-	if (sr.m_Hit) {
-		sr.m_Ray = ray;
-		return sr.m_MaterialPtr->Shade(sr);
+}
 
-	} else {
-		return worldPtr->m_BackgroundColor;
-	}
+glm::vec3 Directional::GetDirection(ShadeRecord &sr) {
+	return m_Direction;
+}
+
+RGBColor Directional::L(ShadeRecord &sr) {
+	return m_Color * m_Radiance;
 }
