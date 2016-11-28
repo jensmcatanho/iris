@@ -287,7 +287,6 @@ void LuaState::ParseLights() {
 		std::string name = lua_tostring(m_L, -1);
 		lua_pop(m_L, 1);
 
-		std::cout << lua_gettop(m_L) << std::endl;
 		if (name == "Point") {
 			lua_getfield(m_L, -1, "position");
 			luaL_checktype(m_L, -1, LUA_TTABLE);
@@ -309,7 +308,6 @@ void LuaState::ParseLights() {
 			bool shadows = static_cast<bool>(lua_toboolean(m_L, -1));
 			lua_pop(m_L, 1);
 
-			std::cout << lua_gettop(m_L) << std::endl;
 			std::shared_ptr<PointLight> light_ptr(new PointLight(shadows));
 			light_ptr->SetColor(color);
 			light_ptr->SetPosition(position);

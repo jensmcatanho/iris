@@ -47,30 +47,6 @@ World::World() :
 	m_Pixels = new RGBColor[m_ViewPlane.m_Width * m_ViewPlane.m_Height];
 }
 
-void World::RenderScene() const {
-	RGBColor pixelColor;
-	Ray ray;
-	float zw = 100.0f;
-	glm::vec2 samplePoint;
-	ray.m_Direction = glm::vec3(0.0f, 0.0f, -1.0f);
-
-	for (int r = 0; r < m_ViewPlane.m_Height; r++)
-		for (int c = 0; c <= m_ViewPlane.m_Width; c++) {
-			pixelColor = RGBColor::Black;
-
-			for (int i = 0; i < m_ViewPlane.m_NumSamples; i++) {
-				samplePoint = m_ViewPlane.m_SamplerPtr->SampleUnitSquare();
-				ray.m_Origin = glm::vec3(m_ViewPlane.m_PixelSize * (c - 0.5 * m_ViewPlane.m_Width + samplePoint.x),
-					                     m_ViewPlane.m_PixelSize * (r - 0.5 * m_ViewPlane.m_Height + samplePoint.y), zw);
-				pixelColor += m_TracerPtr->TraceRay(ray);
-				
-			}
-			
-			pixelColor /= m_ViewPlane.m_NumSamples;
-			DisplayPixel(r, c, pixelColor);
-		}
-}
-
 void World::DisplayPixel(const int row, const int column, const RGBColor &raw_color) const {
 	RGBColor mapped_color;
 	RGBColor target_color(1.0f, 0.0f, 0.0f); //TODO: Set target color in build member function

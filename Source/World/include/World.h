@@ -40,7 +40,6 @@ class World : public std::enable_shared_from_this<World> {
 		World();
 
 		void Build();
-		void RenderScene() const;
 		ShadeRecord HitObjects(const Ray &);
 		void DisplayPixel(const int, const int, const RGBColor &) const;
 		inline void SetCamera(std::shared_ptr<Camera>);
