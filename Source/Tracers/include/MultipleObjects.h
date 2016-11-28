@@ -30,9 +30,9 @@ SOFTWARE.
 
 class MultipleObjects : public Tracer {
 	public:
-		MultipleObjects();
 		MultipleObjects(std::shared_ptr<World>);
-		
+
+		// Standard tracing method. If the ray hit an object, returns the color of the object.
 		virtual RGBColor TraceRay(const Ray &) const;
 };
 

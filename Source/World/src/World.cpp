@@ -25,221 +25,23 @@ SOFTWARE.
 */
 #include "World.h"
 #include "Ambient.h"
-#include "Directional.h"
 #include "LuaState.h"
-#include "Matte.h"
-#include "MultiJittered.h"
-#include "MultipleObjects.h"
-#include "Phong.h"
-#include "Pinhole.h"
-#include "Plane.h"
-#include "PointLight.h"
+#include "Object.h"
 #include "Ray.h"
-#include "RayCast.h"
+#include "Sampler.h"
 #include "ShadeRecord.h"
-#include "Sphere.h"
+#include "Tracer.h"
 
 void World::Build() {
 	std::shared_ptr<LuaState> luaState(new LuaState(shared_from_this()));
-	m_LuaStatePtr = luaState;
-	m_LuaStatePtr->Start("../Source/Scenes/TestScene.lua");
-	m_LuaStatePtr->LoadScene();
-
-	/*
-	m_ViewPlane.SetWidth(400);
-	m_ViewPlane.SetHeight(400);
-	m_ViewPlane.SetPixelSize(0.5);
-	Logger::DebugLog(std::to_string(m_ViewPlane.m_Width), "Build()");
-	Logger::DebugLog(std::to_string(m_ViewPlane.m_Height), "Build()");
-	Logger::DebugLog(std::to_string(m_ViewPlane.m_PixelSize), "Build()");
-	
-	std::shared_ptr<MultiJittered> newSampler(new MultiJittered(16));
-	m_ViewPlane.SetSampler(newSampler);
-
-	std::shared_ptr<RayCast> newTracer(new RayCast(shared_from_this()));
-	m_TracerPtr = newTracer;
-	
-	m_BackgroundColor = RGBColor(0.0f, 0.0f, 0.0f);
-
-	std::shared_ptr<Pinhole> pinhole_ptr(new Pinhole);
-	pinhole_ptr->SetEye(glm::vec3(0.0, 0.0, 500.0));
-	pinhole_ptr->LookAt(glm::vec3(-5.0, 0.0, 0.0));
-	pinhole_ptr->SetViewPlaneDistance(850.0);
-	SetCamera(pinhole_ptr);
-
-	std::shared_ptr<Ambient> ambient_ptr(new Ambient);
-	m_AmbientPtr = ambient_ptr;
-	*/
-
-	std::shared_ptr<PointLight> light_ptr(new PointLight);
-	light_ptr->SetPosition(glm::vec3(100.0, 50.0, 100.0));
-	light_ptr->SetRadiance(3.0);
-	AddLight(light_ptr);
-
-	std::shared_ptr<Phong> matte_ptr1(new Phong);
-	matte_ptr1->SetAmbientReflection(0.25);
-	matte_ptr1->SetDiffuseReflection(0.65);
-	matte_ptr1->SetDiffuseColor(1.0, 1.0, 0.0);
-	matte_ptr1->SetSpecularReflection(0.05);
-	std::shared_ptr<Sphere> sphere_ptr(new Sphere);
-	sphere_ptr->SetCenter(glm::vec3(10.0, -5.0, 0.0));
-	sphere_ptr->SetRadius(27);
-	sphere_ptr->SetMaterial(matte_ptr1);
-	AddObject(sphere_ptr);
-
-	std::shared_ptr<Matte> matte_ptr2(new Matte);
-	matte_ptr2->SetAmbientReflection(0.15);
-	matte_ptr2->SetDiffuseReflection(0.85);
-	matte_ptr2->SetDiffuseColor(0.71, 0.4, 0.16);
-	std::shared_ptr<Sphere> sphere_ptr2(new Sphere);
-	sphere_ptr2->SetCenter(glm::vec3(-25.0, 10.0, -35.0));
-	sphere_ptr2->SetRadius(27);
-	sphere_ptr2->SetMaterial(matte_ptr2);
-	AddObject(sphere_ptr2);
-	
-	std::shared_ptr<Matte> matte_ptr3(new Matte);
-	matte_ptr3->SetAmbientReflection(0.15);
-	matte_ptr3->SetDiffuseReflection(0.50);
-	matte_ptr3->SetDiffuseColor(0.0, 0.4, 0.2);
-	std::shared_ptr<Plane> plane_ptr(new Plane(glm::vec3(0.0f, 0.0f, -50.0f), glm::vec3(0.0f, 0.0f, 1.0f)));
-	plane_ptr->SetMaterial(matte_ptr3);
-	AddObject(plane_ptr);
+	luaState->Start("../Source/Scenes/TestScene.lua");
+	luaState->LoadScene();
 }
-
-/*
-void World::Build() {
-	m_ViewPlane.SetWidth(400);
-	m_ViewPlane.SetHeight(400);
-	m_ViewPlane.SetPixelSize(0.5);
-
-	std::shared_ptr<MultiJittered> newSampler(new MultiJittered(16));
-	m_ViewPlane.SetSampler(newSampler);
-
-	std::shared_ptr<RayCast> newTracer(new RayCast(shared_from_this()));
-	m_TracerPtr = newTracer;
-	m_BackgroundColor = RGBColor(0.0f, 0.0f, 0.0f);
-
-	std::shared_ptr<Ambient> ambient_ptr(new Ambient);
-	m_AmbientPtr = ambient_ptr;
-
-	std::shared_ptr<Pinhole> pinhole_ptr(new Pinhole);
-	pinhole_ptr->SetEye(glm::vec3(0.0, 0.0, 50.0));
-	pinhole_ptr->LookAt(glm::vec3(0.0, 0.0, -1.0));
-	pinhole_ptr->SetViewPlaneDistance(50.0);
-	SetCamera(pinhole_ptr);
-
-	std::shared_ptr<PointLight> light_ptr(new PointLight);
-	light_ptr->SetPosition(glm::vec3(100.0, 50.0, 100.0));
-	light_ptr->SetRadiance(3.0);
-	AddLight(light_ptr);
-
-	std::shared_ptr<Matte> matte_ptr1(new Matte);
-	matte_ptr1->SetAmbientReflection(0.25);
-	matte_ptr1->SetDiffuseReflection(1.0);
-	matte_ptr1->SetDiffuseColor(1.0, 1.0, 0.0);
-	std::shared_ptr<Sphere> sphere_ptr(new Sphere);
-	sphere_ptr->SetCenter(glm::vec3(0, 0, 0.0));
-	sphere_ptr->SetRadius(35);
-	sphere_ptr->SetMaterial(matte_ptr1);
-	AddObject(sphere_ptr);
-}
-*/
-
-/*
-void World::Build() {
-	m_ViewPlane.SetWidth(400);
-	m_ViewPlane.SetHeight(400);
-
-	std::shared_ptr<Pinhole> pinhole_ptr(new Pinhole);
-	pinhole_ptr->SetEye(glm::vec3(0.0, 0.0, 60.0));
-	pinhole_ptr->LookAt(glm::vec3(0.0, 0.0, -1.0));
-	pinhole_ptr->SetViewPlaneDistance(50.0);
-	SetCamera(pinhole_ptr);
-
-	std::shared_ptr<MultiJittered> newSampler(new MultiJittered(16));
-	m_ViewPlane.SetSampler(newSampler);
-	m_ViewPlane.SetPixelSize(1.0);
-
-	std::shared_ptr<RayCast> newTracer(new RayCast(shared_from_this()));
-	m_TracerPtr = newTracer;
-	m_BackgroundColor = RGBColor(0.0f, 0.0f, 0.0f);
-
-	std::shared_ptr<Ambient> ambient_ptr(new Ambient);
-	m_AmbientPtr = ambient_ptr;
-
-	std::shared_ptr<PointLight> light_ptr(new PointLight);
-	light_ptr->SetPosition(glm::vec3(100.0, 50.0, 100.0));
-	light_ptr->SetRadiance(3.0);
-	AddLight(light_ptr);
-
-	std::shared_ptr<Matte> matte_ptr1(new Matte);
-	matte_ptr1->SetAmbientReflection(0.25);
-	matte_ptr1->SetDiffuseReflection(0.65);
-	matte_ptr1->SetDiffuseColor(1.0f, 0.1f, 0.1f);
-	std::shared_ptr<Plane> plane_ptr(new Plane(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)));
-	plane_ptr->SetColor(1.0f, 0.1f, 0.1f);
-	plane_ptr->SetMaterial(matte_ptr1);
-	AddObject(plane_ptr);
-}
-*/
-
-/*
-void World::Build() {
-	m_ViewPlane.SetWidth(200);
-	m_ViewPlane.SetHeight(200);
-
-	std::shared_ptr<Pinhole> pinhole_ptr(new Pinhole);
-	pinhole_ptr->SetEye(glm::vec3(0.0, 0.0, 60.0));
-	pinhole_ptr->LookAt(glm::vec3(0.0, 0.0, -1.0));
-	pinhole_ptr->SetViewPlaneDistance(50.0);
-	SetCamera(pinhole_ptr);
-
-	std::shared_ptr<MultiJittered> newSampler(new MultiJittered(16));
-	m_ViewPlane.SetSampler(newSampler);
-	m_ViewPlane.SetPixelSize(1.0);
-
-	std::shared_ptr<MultipleObjects> newTracer(new MultipleObjects(shared_from_this()));
-	m_TracerPtr = newTracer;
-	m_BackgroundColor = RGBColor(0.0f, 0.0f, 0.0f);
-
-	std::shared_ptr<Sphere> sphere_ptr(new Sphere);
-	sphere_ptr->SetCenter(glm::vec3(0.0f, 0.0f, 0.0f));
-	sphere_ptr->SetRadius(50);
-	sphere_ptr->SetColor(0, 1, 0);
-	AddObject(sphere_ptr);
-
-	// Back
-	std::shared_ptr<Plane> plane_ptr(new Plane(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)));
-	plane_ptr->SetColor(0.1f, 0.1f, 0.1f);
-	AddObject(plane_ptr);
-
-	// Top
-	std::shared_ptr<Plane> plane_ptr2(new Plane(glm::vec3(0.0f, 80.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f)));
-	plane_ptr2->SetColor(1.0f, 1.0f, 1.0f);
-	AddObject(plane_ptr2);
-
-	// Bottom
-	std::shared_ptr<Plane> plane_ptr3(new Plane(glm::vec3(0.0f, -80.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)));
-	plane_ptr3->SetColor(1.0f, 1.0f, 1.0f);
-	AddObject(plane_ptr3);
-
-	// Left
-	std::shared_ptr<Plane> plane_ptr4(new Plane(glm::vec3(-80.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f)));
-	plane_ptr4->SetColor(1.0f, 0.0f, 0.0f);
-	AddObject(plane_ptr4);
-
-	// Right
-	std::shared_ptr<Plane> plane_ptr5(new Plane(glm::vec3(80.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 0.0f)));
-	plane_ptr5->SetColor(0.0f, 0.0f, 1.0f);
-	AddObject(plane_ptr5);
-}
-*/
 
 World::World() :
 	m_BackgroundColor(RGBColor::Black),
 	m_AmbientPtr(new Ambient),
 	m_CameraPtr(nullptr),
-	m_LuaStatePtr(nullptr),
 	m_TracerPtr(nullptr) {
 
 	m_Pixels = new RGBColor[m_ViewPlane.m_Width * m_ViewPlane.m_Height];

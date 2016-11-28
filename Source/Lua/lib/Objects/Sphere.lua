@@ -6,7 +6,7 @@ function Sphere.new()
 	local self = Object.new()
 
 	-- Private member variables
-	local name = "Sphere"
+	self.name = "Sphere"
 	
 	-- Public member variables
 	self.center = {x = 0.0, y = 0.0, z = 0.0}

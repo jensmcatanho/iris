@@ -30,9 +30,9 @@ SOFTWARE.
 
 class RayCast : public Tracer {
 	public:
-		RayCast();
 		RayCast(std::shared_ptr<World>);
 
+		// Standard tracing method. If the ray hit an object, returns the color of the material attached to the object.
 		virtual RGBColor TraceRay(const Ray &) const;
 };
 

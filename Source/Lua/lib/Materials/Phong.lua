@@ -4,7 +4,7 @@ function Phong.new()
 	local self = {}
 
 	-- Private member variables
-	local name = "Phong"
+	self.name = "Phong"
 
 	-- Public member variables
 	self.diffuse_color = {r = 0.0, g = 0.0, b = 0.0}

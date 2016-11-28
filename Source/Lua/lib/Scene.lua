@@ -22,7 +22,6 @@ local Object = require('Objects.Object')
 local Plane = require('Objects.Plane')
 local Sphere = require('Objects.Sphere')
 
-
 Scene = {}
 
 function Scene.new()
@@ -42,11 +41,11 @@ function Scene.new()
 
 	-- Public methods
 	function self.AddObject(obj)
-		table.insert(object_list, obj)
+		table.insert(self.object_list, obj)
 	end
 
 	function self.AddLight(light)
-		table.insert(light_list, light)
+		table.insert(self.light_list, light)
 	end
 
 	return self

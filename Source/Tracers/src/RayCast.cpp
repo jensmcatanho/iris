@@ -28,11 +28,6 @@ SOFTWARE.
 #include "ShadeRecord.h"
 #include "World.h"
 
-RayCast::RayCast() :
-	Tracer() {
-
-}
-
 RayCast::RayCast(std::shared_ptr<World> world_ptr) :
 	Tracer(world_ptr) {
 

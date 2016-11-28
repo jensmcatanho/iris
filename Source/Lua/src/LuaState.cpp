@@ -25,18 +25,23 @@ SOFTWARE.
 */
 #include "LuaState.h"
 
+// Cameras
 #include "Pinhole.h"
 
+// Geometric Objects
 #include "Sphere.h"
 #include "Plane.h"
 
+// Lights
 #include "Ambient.h"
 #include "Directional.h"
 #include "PointLight.h"
 
+// Materials
 #include "Matte.h"
 #include "Phong.h"
 
+// Samplers
 #include "Hammersley.h"
 #include "Jittered.h"
 #include "MultiJittered.h"
@@ -44,9 +49,11 @@ SOFTWARE.
 #include "PureRandom.h"
 #include "Regular.h"
 
+// Tracers
 #include "MultipleObjects.h"
 #include "RayCast.h"
 
+// World
 #include "ViewPlane.h"
 #include "World.h"
 
@@ -54,18 +61,15 @@ LuaState::LuaState(std::shared_ptr<World> world_ptr) :
 	m_L(nullptr),
 	m_WorldPtr(world_ptr) {
 
-	m_L = luaL_newstate();  // Creates a new Lua State (may cause memory allocation error).
-	luaL_openlibs(m_L);  // Opens all standard Lua libraries into the given LuaState. 
+	m_L = luaL_newstate();
+	luaL_openlibs(m_L);
 }
 
 LuaState::~LuaState() {
-	lua_close(m_L);
-
 	m_L = nullptr;
 }
 
 bool LuaState::Start(const std::string &filename) {
-	// Loads a file as a Lua chunk.
 	if (luaL_loadfile(m_L, filename.c_str()) != LUA_OK) {
 		Logger::ErrorLog(lua_tostring(m_L, -1), "LuaState::Load()");
 		return false;
@@ -86,14 +90,14 @@ void LuaState::LoadScene() {
 	lua_getglobal(m_L, "scene");
 	luaL_checktype(m_L, -1, LUA_TTABLE);
 
-	// TODO: Implement setters here so it makes sense to parse Ambient from Lua.
 	std::shared_ptr<Ambient> ambient_ptr(new Ambient);
 	worldPtr->m_AmbientPtr = ambient_ptr;
 
 	ParseImage();
 	ParseTracer();
 	ParseCamera();
-	//ParseObjects();
+	ParseLights();
+	ParseObjects();
 
 	lua_pop(m_L, 1);
 }
@@ -261,20 +265,18 @@ void LuaState::ParseCamera() {
 	lua_pop(m_L, 1);
 }
 
-void LuaState::ParseObjects() {
+void LuaState::ParseLights() {
 	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
 	assert(worldPtr);
 
-	lua_getfield(m_L, -1, "object_list");
+	lua_getfield(m_L, -1, "light_list");
 	luaL_checktype(m_L, -1, LUA_TTABLE);
 
-	for (int i = 1; ; ++i) {
-		// Get the next object in the list.
+	for (int i = 1;; ++i) {
 		lua_rawgeti(m_L, -1, i);
 
-		// Check if the list is over.
 		if (lua_isnil(m_L, -1)) {
-			lua_pop(m_L, -1);
+			lua_pop(m_L, 1);
 			break;
 		}
 
@@ -283,10 +285,96 @@ void LuaState::ParseObjects() {
 		lua_getfield(m_L, -1, "name");
 		luaL_checktype(m_L, -1, LUA_TSTRING);
 		std::string name = lua_tostring(m_L, -1);
-		lua_pop(m_L, -1);
+		lua_pop(m_L, 1);
+
+		std::cout << lua_gettop(m_L) << std::endl;
+		if (name == "Point") {
+			lua_getfield(m_L, -1, "position");
+			luaL_checktype(m_L, -1, LUA_TTABLE);
+			glm::vec3 position(ParseVector());
+			lua_pop(m_L, 1);
+
+			lua_getfield(m_L, -1, "color");
+			luaL_checktype(m_L, -1, LUA_TTABLE);
+			RGBColor color(ParseColor());
+			lua_pop(m_L, 1);
+
+			lua_getfield(m_L, -1, "intensity");
+			luaL_checktype(m_L, -1, LUA_TNUMBER);
+			float intensity = static_cast<float>(lua_tonumber(m_L, -1));
+			lua_pop(m_L, 1);
+
+			lua_getfield(m_L, -1, "shadows");
+			luaL_checktype(m_L, -1, LUA_TBOOLEAN);
+			bool shadows = static_cast<bool>(lua_toboolean(m_L, -1));
+			lua_pop(m_L, 1);
+
+			std::cout << lua_gettop(m_L) << std::endl;
+			std::shared_ptr<PointLight> light_ptr(new PointLight(shadows));
+			light_ptr->SetColor(color);
+			light_ptr->SetPosition(position);
+			light_ptr->SetRadiance(intensity);
+
+			worldPtr->AddLight(light_ptr);
+
+		} else if (name == "Directional") {
+			lua_getfield(m_L, -1, "direction");
+			luaL_checktype(m_L, -1, LUA_TTABLE);
+			glm::vec3 direction(ParseVector());
+			lua_pop(m_L, 1);
+
+			lua_getfield(m_L, -1, "color");
+			luaL_checktype(m_L, -1, LUA_TTABLE);
+			RGBColor color(ParseColor());
+			lua_pop(m_L, 1);
+
+			lua_getfield(m_L, -1, "intensity");
+			luaL_checktype(m_L, -1, LUA_TNUMBER);
+			float intensity = static_cast<float>(lua_tonumber(m_L, -1));
+			lua_pop(m_L, 1);
+
+			lua_getfield(m_L, -1, "shadows");
+			luaL_checktype(m_L, -1, LUA_TBOOLEAN);
+			bool shadows = static_cast<bool>(lua_toboolean(m_L, -1));
+			lua_pop(m_L, 1);
+
+			std::shared_ptr<Directional> light_ptr(new Directional(shadows));
+			light_ptr->SetColor(color);
+			light_ptr->SetDirection(direction);
+			light_ptr->SetRadiance(intensity);
+
+			worldPtr->AddLight(light_ptr);
+		}
+
+		lua_pop(m_L, 1);
+	}
+
+	lua_pop(m_L, 1);
+}
+
+void LuaState::ParseObjects() {
+	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	assert(worldPtr);
+
+	lua_getfield(m_L, -1, "object_list");
+	luaL_checktype(m_L, -1, LUA_TTABLE);
+
+	for (int i = 1; ; ++i) {
+		lua_rawgeti(m_L, -1, i);
+
+		if (lua_isnil(m_L, -1)) {
+			lua_pop(m_L, 1);
+			break;
+		}
+
+		luaL_checktype(m_L, -1, LUA_TTABLE);
+
+		lua_getfield(m_L, -1, "name");
+		luaL_checktype(m_L, -1, LUA_TSTRING);
+		std::string name = lua_tostring(m_L, -1);
+		lua_pop(m_L, 1);
 
 		if (name == "Plane") {
-
 			lua_getfield(m_L, -1, "point");
 			luaL_checktype(m_L, -1, LUA_TTABLE);
 			glm::vec3 point(ParseVector());
@@ -304,9 +392,24 @@ void LuaState::ParseObjects() {
 			worldPtr->AddObject(plane_ptr);
 
 		} else if (name == "Sphere") {
-		
+			lua_getfield(m_L, -1, "center");
+			luaL_checktype(m_L, -1, LUA_TTABLE);
+			glm::vec3 center(ParseVector());
+			lua_pop(m_L, 1);
+
+			lua_getfield(m_L, -1, "radius");
+			luaL_checktype(m_L, -1, LUA_TNUMBER);
+			float radius = static_cast<float>(lua_tonumber(m_L, -1));
+			lua_pop(m_L, 1);
+
+			std::shared_ptr<Material> material_ptr(ParseMaterial());
+			std::shared_ptr<Sphere> sphere_ptr(new Sphere(center, radius));
+
+			sphere_ptr->SetMaterial(material_ptr);
+			worldPtr->AddObject(sphere_ptr);
 		}
 
+		lua_pop(m_L, 1);
 	}
 
 	lua_pop(m_L, 1);
@@ -361,7 +464,7 @@ std::shared_ptr<Material> LuaState::ParseMaterial() {
 	lua_getfield(m_L, -1, "name");
 	luaL_checktype(m_L, -1, LUA_TSTRING);
 	std::string name = lua_tostring(m_L, -1);
-	lua_pop(m_L, -1);
+	lua_pop(m_L, 1);
 
 	// TODO: Find a way to better reuse code here.
 	if (name == "Matte") {
@@ -392,7 +495,7 @@ std::shared_ptr<Material> LuaState::ParseMaterial() {
 		lua_pop(m_L, 1);
 		return material_ptr;
 
-	} else if (name == "Phong") {
+	} else {
 		std::shared_ptr<Phong> material_ptr(new Phong);
 
 		lua_getfield(m_L, -1, "diffuse_color");
