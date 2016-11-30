@@ -30,9 +30,17 @@ SOFTWARE.
 
 class Tracer {
 	public:
+		/**
+		 * Constructs a Tracer with a pointer to the world.
+		 * @param {std::shared_ptr<World>} world_ptr Pointer to the world.
+		 */
 		Tracer(std::shared_ptr<World>);
 
-		// Standard tracing method. Returns black if not overloaded.
+		/**
+		 * Standard ray tracing method.
+		 * @param {const Ray &} ray Ray traced.
+		 * @return {RGBColor}
+		 */
 		virtual RGBColor TraceRay(const Ray &) const;
 
 	protected:

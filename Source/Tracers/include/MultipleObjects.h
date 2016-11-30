@@ -30,9 +30,17 @@ SOFTWARE.
 
 class MultipleObjects : public Tracer {
 	public:
+		/**
+		 * Constructs a Tracer with a pointer to the world.
+		 * @param {std::shared_ptr<World>} world_ptr Pointer to the world.
+		 */
 		MultipleObjects(std::shared_ptr<World>);
 
-		// Standard tracing method. If the ray hit an object, returns the color of the object.
+		/**
+		 * Standard ray tracing method.
+		 * @param {const Ray &} ray Ray traced.
+		 * @return {RGBColor}
+		 */
 		virtual RGBColor TraceRay(const Ray &) const;
 };
 
