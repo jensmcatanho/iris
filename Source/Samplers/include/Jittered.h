@@ -30,15 +30,28 @@ SOFTWARE.
 
 class Jittered : public Sampler {
 	public:
+		/**
+		 * Default constructor.
+		 */
 		Jittered();
 
-		// Constructs a Jittered sampler with the passed number of samples.
+		/**
+		 * Constructs a Sampler with the passed number of samples.
+		 * @param {const int} numSamples Number of samples.
+		 */
 		Jittered(const int);
 
-		// Constructs a Jittered sampler with the passed number of samples and sets.
+		/**
+		 * Constructs a Sampler with the passed number of samples and sets.
+		 * @param {const int} numSamples Number of samples.
+		 * @param {const int} numSets    Number of sets.
+		 */
 		Jittered(const int, const int);
 
 	private:
+		/**
+		 * Generates sample patterns in a unit square.
+		 */
 		virtual void GenerateSamples();
 };
 

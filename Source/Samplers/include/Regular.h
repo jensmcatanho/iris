@@ -30,15 +30,28 @@ SOFTWARE.
 
 class Regular : public Sampler {
 	public:
+		/**
+		 * Default constructor.
+		 */
 		Regular();
 
-		// Constructs a Regular sampler with the passed number of samples.
+		/**
+		 * Constructs a Sampler with the passed number of samples.
+		 * @param {const int} numSamples Number of samples.
+		 */
 		Regular(const int);
 
-		// Constructs a Regular sampler with the passed number of samples and sets.
+		/**
+		 * Constructs a Sampler with the passed number of samples and sets.
+		 * @param {const int} numSamples Number of samples.
+		 * @param {const int} numSets    Number of sets.
+		 */
 		Regular(const int, const int);
 
 	private:
+		/**
+		 * Generates sample patterns in a unit square.
+		 */
 		virtual void GenerateSamples();
 };
 

@@ -30,15 +30,28 @@ SOFTWARE.
 
 class NRooks : public Sampler {
 	public:
+		/**
+		 * Default constructor.
+		 */
 		NRooks();
 
-		// Constructs a n-Rooks sampler with the passed number of samples.
+		/**
+		 * Constructs a Sampler with the passed number of samples.
+		 * @param {const int} numSamples Number of samples.
+		 */
 		NRooks(const int);
 
-		// Constructs a n-Rooks sampler with the passed number of samples and sets.
+		/**
+		 * Constructs a Sampler with the passed number of samples and sets.
+		 * @param {const int} numSamples Number of samples.
+		 * @param {const int} numSets    Number of sets.
+		 */
 		NRooks(const int, const int);
 
 	private:
+		/**
+		 * Generates sample patterns in a unit square.
+		 */
 		virtual void GenerateSamples();
 };
 

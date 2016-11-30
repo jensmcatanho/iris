@@ -30,15 +30,28 @@ SOFTWARE.
 
 class PureRandom : public Sampler {
 	public:
+		/**
+		 * Default constructor.
+		 */
 		PureRandom();
 
-		// Constructs a PureRandom sampler with the passed number of samples.
+		/**
+		 * Constructs a Sampler with the passed number of samples.
+		 * @param {const int} numSamples Number of samples.
+		 */
 		PureRandom(const int);
 
-		// Constructs a PureRandom sampler with the passed number of samples and sets.
+		/**
+		 * Constructs a Sampler with the passed number of samples and sets.
+		 * @param {const int} numSamples Number of samples.
+		 * @param {const int} numSets    Number of sets.
+		 */
 		PureRandom(const int, const int);
 
 	private:
+		/**
+		 * Generates sample patterns in a unit square.
+		 */
 		virtual void GenerateSamples();
 };
 

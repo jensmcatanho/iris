@@ -30,18 +30,35 @@ SOFTWARE.
 
 class Hammersley : public Sampler {
 	public:
+		/**
+		 * Default constructor.
+		 */
 		Hammersley();
 
-		// Constructs a Hammersley sampler with the passed number of samples.
+		/**
+		 * Constructs a Sampler with the passed number of samples.
+		 * @param {const int} numSamples Number of samples.
+		 */
 		Hammersley(const int);
 
-		// Constructs a Hammersley sampler with the passed number of samples and sets.
+		/**
+		 * Constructs a Sampler with the passed number of samples and sets.
+		 * @param {const int} numSamples Number of samples.
+		 * @param {const int} numSets    Number of sets.
+		 */
 		Hammersley(const int, const int);
 
 	private:
+		/**
+		 * Generates sample patterns in a unit square.
+		 */
 		virtual void GenerateSamples();
 
-		// Radical-inverse function of an integer in base 2.
+		/**
+		 * Radical-inverse function of an integer in base 2.
+		 * @param {int} j TODO
+		 * @return {double}
+		 */
 		double Phi(int) const;
 };
 

@@ -30,15 +30,28 @@ SOFTWARE.
 
 class MultiJittered : public Sampler {
 	public:
+		/**
+		 * Default constructor.
+		 */
 		MultiJittered();
 
-		// Constructs a MultiJittered sampler with the passed number of samples.
+		/**
+		 * Constructs a Sampler with the passed number of samples.
+		 * @param {const int} numSamples Number of samples.
+		 */
 		MultiJittered(const int);
 
-		// Constructs a MultiJittered sampler with the passed number of samples and sets.
+		/**
+		 * Constructs a Sampler with the passed number of samples and sets.
+		 * @param {const int} numSamples Number of samples.
+		 * @param {const int} numSets    Number of sets.
+		 */
 		MultiJittered(const int, const int);
 
 	private:
+		/**
+		 * Generates sample patterns in a unit square.
+		 */
 		virtual void GenerateSamples();
 };
 
