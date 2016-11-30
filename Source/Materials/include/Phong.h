@@ -77,7 +77,7 @@ inline void Phong::SetAmbientReflection(const float kdr) {
 	m_Ambient->SetDiffuseReflection(kdr);
 }
 
-inline void Phong::SetDiffuseColor(const RGBColor &color) {
+inline void Phong::SetAmbientColor(const RGBColor &color) {
 	m_Ambient->SetDiffuseColor(color);
 }
 
@@ -99,7 +99,7 @@ inline void Phong::SetSpecularReflection(const float ksr) {
 }
 
 inline void Phong::SetSpecularColor(const RGBColor &color) {
-	m_Specular = color;
+	m_Specular->SetSpecularColor(color);
 }
 
 inline void Phong::SetSpecularExponent(const float ksexp) {

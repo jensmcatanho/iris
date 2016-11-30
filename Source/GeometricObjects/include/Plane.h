@@ -87,7 +87,7 @@ inline void Plane::SetPoint(const glm::vec3 &point) {
 	m_Point = point;
 }
 
-inline void Plane::SetPoint(const glm::vec3 &normal) {
+inline void Plane::SetNormal(const glm::vec3 &normal) {
 	m_Normal = glm::normalize(normal);
 }
 

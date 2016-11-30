@@ -384,9 +384,12 @@ void LuaState::ParseObjects() {
 			lua_pop(m_L, 1);
 
 			std::shared_ptr<Material> material_ptr(ParseMaterial());
-			std::shared_ptr<Plane> plane_ptr(new Plane(point, normal));
+			std::shared_ptr<Plane> plane_ptr(new Plane);
 
+			plane_ptr->SetPoint(point);
+			plane_ptr->SetNormal(normal);
 			plane_ptr->SetMaterial(material_ptr);
+			
 			worldPtr->AddObject(plane_ptr);
 
 		} else if (name == "Sphere") {
@@ -401,8 +404,10 @@ void LuaState::ParseObjects() {
 			lua_pop(m_L, 1);
 
 			std::shared_ptr<Material> material_ptr(ParseMaterial());
-			std::shared_ptr<Sphere> sphere_ptr(new Sphere(center, radius));
+			std::shared_ptr<Sphere> sphere_ptr(new Sphere);
 
+			sphere_ptr->SetCenter(center);
+			sphere_ptr->SetRadius(radius);
 			sphere_ptr->SetMaterial(material_ptr);
 			worldPtr->AddObject(sphere_ptr);
 		}
