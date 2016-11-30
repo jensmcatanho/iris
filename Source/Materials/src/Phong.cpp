@@ -46,8 +46,18 @@ RGBColor Phong::Shade(ShadeRecord &sr) const {
 		float ndotwi = glm::dot(sr.m_Normal, wi);
 		float ndotwo = glm::dot(sr.m_Normal, wo);
 
-		if (ndotwi > 0.0 && ndotwo > 0.0)
-			L += (m_Diffuse->f(sr, wo, wi) + m_Specular->f(sr, wo, wi) ) * sr.w.m_Lights[i]->L(sr) * ndotwi;
+		if (ndotwi > 0.0) {
+			bool shadowed = false;
+
+			if (sr.w.m_Lights[i]->CastsShadows()) {
+				Ray shadow_ray(sr.m_HitPoint, wi);
+				shadowed = sr.w.m_Lights[i]->Shadowed(shadow_ray, sr);
+			}
+
+			if (!shadowed)
+				L += (m_Diffuse->f(sr, wo, wi) + m_Specular->f(sr, wo, wi) ) * sr.w.m_Lights[i]->L(sr) * ndotwi;
+
+		}
 	}
 
 	return L;

@@ -24,7 +24,9 @@ SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #include "PointLight.h"
+#include "Object.h"
 #include "ShadeRecord.h"
+#include "World.h"
 
 PointLight::PointLight() :
 	Light(),
@@ -48,4 +50,16 @@ glm::vec3 PointLight::GetDirection(ShadeRecord &sr) {
 
 RGBColor PointLight::L(ShadeRecord &sr) {
 	return m_Color * m_Ls;
+}
+
+bool PointLight::Shadowed(const Ray &ray, const ShadeRecord &sr) const {
+	float t;
+	int num_objects = sr.w.m_Objects.size();
+	float distance = glm::distance(m_Position, ray.m_Origin);
+
+	for (int i = 0; i < num_objects; i++)
+		if (sr.w.m_Objects[i]->ShadowHit(ray, t) && t < distance)
+			return true;
+
+	return false;
 }

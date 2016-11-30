@@ -36,12 +36,17 @@ class Sphere : public Object {
 		// Check if a ray intersects with this Object and returns it's shading information.
 		virtual bool Hit(const Ray &, double &, ShadeRecord &) const;
 
+		// Check if a shadow ray intersects with this Object.
+		virtual bool ShadowHit(const Ray &, float &) const;
+
 		void SetCenter(const glm::vec3 &);
 		void SetRadius(const float);
 
-	public:
+	private:
 		glm::vec3 m_Center;
 		float m_Radius;
+
+		static const double kEpsilon;
 
 };
 

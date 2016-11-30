@@ -49,3 +49,7 @@ glm::vec3 Directional::GetDirection(ShadeRecord &sr) {
 RGBColor Directional::L(ShadeRecord &sr) {
 	return m_Color * m_Radiance;
 }
+
+bool Directional::Shadowed(const Ray &ray, const ShadeRecord &sr) const {
+	return false;
+}

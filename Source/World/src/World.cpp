@@ -34,7 +34,7 @@ SOFTWARE.
 
 void World::Build() {
 	std::shared_ptr<LuaState> luaState(new LuaState(shared_from_this()));
-	luaState->Start("../Source/Scenes/TestScene.lua");
+	luaState->Start("../Source/Scenes/TestScene3.lua");
 	luaState->LoadScene();
 }
 

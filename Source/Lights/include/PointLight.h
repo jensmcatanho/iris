@@ -37,6 +37,8 @@ class PointLight : public Light {
 		virtual glm::vec3 GetDirection(ShadeRecord &);
 		virtual RGBColor L(ShadeRecord &);
 
+		virtual bool Shadowed(const Ray &, const ShadeRecord &) const;
+
 		// Setters.
 		void SetRadiance(const float);
 		void SetColor(const RGBColor &);

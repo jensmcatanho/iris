@@ -27,6 +27,8 @@ SOFTWARE.
 #include "Ray.h"
 #include "ShadeRecord.h"
 
+const double Sphere::kEpsilon = 0.01;
+
 Sphere::Sphere()
 	: Object(),
 	  m_Center(0.0f, 0.0f, 0.0f),
@@ -73,6 +75,30 @@ bool Sphere::Hit(const Ray &ray, double &tmin, ShadeRecord &sr) const {
 		return true;
 
 	}
+
+	return false;
+}
+
+bool Sphere::ShadowHit(const Ray &ray, float &tmin) const {
+	float t;
+	glm::vec3 temp = ray.m_Origin - m_Center;
+	double a = glm::dot(ray.m_Direction, ray.m_Direction);
+	double b = glm::dot(2.0f * temp, ray.m_Direction);
+	double c = glm::dot(temp, temp) - m_Radius * m_Radius;
+	double discriminant = b * b - (4 * a * c);
+
+	if (discriminant < 0.0f)
+		return false;
+
+	t = (float)((-b - sqrt(discriminant)) / 2 * a);
+
+	if (t > kEpsilon)
+		return true;
+
+	t = (float)((-b + sqrt(discriminant)) / 2 * a);
+
+	if (t > kEpsilon)
+		return true;
 
 	return false;
 }

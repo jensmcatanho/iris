@@ -35,11 +35,15 @@ class Plane : public Object {
 
 		// Check if a ray intersects with this Object and returns it's shading information.
 		virtual bool Hit(const Ray &, double &, ShadeRecord &) const;
+
+		// Check if a shadow ray intersects with this Object.
+		virtual bool ShadowHit(const Ray &, float &) const;
 		
-	public:
+	private:
 		glm::vec3 m_Point;
 		glm::vec3 m_Normal;
 
+		static const double kEpsilon;
 };
 
 #endif

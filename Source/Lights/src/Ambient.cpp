@@ -40,3 +40,7 @@ glm::vec3 Ambient::GetDirection(ShadeRecord &sr) {
 RGBColor Ambient::L(ShadeRecord &sr) {
 	return m_Color * m_Ls;
 }
+
+bool Ambient::Shadowed(const Ray &ray, const ShadeRecord &sr) const {
+	return false;
+}

@@ -36,9 +36,16 @@ class Light {
 		virtual glm::vec3 GetDirection(ShadeRecord &) = 0;
 		virtual RGBColor L(ShadeRecord &);
 
+		virtual bool Shadowed(const Ray &, const ShadeRecord &) const = 0;
+		bool CastsShadows() const;
+
 	protected:
 		bool m_Shadows;
 
 };
+
+inline bool Light::CastsShadows() const {
+	return m_Shadows;
+}
 
 #endif

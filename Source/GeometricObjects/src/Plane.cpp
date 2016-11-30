@@ -27,6 +27,8 @@ SOFTWARE.
 #include "Ray.h"
 #include "ShadeRecord.h"
 
+const double Plane::kEpsilon = 0.00001;
+
 Plane::Plane()
 	: Object(),
 	  m_Point(0.0f, 0.0f, 0.0f),
@@ -49,6 +51,17 @@ bool Plane::Hit(const Ray &ray, double &tmin, ShadeRecord &sr) const {
 		sr.m_Normal = m_Normal;
 		sr.m_HitPoint = ray.m_Origin + t * ray.m_Direction;
 
+		return true;
+	}
+
+	return false;
+}
+
+bool Plane::ShadowHit(const Ray &ray, float &tmin) const {
+	float t = glm::dot(m_Point - ray.m_Origin, m_Normal) / glm::dot(ray.m_Direction, m_Normal);
+
+	if (t > kEpsilon) {
+		tmin = t;
 		return true;
 	}
 

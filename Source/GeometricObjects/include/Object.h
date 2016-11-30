@@ -36,6 +36,9 @@ class Object {
 		// Check if a ray intersects with this Object and returns it's shading information.
 		virtual bool Hit(const Ray &, double &, ShadeRecord &) const = 0;
 
+		// Check if a shadow ray intersects with this Object.
+		virtual bool ShadowHit(const Ray &, float &) const = 0;
+
 		void SetColor(const float, const float, const float);
 
 		void SetColor(const RGBColor);
