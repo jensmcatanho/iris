@@ -34,6 +34,7 @@ class PointLight : public Light {
 		PointLight();
 		PointLight(bool);
 
+		// Return a normalized vector that gives the direction from a hit point to the light.
 		virtual glm::vec3 GetDirection(ShadeRecord &);
 		virtual RGBColor L(ShadeRecord &);
 
@@ -45,13 +46,13 @@ class PointLight : public Light {
 		void SetPosition(const glm::vec3 &);
 
 	private:
-		float m_Ls;
+		float m_Radiance;
 		RGBColor m_Color;
 		glm::vec3 m_Position;
 };
 
 inline void PointLight::SetRadiance(const float radiance) {
-	m_Ls = radiance;
+	m_Radiance = radiance;
 }
 
 inline void PointLight::SetColor(const RGBColor &color) {

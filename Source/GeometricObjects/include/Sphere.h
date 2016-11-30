@@ -30,26 +30,56 @@ SOFTWARE.
 
 class Sphere : public Object {
 	public:
-		// Default constructor.
+		/**
+		 * Default constructor.
+		 */
 		Sphere();
 
-		// Return true and shading information if a ray intersects with this Object.
+		/**
+		 * Checks if a ray intersects with this object and return it's shading information.
+		 * @params {const Ray &} ray Intersection ray.
+		 * @params {float &} tmin TODO
+		 * @return {bool}
+		 */
 		virtual bool Hit(const Ray &, double &, ShadeRecord &) const;
 
-		// Return true and shading information if a ray intersects with this Object.
+		/**
+		 * Checks if a shadow ray intersects with the object.
+		 * @params {const Ray &} ray Shadow ray.
+		 * @params {float &} tmin TODO
+		 * @return {bool}
+		 */
 		virtual bool ShadowHit(const Ray &, float &) const;
 
+		/**
+		 * Sets the center of the sphere.
+		 * @params {const glm::vec3 &} center Target center.
+		 */
 		void SetCenter(const glm::vec3 &);
+
+		/**
+		 * Sets the radius of the sphere.
+		 * @param {float} radius Target radius.
+		 */
 		void SetRadius(const float);
 
 	private:
-		// Center of the Sphere in world coordinates.
+		/**
+		 * Center of the sphere in world coordinates.
+		 * @type {glm::vec3}
+		 */
 		glm::vec3 m_Center;
 
-		// Radius of the Sphere.
+		/**
+		 * Radius of the sphere.
+		 * @type {float}
+		 */
 		float m_Radius;
 
-		// Epsilon factor.
+		/**
+		 * Epsilon factor to compute intersections and shadows.
+		 * @type {static const double}
+		 */
 		static const double kEpsilon;
 
 };

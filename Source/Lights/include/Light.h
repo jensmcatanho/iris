@@ -33,9 +33,11 @@ class Light {
 		Light();
 		Light(bool);
 
+		// Return a normalized vector that gives the direction from a hit point to the light.
 		virtual glm::vec3 GetDirection(ShadeRecord &) = 0;
 		virtual RGBColor L(ShadeRecord &);
 
+		// Return true if
 		virtual bool Shadowed(const Ray &, const ShadeRecord &) const = 0;
 		bool CastsShadows() const;
 

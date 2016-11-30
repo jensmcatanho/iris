@@ -30,32 +30,62 @@ SOFTWARE.
 
 class Object {
 	public:
-		// Default constructor.
+		/**
+		 * Default constructor.
+		 */
 		Object();
 
-		// Return true and shading information if a ray intersects with this Object.
+		/**
+		 * Checks if a ray intersects with this object and return it's shading information.
+		 * @params {const Ray &} ray Intersection ray.
+		 * @params {float &} tmin TODO
+		 * @return {bool}
+		 */
 		virtual bool Hit(const Ray &, double &, ShadeRecord &) const = 0;
 
-		// Return true if a shadow ray intersects with this Object.
+		/**
+		 * Checks if a shadow ray intersects with the object.
+		 * @params {const Ray &} ray Shadow ray.
+		 * @params {float &} tmin TODO
+		 * @return {bool}
+		 */
 		virtual bool ShadowHit(const Ray &, float &) const = 0;
 
-		// Define whether this Object casts shadows over other objects.
+		/**
+		 * Sets if the object casts shadows over other objects.
+		 * @param {bool} flag Cast shadows flag.
+		 */
 		void CastsShadows(bool);
 
-		// Return true if this Object casts shadows over other objects.
+		/**
+		 * Checks if the object casts shadows over other objects.
+		 * @return {bool}
+		 */
 		bool CastsShadows() const;
 
-		// Return a pointer to this Object's material.
+		/**
+		 * Gets the material of the object.
+		 * @return {std::shared_ptr<Material>}
+		 */
 		std::shared_ptr<Material> GetMaterial() const;
 
-		// Define a material pointer to this Object.
+		/**
+		 * Sets a material to the object.
+		 * @param {std::shared_ptr<Material>} material_ptr Smart pointer to a Material type.
+		 */
 		virtual void SetMaterial(std::shared_ptr<Material>);
 
 	protected:
-		// Smart pointer to a Material type.
+		/**
+		 * Material attached to the object.
+		 * @type {std::shared_ptr<Material>}
+		 */
 		std::shared_ptr<Material> m_MaterialPtr;
-
-		// Store information about whether this object casts shadows over other objects.
+		
+		/**
+		 * Flag that stores information about whether this object casts shadows over other objects.
+		 * @type {bool}
+		 */
 		bool m_Shadows;
 
 };

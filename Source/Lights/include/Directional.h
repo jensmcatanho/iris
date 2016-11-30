@@ -34,6 +34,7 @@ class Directional : public Light {
 		Directional();
 		Directional(bool);
 
+		// Return a normalized vector that gives the direction from a hit point to the light.
 		virtual glm::vec3 GetDirection(ShadeRecord &);
 		virtual RGBColor L(ShadeRecord &);
 
