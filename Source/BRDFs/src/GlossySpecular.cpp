@@ -34,14 +34,6 @@ GlossySpecular::GlossySpecular() :
 
 }
 
-GlossySpecular::GlossySpecular(std::shared_ptr<Sampler> sampler_ptr) :
-	BRDF(sampler_ptr),
-	m_SpecularReflection(0.0),
-	m_SpecularColor(0.0),
-	m_SpecularExp(1.0) {
-
-}
-
 inline RGBColor GlossySpecular::f(const ShadeRecord &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
 	RGBColor L;
 

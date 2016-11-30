@@ -31,7 +31,6 @@ SOFTWARE.
 class BRDF {
 	public:
 		BRDF();
-		BRDF(std::shared_ptr<Sampler>);
 
 		virtual RGBColor f(const ShadeRecord &, const glm::vec3 &, const glm::vec3 &) const;
 

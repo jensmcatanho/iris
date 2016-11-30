@@ -30,22 +30,26 @@ SOFTWARE.
 
 class Sphere : public Object {
 	public:
+		// Default constructor.
 		Sphere();
-		Sphere(glm::vec3, float);
 
-		// Check if a ray intersects with this Object and returns it's shading information.
+		// Return true and shading information if a ray intersects with this Object.
 		virtual bool Hit(const Ray &, double &, ShadeRecord &) const;
 
-		// Check if a shadow ray intersects with this Object.
+		// Return true and shading information if a ray intersects with this Object.
 		virtual bool ShadowHit(const Ray &, float &) const;
 
 		void SetCenter(const glm::vec3 &);
 		void SetRadius(const float);
 
 	private:
+		// Center of the Sphere in world coordinates.
 		glm::vec3 m_Center;
+
+		// Radius of the Sphere.
 		float m_Radius;
 
+		// Epsilon factor.
 		static const double kEpsilon;
 
 };

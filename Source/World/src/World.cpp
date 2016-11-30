@@ -81,7 +81,6 @@ ShadeRecord World::HitObjects(const Ray &ray) {
 
 			sr.m_MaterialPtr = m_Objects[i]->GetMaterial();
 			sr.m_HitPoint = ray.m_Origin + static_cast<float>(t) * ray.m_Direction;
-			sr.m_Color = m_Objects[i]->GetColor();
 
 			normal = sr.m_Normal;
 			local_hit_point = sr.m_LocalHitPoint;

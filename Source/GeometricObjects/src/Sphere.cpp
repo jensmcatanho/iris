@@ -29,17 +29,10 @@ SOFTWARE.
 
 const double Sphere::kEpsilon = 0.01;
 
-Sphere::Sphere()
-	: Object(),
-	  m_Center(0.0f, 0.0f, 0.0f),
-	  m_Radius(1.0f) {
-
-}
-
-Sphere::Sphere(glm::vec3 c, float r)
-	: Object(),
-	  m_Center(c),
-	  m_Radius(r) {
+Sphere::Sphere() :
+	Object(),
+	m_Center(0.0f, 0.0f, 0.0f),
+	m_Radius(1.0f) {
 
 }
 

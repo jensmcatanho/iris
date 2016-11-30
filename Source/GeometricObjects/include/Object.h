@@ -27,54 +27,49 @@ SOFTWARE.
 #define OBJECT_H
 
 #include "PreRequisites.h"
-#include "RGBColor.h"
 
 class Object {
 	public:
+		// Default constructor.
 		Object();
 
-		// Check if a ray intersects with this Object and returns it's shading information.
+		// Return true and shading information if a ray intersects with this Object.
 		virtual bool Hit(const Ray &, double &, ShadeRecord &) const = 0;
 
-		// Check if a shadow ray intersects with this Object.
+		// Return true if a shadow ray intersects with this Object.
 		virtual bool ShadowHit(const Ray &, float &) const = 0;
 
-		void SetColor(const float, const float, const float);
+		// Define whether this Object casts shadows over other objects.
+		void CastsShadows(bool);
 
-		void SetColor(const RGBColor);
+		// Return true if this Object casts shadows over other objects.
+		bool CastsShadows() const;
 
-		RGBColor GetColor() const;
-
+		// Return a pointer to this Object's material.
 		std::shared_ptr<Material> GetMaterial() const;
 
+		// Define a material pointer to this Object.
 		virtual void SetMaterial(std::shared_ptr<Material>);
 
 	protected:
-		// Color of the object.
-		RGBColor m_Color;
-
-		// Material of the object.
+		// Smart pointer to a Material type.
 		std::shared_ptr<Material> m_MaterialPtr;
+
+		// Store information about whether this object casts shadows over other objects.
+		bool m_Shadows;
 
 };
 
-inline void Object::SetColor(const float r, const float g, const float b) {
-	m_Color.r = r;
-	m_Color.g = g;
-	m_Color.b = b;
-}
-
-inline void Object::SetColor(const RGBColor color) {
-	m_Color = color;
-
-}
-
-inline RGBColor Object::GetColor() const {
-	return (m_Color);
-}
-
 inline std::shared_ptr<Material> Object::GetMaterial() const {
 	return m_MaterialPtr;
+}
+
+inline void Object::CastsShadows(bool flag) {
+	m_Shadows = flag;
+}
+
+inline bool Object::CastsShadows() const {
+	return m_Shadows;
 }
 
 #endif

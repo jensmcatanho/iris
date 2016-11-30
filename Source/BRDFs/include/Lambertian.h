@@ -32,7 +32,6 @@ SOFTWARE.
 class Lambertian : public BRDF {
 	public:
 		Lambertian();
-		Lambertian(std::shared_ptr<Sampler>);
 
 		virtual RGBColor f(const ShadeRecord &, const glm::vec3 &, const glm::vec3 &) const;
 
@@ -41,8 +40,6 @@ class Lambertian : public BRDF {
 		// Setters.
 		void SetDiffuseReflection(const float);
 		void SetDiffuseColor(const RGBColor &);
-		void SetDiffuseColor(const float);
-		void SetDiffuseColor(const float, const float, const float);
 
 	private:
 		// Diffuse reflection coefficient.
@@ -67,18 +64,6 @@ inline void Lambertian::SetDiffuseReflection(const float kdr) {
 
 inline void Lambertian::SetDiffuseColor(const RGBColor &color) {
 	m_DiffuseColor = color;
-}
-
-inline void Lambertian::SetDiffuseColor(const float color) {
-	m_DiffuseColor.r = color;
-	m_DiffuseColor.g = color;
-	m_DiffuseColor.b = color;
-}
-
-inline void Lambertian::SetDiffuseColor(const float r, const float g, const float b) {
-	m_DiffuseColor.r = r;
-	m_DiffuseColor.g = g;
-	m_DiffuseColor.b = b;
 }
 
 #endif

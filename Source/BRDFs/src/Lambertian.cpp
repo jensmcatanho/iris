@@ -31,10 +31,3 @@ Lambertian::Lambertian() :
 	m_DiffuseColor(0.0) {
 
 }
-
-Lambertian::Lambertian(std::shared_ptr<Sampler> sampler_ptr) :
-	BRDF(sampler_ptr),
-	m_DiffuseReflection(0.0),
-	m_DiffuseColor(0.0) {
-
-}

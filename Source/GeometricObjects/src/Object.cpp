@@ -25,8 +25,9 @@ SOFTWARE.
 */
 #include "Object.h"
 
-Object::Object()
-	: m_Color(RGBColor::Black) {
+Object::Object() :
+	m_MaterialPtr(nullptr),
+	m_Shadows(false) {
 
 }
 

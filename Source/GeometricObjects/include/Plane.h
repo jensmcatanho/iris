@@ -30,20 +30,35 @@ SOFTWARE.
 
 class Plane : public Object {
 	public:
+		// Default constructor.
 		Plane();
-		Plane(const glm::vec3 &point, const glm::vec3 &normal);
 
-		// Check if a ray intersects with this Object and returns it's shading information.
+		// Return true and shading information if a ray intersects with this Object.
 		virtual bool Hit(const Ray &, double &, ShadeRecord &) const;
 
-		// Check if a shadow ray intersects with this Object.
+		// Return true if a shadow ray intersects with this Object.
 		virtual bool ShadowHit(const Ray &, float &) const;
+
+		void SetPoint(const glm::vec3 &);
+		void SetNormal(const glm::vec3 &);
 		
 	private:
+		// Point of the Plane in world coordinates.
 		glm::vec3 m_Point;
+
+		// Normal of the Plane normalized.
 		glm::vec3 m_Normal;
 
+		// Epsilon factor.
 		static const double kEpsilon;
 };
+
+inline void Plane::SetPoint(const glm::vec3 &point) {
+	m_Point = point;
+}
+
+inline void Plane::SetPoint(const glm::vec3 &normal) {
+	m_Normal = glm::normalize(normal);
+}
 
 #endif

@@ -29,17 +29,10 @@ SOFTWARE.
 
 const double Plane::kEpsilon = 0.00001;
 
-Plane::Plane()
-	: Object(),
-	  m_Point(0.0f, 0.0f, 0.0f),
-	  m_Normal(0.0f, 1.0f, 0.0f) {
-
-}
-
-Plane::Plane(const glm::vec3 &point, const glm::vec3 &normal)
-	: Object(),
-	  m_Point(point),
-	  m_Normal(glm::normalize(normal)) {
+Plane::Plane() :
+	Object(),
+	m_Point(0.0f, 0.0f, 0.0f),
+	m_Normal(0.0f, 1.0f, 0.0f) {
 
 }
 

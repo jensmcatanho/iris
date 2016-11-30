@@ -32,23 +32,44 @@ SOFTWARE.
 
 class Phong : public Material {
 	public:
+		// Default constructor.
 		Phong();
 
+		// Return the color of an object at a given hit point.
 		virtual RGBColor Shade(ShadeRecord &) const;
 
-		// Setters.
+		// Define the reflection of the ambient component of the material.
 		void SetAmbientReflection(const float);
+
+		// Define the color of the ambient component of the material.
+		void SetAmbientColor(const RGBColor &);
+
+		// Define the reflection of the diffuse component of the material.
 		void SetDiffuseReflection(const float);
+
+		// Define the color of the diffuse component of the material.
 		void SetDiffuseColor(const RGBColor &);
-		void SetDiffuseColor(const float);
-		void SetDiffuseColor(const float, const float, const float);
+
+		// Define the reflection of the specular component of the material.
 		void SetSpecularReflection(const float);
+
+		// Define the color of the specular component of the material.
+		void SetSpecularColor(const RGBColor &);
+
+		// Define the specular factor of the specular component of the material.
 		void SetSpecularExponent(const float);
+
+		// Define the sampler to be used by all components of the material.
 		void SetSampler(std::shared_ptr<Sampler>);
 
 	private:
+		// Ambient component of the material.
 		std::shared_ptr<Lambertian> m_Ambient;
+
+		// Diffuse component of the material.
 		std::shared_ptr<Lambertian> m_Diffuse;
+
+		// Specular component of the material.
 		std::shared_ptr<GlossySpecular> m_Specular;
 };
 
@@ -56,23 +77,16 @@ inline void Phong::SetAmbientReflection(const float kdr) {
 	m_Ambient->SetDiffuseReflection(kdr);
 }
 
+inline void Phong::SetDiffuseColor(const RGBColor &color) {
+	m_Ambient->SetDiffuseColor(color);
+}
+
 inline void Phong::SetDiffuseReflection(const float kdr) {
 	m_Diffuse->SetDiffuseReflection(kdr);
 }
 
 inline void Phong::SetDiffuseColor(const RGBColor &color) {
-	m_Ambient->SetDiffuseColor(color);
 	m_Diffuse->SetDiffuseColor(color);
-}
-
-inline void Phong::SetDiffuseColor(const float color) {
-	m_Ambient->SetDiffuseColor(color);
-	m_Diffuse->SetDiffuseColor(color);
-}
-
-inline void Phong::SetDiffuseColor(const float r, const float g, const float b) {
-	m_Ambient->SetDiffuseColor(r, g, b);
-	m_Diffuse->SetDiffuseColor(r, g, b);
 }
 
 inline void Phong::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
@@ -82,6 +96,10 @@ inline void Phong::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
 
 inline void Phong::SetSpecularReflection(const float ksr) {
 	m_Specular->SetSpecularReflection(ksr);
+}
+
+inline void Phong::SetSpecularColor(const RGBColor &color) {
+	m_Specular = color;
 }
 
 inline void Phong::SetSpecularExponent(const float ksexp) {

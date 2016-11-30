@@ -32,15 +32,12 @@ SOFTWARE.
 class GlossySpecular : public BRDF {
 	public:
 		GlossySpecular();
-		GlossySpecular(std::shared_ptr<Sampler>);
 
 		virtual RGBColor f(const ShadeRecord &, const glm::vec3 &, const glm::vec3 &) const;
 
 		// Setters.
 		void SetSpecularReflection(const float);
 		void SetSpecularColor(const RGBColor &);
-		void SetSpecularColor(const float);
-		void SetSpecularColor(const float, const float, const float);
 		void SetSpecularExponent(const float);
 
 	private:
@@ -60,18 +57,6 @@ inline void GlossySpecular::SetSpecularReflection(const float ksr) {
 
 inline void GlossySpecular::SetSpecularColor(const RGBColor &color) {
 	m_SpecularColor = color;
-}
-
-inline void GlossySpecular::SetSpecularColor(const float color) {
-	m_SpecularColor.r = color;
-	m_SpecularColor.g = color;
-	m_SpecularColor.b = color;
-}
-
-inline void GlossySpecular::SetSpecularColor(const float r, const float g, const float b) {
-	m_SpecularColor.r = r;
-	m_SpecularColor.g = g;
-	m_SpecularColor.b = b;
 }
 
 inline void GlossySpecular::SetSpecularExponent(const float ksexp) {

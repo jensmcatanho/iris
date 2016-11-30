@@ -31,11 +31,6 @@ BRDF::BRDF() :
 
 }
 
-BRDF::BRDF(std::shared_ptr<Sampler> sampler_ptr) :
-	m_SamplerPtr(sampler_ptr) {
-
-}
-
 RGBColor BRDF::f(const ShadeRecord &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
 	return RGBColor::Black;
 }

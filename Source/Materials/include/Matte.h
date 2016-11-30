@@ -31,20 +31,32 @@ SOFTWARE.
 
 class Matte : public Material{
 	public:
+		// Default constructor.
 		Matte();
 
+		// Return the color of an object at a given hit point.
 		virtual RGBColor Shade(ShadeRecord &) const;
 
-		// Setters.
+		// Define the reflection of the ambient component of the material.
 		void SetAmbientReflection(const float);
+
+		// Define the color of the ambient component of the material.
+		void SetAmbientColor(const RGBColor &);
+
+		// Define the reflection of the diffuse component of the material.
 		void SetDiffuseReflection(const float);
+
+		// Define the color of the diffuse component of the material.
 		void SetDiffuseColor(const RGBColor &);
-		void SetDiffuseColor(const float);
-		void SetDiffuseColor(const float, const float, const float);
+
+		// Define the sampler to be used by all components of the material.
 		void SetSampler(std::shared_ptr<Sampler>);
 
 	private:
+		// Ambient component of the material.
 		std::shared_ptr<Lambertian> m_Ambient;
+
+		// Diffuse component of the material.
 		std::shared_ptr<Lambertian> m_Diffuse;
 };
 
@@ -52,23 +64,16 @@ inline void Matte::SetAmbientReflection(const float kdr) {
 	m_Ambient->SetDiffuseReflection(kdr);
 }
 
+inline void Matte::SetAmbientColor(const RGBColor &color) {
+	m_Ambient->SetDiffuseColor(color);
+}
+
 inline void Matte::SetDiffuseReflection(const float kdr) {
 	m_Diffuse->SetDiffuseReflection(kdr);
 }
 
 inline void Matte::SetDiffuseColor(const RGBColor &color) {
-	m_Ambient->SetDiffuseColor(color);
 	m_Diffuse->SetDiffuseColor(color);
-}
-
-inline void Matte::SetDiffuseColor(const float color) {
-	m_Ambient->SetDiffuseColor(color);
-	m_Diffuse->SetDiffuseColor(color);
-}
-
-inline void Matte::SetDiffuseColor(const float r, const float g, const float b) {
-	m_Ambient->SetDiffuseColor(r, g, b);
-	m_Diffuse->SetDiffuseColor(r, g, b);
 }
 
 inline void Matte::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {

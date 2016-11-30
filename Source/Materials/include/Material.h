@@ -30,7 +30,10 @@ SOFTWARE.
 
 class Material {
 	public:
+		// Default constructor.
 		Material();
+
+		// Return the color at a given hit point.
 		virtual RGBColor Shade(ShadeRecord &) const;
 };
 
