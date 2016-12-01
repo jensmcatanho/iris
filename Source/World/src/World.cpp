@@ -29,7 +29,7 @@ SOFTWARE.
 #include "Object.h"
 #include "Ray.h"
 #include "Sampler.h"
-#include "ShadeRecord.h"
+#include "Surface.h"
 #include "Tracer.h"
 
 void World::Build() {
@@ -52,9 +52,9 @@ void World::DisplayPixel(const int row, const int column, const RGBColor &raw_co
 	RGBColor target_color(1.0f, 0.0f, 0.0f); //TODO: Set target color in build member function
 
 	if (m_ViewPlane.m_OutOfGamut)
-		mapped_color = ClampToColor(raw_color, target_color);
+		mapped_color = RGBColor::ClampToColor(raw_color, target_color);
 	else
-		mapped_color = MaxToOne(raw_color);
+		mapped_color = RGBColor::MaxToOne(raw_color);
 	
 	if (m_ViewPlane.m_Gamma != 1.0)
 		mapped_color = RGBColor(glm::pow(mapped_color.r, m_ViewPlane.m_InvGamma),
@@ -66,8 +66,8 @@ void World::DisplayPixel(const int row, const int column, const RGBColor &raw_co
 	m_Pixels[row * m_ViewPlane.m_Width + column].b = mapped_color.b;
 }
 
-ShadeRecord World::HitObjects(const Ray &ray) {
-	ShadeRecord sr(*this);
+Surface World::HitObjects(const Ray &ray) {
+	Surface sr(*this);
 	double t; 			
 	double tmin = kHugeValue;
 	glm::vec3 normal;
@@ -93,25 +93,4 @@ ShadeRecord World::HitObjects(const Ray &ray) {
 	}
 
 	return sr;
-}
-
-RGBColor World::MaxToOne(const RGBColor &raw_color) const {
-	float max_value = (float)glm::max(raw_color.r, glm::max(raw_color.g, raw_color.b));
-	
-	if (max_value > 1.0)
-		return raw_color / max_value;
-	else
-		return raw_color;
-}
-
-RGBColor World::ClampToColor(const RGBColor &raw_color, const RGBColor &target_color) const {
-	RGBColor clamped_color(raw_color);
-	
-	if (raw_color.r > 1.0 || raw_color.g > 1.0 || raw_color.b > 1.0) {
-		clamped_color.r = target_color.r;
-		clamped_color.g = target_color.g;
-		clamped_color.b = target_color.b;
-	}
-		
-	return clamped_color;
 }

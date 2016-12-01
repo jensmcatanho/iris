@@ -30,15 +30,18 @@ SOFTWARE.
 
 class BRDF {
 	public:
+		/**
+		 * Default constructor.
+		 */
 		BRDF();
 
-		virtual RGBColor f(const ShadeRecord &, const glm::vec3 &, const glm::vec3 &) const;
+		virtual RGBColor f(const Surface &, const glm::vec3 &, const glm::vec3 &) const;
 
-		virtual RGBColor SampleF(ShadeRecord &, const glm::vec3 &, glm::vec3 &);
+		virtual RGBColor SampleF(Surface &, const glm::vec3 &, glm::vec3 &);
 
-		virtual RGBColor SampleF(ShadeRecord &, const glm::vec3 &, glm::vec3 &, float &);
+		virtual RGBColor SampleF(Surface &, const glm::vec3 &, glm::vec3 &, float &);
 
-		virtual RGBColor rho(const ShadeRecord &, const glm::vec3 &) const;
+		virtual RGBColor rho(const Surface &, const glm::vec3 &) const;
 
 		void SetSampler(std::shared_ptr<Sampler>);
 

@@ -34,7 +34,7 @@ class Material {
 		Material();
 
 		// Return the color at a given hit point.
-		virtual RGBColor Shade(ShadeRecord &) const;
+		virtual RGBColor Shade(Surface &) const;
 };
 
 #endif

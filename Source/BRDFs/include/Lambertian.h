@@ -33,9 +33,9 @@ class Lambertian : public BRDF {
 	public:
 		Lambertian();
 
-		virtual RGBColor f(const ShadeRecord &, const glm::vec3 &, const glm::vec3 &) const;
+		virtual RGBColor f(const Surface &, const glm::vec3 &, const glm::vec3 &) const;
 
-		virtual RGBColor rho(const ShadeRecord &, const glm::vec3 &) const;
+		virtual RGBColor rho(const Surface &, const glm::vec3 &) const;
 
 		// Setters.
 		void SetDiffuseReflection(const float);
@@ -50,11 +50,11 @@ class Lambertian : public BRDF {
 
 };
 
-inline RGBColor Lambertian::f(const ShadeRecord &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
+inline RGBColor Lambertian::f(const Surface &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
 	return m_DiffuseColor * m_DiffuseReflection * INV_PI;
 }
 
-inline RGBColor Lambertian::rho(const ShadeRecord &sr, const glm::vec3 &wo) const {
+inline RGBColor Lambertian::rho(const Surface &sr, const glm::vec3 &wo) const {
 	return m_DiffuseColor * m_DiffuseReflection;
 }
 

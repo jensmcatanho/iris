@@ -36,7 +36,7 @@ class Phong : public Material {
 		Phong();
 
 		// Return the color of an object at a given hit point.
-		virtual RGBColor Shade(ShadeRecord &) const;
+		virtual RGBColor Shade(Surface &) const;
 
 		// Define the reflection of the ambient component of the material.
 		void SetAmbientReflection(const float);

@@ -31,18 +31,18 @@ BRDF::BRDF() :
 
 }
 
-RGBColor BRDF::f(const ShadeRecord &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
+RGBColor BRDF::f(const Surface &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
 	return RGBColor::Black;
 }
 
-RGBColor BRDF::SampleF(ShadeRecord &sr, const glm::vec3 &wi, glm::vec3 &wo) {
+RGBColor BRDF::SampleF(Surface &sr, const glm::vec3 &wi, glm::vec3 &wo) {
 	return RGBColor::Black;
 }
 
-RGBColor BRDF::SampleF(ShadeRecord &sr, const glm::vec3 &wi, glm::vec3 &wo, float &pdf) {
+RGBColor BRDF::SampleF(Surface &sr, const glm::vec3 &wi, glm::vec3 &wo, float &pdf) {
 	return RGBColor::Black;
 }
 
-RGBColor BRDF::rho(const ShadeRecord &sr, const glm::vec3 &wo) const {
+RGBColor BRDF::rho(const Surface &sr, const glm::vec3 &wo) const {
 	return RGBColor::Black;
 }

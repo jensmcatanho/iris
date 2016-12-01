@@ -32,15 +32,15 @@ Ambient::Ambient() :
 
 }
 
-glm::vec3 Ambient::GetDirection(ShadeRecord &sr) {
+glm::vec3 Ambient::GetDirection(Surface &sr) {
 	return(glm::vec3(0.0));
 
 }
 
-RGBColor Ambient::L(ShadeRecord &sr) {
+RGBColor Ambient::L(Surface &sr) {
 	return m_Color * m_Ls;
 }
 
-bool Ambient::Shadowed(const Ray &ray, const ShadeRecord &sr) const {
+bool Ambient::Shadowed(const Ray &ray, const Surface &sr) const {
 	return false;
 }

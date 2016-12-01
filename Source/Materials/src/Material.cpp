@@ -30,6 +30,6 @@ Material::Material() {
 
 }
 
-RGBColor Material::Shade(ShadeRecord &sr) const {
+RGBColor Material::Shade(Surface &sr) const {
 	return RGBColor::Black;
 }

@@ -50,6 +50,9 @@ class RGBColor {
 		RGBColor Pow(const float) const;
 		float Average() const;
 
+		static RGBColor MaxToOne(const RGBColor &);
+		static RGBColor ClampToColor(const RGBColor &, const RGBColor &);
+
 		double r;
 		double g; 
 		double b;

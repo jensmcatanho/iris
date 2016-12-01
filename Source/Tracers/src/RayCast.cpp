@@ -25,7 +25,7 @@ SOFTWARE.
 */
 #include "RayCast.h"
 #include "Material.h"
-#include "ShadeRecord.h"
+#include "Surface.h"
 #include "World.h"
 
 RayCast::RayCast(std::shared_ptr<World> world_ptr) :
@@ -36,7 +36,7 @@ RayCast::RayCast(std::shared_ptr<World> world_ptr) :
 RGBColor RayCast::TraceRay(const Ray &ray) const {
 	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
 	assert(worldPtr);
-	ShadeRecord sr(worldPtr->HitObjects(ray));
+	Surface sr(worldPtr->HitObjects(ray));
 
 	if (sr.m_Hit) {
 		sr.m_Ray = ray;

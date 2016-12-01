@@ -34,12 +34,12 @@ class Ambient : public Light {
 		Ambient();
 
 		// Return a normalized vector that gives the direction from a hit point to the light.
-		virtual glm::vec3 GetDirection(ShadeRecord &);
+		virtual glm::vec3 GetDirection(Surface &);
 
 
-		virtual RGBColor L(ShadeRecord &);
+		virtual RGBColor L(Surface &);
 
-		virtual bool Shadowed(const Ray &, const ShadeRecord &) const;
+		virtual bool Shadowed(const Ray &, const Surface &) const;
 
 	private:
 		float m_Ls;

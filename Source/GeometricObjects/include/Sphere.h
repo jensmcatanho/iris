@@ -37,23 +37,23 @@ class Sphere : public Object {
 
 		/**
 		 * Checks if a ray intersects with this object and return it's shading information.
-		 * @params {const Ray &} ray Intersection ray.
-		 * @params {float &} tmin TODO
+		 * @param {const Ray &} ray Intersection ray.
+		 * @param {float &} tmin TODO
 		 * @return {bool}
 		 */
-		virtual bool Hit(const Ray &, double &, ShadeRecord &) const;
+		virtual bool Hit(const Ray &, double &, Surface &) const;
 
 		/**
 		 * Checks if a shadow ray intersects with the object.
-		 * @params {const Ray &} ray Shadow ray.
-		 * @params {float &} tmin TODO
+		 * @param {const Ray &} ray Shadow ray.
+		 * @param {float &} tmin TODO
 		 * @return {bool}
 		 */
 		virtual bool ShadowHit(const Ray &, float &) const;
 
 		/**
 		 * Sets the center of the sphere.
-		 * @params {const glm::vec3 &} center Target center.
+		 * @param {const glm::vec3 &} center Target center.
 		 */
 		void SetCenter(const glm::vec3 &);
 

@@ -30,21 +30,54 @@ SOFTWARE.
 
 class Light {
 	public:
+		/**
+		 * Default constructor.
+		 */
 		Light();
-		Light(bool);
 
-		// Return a normalized vector that gives the direction from a hit point to the light.
-		virtual glm::vec3 GetDirection(ShadeRecord &) = 0;
-		virtual RGBColor L(ShadeRecord &);
+		/**
+		 * Computes the normalized direction from a hit point to the light.
+		 * @param {Surface &} sr Shading record of a surface.
+		 * @return {glm::vec3}
+		 */
+		virtual glm::vec3 GetDirection(Surface &) = 0;
 
-		// Return true if
-		virtual bool Shadowed(const Ray &, const ShadeRecord &) const = 0;
+		/**
+		 * @param {Surface &}
+		 * @return {RGBColor}
+		 */
+		virtual RGBColor L(Surface &);
+
+		/**
+		 * @param
+		 * @return {bool}
+		 */
+		virtual bool Shadowed(const Ray &, const Surface &) const = 0;
+
+		/**
+		 * Sets if the object casts shadows over other objects.
+		 * @param {bool} flag Cast shadows flag.
+		 */
+		void CastsShadows(bool);
+
+		/**
+		 * Checks if the object casts shadows over other objects.
+		 * @return {bool}
+		 */
 		bool CastsShadows() const;
 
 	protected:
+		/**
+		 * Flag that stores information about whether the light casts shadows.
+		 * @type {bool}
+		 */
 		bool m_Shadows;
 
 };
+
+inline void Light::CastsShadows(bool flag) {
+	m_Shadows = flag;
+}
 
 inline bool Light::CastsShadows() const {
 	return m_Shadows;

@@ -25,7 +25,7 @@ SOFTWARE.
 */
 #include "Sphere.h"
 #include "Ray.h"
-#include "ShadeRecord.h"
+#include "Surface.h"
 
 const double Sphere::kEpsilon = 0.01;
 
@@ -36,7 +36,7 @@ Sphere::Sphere() :
 
 }
 
-bool Sphere::Hit(const Ray &ray, double &tmin, ShadeRecord &sr) const {
+bool Sphere::Hit(const Ray &ray, double &tmin, Surface &sr) const {
 	float t;
 	glm::vec3 temp = ray.m_Origin - m_Center;
 	double a = glm::dot(ray.m_Direction, ray.m_Direction);

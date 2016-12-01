@@ -23,9 +23,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "ShadeRecord.h"
+#include "Surface.h"
 
-ShadeRecord::ShadeRecord(World &wr)	:
+Surface::Surface(World &wr)	:
 	m_Hit(false),
 	m_MaterialPtr(nullptr),
 	m_HitPoint(),

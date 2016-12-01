@@ -37,16 +37,16 @@ class Object {
 
 		/**
 		 * Checks if a ray intersects with this object and return it's shading information.
-		 * @params {const Ray &} ray Intersection ray.
-		 * @params {float &} tmin TODO
+		 * @param {const Ray &} ray Intersection ray.
+		 * @param {float &}     tmin TODO
 		 * @return {bool}
 		 */
-		virtual bool Hit(const Ray &, double &, ShadeRecord &) const = 0;
+		virtual bool Hit(const Ray &, double &, Surface &) const = 0;
 
 		/**
 		 * Checks if a shadow ray intersects with the object.
-		 * @params {const Ray &} ray Shadow ray.
-		 * @params {float &} tmin TODO
+		 * @param {const Ray &} ray Shadow ray.
+		 * @param {float &}     tmin TODO
 		 * @return {bool}
 		 */
 		virtual bool ShadowHit(const Ray &, float &) const = 0;
@@ -83,7 +83,7 @@ class Object {
 		std::shared_ptr<Material> m_MaterialPtr;
 		
 		/**
-		 * Flag that stores information about whether this object casts shadows over other objects.
+		 * Flag that stores information about whether the object casts shadows over other objects.
 		 * @type {bool}
 		 */
 		bool m_Shadows;

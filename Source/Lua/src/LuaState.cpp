@@ -308,10 +308,11 @@ void LuaState::ParseLights() {
 			bool shadows = static_cast<bool>(lua_toboolean(m_L, -1));
 			lua_pop(m_L, 1);
 
-			std::shared_ptr<PointLight> light_ptr(new PointLight(shadows));
+			std::shared_ptr<PointLight> light_ptr(new PointLight);
 			light_ptr->SetColor(color);
 			light_ptr->SetPosition(position);
 			light_ptr->SetRadiance(intensity);
+			light_ptr->CastsShadows(shadows);
 
 			worldPtr->AddLight(light_ptr);
 
@@ -336,10 +337,11 @@ void LuaState::ParseLights() {
 			bool shadows = static_cast<bool>(lua_toboolean(m_L, -1));
 			lua_pop(m_L, 1);
 
-			std::shared_ptr<Directional> light_ptr(new Directional(shadows));
+			std::shared_ptr<Directional> light_ptr(new Directional);
 			light_ptr->SetColor(color);
 			light_ptr->SetDirection(direction);
 			light_ptr->SetRadiance(intensity);
+			light_ptr->CastsShadows(shadows);
 
 			worldPtr->AddLight(light_ptr);
 		}

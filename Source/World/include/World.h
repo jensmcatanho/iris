@@ -40,7 +40,7 @@ class World : public std::enable_shared_from_this<World> {
 		World();
 
 		void Build();
-		ShadeRecord HitObjects(const Ray &);
+		Surface HitObjects(const Ray &);
 		void DisplayPixel(const int, const int, const RGBColor &) const;
 		inline void SetCamera(std::shared_ptr<Camera>);
 
@@ -70,9 +70,6 @@ class World : public std::enable_shared_from_this<World> {
 		
 		// Add a light to the scene.
 		void AddLight(std::shared_ptr<Light>);
-		
-		RGBColor MaxToOne(const RGBColor &) const;
-		RGBColor ClampToColor(const RGBColor &, const RGBColor &) const;
 };
 
 inline void World::SetCamera(std::shared_ptr<Camera> camera) {

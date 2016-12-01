@@ -32,13 +32,12 @@ SOFTWARE.
 class PointLight : public Light {
 	public:
 		PointLight();
-		PointLight(bool);
 
 		// Return a normalized vector that gives the direction from a hit point to the light.
-		virtual glm::vec3 GetDirection(ShadeRecord &);
-		virtual RGBColor L(ShadeRecord &);
+		virtual glm::vec3 GetDirection(Surface &);
+		virtual RGBColor L(Surface &);
 
-		virtual bool Shadowed(const Ray &, const ShadeRecord &) const;
+		virtual bool Shadowed(const Ray &, const Surface &) const;
 
 		// Setters.
 		void SetRadiance(const float);

@@ -24,7 +24,7 @@ SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #include "Directional.h"
-#include "ShadeRecord.h"
+#include "Surface.h"
 
 Directional::Directional() :
 	Light(),
@@ -34,22 +34,14 @@ Directional::Directional() :
 
 }
 
-Directional::Directional(bool shadows) :
-	Light(shadows),
-	m_Radiance(1.0),
-	m_Color(1.0),
-	m_Direction(0.0, -1.0, 0.0) {
-
-}
-
-glm::vec3 Directional::GetDirection(ShadeRecord &sr) {
+glm::vec3 Directional::GetDirection(Surface &sr) {
 	return m_Direction;
 }
 
-RGBColor Directional::L(ShadeRecord &sr) {
+RGBColor Directional::L(Surface &sr) {
 	return m_Color * m_Radiance;
 }
 
-bool Directional::Shadowed(const Ray &ray, const ShadeRecord &sr) const {
+bool Directional::Shadowed(const Ray &ray, const Surface &sr) const {
 	return false;
 }

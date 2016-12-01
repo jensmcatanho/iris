@@ -33,7 +33,7 @@ class GlossySpecular : public BRDF {
 	public:
 		GlossySpecular();
 
-		virtual RGBColor f(const ShadeRecord &, const glm::vec3 &, const glm::vec3 &) const;
+		virtual RGBColor f(const Surface &, const glm::vec3 &, const glm::vec3 &) const;
 
 		// Setters.
 		void SetSpecularReflection(const float);

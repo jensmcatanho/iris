@@ -24,7 +24,7 @@ SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #include "GlossySpecular.h"
-#include "ShadeRecord.h"
+#include "Surface.h"
 
 GlossySpecular::GlossySpecular() :
 	BRDF(),
@@ -34,7 +34,7 @@ GlossySpecular::GlossySpecular() :
 
 }
 
-inline RGBColor GlossySpecular::f(const ShadeRecord &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
+inline RGBColor GlossySpecular::f(const Surface &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
 	RGBColor L;
 
 	glm::vec3 r = -wi + (2.0f * glm::dot(sr.m_Normal, wo) * sr.m_Normal);

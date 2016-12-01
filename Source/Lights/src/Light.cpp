@@ -26,16 +26,10 @@ SOFTWARE.
 #include "Light.h"
 #include "RGBColor.h"
 
-Light::Light() :
-	Light(false) {
+Light::Light() {
 
 }
 
-Light::Light(bool shadows) :
-	m_Shadows(shadows) {
-
-}
-
-RGBColor Light::L(ShadeRecord &sr) {
+RGBColor Light::L(Surface &sr) {
 	return RGBColor::Black;
 }
