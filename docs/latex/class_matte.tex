@@ -1,0 +1,73 @@
+\hypertarget{class_matte}{}\section{Matte Class Reference}
+\label{class_matte}\index{Matte@{Matte}}
+
+
+{\ttfamily \#include $<$Matte.\+h$>$}
+
+Inheritance diagram for Matte\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_matte}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_matte_a1f460cbc9dd811c509ca50b652102ac2}{Matte} ()
+\item 
+virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{class_matte_a1313aabd946d45ec67a9de4fbc486f6c}{Shade} (\hyperlink{class_surface}{Surface} \&sr) const
+\item 
+void \hyperlink{group___materials_gad4df0e4b6f2112282b492f068faf1d72}{Set\+Ambient\+Reflection} (const float kdr)
+\item 
+void \hyperlink{group___materials_ga3a3fb682a6cfb419d05bf5dba9088f57}{Set\+Ambient\+Color} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&color)
+\item 
+void \hyperlink{group___materials_ga59c2ccdf9e80053784f5449603c7b7a3}{Set\+Diffuse\+Reflection} (const float kdr)
+\item 
+void \hyperlink{group___materials_ga6a82d5d8fd47aeb188380c067477e396}{Set\+Diffuse\+Color} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&color)
+\item 
+void \hyperlink{group___materials_ga6b42d7c8b02c61801702dc19d8e3ba5a}{Set\+Sampler} (std\+::shared\+\_\+ptr$<$ \hyperlink{class_sampler}{Sampler} $>$ sampler\+\_\+ptr)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Rendering properties of an object. \begin{DoxyRemark}{Remarks}
+T\+O\+DO. 
+\end{DoxyRemark}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_lambertian}{Lambertian} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_matte_a1f460cbc9dd811c509ca50b652102ac2}{}\label{class_matte_a1f460cbc9dd811c509ca50b652102ac2} 
+\index{Matte@{Matte}!Matte@{Matte}}
+\index{Matte@{Matte}!Matte@{Matte}}
+\subsubsection{\texorpdfstring{Matte()}{Matte()}}
+{\footnotesize\ttfamily Matte\+::\+Matte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Standard constructor. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_matte_a1313aabd946d45ec67a9de4fbc486f6c}{}\label{class_matte_a1313aabd946d45ec67a9de4fbc486f6c} 
+\index{Matte@{Matte}!Shade@{Shade}}
+\index{Shade@{Shade}!Matte@{Matte}}
+\subsubsection{\texorpdfstring{Shade()}{Shade()}}
+{\footnotesize\ttfamily virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} Matte\+::\+Shade (\begin{DoxyParamCaption}\item[{\hyperlink{class_surface}{Surface} \&}]{sr }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Computes the color of a given surface. 
+\begin{DoxyParams}{Parameters}
+{\em sr} & Information about the surface of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Color of the surface. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_material_aeccd880ee7b86a849e8f2d2f0bcf4fc7}{Material}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Materials/include/\hyperlink{_matte_8h}{Matte.\+h}\end{DoxyCompactItemize}

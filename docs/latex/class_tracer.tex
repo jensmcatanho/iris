@@ -1,0 +1,82 @@
+\hypertarget{class_tracer}{}\section{Tracer Class Reference}
+\label{class_tracer}\index{Tracer@{Tracer}}
+
+
+{\ttfamily \#include $<$Tracer.\+h$>$}
+
+Inheritance diagram for Tracer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tracer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tracer_a0db4955b57c72acfcbb4144f539c5744}{Tracer} (std\+::shared\+\_\+ptr$<$ World $>$ world\+\_\+ptr)
+\item 
+virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{class_tracer_adbabdfde11e278945a0433d08445fcce}{Trace\+Ray} (const \hyperlink{class_ray}{Ray} \&ray) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::weak\+\_\+ptr$<$ World $>$ \hyperlink{class_tracer_a0fc389376b5ab36e08fd8e1f6ea16450}{m\+\_\+\+World\+Ptr}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+T\+O\+DO. \begin{DoxyRemark}{Remarks}
+T\+O\+DO. 
+\end{DoxyRemark}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_tracer_a0db4955b57c72acfcbb4144f539c5744}{}\label{class_tracer_a0db4955b57c72acfcbb4144f539c5744} 
+\index{Tracer@{Tracer}!Tracer@{Tracer}}
+\index{Tracer@{Tracer}!Tracer@{Tracer}}
+\subsubsection{\texorpdfstring{Tracer()}{Tracer()}}
+{\footnotesize\ttfamily Tracer\+::\+Tracer (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ World $>$}]{world\+\_\+ptr }\end{DoxyParamCaption})}
+
+Constructs a \hyperlink{class_tracer}{Tracer} with a pointer to the world. 
+\begin{DoxyParams}{Parameters}
+{\em world\+\_\+ptr} & Pointer to the world. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_tracer_adbabdfde11e278945a0433d08445fcce}{}\label{class_tracer_adbabdfde11e278945a0433d08445fcce} 
+\index{Tracer@{Tracer}!Trace\+Ray@{Trace\+Ray}}
+\index{Trace\+Ray@{Trace\+Ray}!Tracer@{Tracer}}
+\subsubsection{\texorpdfstring{Trace\+Ray()}{TraceRay()}}
+{\footnotesize\ttfamily virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} Tracer\+::\+Trace\+Ray (\begin{DoxyParamCaption}\item[{const \hyperlink{class_ray}{Ray} \&}]{ray }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Standard ray tracing method. 
+\begin{DoxyParams}{Parameters}
+{\em ray} & \hyperlink{class_ray}{Ray} traced. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Color of the nearest surface hit by the ray. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_ray_cast_aed24a822899e5328a7e668a479d3be9e}{Ray\+Cast}, and \hyperlink{class_multiple_objects_a46206cc6dd09a9c587e33ac896bc8e3a}{Multiple\+Objects}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_tracer_a0fc389376b5ab36e08fd8e1f6ea16450}{}\label{class_tracer_a0fc389376b5ab36e08fd8e1f6ea16450} 
+\index{Tracer@{Tracer}!m\+\_\+\+World\+Ptr@{m\+\_\+\+World\+Ptr}}
+\index{m\+\_\+\+World\+Ptr@{m\+\_\+\+World\+Ptr}!Tracer@{Tracer}}
+\subsubsection{\texorpdfstring{m\+\_\+\+World\+Ptr}{m\_WorldPtr}}
+{\footnotesize\ttfamily std\+::weak\+\_\+ptr$<$World$>$ Tracer\+::m\+\_\+\+World\+Ptr\hspace{0.3cm}{\ttfamily [protected]}}
+
+Reference to the world. \begin{DoxySeeAlso}{See also}
+World 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Tracers/include/\hyperlink{_tracer_8h}{Tracer.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,144 @@
+\hypertarget{group___b_r_d_f}{}\section{B\+R\+DF}
+\label{group___b_r_d_f}\index{B\+R\+DF@{B\+R\+DF}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_b_r_d_f}{B\+R\+DF}
+\item 
+class \hyperlink{class_glossy_specular}{Glossy\+Specular}
+\item 
+class \hyperlink{class_lambertian}{Lambertian}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___b_r_d_f_ga77a2a5e48ca3093d853e5713afa01108}{B\+R\+D\+F\+::\+Set\+Sampler} (std\+::shared\+\_\+ptr$<$ \hyperlink{class_sampler}{Sampler} $>$)
+\item 
+void \hyperlink{group___b_r_d_f_gab7e40f362680b631c40530c9c605e3b3}{Glossy\+Specular\+::\+Set\+Specular\+Reflection} (const float ksr)
+\item 
+void \hyperlink{group___b_r_d_f_ga4bc78448419beb3d49ae4a9d96a8c5ad}{Glossy\+Specular\+::\+Set\+Specular\+Color} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&color)
+\item 
+void \hyperlink{group___b_r_d_f_ga06b9d29c576be7fcacef68edb57cfc23}{Glossy\+Specular\+::\+Set\+Specular\+Exponent} (const float ksexp)
+\item 
+virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{group___b_r_d_f_gad7b8c290aaacbe6c11ee62529dd7389b}{Lambertian\+::f} (const \hyperlink{class_surface}{Surface} \&sr, const glm\+::vec3 \&wi, const glm\+::vec3 \&wo) const
+\item 
+virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{group___b_r_d_f_gaa70272886cbeb0f91c629ace938dd0a0}{Lambertian\+::rho} (const \hyperlink{class_surface}{Surface} \&sr, const glm\+::vec3 \&wo) const
+\item 
+void \hyperlink{group___b_r_d_f_ga4d1bf71e27d8eacc273d244e01fe2d46}{Lambertian\+::\+Set\+Diffuse\+Reflection} (const float kdr)
+\item 
+void \hyperlink{group___b_r_d_f_gadd1e0590ffcada37b485b985182439de}{Lambertian\+::\+Set\+Diffuse\+Color} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&color)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group___b_r_d_f_gad7b8c290aaacbe6c11ee62529dd7389b}{}\label{group___b_r_d_f_gad7b8c290aaacbe6c11ee62529dd7389b} 
+\index{B\+R\+DF@{B\+R\+DF}!f@{f}}
+\index{f@{f}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{f()}{f()}}
+{\footnotesize\ttfamily \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} Lambertian\+::f (\begin{DoxyParamCaption}\item[{const \hyperlink{class_surface}{Surface} \&}]{sr,  }\item[{const glm\+::vec3 \&}]{wi,  }\item[{const glm\+::vec3 \&}]{wo }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Computes the reflected radiance along wo. 
+\begin{DoxyParams}{Parameters}
+{\em sr} & Information about the surface of the object. \\
+\hline
+{\em wi} & Incoming light direction. \\
+\hline
+{\em wo} & Reflected light direction. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reflected radiance of a surface. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_b_r_d_f_af3d87a4237b7b25b72ad1fb5027721bb}{B\+R\+DF}.
+
+\hypertarget{group___b_r_d_f_gaa70272886cbeb0f91c629ace938dd0a0}{}\label{group___b_r_d_f_gaa70272886cbeb0f91c629ace938dd0a0} 
+\index{B\+R\+DF@{B\+R\+DF}!rho@{rho}}
+\index{rho@{rho}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{rho()}{rho()}}
+{\footnotesize\ttfamily \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} Lambertian\+::rho (\begin{DoxyParamCaption}\item[{const \hyperlink{class_surface}{Surface} \&}]{sr,  }\item[{const glm\+::vec3 \&}]{wo }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Computes the perfect diffuse reflectance. 
+\begin{DoxyParams}{Parameters}
+{\em sr} & Information about the surface of the object. \\
+\hline
+{\em wo} & Reflected light direction. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Perfect diffuse reflectance. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_b_r_d_f_a676438154e142c5762193ee5251e4d57}{B\+R\+DF}.
+
+\hypertarget{group___b_r_d_f_gadd1e0590ffcada37b485b985182439de}{}\label{group___b_r_d_f_gadd1e0590ffcada37b485b985182439de} 
+\index{B\+R\+DF@{B\+R\+DF}!Set\+Diffuse\+Color@{Set\+Diffuse\+Color}}
+\index{Set\+Diffuse\+Color@{Set\+Diffuse\+Color}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{Set\+Diffuse\+Color()}{SetDiffuseColor()}}
+{\footnotesize\ttfamily void Lambertian\+::\+Set\+Diffuse\+Color (\begin{DoxyParamCaption}\item[{const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the diffuse color. 
+\begin{DoxyParams}{Parameters}
+{\em color} & Target diffuse color. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___b_r_d_f_ga4d1bf71e27d8eacc273d244e01fe2d46}{}\label{group___b_r_d_f_ga4d1bf71e27d8eacc273d244e01fe2d46} 
+\index{B\+R\+DF@{B\+R\+DF}!Set\+Diffuse\+Reflection@{Set\+Diffuse\+Reflection}}
+\index{Set\+Diffuse\+Reflection@{Set\+Diffuse\+Reflection}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{Set\+Diffuse\+Reflection()}{SetDiffuseReflection()}}
+{\footnotesize\ttfamily void Lambertian\+::\+Set\+Diffuse\+Reflection (\begin{DoxyParamCaption}\item[{const float}]{kdr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the diffuse reflection coefficient. 
+\begin{DoxyParams}{Parameters}
+{\em kdr} & Target diffuse reflection coefficient. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___b_r_d_f_ga77a2a5e48ca3093d853e5713afa01108}{}\label{group___b_r_d_f_ga77a2a5e48ca3093d853e5713afa01108} 
+\index{B\+R\+DF@{B\+R\+DF}!Set\+Sampler@{Set\+Sampler}}
+\index{Set\+Sampler@{Set\+Sampler}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{Set\+Sampler()}{SetSampler()}}
+{\footnotesize\ttfamily void B\+R\+D\+F\+::\+Set\+Sampler (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{class_sampler}{Sampler} $>$}]{sampler\+\_\+ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets a sampler to the \hyperlink{class_b_r_d_f}{B\+R\+DF}. 
+\begin{DoxyParams}{Parameters}
+{\em sampler\+\_\+ptr} & Target sampler. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___b_r_d_f_ga4bc78448419beb3d49ae4a9d96a8c5ad}{}\label{group___b_r_d_f_ga4bc78448419beb3d49ae4a9d96a8c5ad} 
+\index{B\+R\+DF@{B\+R\+DF}!Set\+Specular\+Color@{Set\+Specular\+Color}}
+\index{Set\+Specular\+Color@{Set\+Specular\+Color}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{Set\+Specular\+Color()}{SetSpecularColor()}}
+{\footnotesize\ttfamily void Glossy\+Specular\+::\+Set\+Specular\+Color (\begin{DoxyParamCaption}\item[{const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the specular color. 
+\begin{DoxyParams}{Parameters}
+{\em color} & Target specular color. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___b_r_d_f_ga06b9d29c576be7fcacef68edb57cfc23}{}\label{group___b_r_d_f_ga06b9d29c576be7fcacef68edb57cfc23} 
+\index{B\+R\+DF@{B\+R\+DF}!Set\+Specular\+Exponent@{Set\+Specular\+Exponent}}
+\index{Set\+Specular\+Exponent@{Set\+Specular\+Exponent}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{Set\+Specular\+Exponent()}{SetSpecularExponent()}}
+{\footnotesize\ttfamily void Glossy\+Specular\+::\+Set\+Specular\+Exponent (\begin{DoxyParamCaption}\item[{const float}]{ksexp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the specular exponent. 
+\begin{DoxyParams}{Parameters}
+{\em ksexp} & Target specular exponent. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___b_r_d_f_gab7e40f362680b631c40530c9c605e3b3}{}\label{group___b_r_d_f_gab7e40f362680b631c40530c9c605e3b3} 
+\index{B\+R\+DF@{B\+R\+DF}!Set\+Specular\+Reflection@{Set\+Specular\+Reflection}}
+\index{Set\+Specular\+Reflection@{Set\+Specular\+Reflection}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{Set\+Specular\+Reflection()}{SetSpecularReflection()}}
+{\footnotesize\ttfamily void Glossy\+Specular\+::\+Set\+Specular\+Reflection (\begin{DoxyParamCaption}\item[{const float}]{ksr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the specular reflection coefficient. 
+\begin{DoxyParams}{Parameters}
+{\em ksr} & Target specular reflection coefficient. \\
+\hline
+\end{DoxyParams}

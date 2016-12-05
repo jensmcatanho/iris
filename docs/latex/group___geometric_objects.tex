@@ -1,0 +1,107 @@
+\hypertarget{group___geometric_objects}{}\section{Geometric\+Objects}
+\label{group___geometric_objects}\index{Geometric\+Objects@{Geometric\+Objects}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_object}{Object}
+\item 
+class \hyperlink{class_plane}{Plane}
+\item 
+class \hyperlink{class_sphere}{Sphere}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{class_material}{Material} $>$ \hyperlink{group___geometric_objects_ga7ad7172879f1b2fd092561827aa2bbb1}{Object\+::\+Get\+Material} () const
+\item 
+void \hyperlink{group___geometric_objects_ga74fa63e74026915a261117724303adfc}{Object\+::\+Casts\+Shadows} (bool flag)
+\item 
+bool \hyperlink{group___geometric_objects_gab4254fb85f166245bb7234f5c5295777}{Object\+::\+Casts\+Shadows} () const
+\item 
+void \hyperlink{group___geometric_objects_ga8fdaa0574a2046f2e280e6c926f7947d}{Plane\+::\+Set\+Point} (const glm\+::vec3 \&point)
+\item 
+void \hyperlink{group___geometric_objects_ga50e8800fa3595a6b6fafcda17a77388c}{Plane\+::\+Set\+Normal} (const glm\+::vec3 \&normal)
+\item 
+void \hyperlink{group___geometric_objects_ga2b8aef309428ea904c75ce3300a71e09}{Sphere\+::\+Set\+Center} (const glm\+::vec3 \&center)
+\item 
+void \hyperlink{group___geometric_objects_ga0377e69b4a636f542c30c6fa977399e3}{Sphere\+::\+Set\+Radius} (const float radius)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group___geometric_objects_ga74fa63e74026915a261117724303adfc}{}\label{group___geometric_objects_ga74fa63e74026915a261117724303adfc} 
+\index{Geometric\+Objects@{Geometric\+Objects}!Casts\+Shadows@{Casts\+Shadows}}
+\index{Casts\+Shadows@{Casts\+Shadows}!Geometric\+Objects@{Geometric\+Objects}}
+\subsubsection{\texorpdfstring{Casts\+Shadows()}{CastsShadows()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Object\+::\+Casts\+Shadows (\begin{DoxyParamCaption}\item[{bool}]{flag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets if the object casts shadows over other objects. 
+\begin{DoxyParams}{Parameters}
+{\em flag} & Flag that sets if the object casts shadows. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___geometric_objects_gab4254fb85f166245bb7234f5c5295777}{}\label{group___geometric_objects_gab4254fb85f166245bb7234f5c5295777} 
+\index{Geometric\+Objects@{Geometric\+Objects}!Casts\+Shadows@{Casts\+Shadows}}
+\index{Casts\+Shadows@{Casts\+Shadows}!Geometric\+Objects@{Geometric\+Objects}}
+\subsubsection{\texorpdfstring{Casts\+Shadows()}{CastsShadows()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Object\+::\+Casts\+Shadows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Checks if the object casts shadows over other objects. \begin{DoxyReturn}{Returns}
+True, if the object casts shadows. 
+\end{DoxyReturn}
+\hypertarget{group___geometric_objects_ga7ad7172879f1b2fd092561827aa2bbb1}{}\label{group___geometric_objects_ga7ad7172879f1b2fd092561827aa2bbb1} 
+\index{Geometric\+Objects@{Geometric\+Objects}!Get\+Material@{Get\+Material}}
+\index{Get\+Material@{Get\+Material}!Geometric\+Objects@{Geometric\+Objects}}
+\subsubsection{\texorpdfstring{Get\+Material()}{GetMaterial()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \hyperlink{class_material}{Material} $>$ Object\+::\+Get\+Material (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gets the material of the object. \begin{DoxyReturn}{Returns}
+Smart pointer to the material attached to the object. 
+\end{DoxyReturn}
+\hypertarget{group___geometric_objects_ga2b8aef309428ea904c75ce3300a71e09}{}\label{group___geometric_objects_ga2b8aef309428ea904c75ce3300a71e09} 
+\index{Geometric\+Objects@{Geometric\+Objects}!Set\+Center@{Set\+Center}}
+\index{Set\+Center@{Set\+Center}!Geometric\+Objects@{Geometric\+Objects}}
+\subsubsection{\texorpdfstring{Set\+Center()}{SetCenter()}}
+{\footnotesize\ttfamily void Sphere\+::\+Set\+Center (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{center }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the center of the sphere. 
+\begin{DoxyParams}{Parameters}
+{\em center} & Target center. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___geometric_objects_ga50e8800fa3595a6b6fafcda17a77388c}{}\label{group___geometric_objects_ga50e8800fa3595a6b6fafcda17a77388c} 
+\index{Geometric\+Objects@{Geometric\+Objects}!Set\+Normal@{Set\+Normal}}
+\index{Set\+Normal@{Set\+Normal}!Geometric\+Objects@{Geometric\+Objects}}
+\subsubsection{\texorpdfstring{Set\+Normal()}{SetNormal()}}
+{\footnotesize\ttfamily void Plane\+::\+Set\+Normal (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{normal }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the normal of the plane. 
+\begin{DoxyParams}{Parameters}
+{\em normal} & Target normal. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___geometric_objects_ga8fdaa0574a2046f2e280e6c926f7947d}{}\label{group___geometric_objects_ga8fdaa0574a2046f2e280e6c926f7947d} 
+\index{Geometric\+Objects@{Geometric\+Objects}!Set\+Point@{Set\+Point}}
+\index{Set\+Point@{Set\+Point}!Geometric\+Objects@{Geometric\+Objects}}
+\subsubsection{\texorpdfstring{Set\+Point()}{SetPoint()}}
+{\footnotesize\ttfamily void Plane\+::\+Set\+Point (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the point of the plane. 
+\begin{DoxyParams}{Parameters}
+{\em point} & Target point. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___geometric_objects_ga0377e69b4a636f542c30c6fa977399e3}{}\label{group___geometric_objects_ga0377e69b4a636f542c30c6fa977399e3} 
+\index{Geometric\+Objects@{Geometric\+Objects}!Set\+Radius@{Set\+Radius}}
+\index{Set\+Radius@{Set\+Radius}!Geometric\+Objects@{Geometric\+Objects}}
+\subsubsection{\texorpdfstring{Set\+Radius()}{SetRadius()}}
+{\footnotesize\ttfamily void Sphere\+::\+Set\+Radius (\begin{DoxyParamCaption}\item[{const float}]{radius }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the radius of the sphere. 
+\begin{DoxyParams}{Parameters}
+{\em radius} & Target radius. \\
+\hline
+\end{DoxyParams}

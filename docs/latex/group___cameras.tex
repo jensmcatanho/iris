@@ -1,0 +1,163 @@
+\hypertarget{group___cameras}{}\section{Cameras}
+\label{group___cameras}\index{Cameras@{Cameras}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_camera}{Camera}
+\item 
+class \hyperlink{class_orthographic}{Orthographic}
+\item 
+class \hyperlink{class_pinhole}{Pinhole}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___cameras_gad2265245e85699e077dc1d8d33eecece}{Camera\+::\+Set\+Eye} (const glm\+::vec3 \&eye)
+\item 
+void \hyperlink{group___cameras_ga92295d79a45f2ab1756221836567997a}{Camera\+::\+Look\+At} (const glm\+::vec3 \&look\+\_\+at)
+\item 
+void \hyperlink{group___cameras_gaa6c9c847b6db5c4d6450fb9b75f26e81}{Camera\+::\+Set\+Up\+Vector} (const glm\+::vec3 \&up)
+\item 
+void \hyperlink{group___cameras_ga0e499019f7cd3029602461fcd63aa40c}{Camera\+::\+Set\+Yaw} (const float yaw)
+\item 
+void \hyperlink{group___cameras_ga33e125b9d164e7332dba4cc01c468d6c}{Camera\+::\+Set\+Pitch} (const float pitch)
+\item 
+void \hyperlink{group___cameras_ga2c07ac7e812f4dab134fc06692fcaf11}{Camera\+::\+Set\+Roll} (const float roll)
+\item 
+void \hyperlink{group___cameras_gaf9985918fc0135ac8c98344c96129509}{Camera\+::\+Set\+Exposure\+Time} (const float etime)
+\item 
+void \hyperlink{group___cameras_ga4ad79de10c562075c049f2e580f48f9f}{Orthographic\+::\+Set\+View\+Plane\+Distance} (const float distance)
+\item 
+void \hyperlink{group___cameras_ga9a63b65c5228dc43caae0b986ea8d220}{Orthographic\+::\+Set\+Zoom} (const float zoom)
+\item 
+void \hyperlink{group___cameras_ga2757f00b8e8e778b6792b0c9e0e4052b}{Pinhole\+::\+Set\+View\+Plane\+Distance} (const float distance)
+\item 
+void \hyperlink{group___cameras_ga9baed583b61d1808867251fa33d4db56}{Pinhole\+::\+Set\+Zoom} (const float zoom)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group___cameras_ga92295d79a45f2ab1756221836567997a}{}\label{group___cameras_ga92295d79a45f2ab1756221836567997a} 
+\index{Cameras@{Cameras}!Look\+At@{Look\+At}}
+\index{Look\+At@{Look\+At}!Cameras@{Cameras}}
+\subsubsection{\texorpdfstring{Look\+At()}{LookAt()}}
+{\footnotesize\ttfamily void Camera\+::\+Look\+At (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{look\+\_\+at }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Makes the camera look at a given direction. 
+\begin{DoxyParams}{Parameters}
+{\em look\+\_\+at} & Target look direction. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___cameras_gaf9985918fc0135ac8c98344c96129509}{}\label{group___cameras_gaf9985918fc0135ac8c98344c96129509} 
+\index{Cameras@{Cameras}!Set\+Exposure\+Time@{Set\+Exposure\+Time}}
+\index{Set\+Exposure\+Time@{Set\+Exposure\+Time}!Cameras@{Cameras}}
+\subsubsection{\texorpdfstring{Set\+Exposure\+Time()}{SetExposureTime()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Exposure\+Time (\begin{DoxyParamCaption}\item[{const float}]{etime }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the exposure time. 
+\begin{DoxyParams}{Parameters}
+{\em etime} & Target exposure time. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___cameras_gad2265245e85699e077dc1d8d33eecece}{}\label{group___cameras_gad2265245e85699e077dc1d8d33eecece} 
+\index{Cameras@{Cameras}!Set\+Eye@{Set\+Eye}}
+\index{Set\+Eye@{Set\+Eye}!Cameras@{Cameras}}
+\subsubsection{\texorpdfstring{Set\+Eye()}{SetEye()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Eye (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{eye }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the eye location in world coordinates. 
+\begin{DoxyParams}{Parameters}
+{\em eye} & Target eye location. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___cameras_ga33e125b9d164e7332dba4cc01c468d6c}{}\label{group___cameras_ga33e125b9d164e7332dba4cc01c468d6c} 
+\index{Cameras@{Cameras}!Set\+Pitch@{Set\+Pitch}}
+\index{Set\+Pitch@{Set\+Pitch}!Cameras@{Cameras}}
+\subsubsection{\texorpdfstring{Set\+Pitch()}{SetPitch()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Pitch (\begin{DoxyParamCaption}\item[{const float}]{pitch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the pitch angle in radians. 
+\begin{DoxyParams}{Parameters}
+{\em pitch} & Target pitch angle. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___cameras_ga2c07ac7e812f4dab134fc06692fcaf11}{}\label{group___cameras_ga2c07ac7e812f4dab134fc06692fcaf11} 
+\index{Cameras@{Cameras}!Set\+Roll@{Set\+Roll}}
+\index{Set\+Roll@{Set\+Roll}!Cameras@{Cameras}}
+\subsubsection{\texorpdfstring{Set\+Roll()}{SetRoll()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Roll (\begin{DoxyParamCaption}\item[{const float}]{roll }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the roll angle in radians. 
+\begin{DoxyParams}{Parameters}
+{\em roll} & Target roll angle. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___cameras_gaa6c9c847b6db5c4d6450fb9b75f26e81}{}\label{group___cameras_gaa6c9c847b6db5c4d6450fb9b75f26e81} 
+\index{Cameras@{Cameras}!Set\+Up\+Vector@{Set\+Up\+Vector}}
+\index{Set\+Up\+Vector@{Set\+Up\+Vector}!Cameras@{Cameras}}
+\subsubsection{\texorpdfstring{Set\+Up\+Vector()}{SetUpVector()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Up\+Vector (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{up }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the world up vector. 
+\begin{DoxyParams}{Parameters}
+{\em up} & Target up vector. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___cameras_ga4ad79de10c562075c049f2e580f48f9f}{}\label{group___cameras_ga4ad79de10c562075c049f2e580f48f9f} 
+\index{Cameras@{Cameras}!Set\+View\+Plane\+Distance@{Set\+View\+Plane\+Distance}}
+\index{Set\+View\+Plane\+Distance@{Set\+View\+Plane\+Distance}!Cameras@{Cameras}}
+\subsubsection{\texorpdfstring{Set\+View\+Plane\+Distance()}{SetViewPlaneDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Orthographic\+::\+Set\+View\+Plane\+Distance (\begin{DoxyParamCaption}\item[{const float}]{distance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the distance from the camera to the view plane. 
+\begin{DoxyParams}{Parameters}
+{\em distance} & Target distance. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___cameras_ga2757f00b8e8e778b6792b0c9e0e4052b}{}\label{group___cameras_ga2757f00b8e8e778b6792b0c9e0e4052b} 
+\index{Cameras@{Cameras}!Set\+View\+Plane\+Distance@{Set\+View\+Plane\+Distance}}
+\index{Set\+View\+Plane\+Distance@{Set\+View\+Plane\+Distance}!Cameras@{Cameras}}
+\subsubsection{\texorpdfstring{Set\+View\+Plane\+Distance()}{SetViewPlaneDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Pinhole\+::\+Set\+View\+Plane\+Distance (\begin{DoxyParamCaption}\item[{const float}]{distance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the distance from the camera to the view plane. 
+\begin{DoxyParams}{Parameters}
+{\em distance} & Target distance. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___cameras_ga0e499019f7cd3029602461fcd63aa40c}{}\label{group___cameras_ga0e499019f7cd3029602461fcd63aa40c} 
+\index{Cameras@{Cameras}!Set\+Yaw@{Set\+Yaw}}
+\index{Set\+Yaw@{Set\+Yaw}!Cameras@{Cameras}}
+\subsubsection{\texorpdfstring{Set\+Yaw()}{SetYaw()}}
+{\footnotesize\ttfamily void Camera\+::\+Set\+Yaw (\begin{DoxyParamCaption}\item[{const float}]{yaw }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the yaw angle in radians. 
+\begin{DoxyParams}{Parameters}
+{\em yaw} & Target yaw angle. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___cameras_ga9baed583b61d1808867251fa33d4db56}{}\label{group___cameras_ga9baed583b61d1808867251fa33d4db56} 
+\index{Cameras@{Cameras}!Set\+Zoom@{Set\+Zoom}}
+\index{Set\+Zoom@{Set\+Zoom}!Cameras@{Cameras}}
+\subsubsection{\texorpdfstring{Set\+Zoom()}{SetZoom()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Pinhole\+::\+Set\+Zoom (\begin{DoxyParamCaption}\item[{const float}]{zoom }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the zoom factor of the camera. 
+\begin{DoxyParams}{Parameters}
+{\em zoom} & Target zoom factor. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___cameras_ga9a63b65c5228dc43caae0b986ea8d220}{}\label{group___cameras_ga9a63b65c5228dc43caae0b986ea8d220} 
+\index{Cameras@{Cameras}!Set\+Zoom@{Set\+Zoom}}
+\index{Set\+Zoom@{Set\+Zoom}!Cameras@{Cameras}}
+\subsubsection{\texorpdfstring{Set\+Zoom()}{SetZoom()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Orthographic\+::\+Set\+Zoom (\begin{DoxyParamCaption}\item[{const float}]{zoom }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the zoom factor of the camera. 
+\begin{DoxyParams}{Parameters}
+{\em zoom} & Target zoom factor. \\
+\hline
+\end{DoxyParams}

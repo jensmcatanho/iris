@@ -1,0 +1,168 @@
+\hypertarget{class_camera}{}\section{Camera Class Reference}
+\label{class_camera}\index{Camera@{Camera}}
+
+
+{\ttfamily \#include $<$Camera.\+h$>$}
+
+Inheritance diagram for Camera\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_camera}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_camera_a01f94c3543f56ede7af49dc778f19331}{Camera} ()
+\item 
+virtual void \hyperlink{class_camera_ad65367e9b225387219d013ffed3f621a}{Render\+Scene} (const World \&w)=0
+\item 
+void \hyperlink{group___cameras_gad2265245e85699e077dc1d8d33eecece}{Set\+Eye} (const glm\+::vec3 \&eye)
+\item 
+void \hyperlink{group___cameras_ga92295d79a45f2ab1756221836567997a}{Look\+At} (const glm\+::vec3 \&look\+\_\+at)
+\item 
+void \hyperlink{group___cameras_gaa6c9c847b6db5c4d6450fb9b75f26e81}{Set\+Up\+Vector} (const glm\+::vec3 \&up)
+\item 
+void \hyperlink{group___cameras_ga0e499019f7cd3029602461fcd63aa40c}{Set\+Yaw} (const float yaw)
+\item 
+void \hyperlink{group___cameras_ga33e125b9d164e7332dba4cc01c468d6c}{Set\+Pitch} (const float pitch)
+\item 
+void \hyperlink{group___cameras_ga2c07ac7e812f4dab134fc06692fcaf11}{Set\+Roll} (const float roll)
+\item 
+void \hyperlink{group___cameras_gaf9985918fc0135ac8c98344c96129509}{Set\+Exposure\+Time} (const float etime)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_camera_ab2a27d88b13f4cab92d62bc421650e7b}{Compute\+U\+VW} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+glm\+::vec3 \hyperlink{class_camera_afea4cf59abeabef0ac61915bccd1c35c}{m\+\_\+\+Eye}
+\item 
+glm\+::vec3 \hyperlink{class_camera_a64c0c57201219d5e9965298a19007a61}{m\+\_\+\+Look\+At}
+\item 
+glm\+::vec3 \hyperlink{class_camera_ae48ab25a4c2c9a91e6814db0c1abe72c}{m\+\_\+\+Up\+Vector}
+\item 
+glm\+::vec3 \hyperlink{class_camera_a544f5de8d6c0b2d9aea1a9cff9f0aeb6}{m\+\_\+U}
+\item 
+glm\+::vec3 \hyperlink{class_camera_a2bfb4e67db9d92f152913c8cb8159797}{m\+\_\+V}
+\item 
+glm\+::vec3 \hyperlink{class_camera_a75de71e6e4b12d69d46d84d04f37c7c3}{m\+\_\+W}
+\item 
+float \hyperlink{class_camera_ac3b7d101ef808536cac0f679deef5f9c}{m\+\_\+\+Yaw}
+\item 
+float \hyperlink{class_camera_aac745762c9d82b5cdfdcd48c7902b919}{m\+\_\+\+Pitch}
+\item 
+float \hyperlink{class_camera_a58eab74ebcfe6a72ae0d6df32a102181}{m\+\_\+\+Roll}
+\item 
+float \hyperlink{class_camera_a9930c812c2015bf0f3746c18ff2d3e3b}{m\+\_\+\+Exposure\+Time}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A point from which the scene will be rendered. \begin{DoxyRemark}{Remarks}
+T\+O\+DO. 
+\end{DoxyRemark}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_camera_a01f94c3543f56ede7af49dc778f19331}{}\label{class_camera_a01f94c3543f56ede7af49dc778f19331} 
+\index{Camera@{Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Camera()}{Camera()}}
+{\footnotesize\ttfamily Camera\+::\+Camera (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Standard constructor. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_camera_ab2a27d88b13f4cab92d62bc421650e7b}{}\label{class_camera_ab2a27d88b13f4cab92d62bc421650e7b} 
+\index{Camera@{Camera}!Compute\+U\+VW@{Compute\+U\+VW}}
+\index{Compute\+U\+VW@{Compute\+U\+VW}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Compute\+U\+V\+W()}{ComputeUVW()}}
+{\footnotesize\ttfamily void Camera\+::\+Compute\+U\+VW (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Computes the orthonormal basis of the camera. \hypertarget{class_camera_ad65367e9b225387219d013ffed3f621a}{}\label{class_camera_ad65367e9b225387219d013ffed3f621a} 
+\index{Camera@{Camera}!Render\+Scene@{Render\+Scene}}
+\index{Render\+Scene@{Render\+Scene}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{Render\+Scene()}{RenderScene()}}
+{\footnotesize\ttfamily virtual void Camera\+::\+Render\+Scene (\begin{DoxyParamCaption}\item[{const World \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Traces the constructed scene. 
+\begin{DoxyParams}{Parameters}
+{\em w} & Reference to the world. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_orthographic_a0d7ee7bfe619febed73725b99d2cc0b0}{Orthographic}, \hyperlink{class_pinhole_a722af80f738cf4e8adba65926ffea9c9}{Pinhole}, and \hyperlink{class_thin_lens_af33d499e8fdbdbd196ba3a9b28bdaf5c}{Thin\+Lens}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_camera_a9930c812c2015bf0f3746c18ff2d3e3b}{}\label{class_camera_a9930c812c2015bf0f3746c18ff2d3e3b} 
+\index{Camera@{Camera}!m\+\_\+\+Exposure\+Time@{m\+\_\+\+Exposure\+Time}}
+\index{m\+\_\+\+Exposure\+Time@{m\+\_\+\+Exposure\+Time}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Exposure\+Time}{m\_ExposureTime}}
+{\footnotesize\ttfamily float Camera\+::m\+\_\+\+Exposure\+Time\hspace{0.3cm}{\ttfamily [protected]}}
+
+Exposure time of the camera. \hypertarget{class_camera_afea4cf59abeabef0ac61915bccd1c35c}{}\label{class_camera_afea4cf59abeabef0ac61915bccd1c35c} 
+\index{Camera@{Camera}!m\+\_\+\+Eye@{m\+\_\+\+Eye}}
+\index{m\+\_\+\+Eye@{m\+\_\+\+Eye}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Eye}{m\_Eye}}
+{\footnotesize\ttfamily glm\+::vec3 Camera\+::m\+\_\+\+Eye\hspace{0.3cm}{\ttfamily [protected]}}
+
+Eye position in world coordinates. \hypertarget{class_camera_a64c0c57201219d5e9965298a19007a61}{}\label{class_camera_a64c0c57201219d5e9965298a19007a61} 
+\index{Camera@{Camera}!m\+\_\+\+Look\+At@{m\+\_\+\+Look\+At}}
+\index{m\+\_\+\+Look\+At@{m\+\_\+\+Look\+At}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Look\+At}{m\_LookAt}}
+{\footnotesize\ttfamily glm\+::vec3 Camera\+::m\+\_\+\+Look\+At\hspace{0.3cm}{\ttfamily [protected]}}
+
+Direction the camera is facing. \hypertarget{class_camera_aac745762c9d82b5cdfdcd48c7902b919}{}\label{class_camera_aac745762c9d82b5cdfdcd48c7902b919} 
+\index{Camera@{Camera}!m\+\_\+\+Pitch@{m\+\_\+\+Pitch}}
+\index{m\+\_\+\+Pitch@{m\+\_\+\+Pitch}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Pitch}{m\_Pitch}}
+{\footnotesize\ttfamily float Camera\+::m\+\_\+\+Pitch\hspace{0.3cm}{\ttfamily [protected]}}
+
+Pitch angle of the camera. \hypertarget{class_camera_a58eab74ebcfe6a72ae0d6df32a102181}{}\label{class_camera_a58eab74ebcfe6a72ae0d6df32a102181} 
+\index{Camera@{Camera}!m\+\_\+\+Roll@{m\+\_\+\+Roll}}
+\index{m\+\_\+\+Roll@{m\+\_\+\+Roll}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Roll}{m\_Roll}}
+{\footnotesize\ttfamily float Camera\+::m\+\_\+\+Roll\hspace{0.3cm}{\ttfamily [protected]}}
+
+Roll angle of the camera. \hypertarget{class_camera_a544f5de8d6c0b2d9aea1a9cff9f0aeb6}{}\label{class_camera_a544f5de8d6c0b2d9aea1a9cff9f0aeb6} 
+\index{Camera@{Camera}!m\+\_\+U@{m\+\_\+U}}
+\index{m\+\_\+U@{m\+\_\+U}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{m\+\_\+U}{m\_U}}
+{\footnotesize\ttfamily glm\+::vec3 Camera\+::m\+\_\+U\hspace{0.3cm}{\ttfamily [protected]}}
+
+X vector of the camera in its coordinate system. \hypertarget{class_camera_ae48ab25a4c2c9a91e6814db0c1abe72c}{}\label{class_camera_ae48ab25a4c2c9a91e6814db0c1abe72c} 
+\index{Camera@{Camera}!m\+\_\+\+Up\+Vector@{m\+\_\+\+Up\+Vector}}
+\index{m\+\_\+\+Up\+Vector@{m\+\_\+\+Up\+Vector}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Up\+Vector}{m\_UpVector}}
+{\footnotesize\ttfamily glm\+::vec3 Camera\+::m\+\_\+\+Up\+Vector\hspace{0.3cm}{\ttfamily [protected]}}
+
+World\textquotesingle{}s up vector. \hypertarget{class_camera_a2bfb4e67db9d92f152913c8cb8159797}{}\label{class_camera_a2bfb4e67db9d92f152913c8cb8159797} 
+\index{Camera@{Camera}!m\+\_\+V@{m\+\_\+V}}
+\index{m\+\_\+V@{m\+\_\+V}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{m\+\_\+V}{m\_V}}
+{\footnotesize\ttfamily glm\+::vec3 Camera\+::m\+\_\+V\hspace{0.3cm}{\ttfamily [protected]}}
+
+Y vector of the camera in its coordinate system. \hypertarget{class_camera_a75de71e6e4b12d69d46d84d04f37c7c3}{}\label{class_camera_a75de71e6e4b12d69d46d84d04f37c7c3} 
+\index{Camera@{Camera}!m\+\_\+W@{m\+\_\+W}}
+\index{m\+\_\+W@{m\+\_\+W}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{m\+\_\+W}{m\_W}}
+{\footnotesize\ttfamily glm\+::vec3 Camera\+::m\+\_\+W\hspace{0.3cm}{\ttfamily [protected]}}
+
+Z vector of the camera in its coordinate system. \hypertarget{class_camera_ac3b7d101ef808536cac0f679deef5f9c}{}\label{class_camera_ac3b7d101ef808536cac0f679deef5f9c} 
+\index{Camera@{Camera}!m\+\_\+\+Yaw@{m\+\_\+\+Yaw}}
+\index{m\+\_\+\+Yaw@{m\+\_\+\+Yaw}!Camera@{Camera}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Yaw}{m\_Yaw}}
+{\footnotesize\ttfamily float Camera\+::m\+\_\+\+Yaw\hspace{0.3cm}{\ttfamily [protected]}}
+
+Yaw angle of the camera. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Cameras/include/\hyperlink{_camera_8h}{Camera.\+h}\end{DoxyCompactItemize}

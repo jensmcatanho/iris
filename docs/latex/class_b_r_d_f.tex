@@ -1,0 +1,144 @@
+\hypertarget{class_b_r_d_f}{}\section{B\+R\+DF Class Reference}
+\label{class_b_r_d_f}\index{B\+R\+DF@{B\+R\+DF}}
+
+
+{\ttfamily \#include $<$B\+R\+D\+F.\+h$>$}
+
+Inheritance diagram for B\+R\+DF\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_b_r_d_f}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_b_r_d_f_a453d38b012c433272b117864f1902c52}{B\+R\+DF} ()
+\item 
+virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{class_b_r_d_f_af3d87a4237b7b25b72ad1fb5027721bb}{f} (const \hyperlink{class_surface}{Surface} \&sr, const glm\+::vec3 \&wi, const glm\+::vec3 \&wo) const
+\item 
+virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{class_b_r_d_f_a676438154e142c5762193ee5251e4d57}{rho} (const \hyperlink{class_surface}{Surface} \&sr, const glm\+::vec3 \&wo) const
+\item 
+virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{class_b_r_d_f_a50d4e9c4729dc37a80e1948e6b7995d6}{SampleF} (\hyperlink{class_surface}{Surface} \&sr, const glm\+::vec3 \&wi, glm\+::vec3 \&wo)
+\item 
+virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{class_b_r_d_f_a2abfe6323b1d0035439dbc2234ad2a34}{SampleF} (\hyperlink{class_surface}{Surface} \&sr, const glm\+::vec3 \&wi, glm\+::vec3 \&wo, float \&pdf)
+\item 
+void \hyperlink{group___b_r_d_f_ga77a2a5e48ca3093d853e5713afa01108}{Set\+Sampler} (std\+::shared\+\_\+ptr$<$ \hyperlink{class_sampler}{Sampler} $>$)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{class_sampler}{Sampler} $>$ \hyperlink{class_b_r_d_f_a07f3aba126e7836a7cb86663428808f2}{m\+\_\+\+Sampler\+Ptr}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The bidirectional reflectance distribution function abstraction. \begin{DoxyRemark}{Remarks}
+T\+O\+DO. 
+\end{DoxyRemark}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_b_r_d_f_a453d38b012c433272b117864f1902c52}{}\label{class_b_r_d_f_a453d38b012c433272b117864f1902c52} 
+\index{B\+R\+DF@{B\+R\+DF}!B\+R\+DF@{B\+R\+DF}}
+\index{B\+R\+DF@{B\+R\+DF}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{B\+R\+D\+F()}{BRDF()}}
+{\footnotesize\ttfamily B\+R\+D\+F\+::\+B\+R\+DF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Standard constructor. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_b_r_d_f_af3d87a4237b7b25b72ad1fb5027721bb}{}\label{class_b_r_d_f_af3d87a4237b7b25b72ad1fb5027721bb} 
+\index{B\+R\+DF@{B\+R\+DF}!f@{f}}
+\index{f@{f}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{f()}{f()}}
+{\footnotesize\ttfamily virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} B\+R\+D\+F\+::f (\begin{DoxyParamCaption}\item[{const \hyperlink{class_surface}{Surface} \&}]{sr,  }\item[{const glm\+::vec3 \&}]{wi,  }\item[{const glm\+::vec3 \&}]{wo }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Computes the reflected radiance along wo. 
+\begin{DoxyParams}{Parameters}
+{\em sr} & Information about the surface of the object. \\
+\hline
+{\em wi} & Incoming light direction. \\
+\hline
+{\em wo} & Reflected light direction. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Reflected radiance of a surface. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_glossy_specular_a91b042f409462732c96eab041c2cc7c6}{Glossy\+Specular}, and \hyperlink{group___b_r_d_f_gad7b8c290aaacbe6c11ee62529dd7389b}{Lambertian}.
+
+\hypertarget{class_b_r_d_f_a676438154e142c5762193ee5251e4d57}{}\label{class_b_r_d_f_a676438154e142c5762193ee5251e4d57} 
+\index{B\+R\+DF@{B\+R\+DF}!rho@{rho}}
+\index{rho@{rho}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{rho()}{rho()}}
+{\footnotesize\ttfamily virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} B\+R\+D\+F\+::rho (\begin{DoxyParamCaption}\item[{const \hyperlink{class_surface}{Surface} \&}]{sr,  }\item[{const glm\+::vec3 \&}]{wo }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Computes the perfect diffuse reflectance. 
+\begin{DoxyParams}{Parameters}
+{\em sr} & Information about the surface of the object. \\
+\hline
+{\em wo} & Reflected light direction. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Perfect diffuse reflectance. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{group___b_r_d_f_gaa70272886cbeb0f91c629ace938dd0a0}{Lambertian}.
+
+\hypertarget{class_b_r_d_f_a50d4e9c4729dc37a80e1948e6b7995d6}{}\label{class_b_r_d_f_a50d4e9c4729dc37a80e1948e6b7995d6} 
+\index{B\+R\+DF@{B\+R\+DF}!SampleF@{SampleF}}
+\index{SampleF@{SampleF}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{Sample\+F()}{SampleF()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} B\+R\+D\+F\+::\+SampleF (\begin{DoxyParamCaption}\item[{\hyperlink{class_surface}{Surface} \&}]{sr,  }\item[{const glm\+::vec3 \&}]{wi,  }\item[{glm\+::vec3 \&}]{wo }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+T\+O\+DO. 
+\begin{DoxyParams}{Parameters}
+{\em sr} & Information about the surface of the object. \\
+\hline
+{\em wi} & Incoming light direction. \\
+\hline
+{\em wo} & Reflected light direction. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_b_r_d_f_a2abfe6323b1d0035439dbc2234ad2a34}{}\label{class_b_r_d_f_a2abfe6323b1d0035439dbc2234ad2a34} 
+\index{B\+R\+DF@{B\+R\+DF}!SampleF@{SampleF}}
+\index{SampleF@{SampleF}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{Sample\+F()}{SampleF()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} B\+R\+D\+F\+::\+SampleF (\begin{DoxyParamCaption}\item[{\hyperlink{class_surface}{Surface} \&}]{sr,  }\item[{const glm\+::vec3 \&}]{wi,  }\item[{glm\+::vec3 \&}]{wo,  }\item[{float \&}]{pdf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+T\+O\+DO 
+\begin{DoxyParams}{Parameters}
+{\em sr} & Information about the surface of the object. \\
+\hline
+{\em wi} & Incoming light direction. \\
+\hline
+{\em wo} & Reflected light direction. \\
+\hline
+{\em pdf} & Probability density function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_b_r_d_f_a07f3aba126e7836a7cb86663428808f2}{}\label{class_b_r_d_f_a07f3aba126e7836a7cb86663428808f2} 
+\index{B\+R\+DF@{B\+R\+DF}!m\+\_\+\+Sampler\+Ptr@{m\+\_\+\+Sampler\+Ptr}}
+\index{m\+\_\+\+Sampler\+Ptr@{m\+\_\+\+Sampler\+Ptr}!B\+R\+DF@{B\+R\+DF}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Sampler\+Ptr}{m\_SamplerPtr}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{class_sampler}{Sampler}$>$ B\+R\+D\+F\+::m\+\_\+\+Sampler\+Ptr\hspace{0.3cm}{\ttfamily [protected]}}
+
+Pointer to the sampler attached to the \hyperlink{class_b_r_d_f}{B\+R\+DF} object. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+B\+R\+D\+Fs/include/\hyperlink{_b_r_d_f_8h}{B\+R\+D\+F.\+h}\end{DoxyCompactItemize}

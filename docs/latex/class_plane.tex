@@ -1,0 +1,91 @@
+\hypertarget{class_plane}{}\section{Plane Class Reference}
+\label{class_plane}\index{Plane@{Plane}}
+
+
+{\ttfamily \#include $<$Plane.\+h$>$}
+
+Inheritance diagram for Plane\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_plane}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_plane_acac0d9c003e0ab10d07b146c3566a0c7}{Plane} ()
+\item 
+virtual bool \hyperlink{class_plane_a71712655452a8ecbfe5907197e980c1e}{Hit} (const \hyperlink{class_ray}{Ray} \&ray, double \&tmin, \hyperlink{class_surface}{Surface} \&sr) const =0
+\item 
+virtual bool \hyperlink{class_plane_a21f6adf1c2be7853a61e1f8d811b76eb}{Shadow\+Hit} (const \hyperlink{class_ray}{Ray} \&ray, float \&tmin) const =0
+\item 
+void \hyperlink{group___geometric_objects_ga8fdaa0574a2046f2e280e6c926f7947d}{Set\+Point} (const glm\+::vec3 \&point)
+\item 
+void \hyperlink{group___geometric_objects_ga50e8800fa3595a6b6fafcda17a77388c}{Set\+Normal} (const glm\+::vec3 \&normal)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Holder of data of a 3D plane. \begin{DoxyRemark}{Remarks}
+T\+O\+DO. 
+\end{DoxyRemark}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_plane_acac0d9c003e0ab10d07b146c3566a0c7}{}\label{class_plane_acac0d9c003e0ab10d07b146c3566a0c7} 
+\index{Plane@{Plane}!Plane@{Plane}}
+\index{Plane@{Plane}!Plane@{Plane}}
+\subsubsection{\texorpdfstring{Plane()}{Plane()}}
+{\footnotesize\ttfamily Plane\+::\+Plane (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Standard constructor. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_plane_a71712655452a8ecbfe5907197e980c1e}{}\label{class_plane_a71712655452a8ecbfe5907197e980c1e} 
+\index{Plane@{Plane}!Hit@{Hit}}
+\index{Hit@{Hit}!Plane@{Plane}}
+\subsubsection{\texorpdfstring{Hit()}{Hit()}}
+{\footnotesize\ttfamily virtual bool Plane\+::\+Hit (\begin{DoxyParamCaption}\item[{const \hyperlink{class_ray}{Ray} \&}]{ray,  }\item[{double \&}]{tmin,  }\item[{\hyperlink{class_surface}{Surface} \&}]{sr }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Checks if a ray intersects with this object and return it\textquotesingle{}s shading information. 
+\begin{DoxyParams}{Parameters}
+{\em ray} & Intersection ray. \\
+\hline
+{\em tmin} & T\+O\+DO. \\
+\hline
+{\em sr} & Information about the surface of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the object intersects with the given ray. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_object_ad9977e40c0a3048eba9a81b25efcf3ef}{Object}.
+
+\hypertarget{class_plane_a21f6adf1c2be7853a61e1f8d811b76eb}{}\label{class_plane_a21f6adf1c2be7853a61e1f8d811b76eb} 
+\index{Plane@{Plane}!Shadow\+Hit@{Shadow\+Hit}}
+\index{Shadow\+Hit@{Shadow\+Hit}!Plane@{Plane}}
+\subsubsection{\texorpdfstring{Shadow\+Hit()}{ShadowHit()}}
+{\footnotesize\ttfamily virtual bool Plane\+::\+Shadow\+Hit (\begin{DoxyParamCaption}\item[{const \hyperlink{class_ray}{Ray} \&}]{ray,  }\item[{float \&}]{tmin }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Checks if a shadow ray intersects with the object. 
+\begin{DoxyParams}{Parameters}
+{\em ray} & Shadow ray. \\
+\hline
+{\em tmin} & T\+O\+DO \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the object intersects with the given ray. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_object_a020a6edbef7b2591b1dd6815ebbc5aa0}{Object}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Geometric\+Objects/include/\hyperlink{_plane_8h}{Plane.\+h}\end{DoxyCompactItemize}

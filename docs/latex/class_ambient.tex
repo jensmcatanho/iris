@@ -1,0 +1,107 @@
+\hypertarget{class_ambient}{}\section{Ambient Class Reference}
+\label{class_ambient}\index{Ambient@{Ambient}}
+
+
+{\ttfamily \#include $<$Ambient.\+h$>$}
+
+Inheritance diagram for Ambient\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ambient}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_ambient_a022e0d891287bc9bfc67a72e72a601d8}{Ambient} ()
+\item 
+virtual glm\+::vec3 \hyperlink{class_ambient_acb2fc1574883ea0bd41c662ec904164f}{Get\+Direction} (\hyperlink{class_surface}{Surface} \&sr)
+\item 
+virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{class_ambient_aa75478ba2b30c9930ef538dd16f4586a}{L} (\hyperlink{class_surface}{Surface} \&sr)
+\item 
+virtual bool \hyperlink{class_ambient_a1373251f8db560b10061eb23f125bb27}{Shadowed} (const \hyperlink{class_ray}{Ray} \&ray, const \hyperlink{class_surface}{Surface} \&sr) const
+\item 
+void \hyperlink{group___lights_ga5aefcac18f63a3923320e634daff4f57}{Set\+Intensity} (const float intensity)
+\item 
+void \hyperlink{group___lights_gaac238172e351af4e5b302b0a006bf719}{Set\+Color} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&color)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Representation of an ambient light source. \begin{DoxyRemark}{Remarks}
+T\+O\+DO 
+\end{DoxyRemark}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_ambient_a022e0d891287bc9bfc67a72e72a601d8}{}\label{class_ambient_a022e0d891287bc9bfc67a72e72a601d8} 
+\index{Ambient@{Ambient}!Ambient@{Ambient}}
+\index{Ambient@{Ambient}!Ambient@{Ambient}}
+\subsubsection{\texorpdfstring{Ambient()}{Ambient()}}
+{\footnotesize\ttfamily Ambient\+::\+Ambient (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Standard constructor. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_ambient_acb2fc1574883ea0bd41c662ec904164f}{}\label{class_ambient_acb2fc1574883ea0bd41c662ec904164f} 
+\index{Ambient@{Ambient}!Get\+Direction@{Get\+Direction}}
+\index{Get\+Direction@{Get\+Direction}!Ambient@{Ambient}}
+\subsubsection{\texorpdfstring{Get\+Direction()}{GetDirection()}}
+{\footnotesize\ttfamily virtual glm\+::vec3 Ambient\+::\+Get\+Direction (\begin{DoxyParamCaption}\item[{\hyperlink{class_surface}{Surface} \&}]{sr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Computes the direction of the incoming light at a given surface. 
+\begin{DoxyParams}{Parameters}
+{\em sr} & Information about the surface of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Direction from which the light arrives at the surface. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_light_a62c5f73131ca1cdd6b2477f36c242482}{Light}.
+
+\hypertarget{class_ambient_aa75478ba2b30c9930ef538dd16f4586a}{}\label{class_ambient_aa75478ba2b30c9930ef538dd16f4586a} 
+\index{Ambient@{Ambient}!L@{L}}
+\index{L@{L}!Ambient@{Ambient}}
+\subsubsection{\texorpdfstring{L()}{L()}}
+{\footnotesize\ttfamily virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} Ambient\+::L (\begin{DoxyParamCaption}\item[{\hyperlink{class_surface}{Surface} \&}]{sr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Computes the incident radiance at a given surface. 
+\begin{DoxyParams}{Parameters}
+{\em sr} & Information about the surface of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Incident radiance at the surface. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_light_aba4ca1dcd52876cb5bee71ac8f684af5}{Light}.
+
+\hypertarget{class_ambient_a1373251f8db560b10061eb23f125bb27}{}\label{class_ambient_a1373251f8db560b10061eb23f125bb27} 
+\index{Ambient@{Ambient}!Shadowed@{Shadowed}}
+\index{Shadowed@{Shadowed}!Ambient@{Ambient}}
+\subsubsection{\texorpdfstring{Shadowed()}{Shadowed()}}
+{\footnotesize\ttfamily virtual bool Ambient\+::\+Shadowed (\begin{DoxyParamCaption}\item[{const \hyperlink{class_ray}{Ray} \&}]{ray,  }\item[{const \hyperlink{class_surface}{Surface} \&}]{sr }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Checks if a surface is shadowed by another object. 
+\begin{DoxyParams}{Parameters}
+{\em ray} & Casted shadow ray. \\
+\hline
+{\em sr} & Information about the surface of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the surface is shadowed. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_light_ac96c5efcdccb339609c7d19ea6ac5d17}{Light}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Lights/include/\hyperlink{_ambient_8h}{Ambient.\+h}\end{DoxyCompactItemize}

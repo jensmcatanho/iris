@@ -1,0 +1,66 @@
+\hypertarget{class_ray_cast}{}\section{Ray\+Cast Class Reference}
+\label{class_ray_cast}\index{Ray\+Cast@{Ray\+Cast}}
+
+
+{\ttfamily \#include $<$Ray\+Cast.\+h$>$}
+
+Inheritance diagram for Ray\+Cast\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_ray_cast}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_ray_cast_adedb760a41eeb39a1ca797801727ae67}{Ray\+Cast} (std\+::shared\+\_\+ptr$<$ World $>$ world\+\_\+ptr)
+\item 
+virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{class_ray_cast_aed24a822899e5328a7e668a479d3be9e}{Trace\+Ray} (const \hyperlink{class_ray}{Ray} \&ray) const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+T\+O\+DO. \begin{DoxyRemark}{Remarks}
+T\+O\+DO. 
+\end{DoxyRemark}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_ray_cast_adedb760a41eeb39a1ca797801727ae67}{}\label{class_ray_cast_adedb760a41eeb39a1ca797801727ae67} 
+\index{Ray\+Cast@{Ray\+Cast}!Ray\+Cast@{Ray\+Cast}}
+\index{Ray\+Cast@{Ray\+Cast}!Ray\+Cast@{Ray\+Cast}}
+\subsubsection{\texorpdfstring{Ray\+Cast()}{RayCast()}}
+{\footnotesize\ttfamily Ray\+Cast\+::\+Ray\+Cast (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ World $>$}]{world\+\_\+ptr }\end{DoxyParamCaption})}
+
+Constructs a \hyperlink{class_tracer}{Tracer} with a pointer to the world. 
+\begin{DoxyParams}{Parameters}
+{\em world\+\_\+ptr} & Pointer to the world. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_ray_cast_aed24a822899e5328a7e668a479d3be9e}{}\label{class_ray_cast_aed24a822899e5328a7e668a479d3be9e} 
+\index{Ray\+Cast@{Ray\+Cast}!Trace\+Ray@{Trace\+Ray}}
+\index{Trace\+Ray@{Trace\+Ray}!Ray\+Cast@{Ray\+Cast}}
+\subsubsection{\texorpdfstring{Trace\+Ray()}{TraceRay()}}
+{\footnotesize\ttfamily virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} Ray\+Cast\+::\+Trace\+Ray (\begin{DoxyParamCaption}\item[{const \hyperlink{class_ray}{Ray} \&}]{ray }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Standard ray tracing method. 
+\begin{DoxyParams}{Parameters}
+{\em ray} & \hyperlink{class_ray}{Ray} traced. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Color of the nearest surface hit by the ray. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_tracer_adbabdfde11e278945a0433d08445fcce}{Tracer}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Tracers/include/\hyperlink{_ray_cast_8h}{Ray\+Cast.\+h}\end{DoxyCompactItemize}

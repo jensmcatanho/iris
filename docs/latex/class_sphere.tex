@@ -1,0 +1,91 @@
+\hypertarget{class_sphere}{}\section{Sphere Class Reference}
+\label{class_sphere}\index{Sphere@{Sphere}}
+
+
+{\ttfamily \#include $<$Sphere.\+h$>$}
+
+Inheritance diagram for Sphere\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sphere}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_sphere_a890a63ff583cb88e7ec4e840b4ef5eb9}{Sphere} ()
+\item 
+virtual bool \hyperlink{class_sphere_ab568d3aa3eccdd0c691150fc3d5bb86f}{Hit} (const \hyperlink{class_ray}{Ray} \&ray, double \&tmin, \hyperlink{class_surface}{Surface} \&sr) const
+\item 
+virtual bool \hyperlink{class_sphere_ac3b3cc027f0cd8c89cecc3b65799267d}{Shadow\+Hit} (const \hyperlink{class_ray}{Ray} \&ray, float \&tmin) const
+\item 
+void \hyperlink{group___geometric_objects_ga2b8aef309428ea904c75ce3300a71e09}{Set\+Center} (const glm\+::vec3 \&center)
+\item 
+void \hyperlink{group___geometric_objects_ga0377e69b4a636f542c30c6fa977399e3}{Set\+Radius} (const float radius)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Holder of data of a 3D sphere. \begin{DoxyRemark}{Remarks}
+T\+O\+DO. 
+\end{DoxyRemark}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_sphere_a890a63ff583cb88e7ec4e840b4ef5eb9}{}\label{class_sphere_a890a63ff583cb88e7ec4e840b4ef5eb9} 
+\index{Sphere@{Sphere}!Sphere@{Sphere}}
+\index{Sphere@{Sphere}!Sphere@{Sphere}}
+\subsubsection{\texorpdfstring{Sphere()}{Sphere()}}
+{\footnotesize\ttfamily Sphere\+::\+Sphere (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Standard constructor. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_sphere_ab568d3aa3eccdd0c691150fc3d5bb86f}{}\label{class_sphere_ab568d3aa3eccdd0c691150fc3d5bb86f} 
+\index{Sphere@{Sphere}!Hit@{Hit}}
+\index{Hit@{Hit}!Sphere@{Sphere}}
+\subsubsection{\texorpdfstring{Hit()}{Hit()}}
+{\footnotesize\ttfamily virtual bool Sphere\+::\+Hit (\begin{DoxyParamCaption}\item[{const \hyperlink{class_ray}{Ray} \&}]{ray,  }\item[{double \&}]{tmin,  }\item[{\hyperlink{class_surface}{Surface} \&}]{sr }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Checks if a ray intersects with this object and return it\textquotesingle{}s shading information. 
+\begin{DoxyParams}{Parameters}
+{\em ray} & Intersection ray. \\
+\hline
+{\em tmin} & T\+O\+DO. \\
+\hline
+{\em sr} & Information about the surface of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the object intersects with the given ray. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_object_ad9977e40c0a3048eba9a81b25efcf3ef}{Object}.
+
+\hypertarget{class_sphere_ac3b3cc027f0cd8c89cecc3b65799267d}{}\label{class_sphere_ac3b3cc027f0cd8c89cecc3b65799267d} 
+\index{Sphere@{Sphere}!Shadow\+Hit@{Shadow\+Hit}}
+\index{Shadow\+Hit@{Shadow\+Hit}!Sphere@{Sphere}}
+\subsubsection{\texorpdfstring{Shadow\+Hit()}{ShadowHit()}}
+{\footnotesize\ttfamily virtual bool Sphere\+::\+Shadow\+Hit (\begin{DoxyParamCaption}\item[{const \hyperlink{class_ray}{Ray} \&}]{ray,  }\item[{float \&}]{tmin }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Checks if a shadow ray intersects with the object. 
+\begin{DoxyParams}{Parameters}
+{\em ray} & Shadow ray. \\
+\hline
+{\em tmin} & T\+O\+DO \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the object intersects with the given ray. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_object_a020a6edbef7b2591b1dd6815ebbc5aa0}{Object}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Geometric\+Objects/include/\hyperlink{_sphere_8h}{Sphere.\+h}\end{DoxyCompactItemize}

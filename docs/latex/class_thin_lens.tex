@@ -1,0 +1,92 @@
+\hypertarget{class_thin_lens}{}\section{Thin\+Lens Class Reference}
+\label{class_thin_lens}\index{Thin\+Lens@{Thin\+Lens}}
+
+
+{\ttfamily \#include $<$Thin\+Lens.\+h$>$}
+
+Inheritance diagram for Thin\+Lens\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_thin_lens}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_thin_lens_ae458cc9405f705ec7c8cbffca08e23b2}{Thin\+Lens} ()
+\item 
+virtual void \hyperlink{class_thin_lens_af33d499e8fdbdbd196ba3a9b28bdaf5c}{Render\+Scene} (const World \&)
+\item 
+void \hyperlink{class_thin_lens_acf205ce5a21bd65783c2e67c056664c8}{Set\+Sampler} (std\+::shared\+\_\+ptr$<$ \hyperlink{class_sampler}{Sampler} $>$)
+\item 
+void \hyperlink{class_thin_lens_a5d4e3ec359df6ebb4dc5163fa48acfc5}{Set\+Lens\+Radius} (const float)
+\item 
+void \hyperlink{class_thin_lens_a5979bace2e20ea3ede301dff105c403e}{Set\+View\+Plane\+Distance} (const float)
+\item 
+void \hyperlink{class_thin_lens_a8b14ebeb4fd25147301eba27d8a5530d}{Set\+Focal\+Plane\+Distance} (const float)
+\item 
+void \hyperlink{class_thin_lens_a10121e3990c0a9bf61394440d2e85421}{Set\+Zoom} (const float)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_thin_lens_ae458cc9405f705ec7c8cbffca08e23b2}{}\label{class_thin_lens_ae458cc9405f705ec7c8cbffca08e23b2} 
+\index{Thin\+Lens@{Thin\+Lens}!Thin\+Lens@{Thin\+Lens}}
+\index{Thin\+Lens@{Thin\+Lens}!Thin\+Lens@{Thin\+Lens}}
+\subsubsection{\texorpdfstring{Thin\+Lens()}{ThinLens()}}
+{\footnotesize\ttfamily Thin\+Lens\+::\+Thin\+Lens (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_thin_lens_af33d499e8fdbdbd196ba3a9b28bdaf5c}{}\label{class_thin_lens_af33d499e8fdbdbd196ba3a9b28bdaf5c} 
+\index{Thin\+Lens@{Thin\+Lens}!Render\+Scene@{Render\+Scene}}
+\index{Render\+Scene@{Render\+Scene}!Thin\+Lens@{Thin\+Lens}}
+\subsubsection{\texorpdfstring{Render\+Scene()}{RenderScene()}}
+{\footnotesize\ttfamily virtual void Thin\+Lens\+::\+Render\+Scene (\begin{DoxyParamCaption}\item[{const World \&}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Traces the constructed scene. 
+\begin{DoxyParams}{Parameters}
+{\em w} & Reference to the world. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_camera_ad65367e9b225387219d013ffed3f621a}{Camera}.
+
+\hypertarget{class_thin_lens_a8b14ebeb4fd25147301eba27d8a5530d}{}\label{class_thin_lens_a8b14ebeb4fd25147301eba27d8a5530d} 
+\index{Thin\+Lens@{Thin\+Lens}!Set\+Focal\+Plane\+Distance@{Set\+Focal\+Plane\+Distance}}
+\index{Set\+Focal\+Plane\+Distance@{Set\+Focal\+Plane\+Distance}!Thin\+Lens@{Thin\+Lens}}
+\subsubsection{\texorpdfstring{Set\+Focal\+Plane\+Distance()}{SetFocalPlaneDistance()}}
+{\footnotesize\ttfamily void Thin\+Lens\+::\+Set\+Focal\+Plane\+Distance (\begin{DoxyParamCaption}\item[{const float}]{fp\+\_\+distance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_thin_lens_a5d4e3ec359df6ebb4dc5163fa48acfc5}{}\label{class_thin_lens_a5d4e3ec359df6ebb4dc5163fa48acfc5} 
+\index{Thin\+Lens@{Thin\+Lens}!Set\+Lens\+Radius@{Set\+Lens\+Radius}}
+\index{Set\+Lens\+Radius@{Set\+Lens\+Radius}!Thin\+Lens@{Thin\+Lens}}
+\subsubsection{\texorpdfstring{Set\+Lens\+Radius()}{SetLensRadius()}}
+{\footnotesize\ttfamily void Thin\+Lens\+::\+Set\+Lens\+Radius (\begin{DoxyParamCaption}\item[{const float}]{lens\+\_\+radius }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_thin_lens_acf205ce5a21bd65783c2e67c056664c8}{}\label{class_thin_lens_acf205ce5a21bd65783c2e67c056664c8} 
+\index{Thin\+Lens@{Thin\+Lens}!Set\+Sampler@{Set\+Sampler}}
+\index{Set\+Sampler@{Set\+Sampler}!Thin\+Lens@{Thin\+Lens}}
+\subsubsection{\texorpdfstring{Set\+Sampler()}{SetSampler()}}
+{\footnotesize\ttfamily void Thin\+Lens\+::\+Set\+Sampler (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{class_sampler}{Sampler} $>$}]{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_thin_lens_a5979bace2e20ea3ede301dff105c403e}{}\label{class_thin_lens_a5979bace2e20ea3ede301dff105c403e} 
+\index{Thin\+Lens@{Thin\+Lens}!Set\+View\+Plane\+Distance@{Set\+View\+Plane\+Distance}}
+\index{Set\+View\+Plane\+Distance@{Set\+View\+Plane\+Distance}!Thin\+Lens@{Thin\+Lens}}
+\subsubsection{\texorpdfstring{Set\+View\+Plane\+Distance()}{SetViewPlaneDistance()}}
+{\footnotesize\ttfamily void Thin\+Lens\+::\+Set\+View\+Plane\+Distance (\begin{DoxyParamCaption}\item[{const float}]{vp\+\_\+distance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_thin_lens_a10121e3990c0a9bf61394440d2e85421}{}\label{class_thin_lens_a10121e3990c0a9bf61394440d2e85421} 
+\index{Thin\+Lens@{Thin\+Lens}!Set\+Zoom@{Set\+Zoom}}
+\index{Set\+Zoom@{Set\+Zoom}!Thin\+Lens@{Thin\+Lens}}
+\subsubsection{\texorpdfstring{Set\+Zoom()}{SetZoom()}}
+{\footnotesize\ttfamily void Thin\+Lens\+::\+Set\+Zoom (\begin{DoxyParamCaption}\item[{const float}]{zoom }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Cameras/include/\hyperlink{_thin_lens_8h}{Thin\+Lens.\+h}\end{DoxyCompactItemize}

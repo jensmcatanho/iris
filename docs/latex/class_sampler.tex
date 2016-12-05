@@ -1,0 +1,271 @@
+\hypertarget{class_sampler}{}\section{Sampler Class Reference}
+\label{class_sampler}\index{Sampler@{Sampler}}
+
+
+{\ttfamily \#include $<$Sampler.\+h$>$}
+
+Inheritance diagram for Sampler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sampler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_sampler_a9682037ac10546714cfde073143cb0be}{Sampler} ()
+\item 
+\hyperlink{class_sampler_a8dfadf2352d0c2518c73e54d0b00de39}{Sampler} (const int num\+Samples)
+\item 
+\hyperlink{class_sampler_ab3d3ec7bbf6be9d8199023d0ad2ec23b}{Sampler} (const int num\+Samples, const int num\+Sets)
+\item 
+virtual void \hyperlink{class_sampler_a3b75766bf339671a64a05ea9d25cd290}{Generate\+Samples} ()=0
+\item 
+void \hyperlink{class_sampler_ab6efd9686bab476dbdacbf7922711a45}{Map\+To\+Unit\+Disk} ()
+\item 
+void \hyperlink{class_sampler_aecad935bae132f108453f9ee5b3d6993}{Map\+To\+Hemisphere} (const float e)
+\item 
+void \hyperlink{class_sampler_a594169bdbb1673edbd53ec3937841df4}{Setup\+Shuffled\+Indices} ()
+\item 
+void \hyperlink{class_sampler_afc858c17a6f559d4178e37285eea8f25}{ShuffleX} ()
+\item 
+void \hyperlink{class_sampler_a685b224ed1cc1a70a0ca602f7b2f6384}{ShuffleY} ()
+\item 
+glm\+::vec2 \hyperlink{class_sampler_a59fb62883540848f95e3b7655cf18cf6}{Sample\+Unit\+Square} ()
+\item 
+glm\+::vec2 \hyperlink{class_sampler_aea3eabc2048e29fe920c49aa35957cd5}{Sample\+Unit\+Disk} ()
+\item 
+glm\+::vec3 \hyperlink{class_sampler_a811c4a50a8767189491e6a5ab7d30cf9}{Sample\+Hemisphere} ()
+\item 
+int \hyperlink{group___samplers_ga3d438d62d7b7eaec05cff684f96cfe02}{Get\+Num\+Of\+Samples} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_sampler_adb58ad84344a6422c6d9096c7f1fabf6}{Set\+Jump} ()
+\item 
+int \hyperlink{class_sampler_ab0c3297a5b07875a6ddd4215b8aff7b4}{Rand\+Int} ()
+\item 
+int \hyperlink{class_sampler_a18b4fffc11fe530d4728d89843e975af}{Rand\+Int} (const int min, const int max)
+\item 
+float \hyperlink{class_sampler_a8adf80273672e0a196298f6d147b9551}{Rand\+Float} ()
+\item 
+float \hyperlink{class_sampler_ac2ce842ca9597948cbfd175232b5a7a6}{Rand\+Float} (const float min, const float max)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_sampler_a8b2c214702841cc163f3cb2a2218284a}{m\+\_\+\+Num\+Samples}
+\item 
+int \hyperlink{class_sampler_a3a4c91f58f0ddb1d479ae476e689d71e}{m\+\_\+\+Num\+Sets}
+\item 
+std\+::vector$<$ glm\+::vec2 $>$ \hyperlink{class_sampler_adbc476f6d58621c0ce9173bbe1c53d70}{m\+\_\+\+Samples}
+\item 
+std\+::vector$<$ glm\+::vec2 $>$ \hyperlink{class_sampler_abb6650869ddaf8002831d257b1b8c426}{m\+\_\+\+Disk\+Samples}
+\item 
+std\+::vector$<$ glm\+::vec3 $>$ \hyperlink{class_sampler_afd09bd7c820d74c4d658cbef5cb46020}{m\+\_\+\+Hemisphere\+Samples}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+T\+O\+DO \begin{DoxyRemark}{Remarks}
+T\+O\+DO. 
+\end{DoxyRemark}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_sampler_a9682037ac10546714cfde073143cb0be}{}\label{class_sampler_a9682037ac10546714cfde073143cb0be} 
+\index{Sampler@{Sampler}!Sampler@{Sampler}}
+\index{Sampler@{Sampler}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Sampler()}{Sampler()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Sampler\+::\+Sampler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Standard constructor. \hypertarget{class_sampler_a8dfadf2352d0c2518c73e54d0b00de39}{}\label{class_sampler_a8dfadf2352d0c2518c73e54d0b00de39} 
+\index{Sampler@{Sampler}!Sampler@{Sampler}}
+\index{Sampler@{Sampler}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Sampler()}{Sampler()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Sampler\+::\+Sampler (\begin{DoxyParamCaption}\item[{const int}]{num\+Samples }\end{DoxyParamCaption})}
+
+Constructs a sampler and sets its number of samples. 
+\begin{DoxyParams}{Parameters}
+{\em num\+Samples} & Number of samples. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_sampler_ab3d3ec7bbf6be9d8199023d0ad2ec23b}{}\label{class_sampler_ab3d3ec7bbf6be9d8199023d0ad2ec23b} 
+\index{Sampler@{Sampler}!Sampler@{Sampler}}
+\index{Sampler@{Sampler}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Sampler()}{Sampler()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Sampler\+::\+Sampler (\begin{DoxyParamCaption}\item[{const int}]{num\+Samples,  }\item[{const int}]{num\+Sets }\end{DoxyParamCaption})}
+
+Constructs a sampler and sets its number of samples and sets. 
+\begin{DoxyParams}{Parameters}
+{\em num\+Samples} & Number of samples. \\
+\hline
+{\em num\+Sets} & Number of sets. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_sampler_a3b75766bf339671a64a05ea9d25cd290}{}\label{class_sampler_a3b75766bf339671a64a05ea9d25cd290} 
+\index{Sampler@{Sampler}!Generate\+Samples@{Generate\+Samples}}
+\index{Generate\+Samples@{Generate\+Samples}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Generate\+Samples()}{GenerateSamples()}}
+{\footnotesize\ttfamily virtual void Sampler\+::\+Generate\+Samples (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Generates sample patterns in a unit square. \hypertarget{class_sampler_aecad935bae132f108453f9ee5b3d6993}{}\label{class_sampler_aecad935bae132f108453f9ee5b3d6993} 
+\index{Sampler@{Sampler}!Map\+To\+Hemisphere@{Map\+To\+Hemisphere}}
+\index{Map\+To\+Hemisphere@{Map\+To\+Hemisphere}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Map\+To\+Hemisphere()}{MapToHemisphere()}}
+{\footnotesize\ttfamily void Sampler\+::\+Map\+To\+Hemisphere (\begin{DoxyParamCaption}\item[{const float}]{e }\end{DoxyParamCaption})}
+
+Maps 2D sample points in the unit square to a hemisphere. 
+\begin{DoxyParams}{Parameters}
+{\em e} & Controls how the samples are spaced through the hemisphere. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_sampler_ab6efd9686bab476dbdacbf7922711a45}{}\label{class_sampler_ab6efd9686bab476dbdacbf7922711a45} 
+\index{Sampler@{Sampler}!Map\+To\+Unit\+Disk@{Map\+To\+Unit\+Disk}}
+\index{Map\+To\+Unit\+Disk@{Map\+To\+Unit\+Disk}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Map\+To\+Unit\+Disk()}{MapToUnitDisk()}}
+{\footnotesize\ttfamily void Sampler\+::\+Map\+To\+Unit\+Disk (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Maps 2D sample points in the unit square to a unit disk. \hypertarget{class_sampler_a8adf80273672e0a196298f6d147b9551}{}\label{class_sampler_a8adf80273672e0a196298f6d147b9551} 
+\index{Sampler@{Sampler}!Rand\+Float@{Rand\+Float}}
+\index{Rand\+Float@{Rand\+Float}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Rand\+Float()}{RandFloat()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily float Sampler\+::\+Rand\+Float (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Returns a random float with no restrictions. \begin{DoxyReturn}{Returns}
+Random float. 
+\end{DoxyReturn}
+\hypertarget{class_sampler_ac2ce842ca9597948cbfd175232b5a7a6}{}\label{class_sampler_ac2ce842ca9597948cbfd175232b5a7a6} 
+\index{Sampler@{Sampler}!Rand\+Float@{Rand\+Float}}
+\index{Rand\+Float@{Rand\+Float}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Rand\+Float()}{RandFloat()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily float Sampler\+::\+Rand\+Float (\begin{DoxyParamCaption}\item[{const float}]{min,  }\item[{const float}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Returns a random float within a given range. 
+\begin{DoxyParams}{Parameters}
+{\em min} & Lower boundary. \\
+\hline
+{\em max} & Higher boundary. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Random float within the range. 
+\end{DoxyReturn}
+\hypertarget{class_sampler_ab0c3297a5b07875a6ddd4215b8aff7b4}{}\label{class_sampler_ab0c3297a5b07875a6ddd4215b8aff7b4} 
+\index{Sampler@{Sampler}!Rand\+Int@{Rand\+Int}}
+\index{Rand\+Int@{Rand\+Int}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Rand\+Int()}{RandInt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int Sampler\+::\+Rand\+Int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Returns a random integer with no restrictions. \begin{DoxyReturn}{Returns}
+Random integer. 
+\end{DoxyReturn}
+\hypertarget{class_sampler_a18b4fffc11fe530d4728d89843e975af}{}\label{class_sampler_a18b4fffc11fe530d4728d89843e975af} 
+\index{Sampler@{Sampler}!Rand\+Int@{Rand\+Int}}
+\index{Rand\+Int@{Rand\+Int}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Rand\+Int()}{RandInt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int Sampler\+::\+Rand\+Int (\begin{DoxyParamCaption}\item[{const int}]{min,  }\item[{const int}]{max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Returns a random integer within a given range. 
+\begin{DoxyParams}{Parameters}
+{\em min} & Lower boundary. \\
+\hline
+{\em max} & Higher boundary. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Random integer within the range. 
+\end{DoxyReturn}
+\hypertarget{class_sampler_a811c4a50a8767189491e6a5ab7d30cf9}{}\label{class_sampler_a811c4a50a8767189491e6a5ab7d30cf9} 
+\index{Sampler@{Sampler}!Sample\+Hemisphere@{Sample\+Hemisphere}}
+\index{Sample\+Hemisphere@{Sample\+Hemisphere}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Sample\+Hemisphere()}{SampleHemisphere()}}
+{\footnotesize\ttfamily glm\+::vec3 Sampler\+::\+Sample\+Hemisphere (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns a sample in a hemisphere with a random jump. \begin{DoxyReturn}{Returns}
+Sample point within a hemisphere. 
+\end{DoxyReturn}
+\hypertarget{class_sampler_aea3eabc2048e29fe920c49aa35957cd5}{}\label{class_sampler_aea3eabc2048e29fe920c49aa35957cd5} 
+\index{Sampler@{Sampler}!Sample\+Unit\+Disk@{Sample\+Unit\+Disk}}
+\index{Sample\+Unit\+Disk@{Sample\+Unit\+Disk}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Sample\+Unit\+Disk()}{SampleUnitDisk()}}
+{\footnotesize\ttfamily glm\+::vec2 Sampler\+::\+Sample\+Unit\+Disk (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns a sample in a unit disk with a random jump. \begin{DoxyReturn}{Returns}
+Sample point within a unit disk. 
+\end{DoxyReturn}
+\hypertarget{class_sampler_a59fb62883540848f95e3b7655cf18cf6}{}\label{class_sampler_a59fb62883540848f95e3b7655cf18cf6} 
+\index{Sampler@{Sampler}!Sample\+Unit\+Square@{Sample\+Unit\+Square}}
+\index{Sample\+Unit\+Square@{Sample\+Unit\+Square}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Sample\+Unit\+Square()}{SampleUnitSquare()}}
+{\footnotesize\ttfamily glm\+::vec2 Sampler\+::\+Sample\+Unit\+Square (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns a sample in a unit square with a random jump. \begin{DoxyReturn}{Returns}
+Sample point within a unit square. 
+\end{DoxyReturn}
+\hypertarget{class_sampler_adb58ad84344a6422c6d9096c7f1fabf6}{}\label{class_sampler_adb58ad84344a6422c6d9096c7f1fabf6} 
+\index{Sampler@{Sampler}!Set\+Jump@{Set\+Jump}}
+\index{Set\+Jump@{Set\+Jump}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Set\+Jump()}{SetJump()}}
+{\footnotesize\ttfamily void Sampler\+::\+Set\+Jump (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Sets the index jump. \hypertarget{class_sampler_a594169bdbb1673edbd53ec3937841df4}{}\label{class_sampler_a594169bdbb1673edbd53ec3937841df4} 
+\index{Sampler@{Sampler}!Setup\+Shuffled\+Indices@{Setup\+Shuffled\+Indices}}
+\index{Setup\+Shuffled\+Indices@{Setup\+Shuffled\+Indices}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Setup\+Shuffled\+Indices()}{SetupShuffledIndices()}}
+{\footnotesize\ttfamily void Sampler\+::\+Setup\+Shuffled\+Indices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets up randomly shuffled indices for the samples list. \hypertarget{class_sampler_afc858c17a6f559d4178e37285eea8f25}{}\label{class_sampler_afc858c17a6f559d4178e37285eea8f25} 
+\index{Sampler@{Sampler}!ShuffleX@{ShuffleX}}
+\index{ShuffleX@{ShuffleX}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Shuffle\+X()}{ShuffleX()}}
+{\footnotesize\ttfamily void Sampler\+::\+ShuffleX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Shuffles the X values of the samples list. \hypertarget{class_sampler_a685b224ed1cc1a70a0ca602f7b2f6384}{}\label{class_sampler_a685b224ed1cc1a70a0ca602f7b2f6384} 
+\index{Sampler@{Sampler}!ShuffleY@{ShuffleY}}
+\index{ShuffleY@{ShuffleY}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{Shuffle\+Y()}{ShuffleY()}}
+{\footnotesize\ttfamily void Sampler\+::\+ShuffleY (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Shuffles the Y values of the samples list. 
+
+\subsection{Member Data Documentation}
+\hypertarget{class_sampler_abb6650869ddaf8002831d257b1b8c426}{}\label{class_sampler_abb6650869ddaf8002831d257b1b8c426} 
+\index{Sampler@{Sampler}!m\+\_\+\+Disk\+Samples@{m\+\_\+\+Disk\+Samples}}
+\index{m\+\_\+\+Disk\+Samples@{m\+\_\+\+Disk\+Samples}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Disk\+Samples}{m\_DiskSamples}}
+{\footnotesize\ttfamily std\+::vector$<$glm\+::vec2$>$ Sampler\+::m\+\_\+\+Disk\+Samples\hspace{0.3cm}{\ttfamily [protected]}}
+
+List of sample points within a unit disk. \hypertarget{class_sampler_afd09bd7c820d74c4d658cbef5cb46020}{}\label{class_sampler_afd09bd7c820d74c4d658cbef5cb46020} 
+\index{Sampler@{Sampler}!m\+\_\+\+Hemisphere\+Samples@{m\+\_\+\+Hemisphere\+Samples}}
+\index{m\+\_\+\+Hemisphere\+Samples@{m\+\_\+\+Hemisphere\+Samples}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Hemisphere\+Samples}{m\_HemisphereSamples}}
+{\footnotesize\ttfamily std\+::vector$<$glm\+::vec3$>$ Sampler\+::m\+\_\+\+Hemisphere\+Samples\hspace{0.3cm}{\ttfamily [protected]}}
+
+List of sample points within a hemisphere. \hypertarget{class_sampler_a8b2c214702841cc163f3cb2a2218284a}{}\label{class_sampler_a8b2c214702841cc163f3cb2a2218284a} 
+\index{Sampler@{Sampler}!m\+\_\+\+Num\+Samples@{m\+\_\+\+Num\+Samples}}
+\index{m\+\_\+\+Num\+Samples@{m\+\_\+\+Num\+Samples}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Num\+Samples}{m\_NumSamples}}
+{\footnotesize\ttfamily int Sampler\+::m\+\_\+\+Num\+Samples\hspace{0.3cm}{\ttfamily [protected]}}
+
+Number of sample points within a set. \hypertarget{class_sampler_a3a4c91f58f0ddb1d479ae476e689d71e}{}\label{class_sampler_a3a4c91f58f0ddb1d479ae476e689d71e} 
+\index{Sampler@{Sampler}!m\+\_\+\+Num\+Sets@{m\+\_\+\+Num\+Sets}}
+\index{m\+\_\+\+Num\+Sets@{m\+\_\+\+Num\+Sets}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Num\+Sets}{m\_NumSets}}
+{\footnotesize\ttfamily int Sampler\+::m\+\_\+\+Num\+Sets\hspace{0.3cm}{\ttfamily [protected]}}
+
+Number of sample sets. \hypertarget{class_sampler_adbc476f6d58621c0ce9173bbe1c53d70}{}\label{class_sampler_adbc476f6d58621c0ce9173bbe1c53d70} 
+\index{Sampler@{Sampler}!m\+\_\+\+Samples@{m\+\_\+\+Samples}}
+\index{m\+\_\+\+Samples@{m\+\_\+\+Samples}!Sampler@{Sampler}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Samples}{m\_Samples}}
+{\footnotesize\ttfamily std\+::vector$<$glm\+::vec2$>$ Sampler\+::m\+\_\+\+Samples\hspace{0.3cm}{\ttfamily [protected]}}
+
+List of sample points within a unit square. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Samplers/include/\hyperlink{_sampler_8h}{Sampler.\+h}\end{DoxyCompactItemize}

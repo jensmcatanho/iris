@@ -1,0 +1,106 @@
+\hypertarget{class_surface}{}\section{Surface Class Reference}
+\label{class_surface}\index{Surface@{Surface}}
+
+
+{\ttfamily \#include $<$Surface.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_surface_a09333b09d58a9c1a23903c5bc21ba425}{Surface} (World \&\hyperlink{class_surface_adc3a6c73b06a4eebb40cc9083d6a956b}{w})
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_surface_a5fcd1d25c1f67289f4167242c685693c}{m\+\_\+\+Hit}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{class_material}{Material} $>$ \hyperlink{class_surface_ac9c3eaa9f8870efbe4cd9e79e28b21e1}{m\+\_\+\+Material\+Ptr}
+\item 
+glm\+::vec3 \hyperlink{class_surface_ab3cf728434195ae6b569604d90b05bcd}{m\+\_\+\+Hit\+Point}
+\item 
+glm\+::vec3 \hyperlink{class_surface_ab914f3e5804e0043a140b892e32ab3e7}{m\+\_\+\+Local\+Hit\+Point}
+\item 
+glm\+::vec3 \hyperlink{class_surface_aa4ae3fc7afb6da10d48beb2bd0590a48}{m\+\_\+\+Normal}
+\item 
+int \hyperlink{class_surface_a07d2132be1f81e87f7a8d6228e2457c1}{m\+\_\+\+Depth}
+\item 
+float \hyperlink{class_surface_a19719f48b9ee4fb2a78ef277289f0321}{m\+\_\+T}
+\item 
+World \& \hyperlink{class_surface_adc3a6c73b06a4eebb40cc9083d6a956b}{w}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Holds information about a surface. \begin{DoxyRemark}{Remarks}
+T\+O\+DO 
+\end{DoxyRemark}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_surface_a09333b09d58a9c1a23903c5bc21ba425}{}\label{class_surface_a09333b09d58a9c1a23903c5bc21ba425} 
+\index{Surface@{Surface}!Surface@{Surface}}
+\index{Surface@{Surface}!Surface@{Surface}}
+\subsubsection{\texorpdfstring{Surface()}{Surface()}}
+{\footnotesize\ttfamily Surface\+::\+Surface (\begin{DoxyParamCaption}\item[{World \&}]{w }\end{DoxyParamCaption})}
+
+Constructs a surface with a reference to the world. 
+\begin{DoxyParams}{Parameters}
+{\em w} & Reference to the world. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_surface_a07d2132be1f81e87f7a8d6228e2457c1}{}\label{class_surface_a07d2132be1f81e87f7a8d6228e2457c1} 
+\index{Surface@{Surface}!m\+\_\+\+Depth@{m\+\_\+\+Depth}}
+\index{m\+\_\+\+Depth@{m\+\_\+\+Depth}!Surface@{Surface}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Depth}{m\_Depth}}
+{\footnotesize\ttfamily int Surface\+::m\+\_\+\+Depth}
+
+Recursion depth. \hypertarget{class_surface_a5fcd1d25c1f67289f4167242c685693c}{}\label{class_surface_a5fcd1d25c1f67289f4167242c685693c} 
+\index{Surface@{Surface}!m\+\_\+\+Hit@{m\+\_\+\+Hit}}
+\index{m\+\_\+\+Hit@{m\+\_\+\+Hit}!Surface@{Surface}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Hit}{m\_Hit}}
+{\footnotesize\ttfamily bool Surface\+::m\+\_\+\+Hit}
+
+Checks if a ray has hit the surface. \hypertarget{class_surface_ab3cf728434195ae6b569604d90b05bcd}{}\label{class_surface_ab3cf728434195ae6b569604d90b05bcd} 
+\index{Surface@{Surface}!m\+\_\+\+Hit\+Point@{m\+\_\+\+Hit\+Point}}
+\index{m\+\_\+\+Hit\+Point@{m\+\_\+\+Hit\+Point}!Surface@{Surface}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Hit\+Point}{m\_HitPoint}}
+{\footnotesize\ttfamily glm\+::vec3 Surface\+::m\+\_\+\+Hit\+Point}
+
+Point where the surface has been hit by a ray. \hypertarget{class_surface_ab914f3e5804e0043a140b892e32ab3e7}{}\label{class_surface_ab914f3e5804e0043a140b892e32ab3e7} 
+\index{Surface@{Surface}!m\+\_\+\+Local\+Hit\+Point@{m\+\_\+\+Local\+Hit\+Point}}
+\index{m\+\_\+\+Local\+Hit\+Point@{m\+\_\+\+Local\+Hit\+Point}!Surface@{Surface}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Local\+Hit\+Point}{m\_LocalHitPoint}}
+{\footnotesize\ttfamily glm\+::vec3 Surface\+::m\+\_\+\+Local\+Hit\+Point}
+
+Local point where the surface has been hit by a ray. \hypertarget{class_surface_ac9c3eaa9f8870efbe4cd9e79e28b21e1}{}\label{class_surface_ac9c3eaa9f8870efbe4cd9e79e28b21e1} 
+\index{Surface@{Surface}!m\+\_\+\+Material\+Ptr@{m\+\_\+\+Material\+Ptr}}
+\index{m\+\_\+\+Material\+Ptr@{m\+\_\+\+Material\+Ptr}!Surface@{Surface}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Material\+Ptr}{m\_MaterialPtr}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{class_material}{Material}$>$ Surface\+::m\+\_\+\+Material\+Ptr}
+
+\hyperlink{class_material}{Material} attached to the surface. \hypertarget{class_surface_aa4ae3fc7afb6da10d48beb2bd0590a48}{}\label{class_surface_aa4ae3fc7afb6da10d48beb2bd0590a48} 
+\index{Surface@{Surface}!m\+\_\+\+Normal@{m\+\_\+\+Normal}}
+\index{m\+\_\+\+Normal@{m\+\_\+\+Normal}!Surface@{Surface}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Normal}{m\_Normal}}
+{\footnotesize\ttfamily glm\+::vec3 Surface\+::m\+\_\+\+Normal}
+
+Normal of the surface on the hit point. \hypertarget{class_surface_a19719f48b9ee4fb2a78ef277289f0321}{}\label{class_surface_a19719f48b9ee4fb2a78ef277289f0321} 
+\index{Surface@{Surface}!m\+\_\+T@{m\+\_\+T}}
+\index{m\+\_\+T@{m\+\_\+T}!Surface@{Surface}}
+\subsubsection{\texorpdfstring{m\+\_\+T}{m\_T}}
+{\footnotesize\ttfamily float Surface\+::m\+\_\+T}
+
+\hyperlink{class_ray}{Ray} parameter. \hypertarget{class_surface_adc3a6c73b06a4eebb40cc9083d6a956b}{}\label{class_surface_adc3a6c73b06a4eebb40cc9083d6a956b} 
+\index{Surface@{Surface}!w@{w}}
+\index{w@{w}!Surface@{Surface}}
+\subsubsection{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily World\& Surface\+::w}
+
+Reference to the world. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Utilities/include/\hyperlink{_surface_8h}{Surface.\+h}\end{DoxyCompactItemize}

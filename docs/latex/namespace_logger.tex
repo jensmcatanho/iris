@@ -1,0 +1,177 @@
+\hypertarget{namespace_logger}{}\section{Logger Namespace Reference}
+\label{namespace_logger}\index{Logger@{Logger}}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04}{Log\+Type} \{ \hyperlink{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04ab46e195aa1062a5d9f4366486ea131f3}{L\+T\+\_\+\+D\+E\+B\+UG}, 
+\hyperlink{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04a7558ebf8aecb9a3b538e639e11237f33}{L\+T\+\_\+\+E\+R\+R\+OR}, 
+\hyperlink{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04ae2f929c9ea7ffc45e696e247034a1616}{L\+T\+\_\+\+I\+N\+FO}
+ \}
+\item 
+enum \hyperlink{namespace_logger_a5838bb966bb2e56b838cbf5ce207d014}{Log\+Detail} \{ \hyperlink{namespace_logger_a5838bb966bb2e56b838cbf5ce207d014a13b85f16e10f02f0f7831f7f1e62172e}{L\+D\+\_\+\+L\+I\+T\+T\+LE}, 
+\hyperlink{namespace_logger_a5838bb966bb2e56b838cbf5ce207d014acdb9720161dbe34ef066448bc3362452}{L\+D\+\_\+\+N\+O\+R\+M\+AL}, 
+\hyperlink{namespace_logger_a5838bb966bb2e56b838cbf5ce207d014a81011f9c7cb8f58acfae6d88b064466b}{L\+D\+\_\+\+H\+I\+GH}
+ \}
+\item 
+enum \hyperlink{namespace_logger_ac0ba8933d14b2c05d8a87ef9319924fa}{Log\+Relevance} \{ \hyperlink{namespace_logger_ac0ba8933d14b2c05d8a87ef9319924faaae660d03b3378eb8cf44d6acc5f03734}{L\+R\+\_\+\+T\+R\+I\+V\+I\+AL}, 
+\hyperlink{namespace_logger_ac0ba8933d14b2c05d8a87ef9319924faa4427eed1049860091a1cd794be6817cf}{L\+R\+\_\+\+N\+O\+R\+M\+AL}, 
+\hyperlink{namespace_logger_ac0ba8933d14b2c05d8a87ef9319924faa34fddfe05472d43cf2f67c5ecae54d57}{L\+R\+\_\+\+I\+M\+P\+O\+R\+T\+A\+NT}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespace_logger_aea870326f4476cc49457cfdcc6256022}{Start\+Log} ()
+\item 
+void \hyperlink{namespace_logger_a6506657f7b715f4ed4de8545c9b44e44}{Log} (\hyperlink{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04}{Log\+Type} type, std\+::string message, std\+::string component)
+\item 
+void \hyperlink{namespace_logger_a9e0df3839eb703f75a748ab42ffe55da}{Debug\+Log} (std\+::string message, std\+::string component)
+\item 
+void \hyperlink{namespace_logger_a8b60f8445102c57b2f133cf523646e43}{Error\+Log} (std\+::string message, std\+::string component)
+\item 
+void \hyperlink{namespace_logger_ad751d2237527a66a0a7191d784a945a8}{Info\+Log} (std\+::string message, std\+::string component)
+\item 
+void \hyperlink{namespace_logger_a6e44b3fec519cb3bd99514d00170ef4b}{Save\+Log} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Handles the creation of log messages. \begin{DoxyRemark}{Remarks}
+T\+O\+DO 
+\end{DoxyRemark}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespace_logger_a5838bb966bb2e56b838cbf5ce207d014}{}\label{namespace_logger_a5838bb966bb2e56b838cbf5ce207d014} 
+\index{Logger@{Logger}!Log\+Detail@{Log\+Detail}}
+\index{Log\+Detail@{Log\+Detail}!Logger@{Logger}}
+\subsubsection{\texorpdfstring{Log\+Detail}{LogDetail}}
+{\footnotesize\ttfamily enum \hyperlink{namespace_logger_a5838bb966bb2e56b838cbf5ce207d014}{Logger\+::\+Log\+Detail}}
+
+Describes how detailed the log message is. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+D\+\_\+\+L\+I\+T\+T\+LE@{L\+D\+\_\+\+L\+I\+T\+T\+LE}!Logger@{Logger}}\index{Logger@{Logger}!L\+D\+\_\+\+L\+I\+T\+T\+LE@{L\+D\+\_\+\+L\+I\+T\+T\+LE}}}\hypertarget{namespace_logger_a5838bb966bb2e56b838cbf5ce207d014a13b85f16e10f02f0f7831f7f1e62172e}{}\label{namespace_logger_a5838bb966bb2e56b838cbf5ce207d014a13b85f16e10f02f0f7831f7f1e62172e} 
+L\+D\+\_\+\+L\+I\+T\+T\+LE&Little detailed message. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+D\+\_\+\+N\+O\+R\+M\+AL@{L\+D\+\_\+\+N\+O\+R\+M\+AL}!Logger@{Logger}}\index{Logger@{Logger}!L\+D\+\_\+\+N\+O\+R\+M\+AL@{L\+D\+\_\+\+N\+O\+R\+M\+AL}}}\hypertarget{namespace_logger_a5838bb966bb2e56b838cbf5ce207d014acdb9720161dbe34ef066448bc3362452}{}\label{namespace_logger_a5838bb966bb2e56b838cbf5ce207d014acdb9720161dbe34ef066448bc3362452} 
+L\+D\+\_\+\+N\+O\+R\+M\+AL&Normal detailed message. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+D\+\_\+\+H\+I\+GH@{L\+D\+\_\+\+H\+I\+GH}!Logger@{Logger}}\index{Logger@{Logger}!L\+D\+\_\+\+H\+I\+GH@{L\+D\+\_\+\+H\+I\+GH}}}\hypertarget{namespace_logger_a5838bb966bb2e56b838cbf5ce207d014a81011f9c7cb8f58acfae6d88b064466b}{}\label{namespace_logger_a5838bb966bb2e56b838cbf5ce207d014a81011f9c7cb8f58acfae6d88b064466b} 
+L\+D\+\_\+\+H\+I\+GH&High detailes message. \\
+\hline
+
+\end{DoxyEnumFields}
+\hypertarget{namespace_logger_ac0ba8933d14b2c05d8a87ef9319924fa}{}\label{namespace_logger_ac0ba8933d14b2c05d8a87ef9319924fa} 
+\index{Logger@{Logger}!Log\+Relevance@{Log\+Relevance}}
+\index{Log\+Relevance@{Log\+Relevance}!Logger@{Logger}}
+\subsubsection{\texorpdfstring{Log\+Relevance}{LogRelevance}}
+{\footnotesize\ttfamily enum \hyperlink{namespace_logger_ac0ba8933d14b2c05d8a87ef9319924fa}{Logger\+::\+Log\+Relevance}}
+
+Describes how important the log message is. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+R\+\_\+\+T\+R\+I\+V\+I\+AL@{L\+R\+\_\+\+T\+R\+I\+V\+I\+AL}!Logger@{Logger}}\index{Logger@{Logger}!L\+R\+\_\+\+T\+R\+I\+V\+I\+AL@{L\+R\+\_\+\+T\+R\+I\+V\+I\+AL}}}\hypertarget{namespace_logger_ac0ba8933d14b2c05d8a87ef9319924faaae660d03b3378eb8cf44d6acc5f03734}{}\label{namespace_logger_ac0ba8933d14b2c05d8a87ef9319924faaae660d03b3378eb8cf44d6acc5f03734} 
+L\+R\+\_\+\+T\+R\+I\+V\+I\+AL&Trivial message. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+R\+\_\+\+N\+O\+R\+M\+AL@{L\+R\+\_\+\+N\+O\+R\+M\+AL}!Logger@{Logger}}\index{Logger@{Logger}!L\+R\+\_\+\+N\+O\+R\+M\+AL@{L\+R\+\_\+\+N\+O\+R\+M\+AL}}}\hypertarget{namespace_logger_ac0ba8933d14b2c05d8a87ef9319924faa4427eed1049860091a1cd794be6817cf}{}\label{namespace_logger_ac0ba8933d14b2c05d8a87ef9319924faa4427eed1049860091a1cd794be6817cf} 
+L\+R\+\_\+\+N\+O\+R\+M\+AL&Normal message. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+R\+\_\+\+I\+M\+P\+O\+R\+T\+A\+NT@{L\+R\+\_\+\+I\+M\+P\+O\+R\+T\+A\+NT}!Logger@{Logger}}\index{Logger@{Logger}!L\+R\+\_\+\+I\+M\+P\+O\+R\+T\+A\+NT@{L\+R\+\_\+\+I\+M\+P\+O\+R\+T\+A\+NT}}}\hypertarget{namespace_logger_ac0ba8933d14b2c05d8a87ef9319924faa34fddfe05472d43cf2f67c5ecae54d57}{}\label{namespace_logger_ac0ba8933d14b2c05d8a87ef9319924faa34fddfe05472d43cf2f67c5ecae54d57} 
+L\+R\+\_\+\+I\+M\+P\+O\+R\+T\+A\+NT&Important message \\
+\hline
+
+\end{DoxyEnumFields}
+\hypertarget{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04}{}\label{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04} 
+\index{Logger@{Logger}!Log\+Type@{Log\+Type}}
+\index{Log\+Type@{Log\+Type}!Logger@{Logger}}
+\subsubsection{\texorpdfstring{Log\+Type}{LogType}}
+{\footnotesize\ttfamily enum \hyperlink{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04}{Logger\+::\+Log\+Type}}
+
+Describes the type of the log message. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+T\+\_\+\+D\+E\+B\+UG@{L\+T\+\_\+\+D\+E\+B\+UG}!Logger@{Logger}}\index{Logger@{Logger}!L\+T\+\_\+\+D\+E\+B\+UG@{L\+T\+\_\+\+D\+E\+B\+UG}}}\hypertarget{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04ab46e195aa1062a5d9f4366486ea131f3}{}\label{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04ab46e195aa1062a5d9f4366486ea131f3} 
+L\+T\+\_\+\+D\+E\+B\+UG&Debug message. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+T\+\_\+\+E\+R\+R\+OR@{L\+T\+\_\+\+E\+R\+R\+OR}!Logger@{Logger}}\index{Logger@{Logger}!L\+T\+\_\+\+E\+R\+R\+OR@{L\+T\+\_\+\+E\+R\+R\+OR}}}\hypertarget{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04a7558ebf8aecb9a3b538e639e11237f33}{}\label{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04a7558ebf8aecb9a3b538e639e11237f33} 
+L\+T\+\_\+\+E\+R\+R\+OR&Error message. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+T\+\_\+\+I\+N\+FO@{L\+T\+\_\+\+I\+N\+FO}!Logger@{Logger}}\index{Logger@{Logger}!L\+T\+\_\+\+I\+N\+FO@{L\+T\+\_\+\+I\+N\+FO}}}\hypertarget{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04ae2f929c9ea7ffc45e696e247034a1616}{}\label{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04ae2f929c9ea7ffc45e696e247034a1616} 
+L\+T\+\_\+\+I\+N\+FO&Informative message. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespace_logger_a9e0df3839eb703f75a748ab42ffe55da}{}\label{namespace_logger_a9e0df3839eb703f75a748ab42ffe55da} 
+\index{Logger@{Logger}!Debug\+Log@{Debug\+Log}}
+\index{Debug\+Log@{Debug\+Log}!Logger@{Logger}}
+\subsubsection{\texorpdfstring{Debug\+Log()}{DebugLog()}}
+{\footnotesize\ttfamily void Logger\+::\+Debug\+Log (\begin{DoxyParamCaption}\item[{std\+::string}]{message,  }\item[{std\+::string}]{component }\end{DoxyParamCaption})}
+
+Creates a debug log message. 
+\begin{DoxyParams}{Parameters}
+{\em message} & Log message. \\
+\hline
+{\em component} & Name of the function where the log message is being created. \\
+\hline
+\end{DoxyParams}
+\hypertarget{namespace_logger_a8b60f8445102c57b2f133cf523646e43}{}\label{namespace_logger_a8b60f8445102c57b2f133cf523646e43} 
+\index{Logger@{Logger}!Error\+Log@{Error\+Log}}
+\index{Error\+Log@{Error\+Log}!Logger@{Logger}}
+\subsubsection{\texorpdfstring{Error\+Log()}{ErrorLog()}}
+{\footnotesize\ttfamily void Logger\+::\+Error\+Log (\begin{DoxyParamCaption}\item[{std\+::string}]{message,  }\item[{std\+::string}]{component }\end{DoxyParamCaption})}
+
+Creates an error log message. 
+\begin{DoxyParams}{Parameters}
+{\em message} & Log message. \\
+\hline
+{\em component} & Name of the function where the log message is being created. \\
+\hline
+\end{DoxyParams}
+\hypertarget{namespace_logger_ad751d2237527a66a0a7191d784a945a8}{}\label{namespace_logger_ad751d2237527a66a0a7191d784a945a8} 
+\index{Logger@{Logger}!Info\+Log@{Info\+Log}}
+\index{Info\+Log@{Info\+Log}!Logger@{Logger}}
+\subsubsection{\texorpdfstring{Info\+Log()}{InfoLog()}}
+{\footnotesize\ttfamily void Logger\+::\+Info\+Log (\begin{DoxyParamCaption}\item[{std\+::string}]{message,  }\item[{std\+::string}]{component }\end{DoxyParamCaption})}
+
+Creates an information log message. 
+\begin{DoxyParams}{Parameters}
+{\em message} & Log message. \\
+\hline
+{\em component} & Name of the function where the log message is being created. \\
+\hline
+\end{DoxyParams}
+\hypertarget{namespace_logger_a6506657f7b715f4ed4de8545c9b44e44}{}\label{namespace_logger_a6506657f7b715f4ed4de8545c9b44e44} 
+\index{Logger@{Logger}!Log@{Log}}
+\index{Log@{Log}!Logger@{Logger}}
+\subsubsection{\texorpdfstring{Log()}{Log()}}
+{\footnotesize\ttfamily void Logger\+::\+Log (\begin{DoxyParamCaption}\item[{\hyperlink{namespace_logger_a8f625bd9ec5f706cb67b725a98743c04}{Log\+Type}}]{type,  }\item[{std\+::string}]{message,  }\item[{std\+::string}]{component }\end{DoxyParamCaption})}
+
+Creates a log message of the specified type. 
+\begin{DoxyParams}{Parameters}
+{\em type} & Type of the log message. \\
+\hline
+{\em message} & Log message. \\
+\hline
+{\em component} & Name of the function where the log message is being created. \\
+\hline
+\end{DoxyParams}
+\hypertarget{namespace_logger_a6e44b3fec519cb3bd99514d00170ef4b}{}\label{namespace_logger_a6e44b3fec519cb3bd99514d00170ef4b} 
+\index{Logger@{Logger}!Save\+Log@{Save\+Log}}
+\index{Save\+Log@{Save\+Log}!Logger@{Logger}}
+\subsubsection{\texorpdfstring{Save\+Log()}{SaveLog()}}
+{\footnotesize\ttfamily void Logger\+::\+Save\+Log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Saves all the log messages in a file. \begin{DoxyRemark}{Remarks}
+Since the whole A\+PI is very efficiency-\/dependent, the log messages are only written to a file when the program finishs it\textquotesingle{}s execution. File reading and writing has a very expensive and unnecessary cost to deal with during bottlenecks of exectuion. 
+\end{DoxyRemark}
+\hypertarget{namespace_logger_aea870326f4476cc49457cfdcc6256022}{}\label{namespace_logger_aea870326f4476cc49457cfdcc6256022} 
+\index{Logger@{Logger}!Start\+Log@{Start\+Log}}
+\index{Start\+Log@{Start\+Log}!Logger@{Logger}}
+\subsubsection{\texorpdfstring{Start\+Log()}{StartLog()}}
+{\footnotesize\ttfamily void Logger\+::\+Start\+Log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Initializes the logging system. 

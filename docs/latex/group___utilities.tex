@@ -1,0 +1,196 @@
+\hypertarget{group___utilities}{}\section{Utilities}
+\label{group___utilities}\index{Utilities@{Utilities}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespace_logger}{Logger}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_ray}{Ray}
+\item 
+class \hyperlink{class_r_g_b_color}{R\+G\+B\+Color}
+\item 
+class \hyperlink{class_surface}{Surface}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{group___utilities_ga51f2ca82bd3166f19e7327c8e5e5a068}{R\+G\+B\+Color\+::operator==} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&rhs) const
+\item 
+\hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{group___utilities_gab8eb3021ce94a9a4fc7a1ba1e8c06a30}{R\+G\+B\+Color\+::operator+} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&rhs) const
+\item 
+\hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{group___utilities_ga2d0a70444ca0c882f3a5dbed42787ef8}{R\+G\+B\+Color\+::operator-\/} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&rhs) const
+\item 
+\hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{group___utilities_ga38cb49925dc77a366b56b546b7dd17ae}{R\+G\+B\+Color\+::operator$\ast$} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&rhs) const
+\item 
+\hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{group___utilities_ga46707b8ca0c4b560914f2aae4ec31eb5}{R\+G\+B\+Color\+::operator$\ast$} (const float rhs) const
+\item 
+\hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{group___utilities_ga932f5821d1c40799b6b40f2fe88b7070}{R\+G\+B\+Color\+::operator/} (const float rhs) const
+\item 
+\hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{group___utilities_ga985586cc676498527d1597ab3beee728}{R\+G\+B\+Color\+::operator+=} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&rhs)
+\item 
+\hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{group___utilities_ga1a36960da5c88b5e3e825ad01845de29}{R\+G\+B\+Color\+::operator-\/=} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&rhs)
+\item 
+\hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{group___utilities_ga1b8ab73352d66c6d0125d6f061a1982f}{R\+G\+B\+Color\+::operator$\ast$=} (const float rhs)
+\item 
+\hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{group___utilities_gad071890eadae01f96bf3af8ba52503e0}{R\+G\+B\+Color\+::operator/=} (const float rhs)
+\item 
+float \hyperlink{group___utilities_gaea22cae2344d4a4187b50732820e50c8}{R\+G\+B\+Color\+::\+Average} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group___utilities_gaea22cae2344d4a4187b50732820e50c8}{}\label{group___utilities_gaea22cae2344d4a4187b50732820e50c8} 
+\index{Utilities@{Utilities}!Average@{Average}}
+\index{Average@{Average}!Utilities@{Utilities}}
+\subsubsection{\texorpdfstring{Average()}{Average()}}
+{\footnotesize\ttfamily float R\+G\+B\+Color\+::\+Average (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the average of the components of the color. \begin{DoxyReturn}{Returns}
+The resulting average of the components of the color. 
+\end{DoxyReturn}
+\hypertarget{group___utilities_ga38cb49925dc77a366b56b546b7dd17ae}{}\label{group___utilities_ga38cb49925dc77a366b56b546b7dd17ae} 
+\index{Utilities@{Utilities}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Utilities@{Utilities}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} R\+G\+B\+Color\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&}]{rhs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Multiplies two colors componentwise. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Right hand side operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting color of the componentwise multiplication of two colors. 
+\end{DoxyReturn}
+\hypertarget{group___utilities_ga46707b8ca0c4b560914f2aae4ec31eb5}{}\label{group___utilities_ga46707b8ca0c4b560914f2aae4ec31eb5} 
+\index{Utilities@{Utilities}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Utilities@{Utilities}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} R\+G\+B\+Color\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const float}]{rhs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Multiplies a color by a number. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Right hand side operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting color of the product of a color by a number. 
+\end{DoxyReturn}
+\hypertarget{group___utilities_ga1b8ab73352d66c6d0125d6f061a1982f}{}\label{group___utilities_ga1b8ab73352d66c6d0125d6f061a1982f} 
+\index{Utilities@{Utilities}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Utilities@{Utilities}}
+\subsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}}
+{\footnotesize\ttfamily \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} R\+G\+B\+Color\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const float}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Multiplies a color by a number and assigns the result to the left operand. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Right hand side operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting color of the product of a color by a number. 
+\end{DoxyReturn}
+\hypertarget{group___utilities_gab8eb3021ce94a9a4fc7a1ba1e8c06a30}{}\label{group___utilities_gab8eb3021ce94a9a4fc7a1ba1e8c06a30} 
+\index{Utilities@{Utilities}!operator+@{operator+}}
+\index{operator+@{operator+}!Utilities@{Utilities}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} R\+G\+B\+Color\+::operator+ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&}]{rhs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds two colors componentwise. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Right hand side operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting color of the componentwise sum of two colors. 
+\end{DoxyReturn}
+\hypertarget{group___utilities_ga985586cc676498527d1597ab3beee728}{}\label{group___utilities_ga985586cc676498527d1597ab3beee728} 
+\index{Utilities@{Utilities}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Utilities@{Utilities}}
+\subsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} R\+G\+B\+Color\+::operator+= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds two colors componentwise and assigns the result to the left operand. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Right hand side operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting color of the componentwise sum of two colors. 
+\end{DoxyReturn}
+\hypertarget{group___utilities_ga2d0a70444ca0c882f3a5dbed42787ef8}{}\label{group___utilities_ga2d0a70444ca0c882f3a5dbed42787ef8} 
+\index{Utilities@{Utilities}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Utilities@{Utilities}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} R\+G\+B\+Color\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&}]{rhs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Substracts two colors componentwise. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Right hand side operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting color of the componentwise subtraction of two colors. 
+\end{DoxyReturn}
+\hypertarget{group___utilities_ga1a36960da5c88b5e3e825ad01845de29}{}\label{group___utilities_ga1a36960da5c88b5e3e825ad01845de29} 
+\index{Utilities@{Utilities}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Utilities@{Utilities}}
+\subsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} R\+G\+B\+Color\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Substracts two colors componentwise and assigns the result to the left operand. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Right hand side operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting color of the componentwise subtraction of two colors. 
+\end{DoxyReturn}
+\hypertarget{group___utilities_ga932f5821d1c40799b6b40f2fe88b7070}{}\label{group___utilities_ga932f5821d1c40799b6b40f2fe88b7070} 
+\index{Utilities@{Utilities}!operator/@{operator/}}
+\index{operator/@{operator/}!Utilities@{Utilities}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} R\+G\+B\+Color\+::operator/ (\begin{DoxyParamCaption}\item[{const float}]{rhs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Divides a color by a number. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Right hand side operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting color of the division of a color by a number. 
+\end{DoxyReturn}
+\hypertarget{group___utilities_gad071890eadae01f96bf3af8ba52503e0}{}\label{group___utilities_gad071890eadae01f96bf3af8ba52503e0} 
+\index{Utilities@{Utilities}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Utilities@{Utilities}}
+\subsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} R\+G\+B\+Color\+::operator/= (\begin{DoxyParamCaption}\item[{const float}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Divides a color by a number and assigns the result to the left operand. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Right hand side operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The resulting color of the division of a color by a number. 
+\end{DoxyReturn}
+\hypertarget{group___utilities_ga51f2ca82bd3166f19e7327c8e5e5a068}{}\label{group___utilities_ga51f2ca82bd3166f19e7327c8e5e5a068} 
+\index{Utilities@{Utilities}!operator==@{operator==}}
+\index{operator==@{operator==}!Utilities@{Utilities}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool R\+G\+B\+Color\+::operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&}]{rhs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Checks if the components of two colors are equal. 
+\begin{DoxyParams}{Parameters}
+{\em rhs} & Right hand side operand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value indicating whether the two colors are equal. 
+\end{DoxyReturn}

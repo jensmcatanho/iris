@@ -1,0 +1,150 @@
+\hypertarget{group___lights}{}\section{Lights}
+\label{group___lights}\index{Lights@{Lights}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_ambient}{Ambient}
+\item 
+class \hyperlink{class_directional}{Directional}
+\item 
+class \hyperlink{class_light}{Light}
+\item 
+class \hyperlink{class_point_light}{Point\+Light}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___lights_ga5aefcac18f63a3923320e634daff4f57}{Ambient\+::\+Set\+Intensity} (const float intensity)
+\item 
+void \hyperlink{group___lights_gaac238172e351af4e5b302b0a006bf719}{Ambient\+::\+Set\+Color} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&color)
+\item 
+void \hyperlink{group___lights_gaa916930bad1e02ef24f89039151be8cd}{Directional\+::\+Set\+Intensity} (const float intensity)
+\item 
+void \hyperlink{group___lights_ga460c4d38eba389fd8e13d994249bbafc}{Directional\+::\+Set\+Color} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&color)
+\item 
+void \hyperlink{group___lights_ga497358d0a37e4a87d5e24f286695c0a6}{Directional\+::\+Set\+Direction} (const glm\+::vec3 \&direction)
+\item 
+void \hyperlink{group___lights_ga87d9f95e8a6d77b8fd8383b68daa23ff}{Light\+::\+Casts\+Shadows} (bool flag)
+\item 
+bool \hyperlink{group___lights_gad1397ab09ba91ed92dbbeb0c8fa8bedc}{Light\+::\+Casts\+Shadows} () const
+\item 
+void \hyperlink{group___lights_ga1d97c3f6d636899b719d5014f74b3530}{Point\+Light\+::\+Set\+Intensity} (const float intensity)
+\item 
+void \hyperlink{group___lights_ga27c17e299711f7131091c714b837f619}{Point\+Light\+::\+Set\+Color} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&color)
+\item 
+void \hyperlink{group___lights_ga21b458bf745d4fe52a62e503a4fb3d24}{Point\+Light\+::\+Set\+Position} (const glm\+::vec3 \&position)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group___lights_ga87d9f95e8a6d77b8fd8383b68daa23ff}{}\label{group___lights_ga87d9f95e8a6d77b8fd8383b68daa23ff} 
+\index{Lights@{Lights}!Casts\+Shadows@{Casts\+Shadows}}
+\index{Casts\+Shadows@{Casts\+Shadows}!Lights@{Lights}}
+\subsubsection{\texorpdfstring{Casts\+Shadows()}{CastsShadows()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Light\+::\+Casts\+Shadows (\begin{DoxyParamCaption}\item[{bool}]{flag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets if the objects illuminated by the light cast shadows over other objects. 
+\begin{DoxyParams}{Parameters}
+{\em flag} & Flag that sets if the objects illuminates by the light cast shadows. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___lights_gad1397ab09ba91ed92dbbeb0c8fa8bedc}{}\label{group___lights_gad1397ab09ba91ed92dbbeb0c8fa8bedc} 
+\index{Lights@{Lights}!Casts\+Shadows@{Casts\+Shadows}}
+\index{Casts\+Shadows@{Casts\+Shadows}!Lights@{Lights}}
+\subsubsection{\texorpdfstring{Casts\+Shadows()}{CastsShadows()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Light\+::\+Casts\+Shadows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Checks if the objects illuminated by the light cast shadows over other objects. \begin{DoxyReturn}{Returns}
+True, if the objects illuminated by the light cast shadows. 
+\end{DoxyReturn}
+\hypertarget{group___lights_ga460c4d38eba389fd8e13d994249bbafc}{}\label{group___lights_ga460c4d38eba389fd8e13d994249bbafc} 
+\index{Lights@{Lights}!Set\+Color@{Set\+Color}}
+\index{Set\+Color@{Set\+Color}!Lights@{Lights}}
+\subsubsection{\texorpdfstring{Set\+Color()}{SetColor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void Directional\+::\+Set\+Color (\begin{DoxyParamCaption}\item[{const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the color of the light. 
+\begin{DoxyParams}{Parameters}
+{\em color} & Target color. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___lights_ga27c17e299711f7131091c714b837f619}{}\label{group___lights_ga27c17e299711f7131091c714b837f619} 
+\index{Lights@{Lights}!Set\+Color@{Set\+Color}}
+\index{Set\+Color@{Set\+Color}!Lights@{Lights}}
+\subsubsection{\texorpdfstring{Set\+Color()}{SetColor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void Point\+Light\+::\+Set\+Color (\begin{DoxyParamCaption}\item[{const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the color of the light. 
+\begin{DoxyParams}{Parameters}
+{\em color} & Target color. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___lights_gaac238172e351af4e5b302b0a006bf719}{}\label{group___lights_gaac238172e351af4e5b302b0a006bf719} 
+\index{Lights@{Lights}!Set\+Color@{Set\+Color}}
+\index{Set\+Color@{Set\+Color}!Lights@{Lights}}
+\subsubsection{\texorpdfstring{Set\+Color()}{SetColor()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void Ambient\+::\+Set\+Color (\begin{DoxyParamCaption}\item[{const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the color of the light. 
+\begin{DoxyParams}{Parameters}
+{\em color} & Target color. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___lights_ga497358d0a37e4a87d5e24f286695c0a6}{}\label{group___lights_ga497358d0a37e4a87d5e24f286695c0a6} 
+\index{Lights@{Lights}!Set\+Direction@{Set\+Direction}}
+\index{Set\+Direction@{Set\+Direction}!Lights@{Lights}}
+\subsubsection{\texorpdfstring{Set\+Direction()}{SetDirection()}}
+{\footnotesize\ttfamily void Directional\+::\+Set\+Direction (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{direction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the direction of the light. 
+\begin{DoxyParams}{Parameters}
+{\em direction} & Target direction. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___lights_ga1d97c3f6d636899b719d5014f74b3530}{}\label{group___lights_ga1d97c3f6d636899b719d5014f74b3530} 
+\index{Lights@{Lights}!Set\+Intensity@{Set\+Intensity}}
+\index{Set\+Intensity@{Set\+Intensity}!Lights@{Lights}}
+\subsubsection{\texorpdfstring{Set\+Intensity()}{SetIntensity()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void Point\+Light\+::\+Set\+Intensity (\begin{DoxyParamCaption}\item[{const float}]{intensity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the intensity of the light. 
+\begin{DoxyParams}{Parameters}
+{\em intensity} & Target intensity. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___lights_ga5aefcac18f63a3923320e634daff4f57}{}\label{group___lights_ga5aefcac18f63a3923320e634daff4f57} 
+\index{Lights@{Lights}!Set\+Intensity@{Set\+Intensity}}
+\index{Set\+Intensity@{Set\+Intensity}!Lights@{Lights}}
+\subsubsection{\texorpdfstring{Set\+Intensity()}{SetIntensity()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void Ambient\+::\+Set\+Intensity (\begin{DoxyParamCaption}\item[{const float}]{intensity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the intensity of the light. 
+\begin{DoxyParams}{Parameters}
+{\em intensity} & Target intensity. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___lights_gaa916930bad1e02ef24f89039151be8cd}{}\label{group___lights_gaa916930bad1e02ef24f89039151be8cd} 
+\index{Lights@{Lights}!Set\+Intensity@{Set\+Intensity}}
+\index{Set\+Intensity@{Set\+Intensity}!Lights@{Lights}}
+\subsubsection{\texorpdfstring{Set\+Intensity()}{SetIntensity()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void Directional\+::\+Set\+Intensity (\begin{DoxyParamCaption}\item[{const float}]{intensity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the intensity of the light. 
+\begin{DoxyParams}{Parameters}
+{\em intensity} & Target intensity. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___lights_ga21b458bf745d4fe52a62e503a4fb3d24}{}\label{group___lights_ga21b458bf745d4fe52a62e503a4fb3d24} 
+\index{Lights@{Lights}!Set\+Position@{Set\+Position}}
+\index{Set\+Position@{Set\+Position}!Lights@{Lights}}
+\subsubsection{\texorpdfstring{Set\+Position()}{SetPosition()}}
+{\footnotesize\ttfamily void Point\+Light\+::\+Set\+Position (\begin{DoxyParamCaption}\item[{const glm\+::vec3 \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the position of the light in world coordinates. 
+\begin{DoxyParams}{Parameters}
+{\em position} & Target position. \\
+\hline
+\end{DoxyParams}

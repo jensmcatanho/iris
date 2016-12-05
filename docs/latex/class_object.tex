@@ -1,0 +1,127 @@
+\hypertarget{class_object}{}\section{Object Class Reference}
+\label{class_object}\index{Object@{Object}}
+
+
+{\ttfamily \#include $<$Object.\+h$>$}
+
+Inheritance diagram for Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_object}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_object_a40860402e64d8008fb42329df7097cdb}{Object} ()
+\item 
+virtual bool \hyperlink{class_object_ad9977e40c0a3048eba9a81b25efcf3ef}{Hit} (const \hyperlink{class_ray}{Ray} \&ray, double \&tmin, \hyperlink{class_surface}{Surface} \&sr) const =0
+\item 
+virtual bool \hyperlink{class_object_a020a6edbef7b2591b1dd6815ebbc5aa0}{Shadow\+Hit} (const \hyperlink{class_ray}{Ray} \&ray, float \&tmin) const =0
+\item 
+void \hyperlink{group___geometric_objects_ga74fa63e74026915a261117724303adfc}{Casts\+Shadows} (bool flag)
+\item 
+bool \hyperlink{group___geometric_objects_gab4254fb85f166245bb7234f5c5295777}{Casts\+Shadows} () const
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{class_material}{Material} $>$ \hyperlink{group___geometric_objects_ga7ad7172879f1b2fd092561827aa2bbb1}{Get\+Material} () const
+\item 
+virtual void \hyperlink{class_object_a791d7431f79b030866aa31c7c29ea0db}{Set\+Material} (std\+::shared\+\_\+ptr$<$ \hyperlink{class_material}{Material} $>$ material\+\_\+ptr)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{class_material}{Material} $>$ \hyperlink{class_object_aa79a61ad1ff44b1585cc4972034cecbe}{m\+\_\+\+Material\+Ptr}
+\item 
+bool \hyperlink{class_object_a7cde4bccf1989da90c2d2b463876e179}{m\+\_\+\+Shadows}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Holder of data of 3D objects. \begin{DoxyRemark}{Remarks}
+T\+O\+DO. 
+\end{DoxyRemark}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_object_a40860402e64d8008fb42329df7097cdb}{}\label{class_object_a40860402e64d8008fb42329df7097cdb} 
+\index{Object@{Object}!Object@{Object}}
+\index{Object@{Object}!Object@{Object}}
+\subsubsection{\texorpdfstring{Object()}{Object()}}
+{\footnotesize\ttfamily Object\+::\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Standard constructor. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_object_ad9977e40c0a3048eba9a81b25efcf3ef}{}\label{class_object_ad9977e40c0a3048eba9a81b25efcf3ef} 
+\index{Object@{Object}!Hit@{Hit}}
+\index{Hit@{Hit}!Object@{Object}}
+\subsubsection{\texorpdfstring{Hit()}{Hit()}}
+{\footnotesize\ttfamily virtual bool Object\+::\+Hit (\begin{DoxyParamCaption}\item[{const \hyperlink{class_ray}{Ray} \&}]{ray,  }\item[{double \&}]{tmin,  }\item[{\hyperlink{class_surface}{Surface} \&}]{sr }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Checks if a ray intersects with this object and return it\textquotesingle{}s shading information. 
+\begin{DoxyParams}{Parameters}
+{\em ray} & Intersection ray. \\
+\hline
+{\em tmin} & T\+O\+DO. \\
+\hline
+{\em sr} & Information about the surface of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the object intersects with the given ray. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_plane_a71712655452a8ecbfe5907197e980c1e}{Plane}, and \hyperlink{class_sphere_ab568d3aa3eccdd0c691150fc3d5bb86f}{Sphere}.
+
+\hypertarget{class_object_a791d7431f79b030866aa31c7c29ea0db}{}\label{class_object_a791d7431f79b030866aa31c7c29ea0db} 
+\index{Object@{Object}!Set\+Material@{Set\+Material}}
+\index{Set\+Material@{Set\+Material}!Object@{Object}}
+\subsubsection{\texorpdfstring{Set\+Material()}{SetMaterial()}}
+{\footnotesize\ttfamily virtual void Object\+::\+Set\+Material (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{class_material}{Material} $>$}]{material\+\_\+ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Sets a material to the object. 
+\begin{DoxyParams}{Parameters}
+{\em material\+\_\+ptr} & Smart pointer to a \hyperlink{class_material}{Material} type. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_object_a020a6edbef7b2591b1dd6815ebbc5aa0}{}\label{class_object_a020a6edbef7b2591b1dd6815ebbc5aa0} 
+\index{Object@{Object}!Shadow\+Hit@{Shadow\+Hit}}
+\index{Shadow\+Hit@{Shadow\+Hit}!Object@{Object}}
+\subsubsection{\texorpdfstring{Shadow\+Hit()}{ShadowHit()}}
+{\footnotesize\ttfamily virtual bool Object\+::\+Shadow\+Hit (\begin{DoxyParamCaption}\item[{const \hyperlink{class_ray}{Ray} \&}]{ray,  }\item[{float \&}]{tmin }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Checks if a shadow ray intersects with the object. 
+\begin{DoxyParams}{Parameters}
+{\em ray} & Shadow ray. \\
+\hline
+{\em tmin} & T\+O\+DO \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the object intersects with the given ray. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_plane_a21f6adf1c2be7853a61e1f8d811b76eb}{Plane}, and \hyperlink{class_sphere_ac3b3cc027f0cd8c89cecc3b65799267d}{Sphere}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_object_aa79a61ad1ff44b1585cc4972034cecbe}{}\label{class_object_aa79a61ad1ff44b1585cc4972034cecbe} 
+\index{Object@{Object}!m\+\_\+\+Material\+Ptr@{m\+\_\+\+Material\+Ptr}}
+\index{m\+\_\+\+Material\+Ptr@{m\+\_\+\+Material\+Ptr}!Object@{Object}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Material\+Ptr}{m\_MaterialPtr}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{class_material}{Material}$>$ Object\+::m\+\_\+\+Material\+Ptr\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hyperlink{class_material}{Material} attached to the object. \hypertarget{class_object_a7cde4bccf1989da90c2d2b463876e179}{}\label{class_object_a7cde4bccf1989da90c2d2b463876e179} 
+\index{Object@{Object}!m\+\_\+\+Shadows@{m\+\_\+\+Shadows}}
+\index{m\+\_\+\+Shadows@{m\+\_\+\+Shadows}!Object@{Object}}
+\subsubsection{\texorpdfstring{m\+\_\+\+Shadows}{m\_Shadows}}
+{\footnotesize\ttfamily bool Object\+::m\+\_\+\+Shadows\hspace{0.3cm}{\ttfamily [protected]}}
+
+Flag that stores information about whether the object casts shadows over other objects. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Geometric\+Objects/include/\hyperlink{_object_8h}{Object.\+h}\end{DoxyCompactItemize}

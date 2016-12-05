@@ -1,0 +1,81 @@
+\hypertarget{class_phong}{}\section{Phong Class Reference}
+\label{class_phong}\index{Phong@{Phong}}
+
+
+{\ttfamily \#include $<$Phong.\+h$>$}
+
+Inheritance diagram for Phong\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_phong}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_phong_a6b04845ec7a57cce73ee7d3355b0bf98}{Phong} ()
+\item 
+virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \hyperlink{class_phong_a4ab7e1d4514c37abe47e18d627856dc8}{Shade} (\hyperlink{class_surface}{Surface} \&sr) const
+\item 
+void \hyperlink{group___materials_ga245b163a849cf378e84ed77620172f74}{Set\+Ambient\+Reflection} (const float kdr)
+\item 
+void \hyperlink{group___materials_ga7562b2e0139a3e2e93e61954d13c281f}{Set\+Ambient\+Color} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&color)
+\item 
+void \hyperlink{group___materials_ga7d9198210719a327b6c293955a9ecafe}{Set\+Diffuse\+Reflection} (const float kdr)
+\item 
+void \hyperlink{group___materials_ga54c0c1a1b40732588660aebbe01ce94f}{Set\+Diffuse\+Color} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&color)
+\item 
+void \hyperlink{group___materials_gaaa0823035fefb08e6f20e4af9c6f73d2}{Set\+Specular\+Reflection} (const float kdr)
+\item 
+void \hyperlink{group___materials_gaed8372d4e59cb7c1b781979c4ea9ee80}{Set\+Specular\+Color} (const \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} \&color)
+\item 
+void \hyperlink{group___materials_ga167d70d514005d94a0bede7d7b12f372}{Set\+Specular\+Exponent} (const float ksexp)
+\item 
+void \hyperlink{group___materials_ga76b02c8e5a8dfff0a24c929b37a47c0c}{Set\+Sampler} (std\+::shared\+\_\+ptr$<$ \hyperlink{class_sampler}{Sampler} $>$)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Rendering properties of an object. \begin{DoxyRemark}{Remarks}
+T\+O\+DO. 
+\end{DoxyRemark}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_lambertian}{Lambertian} 
+
+\hyperlink{class_glossy_specular}{Glossy\+Specular} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_phong_a6b04845ec7a57cce73ee7d3355b0bf98}{}\label{class_phong_a6b04845ec7a57cce73ee7d3355b0bf98} 
+\index{Phong@{Phong}!Phong@{Phong}}
+\index{Phong@{Phong}!Phong@{Phong}}
+\subsubsection{\texorpdfstring{Phong()}{Phong()}}
+{\footnotesize\ttfamily Phong\+::\+Phong (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Standard constructor. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_phong_a4ab7e1d4514c37abe47e18d627856dc8}{}\label{class_phong_a4ab7e1d4514c37abe47e18d627856dc8} 
+\index{Phong@{Phong}!Shade@{Shade}}
+\index{Shade@{Shade}!Phong@{Phong}}
+\subsubsection{\texorpdfstring{Shade()}{Shade()}}
+{\footnotesize\ttfamily virtual \hyperlink{class_r_g_b_color}{R\+G\+B\+Color} Phong\+::\+Shade (\begin{DoxyParamCaption}\item[{\hyperlink{class_surface}{Surface} \&}]{sr }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Computes the color of a given surface. 
+\begin{DoxyParams}{Parameters}
+{\em sr} & Information about the surface of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Color of the surface. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_material_aeccd880ee7b86a849e8f2d2f0bcf4fc7}{Material}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Materials/include/\hyperlink{_phong_8h}{Phong.\+h}\end{DoxyCompactItemize}
