@@ -28,63 +28,71 @@ SOFTWARE.
 
 #include "PreRequisites.h"
 
+/**
+ * @addtogroup GeometricObjects
+ * @{
+ */
+
+/**
+ * Holder of data of 3D objects.
+ * @remarks TODO.
+ */
 class Object {
 	public:
 		/**
-		 * Default constructor.
+		 * Standard constructor.
 		 */
 		Object();
 
 		/**
 		 * Checks if a ray intersects with this object and return it's shading information.
-		 * @param {const Ray &} ray Intersection ray.
-		 * @param {float &}     tmin TODO
-		 * @return {bool}
+		 * @param  ray  Intersection ray.
+		 * @param  tmin TODO.
+		 * @param  sr   Information about the surface of the object.
+		 * @return True, if the object intersects with the given ray.
 		 */
-		virtual bool Hit(const Ray &, double &, Surface &) const = 0;
+		virtual bool Hit(const Ray &ray, double &tmin, Surface &sr) const = 0;
 
 		/**
 		 * Checks if a shadow ray intersects with the object.
-		 * @param {const Ray &} ray Shadow ray.
-		 * @param {float &}     tmin TODO
-		 * @return {bool}
+		 * @param  ray  Shadow ray.
+		 * @param  tmin TODO
+		 * @return True, if the object intersects with the given ray.
 		 */
-		virtual bool ShadowHit(const Ray &, float &) const = 0;
+		virtual bool ShadowHit(const Ray &ray, float &tmin) const = 0;
 
 		/**
 		 * Sets if the object casts shadows over other objects.
-		 * @param {bool} flag Cast shadows flag.
+		 * @param flag Flag that sets if the object casts shadows.
 		 */
-		void CastsShadows(bool);
+		void CastsShadows(bool flag);
 
 		/**
 		 * Checks if the object casts shadows over other objects.
-		 * @return {bool}
+		 * @return True, if the object casts shadows.
 		 */
 		bool CastsShadows() const;
 
 		/**
 		 * Gets the material of the object.
-		 * @return {std::shared_ptr<Material>}
+		 * @return Smart pointer to the material attached to the object.
 		 */
 		std::shared_ptr<Material> GetMaterial() const;
 
 		/**
 		 * Sets a material to the object.
-		 * @param {std::shared_ptr<Material>} material_ptr Smart pointer to a Material type.
+		 * @param material_ptr Smart pointer to a Material type.
 		 */
-		virtual void SetMaterial(std::shared_ptr<Material>);
+		virtual void SetMaterial(std::shared_ptr<Material> material_ptr);
 
 	protected:
 		/**
 		 * Material attached to the object.
-		 * @type {std::shared_ptr<Material>}
 		 */
 		std::shared_ptr<Material> m_MaterialPtr;
 		
 		/**
 		 * Flag that stores information about whether the object casts shadows over other objects.
-		 * @type {bool}
 		 */
 		bool m_Shadows;
 
@@ -101,5 +109,9 @@ inline void Object::CastsShadows(bool flag) {
 inline bool Object::CastsShadows() const {
 	return m_Shadows;
 }
+
+/**
+ * @}
+ */
 
 #endif

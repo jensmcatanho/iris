@@ -28,38 +28,102 @@ SOFTWARE.
 
 #include "Prerequisites.h"
 
+/**
+ * @addtogroup World
+ * @{
+ */
+
+/**
+ * The plane in which the scene is rendered.
+ * @remarks TODO.
+ */
 class ViewPlane {
 	public:
+		/**
+		 * Standard constructor.
+		 */
 		ViewPlane();
 
-		void SetWidth(const int);
-		void SetHeight(const int);
-		void SetPixelSize(const float);
-		void SetGamma(const float);
-		void SetGamutDisplay(const bool);
-		void SetSamples(const int);
-		void SetSampler(std::shared_ptr<Sampler>);
+		/**
+		 * Sets the width of the view plane.
+		 * @param width Target width.
+		 */
+		void SetWidth(const int width);
 
-		// Horizontal image resolution.
+		/**
+		 * Sets the height of the view plane.
+		 * @param height Target height.
+		 */
+		void SetHeight(const int height);
+
+		/**
+		 * Sets the pixel size of the view plane.
+		 * @param pixel_size Target pixel size.
+		 */
+		void SetPixelSize(const float pixel_size);
+
+		/**
+		 * Sets the gamma correction factor of the view plane.
+		 * @param gamma Target gamma correction factor.
+		 */
+		void SetGamma(const float gamma);
+
+		/**
+		 * Sets how to deal with out of gamut colors.
+		 * @param out_of_gamut Target out of gamut.
+		 */
+		void SetGamutDisplay(const bool out_of_gamut);
+
+		/**
+		 * Sets the sampler used by the plane.
+		 * @param sampler_ptr Target sampler.
+		 */
+		void SetSampler(std::shared_ptr<Sampler> sampler_ptr);
+
+		/**
+		 * Sets the number of samples used by the view plane.
+		 * @param numSamples Target number of samples.
+		 */
+		void SetSamples(const int numSamples);
+
+		/**
+		 * Horizontal image resolution.
+		 */
 		int m_Width;
 
-		// Vertical image resolution.
+		/**
+		 * Vertical image resolution.
+		 */
 		int m_Height;
 
+		/**
+		 * Pixel size.
+		 */
 		float m_PixelSize;
 
-		// Gamma correction factor.
+		/**
+		 * Gamma correction factor.
+		 */
 		float m_Gamma;
 
-		// Inverse of the gamma correction factor.
+		/**
+		 * Inverse of the gamma correction factor.
+		 */
 		float m_InvGamma;
 
-		// Checks if RGBColor is out of gamut.
+		/**
+		 * Checks if RGBColor is out of gamut.
+		 */
 		bool m_OutOfGamut;
 
+		/**
+		 * Smart pointer to a sampler.
+		 */
 		std::shared_ptr<Sampler> m_SamplerPtr;
 		
-		// Number of samples per pixel.
+		/**
+		 * Number of samples per pixel.
+		 */
 		int m_NumSamples;
 };
 
@@ -83,5 +147,9 @@ inline void ViewPlane::SetGamma(const float gamma) {
 inline void ViewPlane::SetGamutDisplay(const bool out_of_gamut) {
 	m_OutOfGamut = out_of_gamut;
 }
+
+/**
+ * @}
+ */
 
 #endif

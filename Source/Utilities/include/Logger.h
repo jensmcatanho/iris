@@ -28,22 +28,89 @@ SOFTWARE.
 
 #include "Prerequisites.h"
 
-// enum LogDetail { LD_LOW, LD_NORMAL, LD_HIGH };  // Check the need for this in the future.
-// enum LogRelevance { LR_TRIVIAL, LR_NORMAL, LR_IMPORTANT };  // Different highlights.
-enum LogType { LT_DEBUG, LT_ERROR, LT_INFO };  // Different prefixes.
+/**
+ * @addtogroup Utilities
+ * @{
+ */
 
+/**
+ * Handles the creation of log messages.
+ * @remarks TODO
+ */
 namespace Logger {
+	/**
+	 * Describes the type of the log message.
+	 */
+	enum LogType {
+		LT_DEBUG, /*!< Debug message. */
+		LT_ERROR, /*!< Error message. */
+		LT_INFO   /*!< Informative message. */
+	};
+	
+	/**
+	 * Describes how detailed the log message is.
+	 */
+	enum LogDetail {
+		LD_LITTLE, /*!< Little detailed message. */
+		LD_NORMAL, /*!< Normal detailed message. */
+		LD_HIGH    /*!< High detailes message. */
+	};
+	
+	/**
+	 * Describes how important the log message is.
+	 */
+	enum LogRelevance {
+		LR_TRIVIAL,  /*!< Trivial message. */
+		LR_NORMAL,   /*!< Normal message. */
+		LR_IMPORTANT /*!< Important message */
+	};
+	
+	/**
+	 * Initializes the logging system.
+	 */
 	void StartLog();
 
-	void Log(LogType, std::string, std::string);
+	/**
+	 * Creates a log message of the specified type.
+	 * @param type    Type of the log message.
+	 * @param message Log message.
+	 * @param component Name of the function where the log message is being created.
+	 */
+	void Log(LogType type, std::string message, std::string component);
 
+	/**
+	 * Creates a debug log message.
+	 * @param message   Log message.
+	 * @param component Name of the function where the log message is being created.
+	 */
 	void DebugLog(std::string message, std::string component);
 
+	/**
+	 * Creates an error log message.
+	 * @param message   Log message.
+	 * @param component Name of the function where the log message is being created.
+	 */
 	void ErrorLog(std::string message, std::string component);
 
+	/**
+	 * Creates an information log message.
+	 * @param message   Log message.
+	 * @param component Name of the function where the log message is being created.
+	 */
 	void InfoLog(std::string message, std::string component);
 
+	/**
+	 * Saves all the log messages in a file.
+	 * @remarks Since the whole API is very efficiency-dependent, the log messages are
+	 * only written to a file when the program finishs it's execution. File reading and
+	 * writing has a very expensive and unnecessary cost to deal with during bottlenecks
+	 * of exectuion.
+	 */
 	void SaveLog();
 }
+
+/**
+ * @}
+ */
 
 #endif

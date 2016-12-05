@@ -27,31 +27,67 @@ SOFTWARE.
 #define LAMBERTIAN_H
 
 #include "BRDF.h"
-#include "RGBColor.h"
 
+/**
+ * @addtogroup BRDF
+ * @{
+ */
+
+/**
+ * The perfect diffuse bidirectional reflectance distribution function abstraction.
+ * @remarks TODO.
+ */
 class Lambertian : public BRDF {
 	public:
+		/**
+		 * Standard constructor.
+		 */
 		Lambertian();
 
-		virtual RGBColor f(const Surface &, const glm::vec3 &, const glm::vec3 &) const;
+		/**
+		 * Computes the reflected radiance along wo.
+		 * @param  sr Information about the surface of the object.
+		 * @param  wi Incoming light direction.
+		 * @param  wo Reflected light direction.
+		 * @return Reflected radiance of a surface.
+		 */
+		virtual RGBColor f(const Surface &sr, const glm::vec3 &wi, const glm::vec3 &wo) const;
 
-		virtual RGBColor rho(const Surface &, const glm::vec3 &) const;
+		/**
+		 * Computes the perfect diffuse reflectance.
+		 * @param  sr Information about the surface of the object.
+		 * @param  wo Reflected light direction.
+		 * @return Perfect diffuse reflectance.
+		 */
+		virtual RGBColor rho(const Surface &sr, const glm::vec3 &wo) const;
 
-		// Setters.
-		void SetDiffuseReflection(const float);
-		void SetDiffuseColor(const RGBColor &);
+		/**
+		 * Sets the diffuse reflection coefficient.
+		 * @param kdr Target diffuse reflection coefficient.
+		 */
+		void SetDiffuseReflection(const float kdr);
+
+		/**
+		 * Sets the diffuse color.
+		 * @param color Target diffuse color.
+		 */
+		void SetDiffuseColor(const RGBColor &color);
 
 	private:
-		// Diffuse reflection coefficient.
+		/**
+		 * Diffuse reflection coefficient.
+		 */
 		float m_DiffuseReflection;
 
-		// Diffuse color.
+		/**
+		 * Diffuse color.
+		 */
 		RGBColor m_DiffuseColor;
 
 };
 
 inline RGBColor Lambertian::f(const Surface &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
-	return m_DiffuseColor * m_DiffuseReflection * INV_PI;
+	return rho(sr, wo) * INV_PI;
 }
 
 inline RGBColor Lambertian::rho(const Surface &sr, const glm::vec3 &wo) const {
@@ -65,5 +101,9 @@ inline void Lambertian::SetDiffuseReflection(const float kdr) {
 inline void Lambertian::SetDiffuseColor(const RGBColor &color) {
 	m_DiffuseColor = color;
 }
+
+/**
+ * @}
+ */
 
 #endif

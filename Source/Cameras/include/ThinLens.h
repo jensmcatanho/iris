@@ -31,7 +31,6 @@ SOFTWARE.
 class ThinLens : public Camera {
 	public:
 		ThinLens();
-		ThinLens(glm::vec3, glm::vec3);
 		
 		virtual void RenderScene(const World &);
 

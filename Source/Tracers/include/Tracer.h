@@ -28,23 +28,40 @@ SOFTWARE.
 
 #include "Prerequisites.h"
 
+/**
+ * @addtogroup Tracers
+ * @{
+ */
+
+/**
+ * TODO.
+ * @remarks TODO.
+ */
 class Tracer {
 	public:
 		/**
 		 * Constructs a Tracer with a pointer to the world.
-		 * @param {std::shared_ptr<World>} world_ptr Pointer to the world.
+		 * @param world_ptr Pointer to the world.
 		 */
-		Tracer(std::shared_ptr<World>);
+		Tracer(std::shared_ptr<World> world_ptr);
 
 		/**
 		 * Standard ray tracing method.
-		 * @param {const Ray &} ray Ray traced.
-		 * @return {RGBColor}
+		 * @param ray Ray traced.
+		 * @return Color of the nearest surface hit by the ray.
 		 */
-		virtual RGBColor TraceRay(const Ray &) const;
+		virtual RGBColor TraceRay(const Ray &ray) const;
 
 	protected:
+		/**
+		 * Reference to the world.
+		 * @see World
+		 */
 		std::weak_ptr<World> m_WorldPtr;
 };
+
+/**
+ * @}
+ */
 
 #endif

@@ -30,46 +30,110 @@ SOFTWARE.
 #include "RGBColor.h"
 #include "ViewPlane.h"
 
+/**
+ * @addtogroup World
+ * @{
+ */
+
+/**
+ * Simplifies notation of a vector of smart pointers to objects.
+ */
 typedef std::vector<std::shared_ptr<Object>> ObjectList;
+
+/**
+ * Simplifies notation of a vector of smart pointers to lights.
+ */
 typedef std::vector<std::shared_ptr<Light>> LightList;
 
+/**
+ * TODO.
+ * @remarks TODO.
+ */
 class World : public std::enable_shared_from_this<World> {
 	friend class LuaState;
 
 	public:
+		/**
+		 * Standard constructor.
+		 */
 		World();
 
+		/**
+		 * Build the scene.
+		 */
 		void Build();
-		Surface HitObjects(const Ray &);
-		void DisplayPixel(const int, const int, const RGBColor &) const;
-		inline void SetCamera(std::shared_ptr<Camera>);
 
+		/**
+		 * Checks if an object has been hit by a ray.
+		 * @param  ray Ray traced.
+		 * @return Information about the surface of the object hit.
+		 */
+		Surface HitObjects(const Ray &ray);
+
+		/**
+		 * Saves color information in a pixel.
+		 */
+		void DisplayPixel(const int row, const int column, const RGBColor &raw_color) const;
+
+		/**
+		 * Sets a camera to the scene.
+		 * @param camera New camera.
+		 */
+		void SetCamera(std::shared_ptr<Camera> camera);
+
+		/**
+		 * View plane.
+		 */
 		ViewPlane m_ViewPlane;
 
+		/**
+		 * Background color.
+		 */
 		RGBColor m_BackgroundColor;
 
+		/**
+		 * Scene ambient light.
+		 */
 		std::shared_ptr<Light> m_AmbientPtr;
 
+		/**
+		 * Scene camera.
+		 */
 		std::shared_ptr<Camera> m_CameraPtr;
 
+		/**
+		 * Scene tracer.
+		 */
 		std::shared_ptr<Tracer> m_TracerPtr;
 
-		// List of the pixels in the view plane.
+		/**
+		 * List of the pixels in the view plane.
+		 */
 		RGBColor *m_Pixels;
 
-		// List of the objects in the scene.
+		/**
+		 * List of the objects in the scene.
+		 */
 		ObjectList m_Objects;
 
-		// List of the lights in the scene.
+		/**
+		 * List of the lights in the scene.
+		 */
 		LightList m_Lights;
 
 
 	private:
-		// Add an object to the scene.
-		void AddObject(std::shared_ptr<Object>);
+		/**
+		 * Adds an object to the scene.
+		 * @param objPtr New object.
+		 */
+		void AddObject(std::shared_ptr<Object> objPtr);
 		
-		// Add a light to the scene.
-		void AddLight(std::shared_ptr<Light>);
+		/**
+		 * Adds a light to the scene.
+		 * @param lightPtr New light.
+		 */
+		void AddLight(std::shared_ptr<Light> lightPtr);
 };
 
 inline void World::SetCamera(std::shared_ptr<Camera> camera) {
@@ -83,5 +147,9 @@ inline void World::AddObject(std::shared_ptr<Object> objPtr) {
 inline void World::AddLight(std::shared_ptr<Light> lightPtr) {
 	m_Lights.push_back(lightPtr);
 }
+
+/**
+ * @}
+ */
 
 #endif

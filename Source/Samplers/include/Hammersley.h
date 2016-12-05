@@ -28,25 +28,34 @@ SOFTWARE.
 
 #include "Sampler.h"
 
+/**
+ * @addtogroup Samplers
+ * @{
+ */
+
+/**
+ * TODO
+ * @remarks TODO.
+ */
 class Hammersley : public Sampler {
 	public:
 		/**
-		 * Default constructor.
+		 * Standard constructor.
 		 */
 		Hammersley();
 
 		/**
-		 * Constructs a Sampler with the passed number of samples.
-		 * @param {const int} numSamples Number of samples.
+		 * Constructs a sampler and sets its number of samples.
+		 * @param numSamples Number of samples.
 		 */
-		Hammersley(const int);
+		Hammersley(const int numSamples);
 
 		/**
-		 * Constructs a Sampler with the passed number of samples and sets.
-		 * @param {const int} numSamples Number of samples.
-		 * @param {const int} numSets    Number of sets.
+		 * Constructs a sampler and sets its number of samples and sets.
+		 * @param numSamples Number of samples.
+		 * @param numSets    Number of sets.
 		 */
-		Hammersley(const int, const int);
+		Hammersley(const int numSamples, const int numSets);
 
 	private:
 		/**
@@ -56,10 +65,14 @@ class Hammersley : public Sampler {
 
 		/**
 		 * Radical-inverse function of an integer in base 2.
-		 * @param {int} j TODO
-		 * @return {double}
+		 * @param  j TODO
+		 * @return TODO
 		 */
-		double Phi(int) const;
+		double Phi(int j) const;
 };
+
+/**
+ * @}
+ */
 
 #endif

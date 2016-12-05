@@ -28,57 +28,64 @@ SOFTWARE.
 
 #include "Object.h"
 
+/**
+ * @addtogroup GeometricObjects
+ * @{
+ */
+
+/**
+ * Holder of data of a 3D plane.
+ * @remarks TODO.
+ */
 class Plane : public Object {
 	public:
 		/**
-		 * Default constructor.
+		 * Standard constructor.
 		 */
 		Plane();
 
 		/**
 		 * Checks if a ray intersects with this object and return it's shading information.
-		 * @param {const Ray &} ray Intersection ray.
-		 * @param {float &} tmin TODO
-		 * @return {bool}
+		 * @param  ray  Intersection ray.
+		 * @param  tmin TODO.
+		 * @param  sr   Information about the surface of the object.
+		 * @return True, if the object intersects with the given ray.
 		 */
-		virtual bool Hit(const Ray &, double &, Surface &) const;
+		virtual bool Hit(const Ray &ray, double &tmin, Surface &sr) const;
 
 		/**
 		 * Checks if a shadow ray intersects with the object.
-		 * @param {const Ray &} ray Shadow ray.
-		 * @param {float &} tmin TODO
-		 * @return {bool}
+		 * @param  ray  Shadow ray.
+		 * @param  tmin TODO
+		 * @return True, if the object intersects with the given ray.
 		 */
-		virtual bool ShadowHit(const Ray &, float &) const;
+		virtual bool ShadowHit(const Ray &ray, float &tmin) const;
 
 		/**
 		 * Sets the point of the plane.
-		 * @param {const glm::vec3 &} point Target point.
+		 * @param point Target point.
 		 */
-		void SetPoint(const glm::vec3 &);
+		void SetPoint(const glm::vec3 &point);
 
 		/**
 		 * Sets the normal of the plane.
-		 * @param {const glm::vec3 &} normal Target normal.
+		 * @param normal Target normal.
 		 */
-		void SetNormal(const glm::vec3 &);
+		void SetNormal(const glm::vec3 &normal);
 		
 	private:
 		/**
 		 * Point of the plane in world coordinates.
-		 * @type {glm::vec3}
 		 */
 		glm::vec3 m_Point;
 
 		/**
-		 * Normal vector of the plane normalized.
-		 * @type {glm::vec3}
+		 * Normal of the plane.
 		 */
 		glm::vec3 m_Normal;
 
 		/**
 		 * Epsilon factor to compute intersections and shadows.
-		 * @type {static const double}
 		 */
 		static const double kEpsilon;
 };
@@ -90,5 +97,9 @@ inline void Plane::SetPoint(const glm::vec3 &point) {
 inline void Plane::SetNormal(const glm::vec3 &normal) {
 	m_Normal = glm::normalize(normal);
 }
+
+/**
+ * @}
+ */
 
 #endif

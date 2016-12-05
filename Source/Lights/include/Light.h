@@ -27,49 +27,61 @@ SOFTWARE.
 #define LIGHT_H
 
 #include "Prerequisites.h"
+#include "RGBColor.h"
 
+/**
+ * @addtogroup Lights
+ * @{
+ */
+
+/**
+ * Representation of a light source.
+ * @remarks TODO
+ */
 class Light {
 	public:
 		/**
-		 * Default constructor.
+		 * Standard constructor.
 		 */
 		Light();
 
 		/**
-		 * Computes the normalized direction from a hit point to the light.
-		 * @param {Surface &} sr Shading record of a surface.
-		 * @return {glm::vec3}
+		 * Computes the direction of the incoming light at a given surface.
+		 * @param  sr Information about the surface of the object.
+		 * @return Direction from which the light arrives at the surface.
 		 */
-		virtual glm::vec3 GetDirection(Surface &) = 0;
+		virtual glm::vec3 GetDirection(Surface &sr) = 0;
 
 		/**
-		 * @param {Surface &}
-		 * @return {RGBColor}
+		 * Computes the incident radiance at a given surface.
+		 * @param sr Information about the surface of the object.
+		 * @return Incident radiance at the surface.
 		 */
-		virtual RGBColor L(Surface &);
+		virtual RGBColor L(Surface &sr);
 
 		/**
-		 * @param
-		 * @return {bool}
+		 * Checks if a surface is shadowed by another object.
+		 * @param  ray Casted shadow ray.
+		 * @param  sr  Information about the surface of the object.
+		 * @return True, if the surface is shadowed.
 		 */
-		virtual bool Shadowed(const Ray &, const Surface &) const = 0;
+		virtual bool Shadowed(const Ray &ray, const Surface &sr) const = 0;
 
 		/**
-		 * Sets if the object casts shadows over other objects.
-		 * @param {bool} flag Cast shadows flag.
+		 * Sets if the objects illuminated by the light cast shadows over other objects.
+		 * @param flag Flag that sets if the objects illuminates by the light cast shadows.
 		 */
-		void CastsShadows(bool);
+		void CastsShadows(bool flag);
 
 		/**
-		 * Checks if the object casts shadows over other objects.
-		 * @return {bool}
+		 * Checks if the objects illuminated by the light cast shadows over other objects.
+		 * @return True, if the objects illuminated by the light cast shadows.
 		 */
 		bool CastsShadows() const;
 
 	protected:
 		/**
-		 * Flag that stores information about whether the light casts shadows.
-		 * @type {bool}
+		 * Flag that stores information about whether the objects illuminated by the light casts shadows over other objects.
 		 */
 		bool m_Shadows;
 
@@ -82,5 +94,9 @@ inline void Light::CastsShadows(bool flag) {
 inline bool Light::CastsShadows() const {
 	return m_Shadows;
 }
+
+/**
+ * @}
+ */
 
 #endif

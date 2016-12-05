@@ -36,13 +36,6 @@ Orthographic::Orthographic() :
 
 }
 
-Orthographic::Orthographic(glm::vec3 eye, glm::vec3 lookat) :
-	Camera(eye, lookat),
-	m_vpDistance(100.0),
-	m_Zoom(1.0) {
-
-}
-
 void Orthographic::RenderScene(const World &w) {
 	Ray ray;
 	RGBColor pixel_color;

@@ -28,28 +28,102 @@ SOFTWARE.
 
 #include "Prerequisites.h"
 
+/**
+ * @addtogroup Lua
+ * @{
+ */
+
+/**
+ * Lua parser.
+ * @remarks TODO.
+ */
 class LuaState {
 	public:
-		LuaState(std::shared_ptr<World>);
+		/**
+		 * Constructs a Lua state with a pointer to the world.
+		 * @param world_ptr Smart pointer to the world.
+		 */
+		LuaState(std::shared_ptr<World> world_ptr);
+
+		/**
+		 * Standard destructor.
+		 */
 		~LuaState();
 
-		bool Start(const std::string &);
+		/**
+		 * Initialize the Lua state.
+		 * @param  filename Scene file.
+		 * @return True, if the state was successfully initialized.
+		 */
+		bool Start(const std::string &filename);
+
+		/**
+		 * Loads the scene from Lua into memory.
+		 */
 		void LoadScene();
 
 	private:
+		/**
+		 * Pointer to the Lua state.
+		 */
 		lua_State *m_L;
+
+		/**
+		 * Pointer to the world.
+		 */
 		std::weak_ptr<World> m_WorldPtr;
 
+		/**
+		 * Parses image parameters.
+		 */
 		void ParseImage();
+
+		/**
+		 * Parses sampler parameters.
+		 */
 		void ParseSampler();
+
+		/**
+		 * Parses tracer parameters.
+		 */
 		void ParseTracer();
+
+		/**
+		 * Parses camera parameters.
+		 */
 		void ParseCamera();
+
+		/**
+		 * Parses light paramteres.
+		 */
 		void ParseLights();
+
+		/**
+		 * Parses object parameters.
+		 */
 		void ParseObjects();
 
+		/**
+		 * Parses vectors.
+		 * @return 3D vector parsed from Lua.
+		 */
 		glm::vec3 ParseVector();
+
+		/**
+		 * Parses colors.
+		 * @return Color parsed from Lua.
+		 */
 		RGBColor ParseColor();
+
+		/**
+		 * Parses materials.
+		 * @return Material parsed from Lua.
+		 */
 		std::shared_ptr<Material> ParseMaterial();
 };
+
+/**
+ * @}
+ */
 
 #endif

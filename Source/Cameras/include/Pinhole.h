@@ -28,25 +28,57 @@ SOFTWARE.
 
 #include "Camera.h"
 
+/**
+ * @addtogroup Cameras
+ * @{
+ */
+
+/**
+ * A point from which the scene will be rendered with perspective viewing.
+ * @remarks TODO.
+ */
+
 class Pinhole : public Camera {
 	public:
+		/**
+		 * Standard constructor.
+		 */
 		Pinhole();
-		Pinhole(glm::vec3, glm::vec3);
 
-		virtual void RenderScene(const World &);
+		/**
+		 * Traces the constructed scene.
+		 * @param w Reference to the world.
+		 */
+		virtual void RenderScene(const World &w);
 
-		// Setters.
-		void SetViewPlaneDistance(const float);
-		void SetZoom(const float);
+		/**
+		 * Sets the distance from the camera to the view plane.
+		 * @param distance Target distance.
+		 */
+		void SetViewPlaneDistance(const float distance);
+
+		/**
+		 * Sets the zoom factor of the camera.
+		 * @param zoom Target zoom factor.
+		 */
+		void SetZoom(const float zoom);
 
 	private:
-		// Calculates the ray direction given a sample point.
-		glm::vec3 RayDirection(const glm::vec2 &) const;
+		/**
+		 * Computes the direction of the ray to be traced.
+		 * @param sample_point Sample point on the view plane that the ray will intersect.
+		 * @return TODO
+		 */
+		glm::vec3 RayDirection(const glm::vec2 &sample_point) const;
 
-		// Distance from the eye to the view plane.
+		/**
+		 * Distance from the eye to the view plane.
+		 */
 		float m_vpDistance;
 
-		// Zoom factor.
+		/**
+		 * Zoom factor of the camera.
+		 */
 		float m_Zoom;
 };
 
@@ -57,5 +89,9 @@ inline void Pinhole::SetViewPlaneDistance(const float distance) {
 inline void Pinhole::SetZoom(const float zoom) {
 	m_Zoom = zoom;
 }
+
+/**
+ * @}
+ */
 
 #endif

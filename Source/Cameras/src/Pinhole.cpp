@@ -36,13 +36,6 @@ Pinhole::Pinhole() :
 
 }
 
-Pinhole::Pinhole(glm::vec3 eye, glm::vec3 lookat) :
-	Camera(eye, lookat),
-	m_vpDistance(500.0),
-	m_Zoom(1.0) {
-
-}
-
 void Pinhole::RenderScene(const World &w) {
 	Ray ray;
 	RGBColor pixelColor;

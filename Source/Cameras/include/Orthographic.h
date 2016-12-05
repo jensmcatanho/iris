@@ -28,22 +28,50 @@ SOFTWARE.
 
 #include "Camera.h"
 
+/**
+ * @addtogroup Cameras
+ * @{
+ */
+
+/**
+ * A point from which the scene will be rendered with orthographic viewing.
+ * @remarks TODO.
+ */
+
 class Orthographic : public Camera {
 	public:
+		/**
+		 * Standard constructor.
+		 */
 		Orthographic();
-		Orthographic(glm::vec3, glm::vec3);
 
-		virtual void RenderScene(const World &);
+		/**
+		 * Traces the constructed scene.
+		 * @param w Reference to the world.
+		 */
+		virtual void RenderScene(const World &w);
 
-		// Setters.
-		void SetViewPlaneDistance(const float);
-		void SetZoom(const float);
+		/**
+		 * Sets the distance from the camera to the view plane.
+		 * @param distance Target distance.
+		 */
+		void SetViewPlaneDistance(const float distance);
+
+		/**
+		 * Sets the zoom factor of the camera.
+		 * @param zoom Target zoom factor.
+		 */
+		void SetZoom(const float zoom);
 
 	private:
-		// Distance from the eye to the view plane.
+		/**
+		 * Distance from the eye to the view plane.
+		 */
 		float m_vpDistance;
 
-		// Zoom factor.
+		/**
+		 * Zoom factor of the camera.
+		 */
 		float m_Zoom;
 };
 
@@ -54,5 +82,9 @@ inline void Orthographic::SetViewPlaneDistance(const float distance) {
 inline void Orthographic::SetZoom(const float zoom) {
 	m_Zoom = zoom;
 }
+
+/**
+ * @}
+ */
 
 #endif

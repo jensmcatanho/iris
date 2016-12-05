@@ -27,7 +27,7 @@ SOFTWARE.
 
 Ambient::Ambient() :
 	Light(),
-	m_Ls(1.0),
+	m_Intensity(1.0),
 	m_Color(1.0) {
 
 }
@@ -38,7 +38,7 @@ glm::vec3 Ambient::GetDirection(Surface &sr) {
 }
 
 RGBColor Ambient::L(Surface &sr) {
-	return m_Color * m_Ls;
+	return m_Color * m_Intensity;
 }
 
 bool Ambient::Shadowed(const Ray &ray, const Surface &sr) const {

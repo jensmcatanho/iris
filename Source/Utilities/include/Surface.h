@@ -30,40 +30,81 @@ SOFTWARE.
 #include "Ray.h"
 #include "RGBColor.h"
 
+/**
+ * @addtogroup Utilities
+ * @{
+ */
+
+/**
+ * Holds information about a surface.
+ * @remarks TODO
+ */
 class Surface {
 	public:
-		Surface(World &);
+		/**
+		 * Constructs a surface with a reference to the world.
+		 * @param w Reference to the world.
+		 */
+		Surface(World &w);
 
-		// Check if the ray hit an object.
+		/**
+		 * Checks if a ray has hit the surface.
+		 */
 		bool m_Hit;
 
+		/**
+		 * Material attached to the surface.
+		 */
 		std::shared_ptr<Material> m_MaterialPtr;
 
-		// Hit point in world coordinates.
+		/**
+		 * Point where the surface has been hit by a ray.
+		 */
 		glm::vec3 m_HitPoint;
 
-		// ?
+		/**
+		 * Local point where the surface has been hit by a ray.
+		 */
 		glm::vec3 m_LocalHitPoint;
 
-		// Normal vector on the hit point.
+		/**
+		 * Normal of the surface on the hit point.
+		 */
 		glm::vec3 m_Normal;
 
-		// Color on the hit point.
+		/**
+		 * Color of the surface.
+		 */
 		RGBColor m_Color;
 
-		// "For specular highlights".
+		/**
+		 * TODO
+		 */
 		Ray m_Ray;
 
-		// Recursion depth.
+		/**
+		 * Recursion depth.
+		 */
 		int m_Depth;
 
-		// Ray parameter.
+		/**
+		 * Ray parameter.
+		 */
 		float m_T;
 
-		// "For area lights".
+		/**
+		 * TODO
+		 */
 		glm::vec3 m_Direction;
 
+		/**
+		 * Reference to the world.
+		 */
 		World &w;
 };
+
+/**
+ * @}
+ */
 
 #endif

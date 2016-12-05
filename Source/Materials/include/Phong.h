@@ -30,46 +30,93 @@ SOFTWARE.
 #include "Lambertian.h"
 #include "GlossySpecular.h"
 
+/**
+ * @addtogroup Materials
+ * @{
+ */
+
+/**
+ * Rendering properties of an object.
+ * @remarks TODO.
+ * @see Lambertian
+ * @see GlossySpecular
+ */
 class Phong : public Material {
 	public:
-		// Default constructor.
+		/**
+		 * Standard constructor.
+		 */
 		Phong();
 
-		// Return the color of an object at a given hit point.
-		virtual RGBColor Shade(Surface &) const;
+		/**
+		 * Computes the color of a given surface.
+		 * @param  sr Information about the surface of the object.
+		 * @return Color of the surface.
+		 */
+		virtual RGBColor Shade(Surface &sr) const;
 
-		// Define the reflection of the ambient component of the material.
-		void SetAmbientReflection(const float);
+		/**
+		 * Sets the diffuse reflection of the ambient component of the material.
+		 * @param kdr Target diffuse reflection.
+		 */
+		void SetAmbientReflection(const float kdr);
 
-		// Define the color of the ambient component of the material.
-		void SetAmbientColor(const RGBColor &);
+		/**
+		 * Sets the diffuse color of the ambient component of the material.
+		 * @param color Target diffuse color.
+		 */
+		void SetAmbientColor(const RGBColor &color);
 
-		// Define the reflection of the diffuse component of the material.
-		void SetDiffuseReflection(const float);
+		/**
+		 * Sets the diffuse reflection of the diffuse component of the material.
+		 * @param kdr Target diffuse reflection.
+		 */
+		void SetDiffuseReflection(const float kdr);
 
-		// Define the color of the diffuse component of the material.
-		void SetDiffuseColor(const RGBColor &);
+		/**
+		 * Sets the diffuse color of the diffuse component of the material.
+		 * @param color Target diffuse color.
+		 */
+		void SetDiffuseColor(const RGBColor &color);
 
-		// Define the reflection of the specular component of the material.
-		void SetSpecularReflection(const float);
+		/**
+		 * Sets the specular reflection of the specular component of the material.
+		 * @param kdr Target specular reflection.
+		 */
+		void SetSpecularReflection(const float kdr);
 
-		// Define the color of the specular component of the material.
-		void SetSpecularColor(const RGBColor &);
+		/**
+		 * Sets the specular color of the specular component of the material.
+		 * @param color Target specular color.
+		 */
+		void SetSpecularColor(const RGBColor &color);
 
-		// Define the specular factor of the specular component of the material.
-		void SetSpecularExponent(const float);
+		/**
+		 * Sets the specular factor of the specular component of the material.
+		 * @param ksexp Target specular factor.
+		 */
+		void SetSpecularExponent(const float ksexp);
 
-		// Define the sampler to be used by all components of the material.
+		/**
+		 * Sets the sampler to be used by the BRDFs of the material.
+		 * @param sampler_ptr Target sampler.
+		 */
 		void SetSampler(std::shared_ptr<Sampler>);
 
 	private:
-		// Ambient component of the material.
+		/**
+		 * Ambient BRDF of the material.
+		 */
 		std::shared_ptr<Lambertian> m_Ambient;
 
-		// Diffuse component of the material.
+		/**
+		 * Diffuse BRDF of the material.
+		 */
 		std::shared_ptr<Lambertian> m_Diffuse;
 
-		// Specular component of the material.
+		/**
+		 * Specular BRDF of the material.
+		 */
 		std::shared_ptr<GlossySpecular> m_Specular;
 };
 
@@ -89,11 +136,6 @@ inline void Phong::SetDiffuseColor(const RGBColor &color) {
 	m_Diffuse->SetDiffuseColor(color);
 }
 
-inline void Phong::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
-	m_Ambient->SetSampler(sampler_ptr);
-	m_Diffuse->SetSampler(sampler_ptr);
-}
-
 inline void Phong::SetSpecularReflection(const float ksr) {
 	m_Specular->SetSpecularReflection(ksr);
 }
@@ -105,5 +147,14 @@ inline void Phong::SetSpecularColor(const RGBColor &color) {
 inline void Phong::SetSpecularExponent(const float ksexp) {
 	m_Specular->SetSpecularExponent(ksexp);
 }
+
+inline void Phong::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
+	m_Ambient->SetSampler(sampler_ptr);
+	m_Diffuse->SetSampler(sampler_ptr);
+}
+
+/**
+ * @}
+ */
 
 #endif

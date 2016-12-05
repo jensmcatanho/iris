@@ -26,21 +26,8 @@ SOFTWARE.
 #include "Camera.h"
 
 Camera::Camera() :
-	Camera(glm::vec3(0.0, 0.0, 500.0), glm::vec3(0.0, 0.0, 0.0)) {
-
-}
-
-Camera::Camera(glm::vec3 eye, glm::vec3 lookat) :
-	m_Eye(eye),
-	m_LookAt(lookat),
-	m_UpVector(0.0, 1.0, 0.0),
-	m_U(1.0, 0.0, 0.0),
-	m_V(0.0, 1.0, 0.0),
-	m_W(0.0, 0.0, 1.0),
-	m_Yaw(0.0),
-	m_Pitch(0.0),
-	m_Roll(0.0),
-	m_ExposureTime(1.0) {
+	m_Eye(glm::vec3(0.0, 0.0, 500.0)),
+	m_LookAt(glm::vec3(0.0, 0.0, 0.0)) {
 
 }
 

@@ -25,7 +25,7 @@ SOFTWARE.
 */
 #include "Phong.h"
 #include "Light.h"
-#include "ShadeRecord.h"
+#include "Surface.h"
 #include "World.h"
 
 Phong::Phong() :
@@ -36,7 +36,7 @@ Phong::Phong() :
 
 }
 
-RGBColor Phong::Shade(ShadeRecord &sr) const {
+RGBColor Phong::Shade(Surface &sr) const {
 	glm::vec3 wo = -sr.m_Ray.m_Direction;
 	RGBColor  L = m_Ambient->rho(sr, wo) * sr.w.m_AmbientPtr->L(sr);
 	int num_lights = sr.w.m_Lights.size();
@@ -56,7 +56,6 @@ RGBColor Phong::Shade(ShadeRecord &sr) const {
 
 			if (!shadowed)
 				L += (m_Diffuse->f(sr, wo, wi) + m_Specular->f(sr, wo, wi) ) * sr.w.m_Lights[i]->L(sr) * ndotwi;
-
 		}
 	}
 

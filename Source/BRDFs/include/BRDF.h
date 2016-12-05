@@ -27,30 +27,79 @@ SOFTWARE.
 #define BRDF_H
 
 #include "Prerequisites.h"
+#include "RGBColor.h"
 
+/**
+ * @addtogroup BRDF
+ * @{
+ */
+
+/**
+ * The bidirectional reflectance distribution function abstraction.
+ * @remarks TODO.
+ */
 class BRDF {
 	public:
 		/**
-		 * Default constructor.
+		 * Standard constructor.
 		 */
 		BRDF();
 
-		virtual RGBColor f(const Surface &, const glm::vec3 &, const glm::vec3 &) const;
+		/**
+		 * Computes the reflected radiance along wo.
+		 * @param  sr Information about the surface of the object.
+		 * @param  wi Incoming light direction.
+		 * @param  wo Reflected light direction.
+		 * @return Reflected radiance of a surface.
+		 */
+		virtual RGBColor f(const Surface &sr, const glm::vec3 &wi, const glm::vec3 &wo) const;
 
-		virtual RGBColor SampleF(Surface &, const glm::vec3 &, glm::vec3 &);
+		/**
+		 * Computes the perfect diffuse reflectance.
+		 * @param  sr Information about the surface of the object.
+		 * @param  wo Reflected light direction.
+		 * @return Perfect diffuse reflectance.
+		 */
+		virtual RGBColor rho(const Surface &sr, const glm::vec3 &wo) const;
 
-		virtual RGBColor SampleF(Surface &, const glm::vec3 &, glm::vec3 &, float &);
+		/**
+		 * TODO.
+		 * @param  sr Information about the surface of the object.
+		 * @param  wi Incoming light direction.
+		 * @param  wo Reflected light direction.
+		 * @return 
+		 */
+		virtual RGBColor SampleF(Surface &sr, const glm::vec3 &wi, glm::vec3 &wo);
 
-		virtual RGBColor rho(const Surface &, const glm::vec3 &) const;
+		/**
+		 * TODO
+		 * @param  sr  Information about the surface of the object.
+		 * @param  wi  Incoming light direction.
+		 * @param  wo  Reflected light direction.
+		 * @param  pdf Probability density function.
+		 * @return 
+		 */
+		virtual RGBColor SampleF(Surface &sr, const glm::vec3 &wi, glm::vec3 &wo, float &pdf);
 
+		/**
+		 * Sets a sampler to the BRDF.
+		 * @param sampler_ptr Target sampler.
+		 */
 		void SetSampler(std::shared_ptr<Sampler>);
 
 	protected:
+		/**
+		 * Pointer to the sampler attached to the BRDF object.
+		 */
 		std::shared_ptr<Sampler> m_SamplerPtr;
 };
 
 inline void BRDF::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
 	m_SamplerPtr = sampler_ptr;
 }
+
+/**
+ * @}
+ */
 
 #endif

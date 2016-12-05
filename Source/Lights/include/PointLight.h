@@ -27,31 +27,82 @@ SOFTWARE.
 #define POINTLIGHT_H
 
 #include "Light.h"
-#include "RGBColor.h"
 
+/**
+ * @addtogroup Lights
+ * @{
+ */
+
+/**
+ * Representation of a point light source.
+ * @remarks TODO
+ */
 class PointLight : public Light {
 	public:
+		/**
+		 * Standard constructor.
+		 */
 		PointLight();
 
-		// Return a normalized vector that gives the direction from a hit point to the light.
-		virtual glm::vec3 GetDirection(Surface &);
-		virtual RGBColor L(Surface &);
+		/**
+		 * Computes the direction of the incoming light at a given surface.
+		 * @param  sr Information about the surface of the object.
+		 * @return Direction from which the light arrives at the surface.
+		 */
+		virtual glm::vec3 GetDirection(Surface &sr);
 
-		virtual bool Shadowed(const Ray &, const Surface &) const;
+		/**
+		 * Computes the incident radiance at a given surface.
+		 * @param sr Information about the surface of the object.
+		 * @return Incident radiance at the surface.
+		 */
+		virtual RGBColor L(Surface &sr);
 
-		// Setters.
-		void SetRadiance(const float);
-		void SetColor(const RGBColor &);
-		void SetPosition(const glm::vec3 &);
+		/**
+		 * Checks if a surface is shadowed by another object.
+		 * @param  ray Casted shadow ray.
+		 * @param  sr  Information about the surface of the object.
+		 * @return True, if the surface is shadowed.
+		 */
+		virtual bool Shadowed(const Ray &ray, const Surface &sr) const;
+
+		/**
+		 * Sets the intensity of the light.
+		 * @param intensity Target intensity.
+		 */
+		void SetIntensity(const float intensity);
+
+		/**
+		 * Sets the color of the light.
+		 * @param color Target color.
+		 */
+		void SetColor(const RGBColor &color);
+
+		/**
+		 * Sets the position of the light in world coordinates.
+		 * @param position Target position.
+		 */
+		void SetPosition(const glm::vec3 &position);
 
 	private:
-		float m_Radiance;
+		/**
+		 * Radiance scaling factor.
+		 */
+		float m_Intensity;
+
+		/**
+		 * Color of the light.
+		 */
 		RGBColor m_Color;
+
+		/**
+		 * Position of the light in world coordinates.
+		 */
 		glm::vec3 m_Position;
 };
 
-inline void PointLight::SetRadiance(const float radiance) {
-	m_Radiance = radiance;
+inline void PointLight::SetIntensity(const float intensity) {
+	m_Intensity = intensity;
 }
 
 inline void PointLight::SetColor(const RGBColor &color) {
@@ -61,5 +112,9 @@ inline void PointLight::SetColor(const RGBColor &color) {
 inline void PointLight::SetPosition(const glm::vec3 &pos) {
 	m_Position = pos;
 }
+
+/**
+ * @}
+ */
 
 #endif

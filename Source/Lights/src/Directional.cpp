@@ -28,7 +28,7 @@ SOFTWARE.
 
 Directional::Directional() :
 	Light(),
-	m_Radiance(1.0),
+	m_Intensity(1.0),
 	m_Color(1.0),
 	m_Direction(0.0, -1.0, 0.0) {
 
@@ -39,7 +39,7 @@ glm::vec3 Directional::GetDirection(Surface &sr) {
 }
 
 RGBColor Directional::L(Surface &sr) {
-	return m_Color * m_Radiance;
+	return m_Color * m_Intensity;
 }
 
 bool Directional::Shadowed(const Ray &ray, const Surface &sr) const {

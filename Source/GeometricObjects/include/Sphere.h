@@ -28,57 +28,64 @@ SOFTWARE.
 
 #include "Object.h"
 
+/**
+ * @addtogroup GeometricObjects
+ * @{
+ */
+
+/**
+ * Holder of data of a 3D sphere.
+ * @remarks TODO.
+ */
 class Sphere : public Object {
 	public:
 		/**
-		 * Default constructor.
+		 * Standard constructor.
 		 */
 		Sphere();
 
 		/**
 		 * Checks if a ray intersects with this object and return it's shading information.
-		 * @param {const Ray &} ray Intersection ray.
-		 * @param {float &} tmin TODO
-		 * @return {bool}
+		 * @param  ray  Intersection ray.
+		 * @param  tmin TODO.
+		 * @param  sr   Information about the surface of the object.
+		 * @return True, if the object intersects with the given ray.
 		 */
-		virtual bool Hit(const Ray &, double &, Surface &) const;
+		virtual bool Hit(const Ray &ray, double &tmin, Surface &sr) const;
 
 		/**
 		 * Checks if a shadow ray intersects with the object.
-		 * @param {const Ray &} ray Shadow ray.
-		 * @param {float &} tmin TODO
-		 * @return {bool}
+		 * @param  ray  Shadow ray.
+		 * @param  tmin TODO
+		 * @return True, if the object intersects with the given ray.
 		 */
-		virtual bool ShadowHit(const Ray &, float &) const;
+		virtual bool ShadowHit(const Ray &ray, float &tmin) const;
 
 		/**
 		 * Sets the center of the sphere.
-		 * @param {const glm::vec3 &} center Target center.
+		 * @param center Target center.
 		 */
-		void SetCenter(const glm::vec3 &);
+		void SetCenter(const glm::vec3 &center);
 
 		/**
 		 * Sets the radius of the sphere.
-		 * @param {float} radius Target radius.
+		 * @param radius Target radius.
 		 */
-		void SetRadius(const float);
+		void SetRadius(const float radius);
 
 	private:
 		/**
 		 * Center of the sphere in world coordinates.
-		 * @type {glm::vec3}
 		 */
 		glm::vec3 m_Center;
 
 		/**
 		 * Radius of the sphere.
-		 * @type {float}
 		 */
 		float m_Radius;
 
 		/**
 		 * Epsilon factor to compute intersections and shadows.
-		 * @type {static const double}
 		 */
 		static const double kEpsilon;
 
@@ -91,5 +98,9 @@ inline void Sphere::SetCenter(const glm::vec3 &center) {
 inline void Sphere::SetRadius(const float radius) {
 	m_Radius = radius;
 }
+
+/**
+ * @}
+ */
 
 #endif

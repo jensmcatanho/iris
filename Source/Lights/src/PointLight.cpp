@@ -25,34 +25,26 @@ SOFTWARE.
 */
 #include "PointLight.h"
 #include "Object.h"
-#include "ShadeRecord.h"
+#include "Surface.h"
 #include "World.h"
 
 PointLight::PointLight() :
 	Light(),
-	m_Ls(1.0),
+	m_Intensity(1.0),
 	m_Color(1.0),
 	m_Position(0.0) {
 
 }
 
-PointLight::PointLight(bool shadows) :
-	Light(shadows),
-	m_Ls(1.0),
-	m_Color(1.0),
-	m_Position(0.0) {
-
-}
-
-glm::vec3 PointLight::GetDirection(ShadeRecord &sr) {
+glm::vec3 PointLight::GetDirection(Surface &sr) {
 	return glm::normalize(m_Position - sr.m_HitPoint);
 }
 
-RGBColor PointLight::L(ShadeRecord &sr) {
-	return m_Color * m_Ls;
+RGBColor PointLight::L(Surface &sr) {
+	return m_Color * m_Intensity;
 }
 
-bool PointLight::Shadowed(const Ray &ray, const ShadeRecord &sr) const {
+bool PointLight::Shadowed(const Ray &ray, const Surface &sr) const {
 	float t;
 	int num_objects = sr.w.m_Objects.size();
 	float distance = glm::distance(m_Position, ray.m_Origin);

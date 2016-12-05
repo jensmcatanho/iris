@@ -28,13 +28,32 @@ SOFTWARE.
 
 #include "Prerequisites.h"
 
+/**
+ * @addtogroup Materials
+ * @{
+ */
+
+/**
+ * Rendering properties of an object.
+ * @remarks TODO.
+ */
 class Material {
 	public:
-		// Default constructor.
+		/**
+		 * Standard constructor.
+		 */
 		Material();
 
-		// Return the color at a given hit point.
-		virtual RGBColor Shade(Surface &) const;
+		/**
+		 * Computes the color of a given surface.
+		 * @param  sr Information about the surface of the object.
+		 * @return Color of the surface.
+		 */
+		virtual RGBColor Shade(Surface &sr) const;
 };
+
+/**
+ * @}
+ */
 
 #endif

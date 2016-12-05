@@ -28,13 +28,42 @@ SOFTWARE.
 
 #include "Prerequisites.h"
 
+/**
+ * @addtogroup Utilities
+ * @{
+ */
+
+/**
+ * Object used to trace scenes.
+ * @remarks TODO
+ */
 class Ray {
 	public:
+		/**
+		 * Standard constructor.
+		 */
 		Ray();
-		Ray(glm::vec3 &, glm::vec3 &);
 
+		/**
+		 * Constructs a ray with the target origin and direction.
+		 * @param origin    Target origin.
+		 * @param direction Target direction.
+		 */
+		Ray(glm::vec3 &origin, glm::vec3 &direction);
+
+		/**
+		 * Origin of the ray in world coordinates.
+		 */
 		glm::vec3 m_Origin;
+
+		/**
+		 * Direction of the ray.
+		 */
 		glm::vec3 m_Direction;
 };
+
+/**
+ * @}
+ */
 
 #endif

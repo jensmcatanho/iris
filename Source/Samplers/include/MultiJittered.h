@@ -28,25 +28,34 @@ SOFTWARE.
 
 #include "Sampler.h"
 
+/**
+ * @addtogroup Samplers
+ * @{
+ */
+
+/**
+ * TODO
+ * @remarks TODO.
+ */
 class MultiJittered : public Sampler {
 	public:
 		/**
-		 * Default constructor.
+		 * Standard constructor.
 		 */
 		MultiJittered();
 
 		/**
-		 * Constructs a Sampler with the passed number of samples.
-		 * @param {const int} numSamples Number of samples.
+		 * Constructs a sampler and sets its number of samples.
+		 * @param numSamples Number of samples.
 		 */
-		MultiJittered(const int);
+		MultiJittered(const int numSamples);
 
 		/**
-		 * Constructs a Sampler with the passed number of samples and sets.
-		 * @param {const int} numSamples Number of samples.
-		 * @param {const int} numSets    Number of sets.
+		 * Constructs a sampler and sets its number of samples and sets.
+		 * @param numSamples Number of samples.
+		 * @param numSets    Number of sets.
 		 */
-		MultiJittered(const int, const int);
+		MultiJittered(const int numSamples, const int numSets);
 
 	private:
 		/**
@@ -54,5 +63,9 @@ class MultiJittered : public Sampler {
 		 */
 		virtual void GenerateSamples();
 };
+
+/**
+ * @}
+ */
 
 #endif

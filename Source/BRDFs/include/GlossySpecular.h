@@ -27,27 +27,64 @@ SOFTWARE.
 #define GLOSSYSPECULAR_H
 
 #include "BRDF.h"
-#include "RGBColor.h"
 
+/**
+ * @addtogroup BRDF
+ * @{
+ */
+
+/**
+ * The glossy specular bidirectional reflectance distribution function abstraction.
+ * @remarks TODO.
+ */
 class GlossySpecular : public BRDF {
 	public:
+		/**
+		 * Standard constructor.
+		 */
 		GlossySpecular();
 
-		virtual RGBColor f(const Surface &, const glm::vec3 &, const glm::vec3 &) const;
+		/**
+		 * Computes the reflected radiance along wo.
+		 * @param  sr Information about the surface of the object.
+		 * @param  wi Incoming light direction.
+		 * @param  wo Reflected light direction.
+		 * @return Reflected radiance of a surface.
+		 */
+		virtual RGBColor f(const Surface &sr, const glm::vec3 &wi, const glm::vec3 &wo) const;
 
-		// Setters.
-		void SetSpecularReflection(const float);
-		void SetSpecularColor(const RGBColor &);
-		void SetSpecularExponent(const float);
+		/**
+		 * Sets the specular reflection coefficient.
+		 * @param ksr Target specular reflection coefficient.
+		 */
+		void SetSpecularReflection(const float ksr);
+
+		/**
+		 * Sets the specular color.
+		 * @param color Target specular color.
+		 */
+		void SetSpecularColor(const RGBColor &color);
+
+		/**
+		 * Sets the specular exponent.
+		 * @param ksexp Target specular exponent.
+		 */
+		void SetSpecularExponent(const float ksexp);
 
 	private:
-		// Specular reflection coefficient.
+		/**
+		 * Specular reflection coefficient.
+		 */
 		float m_SpecularReflection;
 
-		// Specular color.
+		/**
+		 * Specular color.
+		 */
 		RGBColor m_SpecularColor;
 
-		// Specular exponent.
+		/**
+		 * Specular exponent.
+		 */
 		float m_SpecularExp;
 };
 
@@ -62,5 +99,9 @@ inline void GlossySpecular::SetSpecularColor(const RGBColor &color) {
 inline void GlossySpecular::SetSpecularExponent(const float ksexp) {
 	m_SpecularExp = ksexp;
 }
+
+/**
+ * @}
+ */
 
 #endif

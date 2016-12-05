@@ -29,34 +29,69 @@ SOFTWARE.
 #include "Material.h"
 #include "Lambertian.h"
 
+/**
+ * @addtogroup Materials
+ * @{
+ */
+
+/**
+ * Rendering properties of an object.
+ * @remarks TODO.
+ * @see Lambertian
+ */
 class Matte : public Material{
 	public:
-		// Default constructor.
+		/**
+		 * Standard constructor.
+		 */
 		Matte();
 
-		// Return the color of an object at a given hit point.
-		virtual RGBColor Shade(Surface &) const;
+		/**
+		 * Computes the color of a given surface.
+		 * @param  sr Information about the surface of the object.
+		 * @return Color of the surface.
+		 */
+		virtual RGBColor Shade(Surface &sr) const;
 
-		// Define the reflection of the ambient component of the material.
-		void SetAmbientReflection(const float);
+		/**
+		 * Sets the diffuse reflection of the ambient component of the material.
+		 * @param kdr Target diffuse reflection.
+		 */
+		void SetAmbientReflection(const float kdr);
 
-		// Define the color of the ambient component of the material.
-		void SetAmbientColor(const RGBColor &);
+		/**
+		 * Sets the diffuse color of the ambient component of the material.
+		 * @param color Target diffuse color.
+		 */
+		void SetAmbientColor(const RGBColor &color);
 
-		// Define the reflection of the diffuse component of the material.
-		void SetDiffuseReflection(const float);
+		/**
+		 * Sets the diffuse reflection of the diffuse component of the material.
+		 * @param kdr Target diffuse reflection.
+		 */
+		void SetDiffuseReflection(const float kdr);
 
-		// Define the color of the diffuse component of the material.
-		void SetDiffuseColor(const RGBColor &);
+		/**
+		 * Sets the diffuse color of the diffuse component of the material.
+		 * @param color Target diffuse color.
+		 */
+		void SetDiffuseColor(const RGBColor &color);
 
-		// Define the sampler to be used by all components of the material.
-		void SetSampler(std::shared_ptr<Sampler>);
+		/**
+		 * Sets the sampler to be used by the BRDFs of the material.
+		 * @param sampler_ptr Target sampler.
+		 */
+		void SetSampler(std::shared_ptr<Sampler> sampler_ptr);
 
 	private:
-		// Ambient component of the material.
+		/**
+		 * Ambient BRDF of the material.
+		 */
 		std::shared_ptr<Lambertian> m_Ambient;
 
-		// Diffuse component of the material.
+		/**
+		 * Diffuse BRDF of the material.
+		 */
 		std::shared_ptr<Lambertian> m_Diffuse;
 };
 
@@ -80,5 +115,9 @@ inline void Matte::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
 	m_Ambient->SetSampler(sampler_ptr);
 	m_Diffuse->SetSampler(sampler_ptr);
 }
+
+/**
+ * @}
+ */
 
 #endif
