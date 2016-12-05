@@ -27,7 +27,15 @@ SOFTWARE.
 
 Camera::Camera() :
 	m_Eye(glm::vec3(0.0, 0.0, 500.0)),
-	m_LookAt(glm::vec3(0.0, 0.0, 0.0)) {
+	m_LookAt(glm::vec3(0.0, 0.0, 0.0)),
+	m_UpVector(0.0, 1.0, 0.0),
+	m_U(1.0, 0.0, 0.0),
+	m_V(0.0, 1.0, 0.0),
+	m_W(0.0, 0.0, 1.0),
+	m_Yaw(0.0),
+	m_Pitch(0.0),
+	m_Roll(0.0),
+	m_ExposureTime(1.0) {
 
 }
 
