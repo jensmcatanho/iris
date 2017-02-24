@@ -27,25 +27,39 @@ Scene = {}
 function Scene.new()
 	local self = {}
 
-	-- Private member variables
+	-- Public member variables
 	self.object_list = {}
 	self.light_list = {}
 
-	-- Public member variables
 	self.tracer = Tracer.RayCast
-	self.image = Image.new(200, 200)
+	self.image = Image.new()
 	self.camera = Pinhole.new()
 	self.ambient = AmbientLight.new()
-
-	-- Private methods
 
 	-- Public methods
 	function self.AddObject(obj)
 		table.insert(self.object_list, obj)
+		return self
 	end
 
 	function self.AddLight(light)
 		table.insert(self.light_list, light)
+		return self
+	end
+
+	function self.AddCamera(cam)
+		self.camera = cam
+		return self
+	end
+
+	function self.withTracer(t)
+		self.tracer = t
+		return self
+	end
+
+	function self.withImage(i)
+		self.image = i
+		return self
 	end
 
 	return self
