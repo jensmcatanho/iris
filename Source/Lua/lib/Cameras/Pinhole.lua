@@ -9,6 +9,12 @@ function Pinhole.new()
 	self.vpdistance = 500.0
 	self.zoom = 1.0
 
+	-- Public methods
+	function self.withZoom(zoom)
+		self.zoom = zoom
+		return self
+	end
+
 	return self
 end
 

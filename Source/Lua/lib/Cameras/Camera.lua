@@ -12,12 +12,14 @@ function Camera.new()
 	self.exposure_time = 1.0
 	
 	-- Public methods
-	function self.SetEye(x, y, z)
-		eye.x, eye.y, eye.z = x, y, z
+	function self.withEyeAt(x, y, z)
+		self.eye.x, self.eye.y, self.eye.z = x, y, z
+		return self
 	end
 
-	function self.LookAt(x, y, z)
-		look_at.x, look_at.y, look_at.z = x, y, z
+	function self.lookingAt(x, y, z)
+		self.look_at.x, self.look_at.y, self.look_at.z = x, y, z
+		return self
 	end
 	
 	return self
