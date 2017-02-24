@@ -54,10 +54,8 @@ scene.AddObject(sphere1)
 
 -- Light
 light = PointLight.new()
-light.position.x = 0.0
-light.position.y = 50.0
-light.position.z = 100.0
-light.intensity = 3.0
-light.shadows = true
+	.locatedAt(0.0, 50.0, 100.0)
+	.withIntensity(3.0)
+	.castsShadows(true)
 
 scene.AddLight(light)
