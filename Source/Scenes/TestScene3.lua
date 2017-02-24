@@ -12,11 +12,10 @@ scene.image.samples = 16
 
 scene.tracer = Tracer.RayCast
 
-camera = Pinhole.new()
+scene.camera = Pinhole.new()
 	.withEyeAt(0.0, 0.0, 500.0)
 	.lookingAt(0.0, 0.0, -1.0)
 
-scene.camera = camera
 scene.camera.vpdistance = 850.0
 
 -- Plane
@@ -29,12 +28,10 @@ plane.normal.y = 0.0
 plane.normal.z = 1.0
 
 phong = Phong.new()
-phong.ambient_reflection = 0.25
-phong.diffuse_reflection = 0.65
-phong.specular_reflection = 0.05
-phong.diffuse_color.r = 1.0
-phong.diffuse_color.g = 1.0
-phong.diffuse_color.b = 0.0
+	.withDiffuseColor(1.0, 1.0, 0.0)
+	.withAmbientReflection(0.25)
+	.withDiffuseReflection(0.65)
+	.withSpecularReflection(0.05)
 
 plane.AddMaterial(phong)
 scene.AddObject(plane)
@@ -47,12 +44,10 @@ sphere1.center.z = 19.0
 sphere1.radius = 10
 
 phong1 = Phong.new()
-phong1.ambient_reflection = 0.25
-phong1.diffuse_reflection = 0.65
-phong1.specular_reflection = 0.05
-phong1.diffuse_color.r = 0.0
-phong1.diffuse_color.g = 1.0
-phong1.diffuse_color.b = 0.0
+	.withDiffuseColor(0.0, 1.0, 0.0)
+	.withAmbientReflection(0.25)
+	.withDiffuseReflection(0.65)
+	.withSpecularReflection(0.05)
 
 sphere1.AddMaterial(phong1)
 scene.AddObject(sphere1)
@@ -62,7 +57,7 @@ light = PointLight.new()
 light.position.x = 0.0
 light.position.y = 50.0
 light.position.z = 100.0
-light.intensity = 2.0
+light.intensity = 3.0
 light.shadows = true
 
 scene.AddLight(light)
