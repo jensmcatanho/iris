@@ -19,38 +19,32 @@ scene.camera = Pinhole.new()
 scene.camera.vpdistance = 850.0
 
 -- Plane
-plane = Plane.new()
-plane.point.x = 0.0
-plane.point.y = 0.0
-plane.point.z = 0.0
-plane.normal.x = 0.0
-plane.normal.y = 0.0
-plane.normal.z = 1.0
-
 phong = Phong.new()
 	.withDiffuseColor(1.0, 1.0, 0.0)
 	.withAmbientReflection(0.25)
 	.withDiffuseReflection(0.65)
 	.withSpecularReflection(0.05)
 
-plane.AddMaterial(phong)
+plane = Plane.new()
+	.locatedAt(0.0, 0.0, 0.0)
+	.lookingAt(0.0, 0.0, 1.0)
+	.withMaterial(phong)
+
 scene.AddObject(plane)
 
--- Sphere 1
-sphere1 = Sphere.new()
-sphere1.center.x = 10.0
-sphere1.center.y = 20.0
-sphere1.center.z = 19.0
-sphere1.radius = 10
-
+-- Sphere
 phong1 = Phong.new()
 	.withDiffuseColor(0.0, 1.0, 0.0)
 	.withAmbientReflection(0.25)
 	.withDiffuseReflection(0.65)
 	.withSpecularReflection(0.05)
 
-sphere1.AddMaterial(phong1)
-scene.AddObject(sphere1)
+sphere = Sphere.new()
+	.centeredAt(10.0, 20.0, 19.0)
+	.withRadius(10)
+	.withMaterial(phong1)
+
+scene.AddObject(sphere)
 
 -- Light
 light = PointLight.new()

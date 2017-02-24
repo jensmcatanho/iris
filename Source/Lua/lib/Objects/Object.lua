@@ -7,8 +7,9 @@ function Object.new()
 	self.material = false
 
 	-- Public methods
-	function self.AddMaterial(material)
-		self.material = material
+	function self.withMaterial(m)
+		self.material = m
+		return self
 	end
 
 	return self
