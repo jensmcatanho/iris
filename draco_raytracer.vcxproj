@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7BFEF54F-3FDF-48F8-B923-238A76C72BDF}</ProjectGuid>
+    <RootNamespace>draco_raytracer</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>build\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\bin\$(Configuration)\</OutDir>
+    <IntDir>Build\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>include\raytracer\brdf;include\raytracer\camera;include\raytracer\geometric-objects;include\raytracer\light;include\raytracer\lua;lib\raytracer;include\raytracer\material;include\raytracer\sampler;test\;include\raytracer\tracer;include\raytracer\util;include\raytracer\world;include\raytracer;include\glm;include\lua-5.3.3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>lib\lua-5.3.3;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ProgramDatabaseFile>$(OutDir)\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>include\raytracer\brdf;include\raytracer\camera;include\raytracer\geometric-objects;include\raytracer\light;include\raytracer\lua;Source\Lua\lib;include\raytracer\material;include\raytracer\sampler;Source\Scenes;include\raytracer\tracer;include\raytracer\util;include\raytracer\world;include\raytracer;include\glm;include\lua-5.3.3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>lib\lua-5.3.3;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\brdf\BRDF.cpp" />
+    <ClCompile Include="src\brdf\GlossySpecular.cpp" />
+    <ClCompile Include="src\brdf\Lambertian.cpp" />
+    <ClCompile Include="src\camera\Camera.cpp" />
+    <ClCompile Include="src\camera\Orthographic.cpp" />
+    <ClCompile Include="src\camera\Pinhole.cpp" />
+    <ClCompile Include="src\camera\ThinLens.cpp" />
+    <ClCompile Include="src\geometric-objects\Object.cpp" />
+    <ClCompile Include="src\geometric-objects\Plane.cpp" />
+    <ClCompile Include="src\geometric-objects\Sphere.cpp" />
+    <ClCompile Include="src\light\Ambient.cpp" />
+    <ClCompile Include="src\light\Directional.cpp" />
+    <ClCompile Include="src\light\Light.cpp" />
+    <ClCompile Include="src\light\PointLight.cpp" />
+    <ClCompile Include="src\lua\LuaState.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\material\Material.cpp" />
+    <ClCompile Include="src\material\Matte.cpp" />
+    <ClCompile Include="src\material\Phong.cpp" />
+    <ClCompile Include="src\sampler\Hammersley.cpp" />
+    <ClCompile Include="src\sampler\Jittered.cpp" />
+    <ClCompile Include="src\sampler\MultiJittered.cpp" />
+    <ClCompile Include="src\sampler\NRooks.cpp" />
+    <ClCompile Include="src\sampler\PureRandom.cpp" />
+    <ClCompile Include="src\sampler\Regular.cpp" />
+    <ClCompile Include="src\sampler\Sampler.cpp" />
+    <ClCompile Include="src\tracer\MultipleObjects.cpp" />
+    <ClCompile Include="src\tracer\RayCast.cpp" />
+    <ClCompile Include="src\tracer\Tracer.cpp" />
+    <ClCompile Include="src\util\Logger.cpp" />
+    <ClCompile Include="src\util\Ray.cpp" />
+    <ClCompile Include="src\util\RGBColor.cpp" />
+    <ClCompile Include="src\util\Surface.cpp" />
+    <ClCompile Include="src\world\ViewPlane.cpp" />
+    <ClCompile Include="src\world\World.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\raytracer\brdf\BRDF.h" />
+    <ClInclude Include="include\raytracer\brdf\GlossySpecular.h" />
+    <ClInclude Include="include\raytracer\brdf\Lambertian.h" />
+    <ClInclude Include="include\raytracer\camera\Camera.h" />
+    <ClInclude Include="include\raytracer\camera\Orthographic.h" />
+    <ClInclude Include="include\raytracer\camera\Pinhole.h" />
+    <ClInclude Include="include\raytracer\camera\ThinLens.h" />
+    <ClInclude Include="include\raytracer\Constants.h" />
+    <ClInclude Include="include\raytracer\geometric-objects\Object.h" />
+    <ClInclude Include="include\raytracer\geometric-objects\Plane.h" />
+    <ClInclude Include="include\raytracer\geometric-objects\Sphere.h" />
+    <ClInclude Include="include\raytracer\light\Ambient.h" />
+    <ClInclude Include="include\raytracer\light\Directional.h" />
+    <ClInclude Include="include\raytracer\light\Light.h" />
+    <ClInclude Include="include\raytracer\light\PointLight.h" />
+    <ClInclude Include="include\raytracer\lua\LuaState.h" />
+    <ClInclude Include="include\raytracer\material\Material.h" />
+    <ClInclude Include="include\raytracer\material\Matte.h" />
+    <ClInclude Include="include\raytracer\material\Phong.h" />
+    <ClInclude Include="include\raytracer\Prerequisites.h" />
+    <ClInclude Include="include\raytracer\sampler\Hammersley.h" />
+    <ClInclude Include="include\raytracer\sampler\Jittered.h" />
+    <ClInclude Include="include\raytracer\sampler\MultiJittered.h" />
+    <ClInclude Include="include\raytracer\sampler\NRooks.h" />
+    <ClInclude Include="include\raytracer\sampler\PureRandom.h" />
+    <ClInclude Include="include\raytracer\sampler\Regular.h" />
+    <ClInclude Include="include\raytracer\sampler\Sampler.h" />
+    <ClInclude Include="include\raytracer\StandardHeaders.h" />
+    <ClInclude Include="include\raytracer\tracer\MultipleObjects.h" />
+    <ClInclude Include="include\raytracer\tracer\RayCast.h" />
+    <ClInclude Include="include\raytracer\tracer\Tracer.h" />
+    <ClInclude Include="include\raytracer\util\Logger.h" />
+    <ClInclude Include="include\raytracer\util\Ray.h" />
+    <ClInclude Include="include\raytracer\util\RGBColor.h" />
+    <ClInclude Include="include\raytracer\util\Surface.h" />
+    <ClInclude Include="include\raytracer\world\ViewPlane.h" />
+    <ClInclude Include="include\raytracer\world\World.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
