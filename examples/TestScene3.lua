@@ -1,6 +1,3 @@
-package.path = "include/raytracer/lua/?.lua;" .. package.path
-local Scene = require('Scene')
-
 -- Camera
 camera = Pinhole.new()
 	.withEyeAt(0.0, 0.0, 500.0)
