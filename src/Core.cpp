@@ -29,15 +29,16 @@ SOFTWARE.
 #include "LuaState.h"
 #include "World.h"
 
-Core::Core() :
-	m_WorldPtr(new World()) {
+Core::Core(std::string scene_path) :
+	m_WorldPtr(new World()),
+	m_ScenePath(scene_path) {
 
 }
 
-void Core::Run(std::string scene_path) {
+void Core::Run() {
 	std::shared_ptr<LuaState> luaState(new LuaState(shared_from_this()));
 	
-	luaState->Start(scene_path);
+	luaState->Start(m_ScenePath);
 	luaState->LoadScene();
 
 	m_WorldPtr->m_CameraPtr->RenderScene(*m_WorldPtr);
@@ -65,7 +66,12 @@ void Core::SaveImage() {
 		FreeImage_SetPixelColor(bitmap, i % width, i / height, &color);
 	}
 
-	if (FreeImage_Save(FIF_PNG, bitmap, "scene.png", 0))
+
+	std::stringstream ss;
+	ss << m_ScenePath << "/Scene.png";
+	std::string result_path = ss.str();
+
+	if (FreeImage_Save(FIF_PNG, bitmap, result_path.c_str(), 0))
 		std::cout << "File saved" << std::endl;
 
 	FreeImage_DeInitialise();

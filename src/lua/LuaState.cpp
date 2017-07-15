@@ -70,15 +70,19 @@ LuaState::~LuaState() {
 	m_L = nullptr;
 }
 
-bool LuaState::Start(const std::string &filename) {
+bool LuaState::Start(const std::string &path) {
 	if (luaL_loadfile(m_L, "include/raytracer/lua/config.lua") != LUA_OK) {
 		Logger::ErrorLog(lua_tostring(m_L, -1), "LuaState::Load()");
 		Logger::SaveLog();
 		return false;
 	}
 
+	std::stringstream ss;
+	ss << path << "Scene.lua";
+	std::string full_path = ss.str();
+
 	if (lua_pcall(m_L, 0, LUA_MULTRET, 0) == LUA_OK) {
-		if (luaL_loadfile(m_L, filename.c_str()) != LUA_OK) {
+		if (luaL_loadfile(m_L, full_path.c_str()) != LUA_OK) {
 			Logger::ErrorLog(lua_tostring(m_L, -1), "LuaState::Load()");
 			Logger::SaveLog();
 			return false;

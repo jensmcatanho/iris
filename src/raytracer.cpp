@@ -30,8 +30,8 @@ int main(int argc, char **argv) {
 	Logger::StartLog();
 
 	if (argc == 2) {
-		std::shared_ptr<Core> core(new Core());
-		core->Run(argv[1]);
+		std::shared_ptr<Core> core(new Core(argv[1]));
+		core->Run();
 	
 	} else {
 		Logger::ErrorLog("Incorrect number of arguments.", "main()");

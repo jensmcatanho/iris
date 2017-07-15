@@ -52,10 +52,10 @@ class LuaState {
 
 		/**
 		 * Initialize the Lua state.
-		 * @param  filename Scene file.
+		 * @param  filepath Path where the Scene file is located.
 		 * @return True, if the state was successfully initialized.
 		 */
-		bool Start(const std::string &filename);
+		bool Start(const std::string &path);
 
 		/**
 		 * Loads the scene from Lua into memory.

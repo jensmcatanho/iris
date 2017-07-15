@@ -35,13 +35,13 @@ class Core : public std::enable_shared_from_this<Core> {
 		/**
 		 * Standard constructor.
 		 */
-		Core();
+		Core(std::string scene_path);
 
 		/**
 		 * Executes the scene setup and rendering.
-		 * @param  filename Scene file.
+		 * @param scene_path Path where the Scene is located.
 		 */
-		void Run(std::string scene_path);
+		void Run();
 
 		/**
 		* Scene pointer.
@@ -53,6 +53,11 @@ class Core : public std::enable_shared_from_this<Core> {
 		 * Saves the rendered image in png format.
 		 */
 		void SaveImage();
+
+		/**
+		 * Path where the Scene is located.
+		 */
+		std::string m_ScenePath;
 };
 
 #endif
