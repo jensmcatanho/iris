@@ -120,6 +120,11 @@ class LuaState {
 		 * @return Material parsed from Lua.
 		 */
 		std::shared_ptr<Material> ParseMaterial();
+
+		/**
+		* Push into the Logger the contents of the Lua stack.
+		*/
+		void StackDump(std::string component);
 };
 
 /**

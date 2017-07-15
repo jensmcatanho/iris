@@ -1,4 +1,4 @@
-package.path = "lib/raytracer/?.lua;" .. package.path
+package.path = "include/raytracer/lua/?.lua;" .. package.path
 local Scene = require('Scene')
 
 -- Camera

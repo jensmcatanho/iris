@@ -548,3 +548,33 @@ std::shared_ptr<Material> LuaState::ParseMaterial() {
 		return material_ptr;
 	}
 }
+
+void LuaState::StackDump(std::string component) {
+	int top = lua_gettop(m_L);
+
+	Logger::InfoLog("Initializing stack dumping.", component);
+
+	for (int i = 1; i <= top; i++) {
+		int t = lua_type(m_L, i);
+
+		switch (t) {
+			case LUA_TSTRING:
+				Logger::InfoLog(lua_tostring(m_L, i), component);
+				break;
+
+			case LUA_TBOOLEAN:
+				Logger::InfoLog(lua_toboolean(m_L, i) ? "true" : "false", component);
+				break;
+
+			case LUA_TNUMBER:
+				Logger::InfoLog(std::to_string(lua_tonumber(m_L, i)), component);
+				break;
+
+			default:
+				Logger::InfoLog(lua_typename(m_L, t), component);
+				break;
+		}
+	}
+
+	Logger::InfoLog("Finished stack dumping.", component);
+}
