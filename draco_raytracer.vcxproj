@@ -86,6 +86,7 @@
     <ClCompile Include="src\camera\Orthographic.cpp" />
     <ClCompile Include="src\camera\Pinhole.cpp" />
     <ClCompile Include="src\camera\ThinLens.cpp" />
+    <ClCompile Include="src\Core.cpp" />
     <ClCompile Include="src\geometric-objects\Object.cpp" />
     <ClCompile Include="src\geometric-objects\Plane.cpp" />
     <ClCompile Include="src\geometric-objects\Sphere.cpp" />
@@ -124,6 +125,7 @@
     <ClInclude Include="include\raytracer\camera\Pinhole.h" />
     <ClInclude Include="include\raytracer\camera\ThinLens.h" />
     <ClInclude Include="include\raytracer\Constants.h" />
+    <ClInclude Include="include\raytracer\Core.h" />
     <ClInclude Include="include\raytracer\geometric-objects\Object.h" />
     <ClInclude Include="include\raytracer\geometric-objects\Plane.h" />
     <ClInclude Include="include\raytracer\geometric-objects\Sphere.h" />

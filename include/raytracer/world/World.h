@@ -49,7 +49,7 @@ typedef std::vector<std::shared_ptr<Light>> LightList;
  * TODO.
  * @remarks TODO.
  */
-class World : public std::enable_shared_from_this<World> {
+class World {
 	friend class LuaState;
 
 	public:
@@ -57,11 +57,6 @@ class World : public std::enable_shared_from_this<World> {
 		 * Standard constructor.
 		 */
 		World();
-
-		/**
-		 * Build the scene.
-		 */
-		void Build();
 
 		/**
 		 * Checks if an object has been hit by a ray.

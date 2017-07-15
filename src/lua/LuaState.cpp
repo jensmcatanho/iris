@@ -24,6 +24,7 @@ SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #include "LuaState.h"
+#include "Core.h"
 
 // Cameras
 #include "Pinhole.h"
@@ -57,9 +58,9 @@ SOFTWARE.
 #include "ViewPlane.h"
 #include "World.h"
 
-LuaState::LuaState(std::shared_ptr<World> world_ptr) :
+LuaState::LuaState(std::shared_ptr<Core> core_ptr) :
 	m_L(nullptr),
-	m_WorldPtr(world_ptr) {
+	m_CorePtr(core_ptr) {
 
 	m_L = luaL_newstate();
 	luaL_openlibs(m_L);
@@ -95,7 +96,9 @@ bool LuaState::Start(const std::string &filename) {
 }
 
 void LuaState::LoadScene() {
-	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
+	assert(corePtr);
+	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
 	assert(worldPtr);
 
 	lua_getglobal(m_L, "scene");
@@ -114,7 +117,9 @@ void LuaState::LoadScene() {
 }
 
 void LuaState::ParseImage() {
-	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
+	assert(corePtr);
+	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
 	assert(worldPtr);
 
 	lua_getfield(m_L, -1, "image");
@@ -145,7 +150,9 @@ void LuaState::ParseImage() {
 }
 
 void LuaState::ParseSampler() {
-	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
+	assert(corePtr);
+	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
 	assert(worldPtr);
 
 	lua_getfield(m_L, -1, "should_sample");
@@ -204,7 +211,9 @@ void LuaState::ParseSampler() {
 }
 
 void LuaState::ParseTracer() {
-	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
+	assert(corePtr);
+	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
 	assert(worldPtr);
 
 	lua_getfield(m_L, -1, "tracer");
@@ -224,7 +233,9 @@ void LuaState::ParseTracer() {
 }
 
 void LuaState::ParseCamera() {
-	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
+	assert(corePtr);
+	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
 	assert(worldPtr);
 
 	std::shared_ptr<Pinhole> pinhole_ptr(new Pinhole);
@@ -277,7 +288,9 @@ void LuaState::ParseCamera() {
 }
 
 void LuaState::ParseLights() {
-	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
+	assert(corePtr);
+	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
 	assert(worldPtr);
 
 	lua_getfield(m_L, -1, "light_list");
@@ -364,7 +377,9 @@ void LuaState::ParseLights() {
 }
 
 void LuaState::ParseObjects() {
-	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
+	assert(corePtr);
+	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
 	assert(worldPtr);
 
 	lua_getfield(m_L, -1, "object_list");

@@ -23,63 +23,21 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef PREREQUISITES_H
-#define PREREQUISITES_H
+#include "Core.h"
 
-// Tracer version related defines.
-#define DRACO_MAJOR_VERSION 1
-#define DRACO_MINOR_VERSION 0
-#define DRACO_PATCH_VERSION 0
-#define DRACO_VERSION (DRACO_MAJOR_VERSION << 8) | (DRACO_MINOR_VERSION << 4) | DRACO_PATCH_VERSION
+#include "Camera.h"
+#include "LuaState.h"
+#include "World.h"
 
-// Forward declarations.
-class Ambient;
-class BRDF;
-class Camera;
-class Core;
-class GlossySpecular;
-class Hammersley;
-class Jittered;
-class Lambertian;
-class Light;
-class LuaState;
-class Material;
-class Matte;
-class MultiJittered;
-class MultipleObjects;
-class NRooks;
-class Object;
-class Pinhole;
-class Plane;
-class PointLight;
-class PureRandom;
-class Ray;
-class RayCast;
-class Regular;
-class RGBColor;
-class Sampler;
-class Sphere;
-class Surface;
-class Tracer;
-class ViewPlane;
-class World;
+Core::Core() :
+	m_WorldPtr(new World()) {
 
-// STL
-#include "StandardHeaders.h"
-
-// GLM
-#include <glm.hpp>
-#include <gtc/random.hpp>
-
-// Lua
-extern "C" {
-	#include "lua.h"
-	#include "lauxlib.h"
-	#include "lualib.h"
 }
 
-// Draconian
-#include "Constants.h"
-#include "Logger.h"
+void Core::Run(std::string scene_path) {
+	std::shared_ptr<LuaState> luaState(new LuaState(shared_from_this()));
+	luaState->Start(scene_path);
+	luaState->LoadScene();
 
-#endif
+	m_WorldPtr->m_CameraPtr->RenderScene(*m_WorldPtr);
+}

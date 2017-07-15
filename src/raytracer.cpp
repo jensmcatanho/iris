@@ -23,17 +23,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include <iostream>
-#include <cstdlib>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <vector>
-#include <cmath>
-#include <limits>
-
+#include "Prerequisites.h"
+#include "Core.h"
 #include "World.h"
-#include "Camera.h"
 
 
 void save_bitmap(const char *filename, int w, int h, int dpi, std::shared_ptr<World> world) {
@@ -97,17 +89,19 @@ void save_bitmap(const char *filename, int w, int h, int dpi, std::shared_ptr<Wo
 	
 }
 
-int thisone;
-
-int main(int argc, char *argv[]) {
-	std::shared_ptr<World> w(new World());
-	Logger::StartLog();
-	
-	w->Build();
-	w->m_CameraPtr->RenderScene(*w);
+int main(int argc, char **argv) {
 	int dpi = 72;
+	Logger::StartLog();
 
-	save_bitmap("scene.bmp", w->m_ViewPlane.m_Width, w->m_ViewPlane.m_Height, dpi, w);	
+	if (argc == 2) {
+		std::shared_ptr<Core> core(new Core());
+
+		core->Run(argv[1]);
+		save_bitmap("scene.bmp", core->m_WorldPtr->m_ViewPlane.m_Width, core->m_WorldPtr->m_ViewPlane.m_Height, dpi, core->m_WorldPtr);
+	
+	} else { 
+		std::cout << "Incorrect number of arguments" << std::endl;
+	}
 
 	Logger::SaveLog();
 

@@ -25,18 +25,11 @@ SOFTWARE.
 */
 #include "World.h"
 #include "Ambient.h"
-#include "LuaState.h"
 #include "Object.h"
 #include "Ray.h"
 #include "Sampler.h"
 #include "Surface.h"
 #include "Tracer.h"
-
-void World::Build() {
-	std::shared_ptr<LuaState> luaState(new LuaState(shared_from_this()));
-	luaState->Start("examples/TestScene3.lua");
-	luaState->LoadScene();
-}
 
 World::World() :
 	m_BackgroundColor(RGBColor::Black),

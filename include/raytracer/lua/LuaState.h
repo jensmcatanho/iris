@@ -40,10 +40,10 @@ SOFTWARE.
 class LuaState {
 	public:
 		/**
-		 * Constructs a Lua state with a pointer to the world.
-		 * @param world_ptr Smart pointer to the world.
+		 * Constructs a Lua state with a pointer to the core.
+		 * @param world_ptr Smart pointer to the core.
 		 */
-		LuaState(std::shared_ptr<World> world_ptr);
+		LuaState(std::shared_ptr<Core> core_ptr);
 
 		/**
 		 * Standard destructor.
@@ -69,9 +69,9 @@ class LuaState {
 		lua_State *m_L;
 
 		/**
-		 * Pointer to the world.
+		 * Pointer to the core.
 		 */
-		std::weak_ptr<World> m_WorldPtr;
+		std::weak_ptr<Core> m_CorePtr;
 
 		/**
 		 * Parses image parameters.

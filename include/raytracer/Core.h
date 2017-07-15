@@ -23,63 +23,30 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef PREREQUISITES_H
-#define PREREQUISITES_H
+#ifndef CORE_H
+#define CORE_H
 
-// Tracer version related defines.
-#define DRACO_MAJOR_VERSION 1
-#define DRACO_MINOR_VERSION 0
-#define DRACO_PATCH_VERSION 0
-#define DRACO_VERSION (DRACO_MAJOR_VERSION << 8) | (DRACO_MINOR_VERSION << 4) | DRACO_PATCH_VERSION
+#include "Prerequisites.h"
 
-// Forward declarations.
-class Ambient;
-class BRDF;
-class Camera;
-class Core;
-class GlossySpecular;
-class Hammersley;
-class Jittered;
-class Lambertian;
-class Light;
-class LuaState;
-class Material;
-class Matte;
-class MultiJittered;
-class MultipleObjects;
-class NRooks;
-class Object;
-class Pinhole;
-class Plane;
-class PointLight;
-class PureRandom;
-class Ray;
-class RayCast;
-class Regular;
-class RGBColor;
-class Sampler;
-class Sphere;
-class Surface;
-class Tracer;
-class ViewPlane;
-class World;
+class Core : public std::enable_shared_from_this<Core> {
+	friend class LuaState;
 
-// STL
-#include "StandardHeaders.h"
+	public:
+		/**
+		 * Standard constructor.
+		 */
+		Core();
 
-// GLM
-#include <glm.hpp>
-#include <gtc/random.hpp>
+		/**
+		 * Executes the scene setup and rendering.
+		 * @param  filename Scene file.
+		 */
+		void Run(std::string scene_path);
 
-// Lua
-extern "C" {
-	#include "lua.h"
-	#include "lauxlib.h"
-	#include "lualib.h"
-}
-
-// Draconian
-#include "Constants.h"
-#include "Logger.h"
+		/**
+		* Scene pointer.
+		*/
+		std::shared_ptr<World> m_WorldPtr;
+};
 
 #endif
