@@ -26,11 +26,7 @@ SOFTWARE.
 #ifndef PREREQUISITES_H
 #define PREREQUISITES_H
 
-// Tracer version related defines.
-#define DRACO_MAJOR_VERSION 1
-#define DRACO_MINOR_VERSION 0
-#define DRACO_PATCH_VERSION 0
-#define DRACO_VERSION (DRACO_MAJOR_VERSION << 8) | (DRACO_MINOR_VERSION << 4) | DRACO_PATCH_VERSION
+#include "Platform.h"
 
 // Forward declarations.
 class Ambient;
@@ -67,18 +63,25 @@ class World;
 // STL
 #include "StandardHeaders.h"
 
+// FreeImage
+#if RT_ARCHITECTURE_TYPE == RT_ARCHITECTURE_32
+#include "FreeImage/x32/FreeImage.h"
+#else
+#include "FreeImage/x64/FreeImage.h"
+#endif
+
 // GLM
-#include <glm.hpp>
-#include <gtc/random.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtc/random.hpp>
 
 // Lua
 extern "C" {
-	#include "lua.h"
-	#include "lauxlib.h"
-	#include "lualib.h"
+	#include "lua-5.3.3/lua.h"
+	#include "lua-5.3.3/lauxlib.h"
+	#include "lua-5.3.3/lualib.h"
 }
 
-// Draconian
+// Raytracer
 #include "Constants.h"
 #include "Logger.h"
 

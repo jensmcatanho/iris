@@ -26,7 +26,7 @@ SOFTWARE.
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#include <gtc/constants.hpp>
+#include <glm/gtc/constants.hpp>
 
 // Mathematical constants.
 const float PI = glm::pi<float>();
