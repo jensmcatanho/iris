@@ -36,8 +36,37 @@ Core::Core() :
 
 void Core::Run(std::string scene_path) {
 	std::shared_ptr<LuaState> luaState(new LuaState(shared_from_this()));
+	
 	luaState->Start(scene_path);
 	luaState->LoadScene();
 
 	m_WorldPtr->m_CameraPtr->RenderScene(*m_WorldPtr);
+
+	SaveImage();
+}
+
+void Core::SaveImage() {
+	int width = m_WorldPtr->m_ViewPlane.m_Width;
+	int height = m_WorldPtr->m_ViewPlane.m_Height;
+
+	FreeImage_Initialise();
+
+	FIBITMAP *bitmap = FreeImage_Allocate(width, height, 24);
+	RGBQUAD color;
+
+	if (!bitmap)
+		return;
+
+	for (int i = 0; i < width*height; i++) {
+		color.rgbRed = m_WorldPtr->m_Pixels[i].r * 255;
+		color.rgbGreen = m_WorldPtr->m_Pixels[i].g * 255;
+		color.rgbBlue = m_WorldPtr->m_Pixels[i].b * 255;
+
+		FreeImage_SetPixelColor(bitmap, i % width, i / height, &color);
+	}
+
+	if (FreeImage_Save(FIF_PNG, bitmap, "scene.png", 0))
+		std::cout << "File saved" << std::endl;
+
+	FreeImage_DeInitialise();
 }

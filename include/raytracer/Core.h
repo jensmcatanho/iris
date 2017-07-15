@@ -47,6 +47,12 @@ class Core : public std::enable_shared_from_this<Core> {
 		* Scene pointer.
 		*/
 		std::shared_ptr<World> m_WorldPtr;
+
+	private:
+		/**
+		 * Saves the rendered image in png format.
+		 */
+		void SaveImage();
 };
 
 #endif
