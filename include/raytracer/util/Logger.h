@@ -105,8 +105,9 @@ namespace Logger {
 	 * only written to a file when the program finishs it's execution. File reading and
 	 * writing has a very expensive and unnecessary cost to deal with during bottlenecks
 	 * of exectuion.
+	 * @param path Location where the log file will be written.
 	 */
-	void SaveLog();
+	void SaveLog(std::string path);
 }
 
 /**

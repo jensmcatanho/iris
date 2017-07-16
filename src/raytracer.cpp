@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
 		Logger::ErrorLog("Incorrect number of arguments.", "main()");
 	}
 
-	Logger::SaveLog();
+	Logger::SaveLog(argv[1]);
 
 	return EXIT_SUCCESS;
 }

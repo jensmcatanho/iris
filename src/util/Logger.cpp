@@ -81,12 +81,16 @@ namespace Logger {
 		m_Log << "[" << DateString() << "] " << "[INFO]" << " - " << component << " - " << message << std::endl;
 	}
 
-	void SaveLog() {
+	void SaveLog(std::string path) {
 		std::chrono::duration<double> elapsedTime = CurrentTime() - m_StartTime;
 		m_Log << std::endl << "Approximated runtime: " << elapsedTime.count() << std::endl;
 
+		std::stringstream ss;
+		ss << path << "/log.txt";
+		std::string result_path = ss.str();
+
 		std::ofstream output_stream;
-		output_stream.open("output.log", std::ofstream::out);
+		output_stream.open(result_path, std::ofstream::out);
 		output_stream << m_Log.str();
 		output_stream.close();
 	}

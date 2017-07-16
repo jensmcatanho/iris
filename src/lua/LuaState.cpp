@@ -73,7 +73,7 @@ LuaState::~LuaState() {
 bool LuaState::Start(const std::string &path) {
 	if (luaL_loadfile(m_L, "include/raytracer/lua/config.lua") != LUA_OK) {
 		Logger::ErrorLog(lua_tostring(m_L, -1), "LuaState::Load()");
-		Logger::SaveLog();
+		Logger::SaveLog(path);
 		return false;
 	}
 
@@ -84,7 +84,7 @@ bool LuaState::Start(const std::string &path) {
 	if (lua_pcall(m_L, 0, LUA_MULTRET, 0) == LUA_OK) {
 		if (luaL_loadfile(m_L, full_path.c_str()) != LUA_OK) {
 			Logger::ErrorLog(lua_tostring(m_L, -1), "LuaState::Load()");
-			Logger::SaveLog();
+			Logger::SaveLog(path);
 			return false;
 		}
 
@@ -94,7 +94,7 @@ bool LuaState::Start(const std::string &path) {
 	}
 
 	Logger::ErrorLog(lua_tostring(m_L, -1), "LuaState::Load()");
-	Logger::SaveLog();
+	Logger::SaveLog(path);
 
 	return false;
 }
