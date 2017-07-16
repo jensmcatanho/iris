@@ -3,50 +3,61 @@ camera = Pinhole.new()
 	.withEyeAt(0.0, 0.0, 500.0)
 	.lookingAt(0.0, 0.0, -1.0)
 
-camera.vpdistance = 850.0
+-- Image
+image = Image.new()
+	.across(400, 400)
+	.withPixelSize(1)
+	.withSampler(Sampler.MultiJittered)
+	.withSamples(16)
 
--- Plane
+-- Bottom
 phong = Phong.new()
-	.withDiffuseColor(1.0, 1.0, 0.0)
+	.withDiffuseColor(1.0, 1.0, 1.0)
 	.withAmbientReflection(0.25)
 	.withDiffuseReflection(0.65)
 	.withSpecularReflection(0.05)
 
 plane = Plane.new()
-	.locatedAt(0.0, 0.0, 0.0)
-	.lookingAt(0.0, 0.0, 1.0)
+	.locatedAt(0.0, -80.0, 0.0)
+	.lookingAt(0.0, 1.0, 0.0)
+	.withMaterial(phong)
+
+-- Top
+phong = Phong.new()
+	.withDiffuseColor(1.0, 0.0, 1.0)
+	.withAmbientReflection(0.25)
+	.withDiffuseReflection(0.65)
+	.withSpecularReflection(0.05)
+
+plane1 = Plane.new()
+	.locatedAt(0.0, 80.0, 0.0)
+	.lookingAt(0.0, -1.0, 0.0)
 	.withMaterial(phong)
 
 -- Sphere
-phong1 = Phong.new()
-	.withDiffuseColor(0.0, 1.0, 0.0)
+phong = Phong.new()
+	.withDiffuseColor(0.0, 1.0, 1.0)
 	.withAmbientReflection(0.25)
 	.withDiffuseReflection(0.65)
 	.withSpecularReflection(0.05)
 
 sphere = Sphere.new()
-	.centeredAt(10.0, 20.0, 19.0)
-	.withRadius(10)
-	.withMaterial(phong1)
+	.centeredAt(0.0, 0.0, 0.0)
+	.withRadius(30)
+	.withMaterial(phong)
 
 -- Light
 light = PointLight.new()
-	.locatedAt(0.0, 50.0, 100.0)
-	.withIntensity(3.0)
+	.locatedAt(0.0, 79.0, 100.0)
+	.withIntensity(2.0)
 	.castsShadows(true)
-
--- Image
-image = Image.new()
-	.across(400, 400)
-	.withPixelSize(0.5)
-	.withSampler(Sampler.MultiJittered)
-	.withSamples(16)
 
 -- Scene
 scene = Scene.new()
 	.withTracer(Tracer.RayCast)
 	.withImage(image)
 	.AddCamera(camera)
-	.AddObject(plane)
 	.AddObject(sphere)
+	.AddObject(plane)
+	.AddObject(plane1)
 	.AddLight(light)
