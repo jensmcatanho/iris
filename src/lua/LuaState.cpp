@@ -419,7 +419,7 @@ void LuaState::ParseObjects() {
 			std::shared_ptr<Plane> plane_ptr(new Plane);
 
 			plane_ptr->SetPoint(point);
-			plane_ptr->SetNormal(normal);
+			plane_ptr->SetNormal(glm::normalize(normal));
 			plane_ptr->SetMaterial(material_ptr);
 			
 			worldPtr->AddObject(plane_ptr);
