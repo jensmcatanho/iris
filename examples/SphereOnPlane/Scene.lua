@@ -7,7 +7,7 @@ camera.vpdistance = 850.0
 
 -- Plane
 phong = Phong.new()
-	.withDiffuseColor(1.0, 0.0, 1.0)
+	.withDiffuseColor(0.0, 0.0, 1.0)
 	.withAmbientReflection(0.25)
 	.withDiffuseReflection(0.65)
 	.withSpecularReflection(0.05)
