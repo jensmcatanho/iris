@@ -65,7 +65,7 @@ class World;
 
 // FreeImage
 #if RT_ARCHITECTURE_TYPE == RT_ARCHITECTURE_32
-#include "FreeImage/x32/FreeImage.h"
+#include "FreeImage/x86/FreeImage.h"
 #else
 #include "FreeImage/x64/FreeImage.h"
 #endif
@@ -75,11 +75,19 @@ class World;
 #include <glm/gtc/random.hpp>
 
 // Lua
+#if RT_ARCHITECTURE_TYPE == RT_ARCHITECTURE_32
 extern "C" {
-	#include "lua-5.3.3/lua.h"
-	#include "lua-5.3.3/lauxlib.h"
-	#include "lua-5.3.3/lualib.h"
+	#include "lua/x86/lua.h"
+	#include "lua/x86/lauxlib.h"
+	#include "lua/x86/lualib.h"
 }
+#else
+extern "C" {
+	#include "lua/x64/lua.h"
+	#include "lua/x64/lauxlib.h"
+	#include "lua/x64/lualib.h"
+}
+#endif
 
 // Raytracer
 #include "Constants.h"
