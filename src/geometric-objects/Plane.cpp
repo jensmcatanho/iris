@@ -42,7 +42,7 @@ bool Plane::Hit(const Ray &ray, double &tmin, Surface &sr) const {
 	if (t > kEpsilon) {
 		tmin = t;
 		sr.m_Normal = m_Normal;
-		sr.m_HitPoint = ray.m_Origin + t * ray.m_Direction;
+		sr.m_LocalHitPoint = ray.m_Origin + t * ray.m_Direction;
 
 		return true;
 	}

@@ -43,10 +43,18 @@ RGBColor Matte::Shade(Surface &sr) const {
 	for (int i = 0; i < num_lights; i++) {
 		glm::vec3 wi(sr.w.m_Lights[i]->GetDirection(sr));
 		float ndotwi = glm::dot(sr.m_Normal, wi);
-		float ndotwo = glm::dot(sr.m_Normal, wo);
 
-		if (ndotwi > 0.0 && ndotwo > 0.0)
-			L += m_Diffuse->f(sr, wo, wi) * sr.w.m_Lights[i]->L(sr) * ndotwi;
+		if (ndotwi > 0.0) {
+			bool shadowed = false;
+
+			if (sr.w.m_Lights[i]->CastsShadows()) {
+				Ray shadow_ray(sr.m_HitPoint, wi);
+				shadowed = sr.w.m_Lights[i]->Shadowed(shadow_ray, sr);
+			}
+
+			if (!shadowed)
+				L += m_Diffuse->f(sr, wo, wi) * sr.w.m_Lights[i]->L(sr) * ndotwi;
+		}
 	}
 
 	return L;

@@ -44,7 +44,6 @@ RGBColor Phong::Shade(Surface &sr) const {
 	for (int i = 0; i < num_lights; i++) {
 		glm::vec3 wi(sr.w.m_Lights[i]->GetDirection(sr));
 		float ndotwi = glm::dot(sr.m_Normal, wi);
-		float ndotwo = glm::dot(sr.m_Normal, wo);
 
 		if (ndotwi > 0.0) {
 			bool shadowed = false;

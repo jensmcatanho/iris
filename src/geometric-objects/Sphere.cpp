@@ -53,7 +53,7 @@ bool Sphere::Hit(const Ray &ray, double &tmin, Surface &sr) const {
 		tmin = t;
 		sr.m_Normal = temp + t * ray.m_Direction;
 		sr.m_Normal = sr.m_Normal * (1.0f / m_Radius);
-		sr.m_HitPoint = ray.m_Origin + ray.m_Direction * t;
+		sr.m_LocalHitPoint = ray.m_Origin + ray.m_Direction * t;
 		return true;
 
 	}
@@ -64,7 +64,7 @@ bool Sphere::Hit(const Ray &ray, double &tmin, Surface &sr) const {
 		tmin = t;
 		sr.m_Normal = temp + t * ray.m_Direction;
 		sr.m_Normal = sr.m_Normal * (1.0f / m_Radius);
-		sr.m_HitPoint = ray.m_Origin + ray.m_Direction * t;
+		sr.m_LocalHitPoint = ray.m_Origin + ray.m_Direction * t;
 		return true;
 
 	}

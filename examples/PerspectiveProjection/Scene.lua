@@ -8,7 +8,7 @@ camera.vpdistance = 100.0
 
 -- Floor
 phong = Phong.new()
-	.withDiffuseColor(0.6, 0.6, 0.6)
+	.withDiffuseColor(0.5, 0.5, 0.5)
 	.withAmbientReflection(0.25)
 	.withDiffuseReflection(0.65)
 	.withSpecularReflection(0.05)
@@ -20,9 +20,9 @@ plane = Plane.new()
 
 -- Light
 light = PointLight.new()
-	.locatedAt(0.0, 20.0, -10.0)
+	.locatedAt(10.0, 20.0, 0.0)
 	.withIntensity(5.0)
-	.castsShadows(false)
+	.castsShadows(true)
 
 -- Sphere #1
 phong = Phong.new()

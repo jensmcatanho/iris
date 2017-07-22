@@ -68,7 +68,7 @@ Surface World::HitObjects(const Ray &ray) {
 	int num_objects = m_Objects.size();
 	
 	for (int i = 0; i < num_objects; i++)
-		if (m_Objects[i]->Hit(ray, t, sr) && t < tmin) {
+		if (m_Objects[i]->Hit(ray, t, sr) && (t < tmin)) {
 			sr.m_Hit = true;
 			tmin = t;
 
