@@ -27,6 +27,7 @@ SOFTWARE.
 #define VIEWPLANE_H
 
 #include "Prerequisites.h"
+#include "RGBColor.h"
 
 /**
  * @addtogroup World
@@ -112,9 +113,14 @@ class ViewPlane {
 		float m_InvGamma;
 
 		/**
-		 * Checks if RGBColor is out of gamut.
+		 * Checks if an out of gamut RGBColor should be clamped to a target color.
 		 */
-		bool m_OutOfGamut;
+		bool m_ClampOutOfGamut;
+
+		/**
+		 * Target color of clamping operation.
+		 */
+		RGBColor m_ClampColor;
 
 		/**
 		 * Smart pointer to a sampler.
@@ -145,7 +151,7 @@ inline void ViewPlane::SetGamma(const float gamma) {
 }
 
 inline void ViewPlane::SetGamutDisplay(const bool out_of_gamut) {
-	m_OutOfGamut = out_of_gamut;
+	m_ClampOutOfGamut = out_of_gamut;
 }
 
 /**

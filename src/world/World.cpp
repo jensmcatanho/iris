@@ -42,10 +42,9 @@ World::World() :
 
 void World::DisplayPixel(const int row, const int column, const RGBColor &raw_color) const {
 	RGBColor mapped_color;
-	RGBColor target_color(1.0f, 0.0f, 0.0f); //TODO: Set target color in build member function
 
-	if (m_ViewPlane.m_OutOfGamut)
-		mapped_color = RGBColor::ClampToColor(raw_color, target_color);
+	if (m_ViewPlane.m_ClampOutOfGamut)
+		mapped_color = RGBColor::ClampToColor(raw_color, m_ViewPlane.m_ClampColor);
 	else
 		mapped_color = RGBColor::MaxToOne(raw_color);
 	

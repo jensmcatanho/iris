@@ -149,6 +149,18 @@ void LuaState::ParseImage() {
 	worldPtr->m_BackgroundColor = ParseColor();
 	lua_pop(m_L, 1);
 
+	lua_getfield(m_L, -1, "clamp_out_of_gamut");
+	luaL_checktype(m_L, -1, LUA_TBOOLEAN);
+	worldPtr->m_ViewPlane.SetGamutDisplay(static_cast<bool>(lua_toboolean(m_L, -1)));
+	lua_pop(m_L, 1);
+
+	if (worldPtr->m_ViewPlane.m_ClampOutOfGamut) {
+		lua_getfield(m_L, -1, "clamp_color");
+		luaL_checktype(m_L, -1, LUA_TTABLE);
+		worldPtr->m_ViewPlane.m_ClampColor = ParseColor();
+		lua_pop(m_L, 1);
+	}
+
 	ParseSampler();
 	lua_pop(m_L, 1);
 }

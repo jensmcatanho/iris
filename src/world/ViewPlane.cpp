@@ -35,7 +35,8 @@ ViewPlane::ViewPlane() :
 	m_PixelSize(1.0),
 	m_Gamma(1.0),
 	m_InvGamma(1.0),
-	m_OutOfGamut(false),
+	m_ClampOutOfGamut(false),
+	m_ClampColor(1.0),
 	m_NumSamples(1) {
 
 }
