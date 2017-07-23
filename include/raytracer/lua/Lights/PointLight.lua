@@ -10,6 +10,8 @@ function PointLight.new()
 	self.position = {x = 0.0, y = 0.0, z = 0.0}
 	self.color = {r = 1.0, g = 1.0, b = 1.0}
 	self.intensity = 1.0
+	self.attenuate = false
+	self.decay = 2.0
 
 	-- Public methods
 	function self.locatedAt(x, y, z)
@@ -24,6 +26,16 @@ function PointLight.new()
 
 	function self.withIntensity(i)
 		self.intensity = i
+		return self
+	end
+
+	function self.shouldAttenuate(flag)
+		self.attenuate = flag
+		return self
+	end
+
+	function self.withDecay(d)
+		self.decay = d
 		return self
 	end
 

@@ -32,7 +32,9 @@ PointLight::PointLight() :
 	Light(),
 	m_Intensity(1.0),
 	m_Color(1.0),
-	m_Position(0.0) {
+	m_Position(0.0),
+	m_Attenuate(false),
+	m_Decay(2.0) {
 
 }
 
@@ -41,7 +43,10 @@ glm::vec3 PointLight::GetDirection(Surface &sr) {
 }
 
 RGBColor PointLight::L(Surface &sr) {
-	return m_Color * m_Intensity;
+	if (m_Attenuate)
+		return (m_Color * m_Intensity) / glm::pow(glm::length(m_Position - sr.m_HitPoint), m_Decay);
+	else
+		return m_Color * m_Intensity;
 }
 
 bool PointLight::Shadowed(const Ray &ray, const Surface &sr) const {

@@ -84,6 +84,18 @@ class PointLight : public Light {
 		 */
 		void SetPosition(const glm::vec3 &position);
 
+		/**
+		 * Sets if distance attenuation is turned on.
+		 * @param flag Flag that sets if distance attenuation is turned on.
+		 */
+		void SetAttenuation(const bool flag);
+
+		/**
+		 * Sets the decay factor for distance attenuation.
+		 * @param decay Target decay factor.
+		 */
+		void SetDecay(const float decay);
+
 	private:
 		/**
 		 * Radiance scaling factor.
@@ -99,6 +111,16 @@ class PointLight : public Light {
 		 * Position of the light in world coordinates.
 		 */
 		glm::vec3 m_Position;
+
+		/**
+		 * Checks if distance attenuation is turned on.
+		 */
+		bool m_Attenuate;
+
+		/**
+		 * Attenuation factor.
+		 */
+		float m_Decay;
 };
 
 inline void PointLight::SetIntensity(const float intensity) {
@@ -111,6 +133,14 @@ inline void PointLight::SetColor(const RGBColor &color) {
 
 inline void PointLight::SetPosition(const glm::vec3 &pos) {
 	m_Position = pos;
+}
+
+inline void PointLight::SetAttenuation(const bool flag) {
+	m_Attenuate = flag;
+}
+
+inline void PointLight::SetDecay(const float decay) {
+	m_Decay = decay;
 }
 
 /**

@@ -348,10 +348,22 @@ void LuaState::ParseLights() {
 			bool shadows = static_cast<bool>(lua_toboolean(m_L, -1));
 			lua_pop(m_L, 1);
 
+			lua_getfield(m_L, -1, "attenuate");
+			luaL_checktype(m_L, -1, LUA_TBOOLEAN);
+			bool attenuate = static_cast<bool>(lua_toboolean(m_L, -1));
+			lua_pop(m_L, 1);
+
+			lua_getfield(m_L, -1, "decay");
+			luaL_checktype(m_L, -1, LUA_TNUMBER);
+			float decay = static_cast<float>(lua_tonumber(m_L, -1));
+			lua_pop(m_L, 1);
+
 			std::shared_ptr<PointLight> light_ptr(new PointLight);
 			light_ptr->SetColor(color);
 			light_ptr->SetPosition(position);
 			light_ptr->SetIntensity(intensity);
+			light_ptr->SetAttenuation(attenuate);
+			light_ptr->SetDecay(decay);
 			light_ptr->CastsShadows(shadows);
 
 			worldPtr->AddLight(light_ptr);
