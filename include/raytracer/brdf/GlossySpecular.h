@@ -71,6 +71,12 @@ class GlossySpecular : public BRDF {
 		 */
 		void SetSpecularExponent(const float ksexp);
 
+		/**
+		 * Gets the specular color.
+		 * @return Specular color.
+		 */
+		RGBColor GetSpecularColor() const;
+
 	private:
 		/**
 		 * Specular reflection coefficient.
@@ -98,6 +104,10 @@ inline void GlossySpecular::SetSpecularColor(const RGBColor &color) {
 
 inline void GlossySpecular::SetSpecularExponent(const float ksexp) {
 	m_SpecularExp = ksexp;
+}
+
+inline RGBColor GlossySpecular::GetSpecularColor() const {
+	return m_SpecularColor;
 }
 
 /**

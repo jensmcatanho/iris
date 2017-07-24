@@ -530,7 +530,6 @@ std::shared_ptr<Material> LuaState::ParseMaterial() {
 	std::string name = lua_tostring(m_L, -1);
 	lua_pop(m_L, 1);
 
-	// TODO: Find a way to better reuse code here.
 	if (name == "Matte") {
 		std::shared_ptr<Matte> material_ptr(new Matte);
 
@@ -544,12 +543,10 @@ std::shared_ptr<Material> LuaState::ParseMaterial() {
 		material_ptr->SetDiffuseReflection(static_cast<float>(lua_tonumber(m_L, -1)));
 		lua_pop(m_L, 1);
 
-		/* TODO: Implement SetAmbientColor()
 		lua_getfield(m_L, -1, "ambient_color");
 		luaL_checktype(m_L, -1, LUA_TTABLE);
 		material_ptr->SetAmbientColor(ParseColor());
 		lua_pop(m_L, 1);
-		*/
 
 		lua_getfield(m_L, -1, "ambient_reflection");
 		luaL_checktype(m_L, -1, LUA_TNUMBER);
@@ -572,24 +569,20 @@ std::shared_ptr<Material> LuaState::ParseMaterial() {
 		material_ptr->SetDiffuseReflection(static_cast<float>(lua_tonumber(m_L, -1)));
 		lua_pop(m_L, 1);
 
-		/* TODO: Implement SetAmbientColor()
 		lua_getfield(m_L, -1, "ambient_color");
 		luaL_checktype(m_L, -1, LUA_TTABLE);
 		material_ptr->SetAmbientColor(ParseColor());
 		lua_pop(m_L, 1);
-		*/
 
 		lua_getfield(m_L, -1, "ambient_reflection");
 		luaL_checktype(m_L, -1, LUA_TNUMBER);
 		material_ptr->SetAmbientReflection(static_cast<float>(lua_tonumber(m_L, -1)));
 		lua_pop(m_L, 1);
 
-		/* TODO: Implement SetSpecularColor()
 		lua_getfield(m_L, -1, "specular_color");
 		luaL_checktype(m_L, -1, LUA_TTABLE);
 		material_ptr->SetSpecularColor(ParseColor());
 		lua_pop(m_L, 1);
-		*/
 
 		lua_getfield(m_L, -1, "specular_reflection");
 		luaL_checktype(m_L, -1, LUA_TNUMBER);

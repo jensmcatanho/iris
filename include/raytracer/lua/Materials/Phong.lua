@@ -9,7 +9,7 @@ function Phong.new()
 	self.diffuse_reflection = 1.0
 	self.ambient_color = {r = 0.0, g = 0.0, b = 0.0}
 	self.ambient_reflection = 1.0
-	self.specular_color = {r = 0.0, g = 0.0, b = 0.0}
+	self.specular_color = {r = 1.0, g = 1.0, b = 1.0}
 	self.specular_reflection = 1.0
 	self.specular_exp = 1.0
 
