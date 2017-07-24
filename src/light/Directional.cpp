@@ -24,7 +24,9 @@ SOFTWARE.
 -----------------------------------------------------------------------------
 */
 #include "Directional.h"
+#include "Object.h"
 #include "Surface.h"
+#include "World.h"
 
 Directional::Directional() :
 	Light(),
@@ -43,5 +45,12 @@ RGBColor Directional::L(Surface &sr) {
 }
 
 bool Directional::Shadowed(const Ray &ray, const Surface &sr) const {
+	float t;
+	int num_objects = sr.w.m_Objects.size();
+	
+	for (int i = 0; i < num_objects; i++)
+		if (sr.w.m_Objects[i]->ShadowHit(ray, t))
+			return true;
+
 	return false;
 }

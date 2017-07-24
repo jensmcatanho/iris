@@ -1,4 +1,5 @@
 local Light = require('Lights.Light')
+local Decay = require('Lights.Decay')
 
 PointLight = {}
 
@@ -11,7 +12,7 @@ function PointLight.new()
 	self.color = {r = 1.0, g = 1.0, b = 1.0}
 	self.intensity = 1.0
 	self.attenuate = false
-	self.decay = 2.0
+	self.decay = Decay.Quadratic
 
 	-- Public methods
 	function self.locatedAt(x, y, z)

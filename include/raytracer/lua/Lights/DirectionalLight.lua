@@ -12,7 +12,7 @@ function DirectionalLight.new()
 	self.intensity = 1.0
 
 	-- Public methods
-	function self.lookingAt(x, y, z)
+	function self.withTargetAt(x, y, z)
 		self.direction.x, self.direction.y, self.direction.z = x, y, z
 		return self
 	end
