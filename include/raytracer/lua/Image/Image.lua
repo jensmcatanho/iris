@@ -9,6 +9,7 @@ function Image.new()
 	self.width = 400
 	self.height = 400
 	self.pixel_size = 1.0
+	self.gamma_correction = 1.0
 	self.background_color = {r = 0.0, g = 0.0, b = 0.0}
 	self.clamp_out_of_gamut = false
 	self.clamp_color = {r = 1.0, g = 1.0, b = 1.0}
@@ -25,6 +26,11 @@ function Image.new()
 
 	function self.withPixelSize(p)
 		self.pixel_size = p
+		return self
+	end
+
+	function self.withGammaCorrection(gamma)
+		self.gamma_correction = gamma
 		return self
 	end
 

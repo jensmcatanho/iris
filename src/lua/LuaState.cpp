@@ -144,6 +144,11 @@ void LuaState::ParseImage() {
 	worldPtr->m_ViewPlane.SetPixelSize(static_cast<float>(lua_tonumber(m_L, -1)));
 	lua_pop(m_L, 1);
 
+	lua_getfield(m_L, -1, "gamma_correction");
+	luaL_checktype(m_L, -1, LUA_TNUMBER);
+	worldPtr->m_ViewPlane.SetGammaCorrection(static_cast<float>(lua_tonumber(m_L, -1)));
+	lua_pop(m_L, 1);
+
 	lua_getfield(m_L, -1, "background_color");
 	luaL_checktype(m_L, -1, LUA_TTABLE);
 	worldPtr->m_BackgroundColor = ParseColor();

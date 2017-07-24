@@ -67,7 +67,7 @@ class ViewPlane {
 		 * Sets the gamma correction factor of the view plane.
 		 * @param gamma Target gamma correction factor.
 		 */
-		void SetGamma(const float gamma);
+		void SetGammaCorrection(const float gamma);
 
 		/**
 		 * Sets how to deal with out of gamut colors.
@@ -145,7 +145,7 @@ inline void ViewPlane::SetPixelSize(const float pixel_size) {
 	m_PixelSize = pixel_size;
 }
 
-inline void ViewPlane::SetGamma(const float gamma) {
+inline void ViewPlane::SetGammaCorrection(const float gamma) {
 	m_Gamma = gamma;
 	m_InvGamma = static_cast<float>(1.0 / gamma);
 }
