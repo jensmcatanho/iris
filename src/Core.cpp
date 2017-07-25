@@ -59,9 +59,9 @@ void Core::SaveImage() {
 		return;
 
 	for (int i = 0; i < width*height; i++) {
-		color.rgbRed = m_WorldPtr->m_Pixels[i].r * 255;
-		color.rgbGreen = m_WorldPtr->m_Pixels[i].g * 255;
-		color.rgbBlue = m_WorldPtr->m_Pixels[i].b * 255;
+		color.rgbRed =   static_cast<int>(m_WorldPtr->m_Pixels[i].r * 255);
+		color.rgbGreen = static_cast<int>(m_WorldPtr->m_Pixels[i].g * 255);
+		color.rgbBlue =  static_cast<int>(m_WorldPtr->m_Pixels[i].b * 255);
 
 		FreeImage_SetPixelColor(bitmap, i % width, i / height, &color);
 	}

@@ -48,8 +48,8 @@ void Regular::GenerateSamples() {
 	for (int i = 0; i < m_NumSets; i++)
 		for (int j = 0; j < n; j++)
 			for (int k = 0; k < n; k++) {
-				int x = (k + 0.5) / n;
-				int y = (j + 0.5) / n;
+				int x = static_cast<int>((k + 0.5) / n);
+				int y = static_cast<int>((j + 0.5) / n);
 
 				m_Samples.push_back( glm::vec2(x, y) );
 			}

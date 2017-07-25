@@ -156,7 +156,7 @@ void LuaState::ParseImage() {
 
 	lua_getfield(m_L, -1, "clamp_out_of_gamut");
 	luaL_checktype(m_L, -1, LUA_TBOOLEAN);
-	worldPtr->m_ViewPlane.SetGamutDisplay(static_cast<bool>(lua_toboolean(m_L, -1)));
+	worldPtr->m_ViewPlane.SetGamutDisplay(static_cast<bool>(lua_toboolean(m_L, -1) ? true : false));
 	lua_pop(m_L, 1);
 
 	if (worldPtr->m_ViewPlane.m_ClampOutOfGamut) {
@@ -179,7 +179,7 @@ void LuaState::ParseSampler() {
 	lua_getfield(m_L, -1, "should_sample");
 	luaL_checktype(m_L, -1, LUA_TBOOLEAN);
 
-	if (static_cast<bool>(lua_toboolean(m_L, -1))) {
+	if (lua_toboolean(m_L, -1)) {
 		lua_pop(m_L, 1);
 
 		lua_getfield(m_L, -1, "samples");
@@ -350,12 +350,12 @@ void LuaState::ParseLights() {
 
 			lua_getfield(m_L, -1, "shadows");
 			luaL_checktype(m_L, -1, LUA_TBOOLEAN);
-			bool shadows = static_cast<bool>(lua_toboolean(m_L, -1));
+			bool shadows = static_cast<bool>(lua_toboolean(m_L, -1) ? true : false);
 			lua_pop(m_L, 1);
 
 			lua_getfield(m_L, -1, "attenuate");
 			luaL_checktype(m_L, -1, LUA_TBOOLEAN);
-			bool attenuate = static_cast<bool>(lua_toboolean(m_L, -1));
+			bool attenuate = static_cast<bool>(lua_toboolean(m_L, -1) ? true : false);
 			lua_pop(m_L, 1);
 
 			lua_getfield(m_L, -1, "decay");
@@ -391,7 +391,7 @@ void LuaState::ParseLights() {
 
 			lua_getfield(m_L, -1, "shadows");
 			luaL_checktype(m_L, -1, LUA_TBOOLEAN);
-			bool shadows = static_cast<bool>(lua_toboolean(m_L, -1));
+			bool shadows = static_cast<bool>(lua_toboolean(m_L, -1) ? true : false);
 			lua_pop(m_L, 1);
 
 			std::shared_ptr<Directional> light_ptr(new Directional);

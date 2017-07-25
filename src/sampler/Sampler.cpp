@@ -60,14 +60,14 @@ void Sampler::MapToUnitDisk() {
 	glm::vec2 samplePoint;
 
 	// Polar coordinates.
-	float radius;
-	float phi;
+	double radius;
+	double phi;
 
 	m_DiskSamples.reserve(size);
 
 	for (int i = 0; i < size; i++) {
-		samplePoint.x = 2.0 * m_Samples[i].x - 1.0;
-		samplePoint.y = 2.0 * m_Samples[i].y - 1.0;
+		samplePoint.x = static_cast<float>(2.0 * m_Samples[i].x - 1.0);
+		samplePoint.y = static_cast<float>(2.0 * m_Samples[i].y - 1.0);
 
 		if (samplePoint.x > -samplePoint.y) {
 			if (samplePoint.x > samplePoint.y) {
@@ -110,18 +110,18 @@ void Sampler::MapToHemisphere(const float e) {
 
 	for (int i = 0; i < size; i++) {
 		// Phi
-		float phi = 2.0 * PI * m_Samples[i].x;
-		float cos_phi = glm::cos(phi);
-		float sin_phi = glm::sin(phi);
+		double phi = 2.0 * PI * m_Samples[i].x;
+		double cos_phi = glm::cos(phi);
+		double sin_phi = glm::sin(phi);
 
 		// Theta
-		float cos_theta = glm::pow(1.0 - m_Samples[i].y, 1.0 / (e + 1.0));
-		float sin_theta = glm::sqrt(1.0 - cos_theta * cos_theta);  //sin² + cos² = 1
+		double cos_theta = glm::pow(1.0 - m_Samples[i].y, 1.0 / (e + 1.0));
+		double sin_theta = glm::sqrt(1.0 - cos_theta * cos_theta);  //sin² + cos² = 1
 
 		// Point p
-		float pu = sin_theta * cos_phi;
-		float pv = sin_theta * sin_phi;
-		float pw = cos_theta;
+		double pu = sin_theta * cos_phi;
+		double pv = sin_theta * sin_phi;
+		double pw = cos_theta;
 
 		m_HemisphereSamples.push_back(glm::vec3(pu, pv, pw));
 	}

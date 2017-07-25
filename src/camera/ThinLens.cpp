@@ -59,8 +59,8 @@ void ThinLens::RenderScene(const World &w) {
 			for (int i = 0; i < vp.m_NumSamples; i++) {
 				us_samplePoint = vp.m_SamplerPtr->SampleUnitSquare();
 
-				px_samplePoint.x = vp.m_PixelSize * (c - 0.5 * vp.m_Width + us_samplePoint.x);
-				px_samplePoint.y = vp.m_PixelSize * (r - 0.5 * vp.m_Height + us_samplePoint.y);
+				px_samplePoint.x = static_cast<float>(vp.m_PixelSize * (c - 0.5 * vp.m_Width + us_samplePoint.x));
+				px_samplePoint.y = static_cast<float>(vp.m_PixelSize * (r - 0.5 * vp.m_Height + us_samplePoint.y));
 
 				ud_samplePoint = m_SamplerPtr->SampleUnitDisk();
 				ln_samplePoint = ud_samplePoint * m_LensRadius;
@@ -71,7 +71,7 @@ void ThinLens::RenderScene(const World &w) {
 				pixelColor += w.m_TracerPtr->TraceRay(ray);
 			}
 
-			pixelColor /= vp.m_NumSamples;
+			pixelColor /= static_cast<float>(vp.m_NumSamples);
 			pixelColor *= m_ExposureTime;
 			w.DisplayPixel(r, c, pixelColor);
 		}

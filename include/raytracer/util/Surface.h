@@ -90,7 +90,7 @@ class Surface {
 		/**
 		 * Ray parameter.
 		 */
-		float m_T;
+		double m_T;
 
 		/**
 		 * TODO

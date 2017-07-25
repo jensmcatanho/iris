@@ -43,14 +43,13 @@ Jittered::Jittered(const int numSamples, const int numSets)
 }
 
 void Jittered::GenerateSamples() {
-	int n = (int)sqrt(m_NumSamples);
-	int x, y;
+	int n = static_cast<int>(sqrt(m_NumSamples));
 
 	for (int p = 0; p < m_NumSets; p++)
 		for (int j = 0; j < n; j++)
 			for (int k = 0; k < n; k++) {
-				x = (k + RandFloat()) / n;
-				y = (j + RandFloat()) / n;
+				int x = static_cast<int>((k + RandFloat()) / n);
+				int y = static_cast<int>((j + RandFloat()) / n);
 
 				m_Samples.push_back( glm::vec2(x, y) );
 			}

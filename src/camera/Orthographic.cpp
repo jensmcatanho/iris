@@ -59,7 +59,7 @@ void Orthographic::RenderScene(const World &w) {
 
 			}
 
-			pixel_color /= vp.m_NumSamples;
+			pixel_color /= static_cast<float>(vp.m_NumSamples);
 			pixel_color *= m_ExposureTime;
 			w.DisplayPixel(r, c, pixel_color);
 		}

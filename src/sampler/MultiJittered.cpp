@@ -44,7 +44,7 @@ MultiJittered::MultiJittered(const int numSamples, const int numSets)
 
 void MultiJittered::GenerateSamples() {
 	int n = static_cast<int>(sqrt(m_NumSamples));
-	float subcell_width = 1.0 / static_cast<float>(m_NumSamples);
+	float subcell_width = static_cast<float>(1.0 / m_NumSamples);
 
 	glm::vec2 fill_point;
 	for (int i = 0; i < m_NumSamples * m_NumSets; i++)

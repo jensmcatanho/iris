@@ -67,7 +67,7 @@ inline void ThinLens::SetFocalPlaneDistance(const float fp_distance) {
 }
 
 inline void ThinLens::SetZoom(const float zoom) {
-	float m_Zoom;
+	m_Zoom = zoom;
 }
 
 #endif

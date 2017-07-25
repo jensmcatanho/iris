@@ -60,7 +60,7 @@ void Pinhole::RenderScene(const World &w) {
 				pixelColor += w.m_TracerPtr->TraceRay(ray);
 			}
 
-			pixelColor /= vp.m_NumSamples;
+			pixelColor /= static_cast<float>(vp.m_NumSamples);
 			pixelColor *= m_ExposureTime;
 			w.DisplayPixel(r, c, pixelColor);
 		}
