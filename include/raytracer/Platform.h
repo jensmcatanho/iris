@@ -23,6 +23,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
+#ifndef PLATFORM_H
+#define PLATFORM_H
+
 // CPU configuration.
 #define RT_CPU_X86     0
 #define RT_CPU_ARM     1
@@ -129,21 +132,5 @@ SOFTWARE.
 #define RT_DEBUG 0
 #endif
 #endif
-/*
-#include <cstdint>
-// Sized integer types
-typedef std::int8_t int8;
-typedef uint8_t uint8;
-typedef int16_t int16;
-typedef uint16_t uint16;
-typedef int32_t int32;
-typedef uint32_t uint32;
-typedef int64_t int64;
-typedef uint64_t uint64;
-*/
 
-// Shorthand unsigned notations 
-typedef unsigned char uchar;
-typedef unsigned short ushort;
-typedef unsigned int uint;
-typedef unsigned long ulong;
+#endif

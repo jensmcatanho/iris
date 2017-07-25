@@ -40,7 +40,7 @@ SOFTWARE.
 
 // Materials
 #include "Matte.h"
-#include "Phong.h"
+#include "Plastic.h"
 
 // Samplers
 #include "Hammersley.h"
@@ -557,7 +557,7 @@ std::shared_ptr<Material> LuaState::ParseMaterial() {
 		return material_ptr;
 
 	} else {
-		std::shared_ptr<Phong> material_ptr(new Phong);
+		std::shared_ptr<Plastic> material_ptr(new Plastic);
 
 		lua_getfield(m_L, -1, "diffuse_color");
 		luaL_checktype(m_L, -1, LUA_TTABLE);

@@ -23,20 +23,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "Phong.h"
+#include "Plastic.h"
 #include "Light.h"
 #include "Surface.h"
 #include "World.h"
 
-Phong::Phong() :
+Plastic::Plastic() :
 	Material(),
 	m_Ambient(new Lambertian),
 	m_Diffuse(new Lambertian),
-	m_Specular(new GlossySpecular) {
+	m_Specular(new Phong) {
 
 }
 
-RGBColor Phong::Shade(Surface &sr) const {
+RGBColor Plastic::Shade(Surface &sr) const {
 	glm::vec3 wo = -sr.m_Ray.m_Direction;
 	RGBColor  L = m_Ambient->rho(sr, wo) * sr.w.m_AmbientPtr->L(sr);
 	int num_lights = sr.w.m_Lights.size();

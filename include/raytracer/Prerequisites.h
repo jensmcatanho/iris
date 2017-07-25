@@ -28,53 +28,115 @@ SOFTWARE.
 
 #include "Platform.h"
 
-// Forward declarations.
-class Ambient;
+/**
+ * Forward declarations.
+ */
+
+/**
+ * BRDF
+ */
 class BRDF;
-class Camera;
-class Core;
-class GlossySpecular;
-class Hammersley;
-class Jittered;
 class Lambertian;
+class Phong;
+
+/**
+* Camera
+*/
+class Camera;
+class Orthographic;
+class Pinhole;
+class ThinLens;
+
+/**
+* Geometric Objects
+*/
+class Object;
+class Plane;
+class Sphere;
+
+/**
+* Lights
+*/
+class Ambient;
+class Directional;
 class Light;
+class PointLight;
+
+/**
+* Lua
+*/
 class LuaState;
+
+/**
+* Materials
+*/
 class Material;
 class Matte;
+class Plastic;
+
+/**
+* Samplers
+*/
+class Hammersley;
+class Jittered;
 class MultiJittered;
-class MultipleObjects;
 class NRooks;
-class Object;
-class Pinhole;
-class Plane;
-class PointLight;
 class PureRandom;
-class Ray;
-class RayCast;
 class Regular;
-class RGBColor;
 class Sampler;
-class Sphere;
-class Surface;
+
+/**
+* Tracers
+*/
+class MultipleObjects;
+class RayCast;
 class Tracer;
+
+/**
+* Utilities
+*/
+class Ray;
+class RGBColor;
+class Surface;
+
+/**
+* World
+*/
 class ViewPlane;
 class World;
 
-// STL
+/**
+* Other
+*/
+class Core;
+
+/**
+* Includes.
+*/
+
+/**
+* STL
+*/
 #include "StandardHeaders.h"
 
-// FreeImage
+/**
+* FreeImage
+*/
 #if RT_ARCHITECTURE_TYPE == RT_ARCHITECTURE_32
 #include "FreeImage/x86/FreeImage.h"
 #else
 #include "FreeImage/x64/FreeImage.h"
 #endif
 
-// GLM
+/**
+* GLM
+*/
 #include <glm/glm.hpp>
 #include <glm/gtc/random.hpp>
 
-// Lua
+/**
+* Lua
+*/
 #if RT_ARCHITECTURE_TYPE == RT_ARCHITECTURE_32
 extern "C" {
 	#include "lua/x86/lua.h"
@@ -89,7 +151,9 @@ extern "C" {
 }
 #endif
 
-// Raytracer
+/**
+* Raytracer
+*/
 #include "Constants.h"
 #include "Logger.h"
 

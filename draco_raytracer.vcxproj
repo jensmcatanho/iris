@@ -196,7 +196,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\brdf\BRDF.cpp" />
-    <ClCompile Include="src\brdf\GlossySpecular.cpp" />
+    <ClCompile Include="src\brdf\Phong.cpp" />
     <ClCompile Include="src\brdf\Lambertian.cpp" />
     <ClCompile Include="src\camera\Camera.cpp" />
     <ClCompile Include="src\camera\Orthographic.cpp" />
@@ -214,7 +214,7 @@
     <ClCompile Include="src\raytracer.cpp" />
     <ClCompile Include="src\material\Material.cpp" />
     <ClCompile Include="src\material\Matte.cpp" />
-    <ClCompile Include="src\material\Phong.cpp" />
+    <ClCompile Include="src\material\Plastic.cpp" />
     <ClCompile Include="src\sampler\Hammersley.cpp" />
     <ClCompile Include="src\sampler\Jittered.cpp" />
     <ClCompile Include="src\sampler\MultiJittered.cpp" />
@@ -234,7 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\raytracer\brdf\BRDF.h" />
-    <ClInclude Include="include\raytracer\brdf\GlossySpecular.h" />
+    <ClInclude Include="include\raytracer\brdf\Phong.h" />
     <ClInclude Include="include\raytracer\brdf\Lambertian.h" />
     <ClInclude Include="include\raytracer\camera\Camera.h" />
     <ClInclude Include="include\raytracer\camera\Orthographic.h" />
@@ -252,7 +252,7 @@
     <ClInclude Include="include\raytracer\lua\LuaState.h" />
     <ClInclude Include="include\raytracer\material\Material.h" />
     <ClInclude Include="include\raytracer\material\Matte.h" />
-    <ClInclude Include="include\raytracer\material\Phong.h" />
+    <ClInclude Include="include\raytracer\material\Plastic.h" />
     <ClInclude Include="include\raytracer\Platform.h" />
     <ClInclude Include="include\raytracer\Prerequisites.h" />
     <ClInclude Include="include\raytracer\sampler\Hammersley.h" />

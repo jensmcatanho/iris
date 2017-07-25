@@ -7,7 +7,7 @@ camera = Pinhole.new()
 camera.vpdistance = 100.0
 
 -- Floor
-phong = Phong.new()
+plastic = Plastic.new()
 	.withDiffuseColor(0.5, 0.5, 0.5)
 	.withAmbientReflection(0.25)
 	.withDiffuseReflection(0.65)
@@ -16,7 +16,7 @@ phong = Phong.new()
 plane = Plane.new()
 	.locatedAt(0.0, 0.0, 0.0)
 	.lookingAt(0.0, 1.0, 0.0)
-	.withMaterial(phong)
+	.withMaterial(plastic)
 
 -- Light
 light = PointLight.new()
@@ -25,7 +25,7 @@ light = PointLight.new()
 	.castsShadows(true)
 
 -- Sphere #1
-phong = Phong.new()
+plastic = Plastic.new()
 	.withDiffuseColor(1.0, 0.0, 0.0)
 	.withAmbientReflection(0.25)
 	.withDiffuseReflection(0.65)
@@ -34,10 +34,10 @@ phong = Phong.new()
 sphere1 = Sphere.new()
 	.centeredAt(0.0, 5.0, 10.0)
 	.withRadius(5)
-	.withMaterial(phong)
+	.withMaterial(plastic)
 
 -- Sphere #2
-phong = Phong.new()
+plastic = Plastic.new()
 	.withDiffuseColor(0.0, 1.0, 0.0)
 	.withAmbientReflection(0.25)
 	.withDiffuseReflection(0.65)
@@ -46,10 +46,10 @@ phong = Phong.new()
 sphere2 = Sphere.new()
 	.centeredAt(0.0, 5.0, 0.0)
 	.withRadius(5)
-	.withMaterial(phong)
+	.withMaterial(plastic)
 
 -- Sphere #3
-phong = Phong.new()
+plastic = Plastic.new()
 	.withDiffuseColor(0.0, 0.0, 1.0)
 	.withAmbientReflection(0.25)
 	.withDiffuseReflection(0.65)
@@ -58,7 +58,7 @@ phong = Phong.new()
 sphere3 = Sphere.new()
 	.centeredAt(0.0, 5.0, -10.0)
 	.withRadius(5)
-	.withMaterial(phong)
+	.withMaterial(plastic)
 
 -- Image
 image = Image.new()

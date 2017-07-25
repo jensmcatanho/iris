@@ -78,9 +78,6 @@
     <ClCompile Include="src\brdf\BRDF.cpp">
       <Filter>Source Files\brdf</Filter>
     </ClCompile>
-    <ClCompile Include="src\brdf\GlossySpecular.cpp">
-      <Filter>Source Files\brdf</Filter>
-    </ClCompile>
     <ClCompile Include="src\brdf\Lambertian.cpp">
       <Filter>Source Files\brdf</Filter>
     </ClCompile>
@@ -135,9 +132,6 @@
     <ClCompile Include="src\material\Matte.cpp">
       <Filter>Source Files\material</Filter>
     </ClCompile>
-    <ClCompile Include="src\material\Phong.cpp">
-      <Filter>Source Files\material</Filter>
-    </ClCompile>
     <ClCompile Include="src\lua\LuaState.cpp">
       <Filter>Source Files\lua</Filter>
     </ClCompile>
@@ -183,12 +177,15 @@
     <ClCompile Include="src\raytracer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\material\Plastic.cpp">
+      <Filter>Source Files\material</Filter>
+    </ClCompile>
+    <ClCompile Include="src\brdf\Phong.cpp">
+      <Filter>Source Files\brdf</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\raytracer\brdf\BRDF.h">
-      <Filter>Header Files\brdf</Filter>
-    </ClInclude>
-    <ClInclude Include="include\raytracer\brdf\GlossySpecular.h">
       <Filter>Header Files\brdf</Filter>
     </ClInclude>
     <ClInclude Include="include\raytracer\brdf\Lambertian.h">
@@ -269,9 +266,6 @@
     <ClInclude Include="include\raytracer\material\Matte.h">
       <Filter>Header Files\material</Filter>
     </ClInclude>
-    <ClInclude Include="include\raytracer\material\Phong.h">
-      <Filter>Header Files\material</Filter>
-    </ClInclude>
     <ClInclude Include="include\raytracer\lua\LuaState.h">
       <Filter>Header Files\lua</Filter>
     </ClInclude>
@@ -301,6 +295,12 @@
     </ClInclude>
     <ClInclude Include="include\raytracer\Platform.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\raytracer\material\Plastic.h">
+      <Filter>Header Files\material</Filter>
+    </ClInclude>
+    <ClInclude Include="include\raytracer\brdf\Phong.h">
+      <Filter>Header Files\brdf</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

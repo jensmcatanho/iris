@@ -23,12 +23,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef PHONG_H
-#define PHONG_H
+#ifndef PLASTIC_H
+#define PLASTIC_H
 
 #include "Material.h"
 #include "Lambertian.h"
-#include "GlossySpecular.h"
+#include "Phong.h"
 
 /**
  * @addtogroup Materials
@@ -39,14 +39,14 @@ SOFTWARE.
  * Rendering properties of an object.
  * @remarks TODO.
  * @see Lambertian
- * @see GlossySpecular
+ * @see Phong
  */
-class Phong : public Material {
+class Plastic : public Material {
 	public:
 		/**
 		 * Standard constructor.
 		 */
-		Phong();
+		Plastic();
 
 		/**
 		 * Computes the color of a given surface.
@@ -117,38 +117,38 @@ class Phong : public Material {
 		/**
 		 * Specular BRDF of the material.
 		 */
-		std::shared_ptr<GlossySpecular> m_Specular;
+		std::shared_ptr<Phong> m_Specular;
 };
 
-inline void Phong::SetAmbientReflection(const float kdr) {
+inline void Plastic::SetAmbientReflection(const float kdr) {
 	m_Ambient->SetDiffuseReflection(kdr);
 }
 
-inline void Phong::SetAmbientColor(const RGBColor &color) {
+inline void Plastic::SetAmbientColor(const RGBColor &color) {
 	m_Ambient->SetDiffuseColor(color);
 }
 
-inline void Phong::SetDiffuseReflection(const float kdr) {
+inline void Plastic::SetDiffuseReflection(const float kdr) {
 	m_Diffuse->SetDiffuseReflection(kdr);
 }
 
-inline void Phong::SetDiffuseColor(const RGBColor &color) {
+inline void Plastic::SetDiffuseColor(const RGBColor &color) {
 	m_Diffuse->SetDiffuseColor(color);
 }
 
-inline void Phong::SetSpecularReflection(const float ksr) {
+inline void Plastic::SetSpecularReflection(const float ksr) {
 	m_Specular->SetSpecularReflection(ksr);
 }
 
-inline void Phong::SetSpecularColor(const RGBColor &color) {
+inline void Plastic::SetSpecularColor(const RGBColor &color) {
 	m_Specular->SetSpecularColor(color);
 }
 
-inline void Phong::SetSpecularExponent(const float ksexp) {
+inline void Plastic::SetSpecularExponent(const float ksexp) {
 	m_Specular->SetSpecularExponent(ksexp);
 }
 
-inline void Phong::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
+inline void Plastic::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
 	m_Ambient->SetSampler(sampler_ptr);
 	m_Diffuse->SetSampler(sampler_ptr);
 }

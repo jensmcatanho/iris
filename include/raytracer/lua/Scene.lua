@@ -15,7 +15,7 @@ local PointLight = require('Lights.PointLight')
 
 -- Materials
 local Matte = require('Materials.Matte')
-local Phong = require('Materials.Phong')
+local Plastic = require('Materials.Plastic')
 
 -- Objects
 local Object = require('Objects.Object')

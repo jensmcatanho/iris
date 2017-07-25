@@ -23,8 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef GLOSSYSPECULAR_H
-#define GLOSSYSPECULAR_H
+#ifndef PHONG_H
+#define PHONG_H
 
 #include "BRDF.h"
 
@@ -34,15 +34,15 @@ SOFTWARE.
  */
 
 /**
- * The glossy specular bidirectional reflectance distribution function abstraction.
+ * The Phong bidirectional reflectance distribution function abstraction.
  * @remarks TODO.
  */
-class GlossySpecular : public BRDF {
+class Phong : public BRDF {
 	public:
 		/**
 		 * Standard constructor.
 		 */
-		GlossySpecular();
+		Phong();
 
 		/**
 		 * Computes the reflected radiance along wo.
@@ -94,19 +94,19 @@ class GlossySpecular : public BRDF {
 		float m_SpecularExp;
 };
 
-inline void GlossySpecular::SetSpecularReflection(const float ksr) {
+inline void Phong::SetSpecularReflection(const float ksr) {
 	m_SpecularReflection = ksr;
 }
 
-inline void GlossySpecular::SetSpecularColor(const RGBColor &color) {
+inline void Phong::SetSpecularColor(const RGBColor &color) {
 	m_SpecularColor = color;
 }
 
-inline void GlossySpecular::SetSpecularExponent(const float ksexp) {
+inline void Phong::SetSpecularExponent(const float ksexp) {
 	m_SpecularExp = ksexp;
 }
 
-inline RGBColor GlossySpecular::GetSpecularColor() const {
+inline RGBColor Phong::GetSpecularColor() const {
 	return m_SpecularColor;
 }
 

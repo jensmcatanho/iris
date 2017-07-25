@@ -23,10 +23,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "GlossySpecular.h"
+#include "Phong.h"
 #include "Surface.h"
 
-GlossySpecular::GlossySpecular() :
+Phong::Phong() :
 	BRDF(),
 	m_SpecularReflection(0.0),
 	m_SpecularColor(0.0),
@@ -34,7 +34,7 @@ GlossySpecular::GlossySpecular() :
 
 }
 
-inline RGBColor GlossySpecular::f(const Surface &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
+inline RGBColor Phong::f(const Surface &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
 	RGBColor L;
 
 	glm::vec3 r = -wi + (2.0f * glm::dot(sr.m_Normal, wo) * sr.m_Normal);

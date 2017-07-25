@@ -1,10 +1,10 @@
-Phong = {}
+Plastic = {}
 
-function Phong.new()
+function Plastic.new()
 	local self = {}
 
 	-- Public member variables
-	self.name = "Phong"
+	self.name = "Plastic"
 	self.diffuse_color = {r = 0.0, g = 0.0, b = 0.0}
 	self.diffuse_reflection = 1.0
 	self.ambient_color = {r = 0.0, g = 0.0, b = 0.0}
@@ -52,4 +52,4 @@ function Phong.new()
 	return self
 end
 
-return Phong
+return Plastic
