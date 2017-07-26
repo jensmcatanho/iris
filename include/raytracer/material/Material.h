@@ -27,6 +27,9 @@ SOFTWARE.
 #define MATERIAL_H
 
 #include "Prerequisites.h"
+#include "BlinnPhong.h"
+#include "Lambertian.h"
+#include "Phong.h"
 
 /**
  * @addtogroup Materials

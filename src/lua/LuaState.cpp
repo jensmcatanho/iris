@@ -530,28 +530,38 @@ std::shared_ptr<Material> LuaState::ParseMaterial() {
 	std::string name = lua_tostring(m_L, -1);
 	lua_pop(m_L, 1);
 
+	lua_getfield(m_L, -1, "ambient_color");
+	luaL_checktype(m_L, -1, LUA_TTABLE);
+	RGBColor ambient_color = ParseColor();
+	lua_pop(m_L, 1);
+
+	lua_getfield(m_L, -1, "ambient_reflection");
+	luaL_checktype(m_L, -1, LUA_TNUMBER);
+	float ambient_reflection = static_cast<float>(lua_tonumber(m_L, -1));
+	lua_pop(m_L, 1);
+
+	lua_getfield(m_L, -1, "diffuse_color");
+	luaL_checktype(m_L, -1, LUA_TTABLE);
+	RGBColor diffuse_color = ParseColor();
+	lua_pop(m_L, 1);
+
+	lua_getfield(m_L, -1, "diffuse_reflection");
+	luaL_checktype(m_L, -1, LUA_TNUMBER);
+	float diffuse_reflection = static_cast<float>(lua_tonumber(m_L, -1));
+	lua_pop(m_L, 1);
+
 	if (name == "Matte") {
 		std::shared_ptr<Matte> material_ptr(new Matte);
 
-		lua_getfield(m_L, -1, "diffuse_color");
-		luaL_checktype(m_L, -1, LUA_TTABLE);
-		material_ptr->SetDiffuseColor(ParseColor());
-		lua_pop(m_L, 1);
+		std::shared_ptr<Lambertian> ambient_ptr(new Lambertian);
+		ambient_ptr->SetDiffuseColor(ambient_color);
+		ambient_ptr->SetDiffuseReflection(ambient_reflection);
+		material_ptr->SetAmbientBRDF(ambient_ptr);
 
-		lua_getfield(m_L, -1, "diffuse_reflection");
-		luaL_checktype(m_L, -1, LUA_TNUMBER);
-		material_ptr->SetDiffuseReflection(static_cast<float>(lua_tonumber(m_L, -1)));
-		lua_pop(m_L, 1);
-
-		lua_getfield(m_L, -1, "ambient_color");
-		luaL_checktype(m_L, -1, LUA_TTABLE);
-		material_ptr->SetAmbientColor(ParseColor());
-		lua_pop(m_L, 1);
-
-		lua_getfield(m_L, -1, "ambient_reflection");
-		luaL_checktype(m_L, -1, LUA_TNUMBER);
-		material_ptr->SetAmbientReflection(static_cast<float>(lua_tonumber(m_L, -1)));
-		lua_pop(m_L, 1);
+		std::shared_ptr<Lambertian> diffuse_ptr(new Lambertian);
+		diffuse_ptr->SetDiffuseColor(diffuse_color);
+		diffuse_ptr->SetDiffuseReflection(diffuse_reflection);
+		material_ptr->SetDiffuseBRDF(diffuse_ptr);
 
 		lua_pop(m_L, 1);
 		return material_ptr;
@@ -559,40 +569,50 @@ std::shared_ptr<Material> LuaState::ParseMaterial() {
 	} else {
 		std::shared_ptr<Plastic> material_ptr(new Plastic);
 
-		lua_getfield(m_L, -1, "diffuse_color");
-		luaL_checktype(m_L, -1, LUA_TTABLE);
-		material_ptr->SetDiffuseColor(ParseColor());
-		lua_pop(m_L, 1);
-
-		lua_getfield(m_L, -1, "diffuse_reflection");
-		luaL_checktype(m_L, -1, LUA_TNUMBER);
-		material_ptr->SetDiffuseReflection(static_cast<float>(lua_tonumber(m_L, -1)));
-		lua_pop(m_L, 1);
-
-		lua_getfield(m_L, -1, "ambient_color");
-		luaL_checktype(m_L, -1, LUA_TTABLE);
-		material_ptr->SetAmbientColor(ParseColor());
-		lua_pop(m_L, 1);
-
-		lua_getfield(m_L, -1, "ambient_reflection");
-		luaL_checktype(m_L, -1, LUA_TNUMBER);
-		material_ptr->SetAmbientReflection(static_cast<float>(lua_tonumber(m_L, -1)));
-		lua_pop(m_L, 1);
-
 		lua_getfield(m_L, -1, "specular_color");
 		luaL_checktype(m_L, -1, LUA_TTABLE);
-		material_ptr->SetSpecularColor(ParseColor());
+		RGBColor specular_color = ParseColor();
 		lua_pop(m_L, 1);
 
 		lua_getfield(m_L, -1, "specular_reflection");
 		luaL_checktype(m_L, -1, LUA_TNUMBER);
-		material_ptr->SetSpecularReflection(static_cast<float>(lua_tonumber(m_L, -1)));
+		float specular_reflection = static_cast<float>(lua_tonumber(m_L, -1));
 		lua_pop(m_L, 1);
 
 		lua_getfield(m_L, -1, "specular_exp");
 		luaL_checktype(m_L, -1, LUA_TNUMBER);
-		material_ptr->SetSpecularExponent(static_cast<float>(lua_tonumber(m_L, -1)));
+		float specular_exp = static_cast<float>(lua_tonumber(m_L, -1));
 		lua_pop(m_L, 1);
+
+		std::shared_ptr<Lambertian> ambient_ptr(new Lambertian);
+		ambient_ptr->SetDiffuseColor(ambient_color);
+		ambient_ptr->SetDiffuseReflection(ambient_reflection);
+		material_ptr->SetAmbientBRDF(ambient_ptr);
+
+		std::shared_ptr<Lambertian> diffuse_ptr(new Lambertian);
+		diffuse_ptr->SetDiffuseColor(diffuse_color);
+		diffuse_ptr->SetDiffuseReflection(diffuse_reflection);
+		material_ptr->SetDiffuseBRDF(diffuse_ptr);
+
+		lua_getfield(m_L, -1, "specular_brdf");
+		luaL_checktype(m_L, -1, LUA_TNUMBER);
+		int brdf = static_cast<int>(lua_tonumber(m_L, -1));
+		lua_pop(m_L, 1);
+
+		if (brdf == 2) {
+			std::shared_ptr<Phong> specular_ptr(new Phong);
+			specular_ptr->SetSpecularColor(specular_color);
+			specular_ptr->SetSpecularReflection(specular_reflection);
+			specular_ptr->SetSpecularExponent(specular_exp);
+			material_ptr->SetSpecularBRDF(specular_ptr);
+		
+		} else if (brdf == 3) {
+			std::shared_ptr<BlinnPhong> specular_ptr(new BlinnPhong);
+			specular_ptr->SetSpecularColor(specular_color);
+			specular_ptr->SetSpecularReflection(specular_reflection);
+			specular_ptr->SetSpecularExponent(specular_exp);
+			material_ptr->SetSpecularBRDF(specular_ptr);
+		}
 
 		lua_pop(m_L, 1);
 		return material_ptr;

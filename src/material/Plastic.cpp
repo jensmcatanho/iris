@@ -54,7 +54,7 @@ RGBColor Plastic::Shade(Surface &sr) const {
 			}
 
 			if (!shadowed)
-				L += (m_Diffuse->f(sr, wo, wi) + m_Specular->f(sr, wo, wi)) * sr.w.m_Lights[i]->L(sr) * m_Specular->GetSpecularColor() * ndotwi;
+				L += (m_Diffuse->f(sr, wo, wi) + m_Specular->f(sr, wo, wi)) * sr.w.m_Lights[i]->L(sr) * /*m_Specular->GetSpecularColor() */ ndotwi;
 		}
 	}
 

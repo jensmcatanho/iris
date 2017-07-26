@@ -183,6 +183,9 @@
     <ClCompile Include="src\brdf\Phong.cpp">
       <Filter>Source Files\brdf</Filter>
     </ClCompile>
+    <ClCompile Include="src\brdf\BlinnPhong.cpp">
+      <Filter>Source Files\brdf</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\raytracer\brdf\BRDF.h">
@@ -300,6 +303,9 @@
       <Filter>Header Files\material</Filter>
     </ClInclude>
     <ClInclude Include="include\raytracer\brdf\Phong.h">
+      <Filter>Header Files\brdf</Filter>
+    </ClInclude>
+    <ClInclude Include="include\raytracer\brdf\BlinnPhong.h">
       <Filter>Header Files\brdf</Filter>
     </ClInclude>
   </ItemGroup>

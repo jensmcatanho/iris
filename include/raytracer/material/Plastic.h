@@ -27,8 +27,6 @@ SOFTWARE.
 #define PLASTIC_H
 
 #include "Material.h"
-#include "Lambertian.h"
-#include "Phong.h"
 
 /**
  * @addtogroup Materials
@@ -56,46 +54,22 @@ class Plastic : public Material {
 		virtual RGBColor Shade(Surface &sr) const;
 
 		/**
-		 * Sets the diffuse reflection of the ambient component of the material.
-		 * @param kdr Target diffuse reflection.
-		 */
-		void SetAmbientReflection(const float kdr);
+		* Sets the BRDF of the ambient component of the material.
+		* @param kdr Target diffuse reflection.
+		*/
+		void SetAmbientBRDF(std::shared_ptr<BRDF> ambient_brdf);
 
 		/**
-		 * Sets the diffuse color of the ambient component of the material.
-		 * @param color Target diffuse color.
-		 */
-		void SetAmbientColor(const RGBColor &color);
+		* Sets the BRDF of the diffuse component of the material.
+		* @param kdr Target diffuse reflection.
+		*/
+		void SetDiffuseBRDF(std::shared_ptr<BRDF> diffuse_brdf);
 
 		/**
-		 * Sets the diffuse reflection of the diffuse component of the material.
-		 * @param kdr Target diffuse reflection.
-		 */
-		void SetDiffuseReflection(const float kdr);
-
-		/**
-		 * Sets the diffuse color of the diffuse component of the material.
-		 * @param color Target diffuse color.
-		 */
-		void SetDiffuseColor(const RGBColor &color);
-
-		/**
-		 * Sets the specular reflection of the specular component of the material.
-		 * @param kdr Target specular reflection.
-		 */
-		void SetSpecularReflection(const float kdr);
-
-		/**
-		 * Sets the specular color of the specular component of the material.
-		 * @param color Target specular color.
-		 */
-		void SetSpecularColor(const RGBColor &color);
-
-		/**
-		 * Sets the specular factor of the specular component of the material.
-		 * @param ksexp Target specular factor.
-		 */
-		void SetSpecularExponent(const float ksexp);
+		* Sets the BRDF of the specular component of the material.
+		* @param kdr Target diffuse reflection.
+		*/
+		void SetSpecularBRDF(std::shared_ptr<BRDF> specular_brdf);
 
 		/**
 		 * Sets the sampler to be used by the BRDFs of the material.
@@ -107,45 +81,29 @@ class Plastic : public Material {
 		/**
 		 * Ambient BRDF of the material.
 		 */
-		std::shared_ptr<Lambertian> m_Ambient;
+		std::shared_ptr<BRDF> m_Ambient;
 
 		/**
 		 * Diffuse BRDF of the material.
 		 */
-		std::shared_ptr<Lambertian> m_Diffuse;
+		std::shared_ptr<BRDF> m_Diffuse;
 
 		/**
 		 * Specular BRDF of the material.
 		 */
-		std::shared_ptr<Phong> m_Specular;
+		std::shared_ptr<BRDF> m_Specular;
 };
 
-inline void Plastic::SetAmbientReflection(const float kdr) {
-	m_Ambient->SetDiffuseReflection(kdr);
+inline void Plastic::SetAmbientBRDF(std::shared_ptr<BRDF> ambient_brdf) {
+	m_Ambient = ambient_brdf;
 }
 
-inline void Plastic::SetAmbientColor(const RGBColor &color) {
-	m_Ambient->SetDiffuseColor(color);
+inline void Plastic::SetDiffuseBRDF(std::shared_ptr<BRDF> diffuse_brdf) {
+	m_Diffuse = diffuse_brdf;
 }
 
-inline void Plastic::SetDiffuseReflection(const float kdr) {
-	m_Diffuse->SetDiffuseReflection(kdr);
-}
-
-inline void Plastic::SetDiffuseColor(const RGBColor &color) {
-	m_Diffuse->SetDiffuseColor(color);
-}
-
-inline void Plastic::SetSpecularReflection(const float ksr) {
-	m_Specular->SetSpecularReflection(ksr);
-}
-
-inline void Plastic::SetSpecularColor(const RGBColor &color) {
-	m_Specular->SetSpecularColor(color);
-}
-
-inline void Plastic::SetSpecularExponent(const float ksexp) {
-	m_Specular->SetSpecularExponent(ksexp);
+inline void Plastic::SetSpecularBRDF(std::shared_ptr<BRDF> specular_brdf) {
+	m_Specular = specular_brdf;
 }
 
 inline void Plastic::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {

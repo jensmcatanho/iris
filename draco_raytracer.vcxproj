@@ -195,6 +195,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\brdf\BlinnPhong.cpp" />
     <ClCompile Include="src\brdf\BRDF.cpp" />
     <ClCompile Include="src\brdf\Phong.cpp" />
     <ClCompile Include="src\brdf\Lambertian.cpp" />
@@ -233,6 +234,7 @@
     <ClCompile Include="src\world\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\raytracer\brdf\BlinnPhong.h" />
     <ClInclude Include="include\raytracer\brdf\BRDF.h" />
     <ClInclude Include="include\raytracer\brdf\Phong.h" />
     <ClInclude Include="include\raytracer\brdf\Lambertian.h" />

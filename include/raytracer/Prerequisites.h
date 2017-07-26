@@ -35,6 +35,7 @@ SOFTWARE.
 /**
  * BRDF
  */
+class BlinnPhong;
 class BRDF;
 class Lambertian;
 class Phong;

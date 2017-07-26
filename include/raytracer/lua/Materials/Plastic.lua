@@ -5,15 +5,22 @@ function Plastic.new()
 
 	-- Public member variables
 	self.name = "Plastic"
+	self.diffuse_brdf = BRDF.Lambertian
 	self.diffuse_color = {r = 0.0, g = 0.0, b = 0.0}
 	self.diffuse_reflection = 1.0
 	self.ambient_color = {r = 0.0, g = 0.0, b = 0.0}
 	self.ambient_reflection = 1.0
+	self.specular_brdf = BRDF.Phong
 	self.specular_color = {r = 1.0, g = 1.0, b = 1.0}
 	self.specular_reflection = 1.0
 	self.specular_exp = 1.0
 
 	-- Public methods
+	function self.withDiffuseBRDF(brdf)
+		self.diffuse_brdf = brdf
+		return self
+	end
+
 	function self.withDiffuseColor(r, g, b)
 		self.diffuse_color.r, self.diffuse_color.g, self.diffuse_color.b = r, g, b
 		return self
@@ -31,6 +38,11 @@ function Plastic.new()
 
 	function self.withAmbientReflection(r)
 		self.ambient_reflection = r
+		return self
+	end
+
+	function self.withSpecularBRDF(brdf)
+		self.specular_brdf = brdf
 		return self
 	end
 

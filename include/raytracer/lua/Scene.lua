@@ -1,3 +1,6 @@
+-- BRDFs
+local BRDF = require('BRDFs.BRDF')
+
 -- Cameras
 local Camera = require('Cameras.Camera')
 local Pinhole = require('Cameras.Pinhole')

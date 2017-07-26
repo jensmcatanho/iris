@@ -23,10 +23,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "Phong.h"
+#include "BlinnPhong.h"
 #include "Surface.h"
 
-Phong::Phong() :
+BlinnPhong::BlinnPhong() :
 	BRDF(),
 	m_SpecularReflection(0.0),
 	m_SpecularColor(0.0),
@@ -34,12 +34,12 @@ Phong::Phong() :
 
 }
 
-inline RGBColor Phong::f(const Surface &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
-	glm::vec3 r = -wi + (2.0f * glm::dot(sr.m_Normal, wo) * sr.m_Normal);
-	float rdotwo = glm::dot(r, wo);
+inline RGBColor BlinnPhong::f(const Surface &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
+	glm::vec3 h = glm::normalize(wi + wo);
+	float hdotn = glm::dot(h, sr.m_Normal);
 
-	if (rdotwo > 0.0)
-		return m_SpecularReflection * glm::pow(rdotwo, m_SpecularExp);
+	if (hdotn > 0.0)
+		return m_SpecularReflection * glm::pow(hdotn, m_SpecularExp);
 
 	return RGBColor::Black;
 }

@@ -27,7 +27,6 @@ SOFTWARE.
 #define MATTE_H
 
 #include "Material.h"
-#include "Lambertian.h"
 
 /**
  * @addtogroup Materials
@@ -54,28 +53,16 @@ class Matte : public Material{
 		virtual RGBColor Shade(Surface &sr) const;
 
 		/**
-		 * Sets the diffuse reflection of the ambient component of the material.
+		 * Sets the BRDF of the ambient component of the material.
 		 * @param kdr Target diffuse reflection.
 		 */
-		void SetAmbientReflection(const float kdr);
+		void SetAmbientBRDF(std::shared_ptr<BRDF> ambient_brdf);
 
 		/**
-		 * Sets the diffuse color of the ambient component of the material.
-		 * @param color Target diffuse color.
-		 */
-		void SetAmbientColor(const RGBColor &color);
-
-		/**
-		 * Sets the diffuse reflection of the diffuse component of the material.
+		 * Sets the BRDF of the diffuse component of the material.
 		 * @param kdr Target diffuse reflection.
 		 */
-		void SetDiffuseReflection(const float kdr);
-
-		/**
-		 * Sets the diffuse color of the diffuse component of the material.
-		 * @param color Target diffuse color.
-		 */
-		void SetDiffuseColor(const RGBColor &color);
+		void SetDiffuseBRDF(std::shared_ptr<BRDF> diffuse_brdf);
 
 		/**
 		 * Sets the sampler to be used by the BRDFs of the material.
@@ -87,28 +74,20 @@ class Matte : public Material{
 		/**
 		 * Ambient BRDF of the material.
 		 */
-		std::shared_ptr<Lambertian> m_Ambient;
+		std::shared_ptr<BRDF> m_Ambient;
 
 		/**
 		 * Diffuse BRDF of the material.
 		 */
-		std::shared_ptr<Lambertian> m_Diffuse;
+		std::shared_ptr<BRDF> m_Diffuse;
 };
 
-inline void Matte::SetAmbientReflection(const float kdr) {
-	m_Ambient->SetDiffuseReflection(kdr);
+inline void Matte::SetAmbientBRDF(std::shared_ptr<BRDF> ambient_brdf) {
+	m_Ambient = ambient_brdf;
 }
 
-inline void Matte::SetAmbientColor(const RGBColor &color) {
-	m_Ambient->SetDiffuseColor(color);
-}
-
-inline void Matte::SetDiffuseReflection(const float kdr) {
-	m_Diffuse->SetDiffuseReflection(kdr);
-}
-
-inline void Matte::SetDiffuseColor(const RGBColor &color) {
-	m_Diffuse->SetDiffuseColor(color);
+inline void Matte::SetDiffuseBRDF(std::shared_ptr<BRDF> diffuse_brdf) {
+	m_Diffuse = diffuse_brdf;
 }
 
 inline void Matte::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
