@@ -42,7 +42,6 @@ endif ()
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin/${CMAKE_BUILD_TYPE})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
-link_directories(/home/user/lib/)
 add_executable(raytracer ${SRC_FILES})
 
 target_compile_options(raytracer PUBLIC -std=c++11)
@@ -54,9 +53,5 @@ endif ()
 
 find_package(FreeImage REQUIRED)
 if (${FREEIMAGE_FOUND})
-    message(${FREEIMAGE_LIBRARIES})
     target_link_libraries(raytracer ${FreeImage_LIBRARIES})
 endif ()
-
-#target_compile_options(raytracer PRIVATE -L${FreeImage_LIBRARIES})
-#target_compile_options(raytracer PRIVATE -lfreeimage)
