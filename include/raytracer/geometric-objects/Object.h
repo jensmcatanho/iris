@@ -26,7 +26,7 @@ SOFTWARE.
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include "PreRequisites.h"
+#include "Prerequisites.h"
 
 /**
  * @addtogroup GeometricObjects

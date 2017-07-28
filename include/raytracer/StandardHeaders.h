@@ -30,6 +30,7 @@ SOFTWARE.
 #include <cassert>
 #include <ctime>
 #include <cmath>
+#include <cstring>
 
 // STL containers
 #include <vector>
