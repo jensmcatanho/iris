@@ -1,13 +1,13 @@
 -- Camera
 camera = Pinhole.new()
-	.withEyeAt(0.0, 10.0, 10.0)
-	.lookingAt(0.0, 0.0, -1.0)
+	.withEyeAt(0.0, 1.0, 2.0)
+	.lookingAt(0.0, 1.0, 0.0)
 	.withImagePlaneDistance(100.0)
 
 ---- Plane
 -- Material
 matte1 = Matte.new()
-	.withDiffuseColor(0.2, 0.5, 0.5)
+	.withDiffuseColor(0.2, 0.5, 1.0)
 	.withAmbientReflection(0.50)
 	.withDiffuseReflection(0.85)
 
@@ -26,13 +26,13 @@ matte2 = Matte.new()
 
 -- Object
 red_sphere = Sphere.new()
-	.centeredAt(0.0, 3.0, 5.0)
-	.withRadius(3.0)
+	.centeredAt(0.0, 1.0, 0.0)
+	.withRadius(1.0)
 	.withMaterial(matte2)
 
 -- Light
 light = PointLight.new()
-	.locatedAt(-10.0, 10.0, 10.0)
+	.locatedAt(-5.0, 5.0, 5.0)
 	.withIntensity(4.0)
 
 -- Scene
