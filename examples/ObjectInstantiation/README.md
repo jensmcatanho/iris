@@ -15,11 +15,11 @@ scene = Scene.new()
 	.AddCamera(camera)
 ```
 
-However, if no object is instantiated, the final image is just a black screen:
+However, if no object is instantiated, the final image is just a black screen.
 
 ![Scene with no objects](http://jeancatanho.com/wp-content/uploads/sites/3/2017/07/Scene.png "Scene with no objects")
 
-Let's make our scene more interesting by adding a plane to it. We'll need to add a light source (See Point Lights) as well so that the floor is illuminated and, therefore, visible. Furthermore, we'll need to specify a material (See Materials) for the plane so the tracer knows how it's surface interacts with light.
+Let's make our scene more interesting by adding a plane to it. We'll need to add a light source (See Point Lights) as well so that the floor is illuminated and, therefore, visible. Furthermore, all objects need to have a material (See Materials) attached so the tracer knows how their surface interacts with light.
 
 ```lua
 ---- Plane
@@ -52,3 +52,33 @@ We create a Matte material, set it's color to a shade of blue (`withDiffuseColor
 For the light source, we'll create a point light, set it's location (`locatedAt()`) and it's intensity (`withIntensity()`). Finally, we add the plane (`AddObject()`) and the light (`AddLight()`) to the scene.
 
 ![Scene with a plane and a point light](http://jeancatanho.com/wp-content/uploads/sites/3/2017/07/Scene-1.png "Scene with a plane and a point light")
+
+Let's add a red sphere to the scene now. It's code is very similar to the plane.
+
+```lua
+---- Sphere
+-- Material
+matte2 = Matte.new()
+	.withDiffuseColor(1.0, 0.0, 0.0)
+	.withAmbientReflection(0.25)
+	.withDiffuseReflection(0.45)
+
+-- Object
+red_sphere = Sphere.new()
+	.centeredAt(0.0, 1.0, 0.0)
+	.withRadius(1.0)
+	.withMaterial(matte2)
+	
+-- Scene
+scene = Scene.new()
+	.AddCamera(camera)
+	.AddObject(plane)
+	.AddObject(red_sphere)
+	.AddLight(light)
+
+```
+
+We create a new Matte material for the sphere with different parameters from the plane's material. Next, we instantiate the sphere specifying it's location (`centeredAt()`), it's radius (`withRadius()`) and attaching it's material. At last, we add the sphere to the scene just as it was done previously with the plane.
+
+![Scene with objects and light](http://jeancatanho.com/wp-content/uploads/sites/3/2017/07/Scene-2.png "Scene with objects and light")
+
