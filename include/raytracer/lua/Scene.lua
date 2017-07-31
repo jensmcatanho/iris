@@ -4,6 +4,7 @@ local BRDF = require('BRDFs.BRDF')
 -- Cameras
 local Camera = require('Cameras.Camera')
 local Pinhole = require('Cameras.Pinhole')
+local Orthographic = require('Cameras.Orthographic')
 
 -- Image
 local Image = require('Image.Image')
