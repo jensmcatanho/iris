@@ -27,6 +27,7 @@ SOFTWARE.
 #include "Core.h"
 
 // Cameras
+#include "Orthographic.h"
 #include "Pinhole.h"
 
 // Geometric Objects
@@ -259,52 +260,83 @@ void LuaState::ParseCamera() {
 	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
 	assert(worldPtr);
 
-	std::shared_ptr<Pinhole> pinhole_ptr(new Pinhole);
-
 	lua_getfield(m_L, -1, "camera");
 	luaL_checktype(m_L, -1, LUA_TTABLE);
 
 	lua_getfield(m_L, -1, "eye");
 	luaL_checktype(m_L, -1, LUA_TTABLE);
-	pinhole_ptr->SetEye(ParseVector());
+	glm::vec3 eye = ParseVector();
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "look_at");
 	luaL_checktype(m_L, -1, LUA_TTABLE);
-	pinhole_ptr->LookAt(ParseVector());
+	glm::vec3 look_at = ParseVector();
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "yaw");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	pinhole_ptr->SetYaw(static_cast<float>(lua_tonumber(m_L, -1)));
+	float yaw = static_cast<float>(lua_tonumber(m_L, -1));
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "pitch");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	pinhole_ptr->SetPitch(static_cast<float>(lua_tonumber(m_L, -1)));
+	float pitch = static_cast<float>(lua_tonumber(m_L, -1));
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "roll");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	pinhole_ptr->SetRoll(static_cast<float>(lua_tonumber(m_L, -1)));
+	float roll = static_cast<float>(lua_tonumber(m_L, -1));
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "exposure_time");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	pinhole_ptr->SetExposureTime(static_cast<float>(lua_tonumber(m_L, -1)));
+	float exposure_time = static_cast<float>(lua_tonumber(m_L, -1));
 	lua_pop(m_L, 1);
 
-	lua_getfield(m_L, -1, "vpdistance");
+	lua_getfield(m_L, -1, "ip_distance");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	pinhole_ptr->SetViewPlaneDistance(static_cast<float>(lua_tonumber(m_L, -1)));
+	float vpdistance = static_cast<float>(lua_tonumber(m_L, -1));
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "zoom");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	pinhole_ptr->SetZoom(static_cast<float>(lua_tonumber(m_L, -1)));
+	float zoom = static_cast<float>(lua_tonumber(m_L, -1));
 	lua_pop(m_L, 1);
 
-	worldPtr->SetCamera(pinhole_ptr);
+	lua_getfield(m_L, -1, "name");
+	luaL_checktype(m_L, -1, LUA_TSTRING);
+	std::string name = lua_tostring(m_L, -1);
+	lua_pop(m_L, 1);
+
+	if (name == "Orthographic") {
+		std::shared_ptr<Orthographic> ortho_ptr(new Orthographic);
+	
+		ortho_ptr->SetEye(eye);
+		ortho_ptr->LookAt(look_at);
+		ortho_ptr->SetYaw(yaw);
+		ortho_ptr->SetPitch(pitch);
+		ortho_ptr->SetRoll(roll);
+		ortho_ptr->SetExposureTime(exposure_time);
+		ortho_ptr->SetViewPlaneDistance(vpdistance);
+		ortho_ptr->SetZoom(zoom);
+
+		worldPtr->SetCamera(ortho_ptr);
+
+	} else {
+		std::shared_ptr<Pinhole> pinhole_ptr(new Pinhole);
+	
+		pinhole_ptr->SetEye(eye);
+		pinhole_ptr->LookAt(look_at);
+		pinhole_ptr->SetYaw(yaw);
+		pinhole_ptr->SetPitch(pitch);
+		pinhole_ptr->SetRoll(roll);
+		pinhole_ptr->SetExposureTime(exposure_time);
+		pinhole_ptr->SetViewPlaneDistance(vpdistance);
+		pinhole_ptr->SetZoom(zoom);
+
+		worldPtr->SetCamera(pinhole_ptr);
+	}
+
 	lua_pop(m_L, 1);
 }
 

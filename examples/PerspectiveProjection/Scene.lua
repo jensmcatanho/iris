@@ -3,8 +3,7 @@ camera = Pinhole.new()
 	.withEyeAt(0.0, 15.0, 15.0)
 	.lookingAt(0.0, -1.0, -1.0)
 	.withZoom(1.2)
-
-camera.vpdistance = 100.0
+	.withImagePlaneDistance(100.0)
 
 -- Floor
 plastic = Plastic.new()

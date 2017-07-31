@@ -1,12 +1,12 @@
 local Camera = require('Cameras.Camera')
 
-Pinhole = {}
+Orthographic = {}
 
-function Pinhole.new()
+function Orthographic.new()
 	local self = Camera.new()
 
 	-- Public member variables
-	self.name = "Pinhole"
+	self.name = "Orthographic"
 	self.ip_distance = 500.0
 	self.zoom = 1.0
 
@@ -24,4 +24,4 @@ function Pinhole.new()
 	return self
 end
 
-return Pinhole
+return Orthographic

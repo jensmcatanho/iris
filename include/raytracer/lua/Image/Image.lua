@@ -14,9 +14,9 @@ function Image.new()
 	self.clamp_out_of_gamut = false
 	self.clamp_color = {r = 1.0, g = 1.0, b = 1.0}
 	self.should_sample = true
-	self.sampler = Sampler.MultiJittered
-	self.samples = 16
-	self.sets = 83
+	self.sampler = Sampler.Regular
+	self.samples = 1
+	self.sets = 1
 
 	-- Public methods
 	function self.across(w, h)
