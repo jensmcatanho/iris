@@ -1,7 +1,7 @@
 ## Object Instantiation
 This example demonstrates the simplest way to set up a scene and instantiate the primitive objects in Iris.
 
-Theoretically, the simplest scene requires only a camera to render the it. Here, we set the pinhole (See Perspective Viewing) camera's location in the scene (`withEyeAt()`), specify where it's looking at (`lookingAt()`) and how far from is it's image (or view) plane from it's eye (`withImagePlaneDistance()`). Next, the camera is attached to the scene (`AddCamera()`).
+Theoretically, the simplest scene requires only a camera to render it. Here, we set the pinhole (See Perspective Viewing) camera's location in the scene (`withEyeAt()`), specify where it's looking at (`lookingAt()`) and how far is it's image (or view) plane from it's eye (`withImagePlaneDistance()`). Next, the camera is attached to the scene (`AddCamera()`).
 
 ```lua
 -- Camera
@@ -19,7 +19,7 @@ However, if no object is instantiated, the final image is just a black screen.
 
 ![Scene with no objects](http://jeancatanho.com/wp-content/uploads/sites/3/2017/07/Scene.png "Scene with no objects")
 
-Let's make our scene more interesting by adding a plane to it. We'll need to add a light source (See Point Lights) as well so that the floor is illuminated and, therefore, visible. Furthermore, all objects need to have a material (See Materials) attached so the tracer knows how their surface interacts with light.
+Let's make our scene more interesting by adding a plane to it. We'll need to add a light source (See Point Lights) as well, so that the floor is illuminated and, therefore, visible. Furthermore, all objects need to have a material (See Materials) attached so the tracer knows how their surface interacts with light.
 
 ```lua
 ---- Plane
