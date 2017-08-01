@@ -1,4 +1,4 @@
-# [project-name]
+# Iris
 > [Small tagline about the project name]
 
 [Project description]
@@ -10,6 +10,8 @@
 - [Getting started](#getting-started)
 - [Documentation](#documentation)
 - [License](#license)
+  - [Iris](#iris)
+  - [External libraries](#external-libraries)
 - [Acknowledgements](#acknowledgements)
 
 ## Installation <a name="installation"></a>
@@ -26,9 +28,17 @@ The source code can be downloaded [here]() or by running:
 ## Getting started <a name="getting-started"></a>
 
 ## Documentation <a name="documentation"></a>
-You can read the documentation for this project [here](http://jensmcatanho.github.io/raytracer/)
+You can get the documentation for this project [here](http://jensmcatanho.github.io/raytracer/).
 
 ## License <a name="license"></a>
-This project is licensed under the MIT License - see [LICENSE.md](https://github.com/jensmcatanho/raytracer/blob/master/LICENSE "[project-name]'s license") for details.
+### Iris <a name="iris"></a>
+Iris is licensed under the MIT License - see [LICENSE.md](https://github.com/jensmcatanho/raytracer/blob/master/LICENSE "[project-name]'s license") for details.
+
+### External libraries <a name="external-libraries"></a>
+- [FreeImage](http://freeimage.sourceforge.net/) is licensed under the [GNU General Public License, version 2.0 (GPLv2) or version 3.0 (GPLv3)](https://opensource.org/licenses/gpl-license.php), and the [FreeImage Public License (FIPL)](http://freeimage.sourceforge.net/freeimage-license.txt).
+
+- [GLM](http://glm.g-truc.net/0.9.8/index.html) is licensed under the [Happy Bunny License (Modified MIT) or the MIT License](http://glm.g-truc.net/copying.txt).
+
+- [Lua](https://www.lua.org/home.html) is licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.html).
 
 ## Acknowledgements <a name="acknowledgements"></a>
