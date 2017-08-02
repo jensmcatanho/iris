@@ -1,7 +1,5 @@
 # Iris
-> [Small tagline about the project name]
-
-[Project description]
+A raytracer written in C++ that embeds Lua to assemble scenes to be traced. 
 
 ## Table of contents
 - [Installation](#installation)
