@@ -1,5 +1,4 @@
-/*
------------------------------------------------------------------------------
+[[-----------------------------------------------------------------------------
 The MIT License (MIT)
 
 Copyright (c) 2016-2017 Jean Michel Catanho
@@ -21,41 +20,31 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
------------------------------------------------------------------------------
-*/
-#include "Matte.h"
-#include "Light.h"
-#include "Surface.h"
-#include "World.h"
+-----------------------------------------------------------------------------]]
+local Camera = require('Cameras.Camera')
 
-Matte::Matte() :
-	Material(),
-	m_Ambient(new Lambertian),
-	m_Diffuse(new Lambertian) {
+Orthographic = {}
 
-}
+function Orthographic.new()
+	local self = Camera.new()
 
-RGBColor Matte::Shade(Surface &sr) const {
-	glm::vec3 wo = -sr.m_Ray.m_Direction;
-	RGBColor  L = m_Ambient->rho(sr, wo) * sr.w.m_AmbientPtr->L(sr);
-	int num_lights = sr.w.m_Lights.size();
+	-- Public member variables
+	self.name = "Orthographic"
+	self.ip_distance = 500.0
+	self.zoom = 1.0
 
-	for (int i = 0; i < num_lights; i++) {
-		glm::vec3 wi(sr.w.m_Lights[i]->GetDirection(sr));
-		float ndotwi = glm::dot(sr.m_Normal, wi);
+	-- Public methods
+	function self.withZoom(zoom)
+		self.zoom = zoom
+		return self
+	end
 
-		if (ndotwi > 0.0) {
-			bool shadowed = false;
+	function self.withImagePlaneDistance(npd)
+		self.ip_distance = npd
+		return self
+	end
 
-			if (sr.w.m_Lights[i]->CastsShadows()) {
-				Ray shadow_ray(sr.m_HitPoint, wi);
-				shadowed = sr.w.m_Lights[i]->Shadowed(shadow_ray, sr);
-			}
+	return self
+end
 
-			if (!shadowed)
-				L += m_Diffuse->f(sr, wo, wi) * sr.w.m_Lights[i]->L(sr) * ndotwi;
-		}
-	}
-
-	return L;
-}
+return Orthographic
