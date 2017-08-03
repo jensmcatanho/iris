@@ -26,7 +26,7 @@ SOFTWARE.
 #include "Matte.h"
 #include "Light.h"
 #include "Surface.h"
-#include "World.h"
+#include "Scene.h"
 
 Matte::Matte() :
 	Material(),

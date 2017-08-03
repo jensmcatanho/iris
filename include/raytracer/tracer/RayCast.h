@@ -43,7 +43,7 @@ class RayCast : public Tracer {
 		 * Constructs a Tracer with a pointer to the world.
 		 * @param world_ptr Pointer to the world.
 		 */
-		RayCast(std::shared_ptr<World> world_ptr);
+		RayCast(std::shared_ptr<Scene> world_ptr);
 
 		/**
 		 * Standard ray tracing method.

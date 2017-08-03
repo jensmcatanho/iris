@@ -27,7 +27,7 @@ SOFTWARE.
 #include "Ray.h"
 #include "Sampler.h"
 #include "Tracer.h"
-#include "World.h"
+#include "Scene.h"
 
 ThinLens::ThinLens() :
 	Camera(),
@@ -38,7 +38,7 @@ ThinLens::ThinLens() :
 
 }
 
-void ThinLens::RenderScene(const World &w) {
+void ThinLens::RenderScene(const Scene &w) {
 	Ray ray;
 	RGBColor pixelColor;
 	ProjectionPlane vp(w.m_ProjectionPlane);

@@ -104,7 +104,7 @@ class Surface;
 * Scene
 */
 class ProjectionPlane;
-class World;
+class Scene;
 
 /**
 * Other

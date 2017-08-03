@@ -25,15 +25,15 @@ SOFTWARE.
 */
 #include "MultipleObjects.h"
 #include "Surface.h"
-#include "World.h"
+#include "Scene.h"
 
-MultipleObjects::MultipleObjects(std::shared_ptr<World> worldPtr) :
+MultipleObjects::MultipleObjects(std::shared_ptr<Scene> worldPtr) :
 	Tracer(worldPtr) {
 
 }
 
 RGBColor MultipleObjects::TraceRay(const Ray &ray) const {
-	std::shared_ptr<World> worldPtr = m_WorldPtr.lock();
+	std::shared_ptr<Scene> worldPtr = m_WorldPtr.lock();
 	assert(worldPtr);
 	Surface sr(worldPtr->HitObjects(ray));
 

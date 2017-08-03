@@ -27,10 +27,10 @@ SOFTWARE.
 
 #include "Camera.h"
 #include "LuaState.h"
-#include "World.h"
+#include "Scene.h"
 
 Core::Core(std::string scene_path) :
-	m_WorldPtr(new World()),
+	m_WorldPtr(new Scene()),
 	m_ScenePath(scene_path) {
 
 }

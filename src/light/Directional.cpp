@@ -26,7 +26,7 @@ SOFTWARE.
 #include "Directional.h"
 #include "Object.h"
 #include "Surface.h"
-#include "World.h"
+#include "Scene.h"
 
 Directional::Directional() :
 	Light(),

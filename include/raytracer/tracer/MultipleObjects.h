@@ -34,7 +34,7 @@ class MultipleObjects : public Tracer {
 		 * Constructs a Tracer with a pointer to the world.
 		 * @param {std::shared_ptr<World>} world_ptr Pointer to the world.
 		 */
-		MultipleObjects(std::shared_ptr<World>);
+		MultipleObjects(std::shared_ptr<Scene>);
 
 		/**
 		 * Standard ray tracing method.

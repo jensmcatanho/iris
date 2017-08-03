@@ -26,7 +26,7 @@ SOFTWARE.
 #include "PointLight.h"
 #include "Object.h"
 #include "Surface.h"
-#include "World.h"
+#include "Scene.h"
 
 PointLight::PointLight() :
 	Light(),

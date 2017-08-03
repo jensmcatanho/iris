@@ -231,7 +231,7 @@
     <ClCompile Include="src\util\RGBColor.cpp" />
     <ClCompile Include="src\util\Surface.cpp" />
     <ClCompile Include="src\world\ProjectionPlane.cpp" />
-    <ClCompile Include="src\world\World.cpp" />
+    <ClCompile Include="src\world\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\raytracer\brdf\BlinnPhong.h" />
@@ -273,7 +273,7 @@
     <ClInclude Include="include\raytracer\util\RGBColor.h" />
     <ClInclude Include="include\raytracer\util\Surface.h" />
     <ClInclude Include="include\raytracer\world\ProjectionPlane.h" />
-    <ClInclude Include="include\raytracer\world\World.h" />
+    <ClInclude Include="include\raytracer\world\Scene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

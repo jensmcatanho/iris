@@ -49,7 +49,7 @@ class Pinhole : public Camera {
 		 * Traces the constructed scene.
 		 * @param w Reference to the world.
 		 */
-		virtual void RenderScene(const World &w);
+		virtual void RenderScene(const Scene &w);
 
 		/**
 		 * Sets the distance from the camera to the view plane.

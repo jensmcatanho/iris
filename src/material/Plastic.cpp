@@ -26,7 +26,7 @@ SOFTWARE.
 #include "Plastic.h"
 #include "Light.h"
 #include "Surface.h"
-#include "World.h"
+#include "Scene.h"
 
 Plastic::Plastic() :
 	Material(),

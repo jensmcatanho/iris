@@ -25,7 +25,7 @@ SOFTWARE.
 */
 #include "Surface.h"
 
-Surface::Surface(World &wr)	:
+Surface::Surface(Scene &wr) :
 	m_Hit(false),
 	m_MaterialPtr(nullptr),
 	m_HitPoint(),

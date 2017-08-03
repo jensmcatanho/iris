@@ -27,7 +27,7 @@ SOFTWARE.
 #include "Ray.h"
 #include "Sampler.h"
 #include "Tracer.h"
-#include "World.h"
+#include "Scene.h"
 
 Orthographic::Orthographic() :
 	Camera(),
@@ -36,7 +36,7 @@ Orthographic::Orthographic() :
 
 }
 
-void Orthographic::RenderScene(const World &w) {
+void Orthographic::RenderScene(const Scene &w) {
 	Ray ray;
 	RGBColor pixel_color;
 	glm::vec2 sample_point;

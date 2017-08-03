@@ -23,7 +23,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "World.h"
+#include "Scene.h"
 #include "Ambient.h"
 #include "Object.h"
 #include "Ray.h"
@@ -31,7 +31,7 @@ SOFTWARE.
 #include "Surface.h"
 #include "Tracer.h"
 
-World::World() :
+Scene::Scene() :
 	m_BackgroundColor(RGBColor::Black),
 	m_AmbientPtr(new Ambient),
 	m_CameraPtr(nullptr),
@@ -40,7 +40,7 @@ World::World() :
 	m_Pixels = new RGBColor[m_ProjectionPlane.m_Width * m_ProjectionPlane.m_Height];
 }
 
-void World::DisplayPixel(const int row, const int column, const RGBColor &raw_color) const {
+void Scene::DisplayPixel(const int row, const int column, const RGBColor &raw_color) const {
 	RGBColor mapped_color;
 
 	if (m_ProjectionPlane.m_ClampOutOfGamut)
@@ -58,7 +58,7 @@ void World::DisplayPixel(const int row, const int column, const RGBColor &raw_co
 	m_Pixels[row * m_ProjectionPlane.m_Width + column].b = mapped_color.b;
 }
 
-Surface World::HitObjects(const Ray &ray) {
+Surface Scene::HitObjects(const Ray &ray) {
 	Surface sr(*this);
 	double t; 			
 	double tmin = kHugeValue;
