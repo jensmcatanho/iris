@@ -72,6 +72,15 @@ class Plane : public Object {
 		 * @param normal Target normal.
 		 */
 		void SetNormal(const glm::vec3 &normal);
+
+	protected:
+		/**
+		 * Checks if a ray intersects with the object.
+		 * @param  ray  Intersection ray.
+		 * @param  t    TODO.
+		 * @return True, if the object intersects with the given ray.
+		 */
+		virtual bool Intersection(const Ray &ray, float &t) const;
 		
 	private:
 		/**

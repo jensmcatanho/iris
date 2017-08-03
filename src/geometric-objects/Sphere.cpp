@@ -38,35 +38,14 @@ Sphere::Sphere() :
 
 bool Sphere::Hit(const Ray &ray, double &tmin, Surface &sr) const {
 	float t;
-	glm::vec3 temp = ray.m_Origin - m_Center;
-	double a = glm::dot(ray.m_Direction, ray.m_Direction);
-	double b = glm::dot(2.0f * temp, ray.m_Direction);
-	double c = glm::dot(temp, temp) - m_Radius * m_Radius;
-	double discriminant = b * b - (4 * a * c);
 
-	if (discriminant < 0.0f)
-		return false;
-
-	t = (float)((-b - sqrt(discriminant)) / 2 * a);
-
-	if (t > kEpsilon) {
+	if (Intersection(ray, t)) {
 		tmin = t;
-		sr.m_Normal = temp + t * ray.m_Direction;
+		sr.m_Normal = ray.m_Origin - m_Center + t * ray.m_Direction;
 		sr.m_Normal = sr.m_Normal * (1.0f / m_Radius);
 		sr.m_LocalHitPoint = ray.m_Origin + ray.m_Direction * t;
+
 		return true;
-
-	}
-
-	t = (float)((-b + sqrt(discriminant)) / 2 * a);
-
-	if (t > kEpsilon) {
-		tmin = t;
-		sr.m_Normal = temp + t * ray.m_Direction;
-		sr.m_Normal = sr.m_Normal * (1.0f / m_Radius);
-		sr.m_LocalHitPoint = ray.m_Origin + ray.m_Direction * t;
-		return true;
-
 	}
 
 	return false;
@@ -74,6 +53,14 @@ bool Sphere::Hit(const Ray &ray, double &tmin, Surface &sr) const {
 
 bool Sphere::ShadowHit(const Ray &ray, float &tmin) const {
 	float t;
+
+	if (Intersection(ray, t))
+		return true;
+
+	return false;
+}
+
+bool Sphere::Intersection(const Ray &ray, float &t) const {
 	glm::vec3 temp = ray.m_Origin - m_Center;
 	double a = glm::dot(ray.m_Direction, ray.m_Direction);
 	double b = glm::dot(2.0f * temp, ray.m_Direction);
@@ -83,14 +70,10 @@ bool Sphere::ShadowHit(const Ray &ray, float &tmin) const {
 	if (discriminant < 0.0f)
 		return false;
 
-	t = (float)((-b - sqrt(discriminant)) / 2 * a);
-
-	if (t > kEpsilon)
+	if ((t = static_cast<float>((-b - sqrt(discriminant)) / 2 * a)) > kEpsilon)
 		return true;
 
-	t = (float)((-b + sqrt(discriminant)) / 2 * a);
-
-	if (t > kEpsilon)
+	if ((t = static_cast<float>((-b + sqrt(discriminant)) / 2 * a)) > kEpsilon)
 		return true;
 
 	return false;

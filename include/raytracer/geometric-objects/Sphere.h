@@ -73,6 +73,15 @@ class Sphere : public Object {
 		 */
 		void SetRadius(const float radius);
 
+	protected:
+		/**
+		 * Checks if a ray intersects with the object.
+		 * @param  ray  Intersection ray.
+		 * @param  t    TODO.
+		 * @return True, if the object intersects with the given ray.
+		 */
+		virtual bool Intersection(const Ray &ray, float &t) const;
+
 	private:
 		/**
 		 * Center of the sphere in world coordinates.

@@ -87,6 +87,14 @@ class Object {
 
 	protected:
 		/**
+		 * Checks if a ray intersects with the object.
+		 * @param  ray  Intersection ray.
+		 * @param  t    TODO.
+		 * @return True, if the object intersects with the given ray.
+		 */
+		virtual bool Intersection(const Ray &ray, float &t) const = 0;
+
+		/**
 		 * Material attached to the object.
 		 */
 		std::shared_ptr<Material> m_MaterialPtr;

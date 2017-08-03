@@ -37,9 +37,9 @@ Plane::Plane() :
 }
 
 bool Plane::Hit(const Ray &ray, double &tmin, Surface &sr) const {
-	float t = glm::dot(m_Point - ray.m_Origin, m_Normal) / glm::dot(ray.m_Direction, m_Normal);
+	float t;
 
-	if (t > kEpsilon) {
+	if (Intersection(ray, t)) {
 		tmin = t;
 		sr.m_Normal = m_Normal;
 		sr.m_LocalHitPoint = ray.m_Origin + t * ray.m_Direction;
@@ -51,12 +51,19 @@ bool Plane::Hit(const Ray &ray, double &tmin, Surface &sr) const {
 }
 
 bool Plane::ShadowHit(const Ray &ray, float &tmin) const {
-	float t = glm::dot(m_Point - ray.m_Origin, m_Normal) / glm::dot(ray.m_Direction, m_Normal);
+	float t;
 
-	if (t > kEpsilon) {
+	if (Intersection(ray, t)) {
 		tmin = t;
 		return true;
 	}
+
+	return false;
+}
+
+bool Plane::Intersection(const Ray &ray, float &t) const {
+	if ((t = static_cast<float>(glm::dot(m_Point - ray.m_Origin, m_Normal) / glm::dot(ray.m_Direction, m_Normal))) > kEpsilon)
+		return true;
 
 	return false;
 }
