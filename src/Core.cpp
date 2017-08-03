@@ -30,38 +30,39 @@ SOFTWARE.
 #include "Scene.h"
 
 Core::Core(std::string scene_path) :
-	m_WorldPtr(new Scene()),
+	m_ScenePtr(new Scene()),
 	m_ScenePath(scene_path) {
 
 }
 
 void Core::Run() {
-	std::shared_ptr<LuaState> luaState(new LuaState(shared_from_this()));
+	std::shared_ptr<LuaState> lua_state(new LuaState(shared_from_this()));
 	
-	luaState->Start(m_ScenePath);
-	luaState->LoadScene();
+	lua_state->Start(m_ScenePath);
+	lua_state->LoadScene();
 
-	m_WorldPtr->m_CameraPtr->RenderScene(*m_WorldPtr);
+	m_ScenePtr->m_CameraPtr->RenderScene(*m_ScenePtr);
 
 	SaveImage();
 }
 
 void Core::SaveImage() {
-	int width = m_WorldPtr->m_ProjectionPlane.m_Width;
-	int height = m_WorldPtr->m_ProjectionPlane.m_Height;
+	int width = m_ScenePtr->m_ProjectionPlane.m_Width;
+	int height = m_ScenePtr->m_ProjectionPlane.m_Height;
 
 	FreeImage_Initialise();
 
 	FIBITMAP *bitmap = FreeImage_Allocate(width, height, 24);
-	RGBQUAD color;
 
 	if (!bitmap)
 		return;
 
 	for (int i = 0; i < width*height; i++) {
-		color.rgbRed =   static_cast<int>(m_WorldPtr->m_Pixels[i].r * 255);
-		color.rgbGreen = static_cast<int>(m_WorldPtr->m_Pixels[i].g * 255);
-		color.rgbBlue =  static_cast<int>(m_WorldPtr->m_Pixels[i].b * 255);
+		RGBQUAD color;
+
+		color.rgbRed = static_cast<int>(m_ScenePtr->m_Pixels[i].r * 255);
+		color.rgbGreen = static_cast<int>(m_ScenePtr->m_Pixels[i].g * 255);
+		color.rgbBlue = static_cast<int>(m_ScenePtr->m_Pixels[i].b * 255);
 
 		FreeImage_SetPixelColor(bitmap, i % width, i / height, &color);
 	}
