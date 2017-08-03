@@ -40,7 +40,7 @@ void Pinhole::RenderScene(const World &w) {
 	Ray ray;
 	RGBColor pixelColor;
 	glm::vec2 samplePoint;
-	ViewPlane vp(w.m_ViewPlane);
+	ProjectionPlane vp(w.m_ProjectionPlane);
 
 	ComputeUVW();
 

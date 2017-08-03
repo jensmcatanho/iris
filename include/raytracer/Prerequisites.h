@@ -101,9 +101,9 @@ class RGBColor;
 class Surface;
 
 /**
-* World
+* Scene
 */
-class ViewPlane;
+class ProjectionPlane;
 class World;
 
 /**

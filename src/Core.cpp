@@ -47,8 +47,8 @@ void Core::Run() {
 }
 
 void Core::SaveImage() {
-	int width = m_WorldPtr->m_ViewPlane.m_Width;
-	int height = m_WorldPtr->m_ViewPlane.m_Height;
+	int width = m_WorldPtr->m_ProjectionPlane.m_Width;
+	int height = m_WorldPtr->m_ProjectionPlane.m_Height;
 
 	FreeImage_Initialise();
 

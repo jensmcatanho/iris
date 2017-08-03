@@ -230,7 +230,7 @@
     <ClCompile Include="src\util\Ray.cpp" />
     <ClCompile Include="src\util\RGBColor.cpp" />
     <ClCompile Include="src\util\Surface.cpp" />
-    <ClCompile Include="src\world\ViewPlane.cpp" />
+    <ClCompile Include="src\world\ProjectionPlane.cpp" />
     <ClCompile Include="src\world\World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -272,7 +272,7 @@
     <ClInclude Include="include\raytracer\util\Ray.h" />
     <ClInclude Include="include\raytracer\util\RGBColor.h" />
     <ClInclude Include="include\raytracer\util\Surface.h" />
-    <ClInclude Include="include\raytracer\world\ViewPlane.h" />
+    <ClInclude Include="include\raytracer\world\ProjectionPlane.h" />
     <ClInclude Include="include\raytracer\world\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -41,7 +41,7 @@ ThinLens::ThinLens() :
 void ThinLens::RenderScene(const World &w) {
 	Ray ray;
 	RGBColor pixelColor;
-	ViewPlane vp(w.m_ViewPlane);
+	ProjectionPlane vp(w.m_ProjectionPlane);
 
 	glm::vec2 us_samplePoint;  // Sample point on a unit square.
 	glm::vec2 px_samplePoint;  // Sample point on a pixel.

@@ -81,9 +81,6 @@
     <ClCompile Include="src\brdf\Lambertian.cpp">
       <Filter>Source Files\brdf</Filter>
     </ClCompile>
-    <ClCompile Include="src\world\ViewPlane.cpp">
-      <Filter>Source Files\world</Filter>
-    </ClCompile>
     <ClCompile Include="src\util\Logger.cpp">
       <Filter>Source Files\util</Filter>
     </ClCompile>
@@ -186,6 +183,9 @@
     <ClCompile Include="src\brdf\BlinnPhong.cpp">
       <Filter>Source Files\brdf</Filter>
     </ClCompile>
+    <ClCompile Include="src\world\ProjectionPlane.cpp">
+      <Filter>Source Files\world</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\raytracer\brdf\BRDF.h">
@@ -214,9 +214,6 @@
     </ClInclude>
     <ClInclude Include="include\raytracer\StandardHeaders.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\raytracer\world\ViewPlane.h">
-      <Filter>Header Files\world</Filter>
     </ClInclude>
     <ClInclude Include="include\raytracer\world\World.h">
       <Filter>Header Files\world</Filter>
@@ -307,6 +304,9 @@
     </ClInclude>
     <ClInclude Include="include\raytracer\brdf\BlinnPhong.h">
       <Filter>Header Files\brdf</Filter>
+    </ClInclude>
+    <ClInclude Include="include\raytracer\world\ProjectionPlane.h">
+      <Filter>Header Files\world</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -28,7 +28,7 @@ SOFTWARE.
 
 #include "Prerequisites.h"
 #include "RGBColor.h"
-#include "ViewPlane.h"
+#include "ProjectionPlane.h"
 
 /**
  * @addtogroup World
@@ -79,7 +79,7 @@ class World {
 		/**
 		 * View plane.
 		 */
-		ViewPlane m_ViewPlane;
+		ProjectionPlane m_ProjectionPlane;
 
 		/**
 		 * Background color.
