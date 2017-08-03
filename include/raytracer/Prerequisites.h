@@ -101,10 +101,10 @@ class RGBColor;
 class Surface;
 
 /**
-* World
+* Scene
 */
-class ViewPlane;
-class World;
+class ProjectionPlane;
+class Scene;
 
 /**
 * Other
@@ -116,14 +116,14 @@ class Core;
 */
 
 /**
-* STL
+* Standard C and C++ Headers
 */
 #include "StandardHeaders.h"
 
 /**
 * FreeImage
 */
-#if RT_ARCHITECTURE_TYPE == RT_ARCHITECTURE_32
+#if IRIS_ARCHITECTURE_TYPE == IRIS_ARCHITECTURE_32
 #include "FreeImage/x86/FreeImage.h"
 #else
 #include "FreeImage/x64/FreeImage.h"
@@ -138,7 +138,7 @@ class Core;
 /**
 * Lua
 */
-#if RT_ARCHITECTURE_TYPE == RT_ARCHITECTURE_32
+#if IRIS_ARCHITECTURE_TYPE == IRIS_ARCHITECTURE_32
 extern "C" {
 	#include "lua/x86/lua.h"
 	#include "lua/x86/lauxlib.h"
@@ -153,7 +153,7 @@ extern "C" {
 #endif
 
 /**
-* Raytracer
+* Iris
 */
 #include "Constants.h"
 #include "Logger.h"

@@ -49,7 +49,7 @@ class Camera {
 		 * Traces the constructed scene.
 		 * @param w Reference to the world.
 		 */
-		virtual void RenderScene(const World &w) = 0;
+		virtual void RenderScene(const Scene &w) = 0;
 
 		/**
 		 * Sets the eye location in world coordinates.

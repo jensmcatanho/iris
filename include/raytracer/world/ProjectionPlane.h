@@ -23,8 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef VIEWPLANE_H
-#define VIEWPLANE_H
+#ifndef PROJECTIONPLANE_H
+#define PROJECTIONPLANE_H
 
 #include "Prerequisites.h"
 #include "RGBColor.h"
@@ -38,12 +38,12 @@ SOFTWARE.
  * The plane in which the scene is rendered.
  * @remarks TODO.
  */
-class ViewPlane {
+class ProjectionPlane {
 	public:
 		/**
 		 * Standard constructor.
 		 */
-		ViewPlane();
+		ProjectionPlane();
 
 		/**
 		 * Sets the width of the view plane.
@@ -133,24 +133,24 @@ class ViewPlane {
 		int m_NumSamples;
 };
 
-inline void ViewPlane::SetWidth(const int width) {
+inline void ProjectionPlane::SetWidth(const int width) {
 	m_Width = width;
 }
 
-inline void ViewPlane::SetHeight(const int height) {
+inline void ProjectionPlane::SetHeight(const int height) {
 	m_Height = height;
 }
 
-inline void ViewPlane::SetPixelSize(const float pixel_size) {
+inline void ProjectionPlane::SetPixelSize(const float pixel_size) {
 	m_PixelSize = pixel_size;
 }
 
-inline void ViewPlane::SetGammaCorrection(const float gamma) {
+inline void ProjectionPlane::SetGammaCorrection(const float gamma) {
 	m_Gamma = gamma;
 	m_InvGamma = static_cast<float>(1.0 / gamma);
 }
 
-inline void ViewPlane::SetGamutDisplay(const bool out_of_gamut) {
+inline void ProjectionPlane::SetGamutDisplay(const bool out_of_gamut) {
 	m_ClampOutOfGamut = out_of_gamut;
 }
 

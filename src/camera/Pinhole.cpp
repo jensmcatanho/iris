@@ -27,7 +27,7 @@ SOFTWARE.
 #include "Ray.h"
 #include "Sampler.h"
 #include "Tracer.h"
-#include "World.h"
+#include "Scene.h"
 
 Pinhole::Pinhole() :
 	Camera(),
@@ -36,11 +36,11 @@ Pinhole::Pinhole() :
 
 }
 
-void Pinhole::RenderScene(const World &w) {
+void Pinhole::RenderScene(const Scene &w) {
 	Ray ray;
 	RGBColor pixelColor;
 	glm::vec2 samplePoint;
-	ViewPlane vp(w.m_ViewPlane);
+	ProjectionPlane vp(w.m_ProjectionPlane);
 
 	ComputeUVW();
 

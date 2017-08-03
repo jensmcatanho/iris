@@ -25,9 +25,9 @@ SOFTWARE.
 */
 #include "Tracer.h"
 #include "Ray.h"
-#include "World.h"
+#include "Scene.h"
 
-Tracer::Tracer(std::shared_ptr<World> worldPtr)
+Tracer::Tracer(std::shared_ptr<Scene> worldPtr)
 	: m_WorldPtr(worldPtr) {
 
 }

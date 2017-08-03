@@ -23,13 +23,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#include "ViewPlane.h"
+#include "ProjectionPlane.h"
 
 #include "MultiJittered.h"
 #include "Regular.h"
 #include "Sampler.h"
 
-ViewPlane::ViewPlane() :
+ProjectionPlane::ProjectionPlane() :
 	m_Width(400), 
 	m_Height(400),
 	m_PixelSize(1.0),
@@ -41,7 +41,7 @@ ViewPlane::ViewPlane() :
 
 }
 
-void ViewPlane::SetSamples(const int numSamples) {
+void ProjectionPlane::SetSamples(const int numSamples) {
 	m_NumSamples = numSamples;
 
 	if (m_NumSamples > 1) {
@@ -55,7 +55,7 @@ void ViewPlane::SetSamples(const int numSamples) {
 	}
 }
 
-void ViewPlane::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
+void ProjectionPlane::SetSampler(std::shared_ptr<Sampler> sampler_ptr) {
 	m_SamplerPtr = sampler_ptr;
 	m_NumSamples = sampler_ptr->GetNumOfSamples();
 }

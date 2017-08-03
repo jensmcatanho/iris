@@ -45,7 +45,7 @@ class Surface {
 		 * Constructs a surface with a reference to the world.
 		 * @param w Reference to the world.
 		 */
-		Surface(World &w);
+		Surface(Scene &w);
 
 		/**
 		 * Checks if a ray has hit the surface.
@@ -100,7 +100,7 @@ class Surface {
 		/**
 		 * Reference to the world.
 		 */
-		World &w;
+		Scene &w;
 };
 
 /**

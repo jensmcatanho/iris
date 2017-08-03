@@ -54,9 +54,9 @@ SOFTWARE.
 #include "MultipleObjects.h"
 #include "RayCast.h"
 
-// World
-#include "ViewPlane.h"
-#include "World.h"
+// Scene
+#include "ProjectionPlane.h"
+#include "Scene.h"
 
 LuaState::LuaState(std::shared_ptr<Core> core_ptr) :
 	m_L(nullptr),
@@ -102,7 +102,7 @@ bool LuaState::Start(const std::string &path) {
 void LuaState::LoadScene() {
 	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
 	assert(corePtr);
-	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
+	std::shared_ptr<Scene> worldPtr = corePtr->m_ScenePtr;
 	assert(worldPtr);
 
 	lua_getglobal(m_L, "scene");
@@ -123,7 +123,7 @@ void LuaState::LoadScene() {
 void LuaState::ParseImage() {
 	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
 	assert(corePtr);
-	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
+	std::shared_ptr<Scene> worldPtr = corePtr->m_ScenePtr;
 	assert(worldPtr);
 
 	lua_getfield(m_L, -1, "image");
@@ -131,22 +131,22 @@ void LuaState::ParseImage() {
 
 	lua_getfield(m_L, -1, "width");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	worldPtr->m_ViewPlane.SetWidth(static_cast<int>(lua_tonumber(m_L, -1)));
+	worldPtr->m_ProjectionPlane.SetWidth(static_cast<int>(lua_tonumber(m_L, -1)));
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "height");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	worldPtr->m_ViewPlane.SetHeight(static_cast<int>(lua_tonumber(m_L, -1)));
+	worldPtr->m_ProjectionPlane.SetHeight(static_cast<int>(lua_tonumber(m_L, -1)));
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "pixel_size");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	worldPtr->m_ViewPlane.SetPixelSize(static_cast<float>(lua_tonumber(m_L, -1)));
+	worldPtr->m_ProjectionPlane.SetPixelSize(static_cast<float>(lua_tonumber(m_L, -1)));
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "gamma_correction");
 	luaL_checktype(m_L, -1, LUA_TNUMBER);
-	worldPtr->m_ViewPlane.SetGammaCorrection(static_cast<float>(lua_tonumber(m_L, -1)));
+	worldPtr->m_ProjectionPlane.SetGammaCorrection(static_cast<float>(lua_tonumber(m_L, -1)));
 	lua_pop(m_L, 1);
 
 	lua_getfield(m_L, -1, "background_color");
@@ -156,13 +156,13 @@ void LuaState::ParseImage() {
 
 	lua_getfield(m_L, -1, "clamp_out_of_gamut");
 	luaL_checktype(m_L, -1, LUA_TBOOLEAN);
-	worldPtr->m_ViewPlane.SetGamutDisplay(static_cast<bool>(lua_toboolean(m_L, -1) ? true : false));
+	worldPtr->m_ProjectionPlane.SetGamutDisplay(static_cast<bool>(lua_toboolean(m_L, -1) ? true : false));
 	lua_pop(m_L, 1);
 
-	if (worldPtr->m_ViewPlane.m_ClampOutOfGamut) {
+	if (worldPtr->m_ProjectionPlane.m_ClampOutOfGamut) {
 		lua_getfield(m_L, -1, "clamp_color");
 		luaL_checktype(m_L, -1, LUA_TTABLE);
-		worldPtr->m_ViewPlane.m_ClampColor = ParseColor();
+		worldPtr->m_ProjectionPlane.m_ClampColor = ParseColor();
 		lua_pop(m_L, 1);
 	}
 
@@ -173,7 +173,7 @@ void LuaState::ParseImage() {
 void LuaState::ParseSampler() {
 	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
 	assert(corePtr);
-	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
+	std::shared_ptr<Scene> worldPtr = corePtr->m_ScenePtr;
 	assert(worldPtr);
 
 	lua_getfield(m_L, -1, "should_sample");
@@ -198,27 +198,27 @@ void LuaState::ParseSampler() {
 
 		if (sampler == 1) {
 			std::shared_ptr<Hammersley> newSampler(new Hammersley(num_samples, num_sets));
-			worldPtr->m_ViewPlane.SetSampler(newSampler);
+			worldPtr->m_ProjectionPlane.SetSampler(newSampler);
 	
 		} else if (sampler == 2) {
 			std::shared_ptr<Jittered> newSampler(new Jittered(num_samples, num_sets));
-			worldPtr->m_ViewPlane.SetSampler(newSampler);
+			worldPtr->m_ProjectionPlane.SetSampler(newSampler);
 	
 		} else if (sampler == 3) {
 			std::shared_ptr<MultiJittered> newSampler(new MultiJittered(num_samples, num_sets));
-			worldPtr->m_ViewPlane.SetSampler(newSampler);
+			worldPtr->m_ProjectionPlane.SetSampler(newSampler);
 	
 		} else if (sampler == 4) {
 			std::shared_ptr<NRooks> newSampler(new NRooks(num_samples, num_sets));
-			worldPtr->m_ViewPlane.SetSampler(newSampler);
+			worldPtr->m_ProjectionPlane.SetSampler(newSampler);
 	
 		} else if (sampler == 5) {
 			std::shared_ptr<PureRandom> newSampler(new PureRandom(num_samples, num_sets));
-			worldPtr->m_ViewPlane.SetSampler(newSampler);
+			worldPtr->m_ProjectionPlane.SetSampler(newSampler);
 	
 		} else {
 			std::shared_ptr<Regular> newSampler(new Regular(num_samples, num_sets));
-			worldPtr->m_ViewPlane.SetSampler(newSampler);
+			worldPtr->m_ProjectionPlane.SetSampler(newSampler);
 		}
 
 		lua_pop(m_L, 1);
@@ -227,14 +227,14 @@ void LuaState::ParseSampler() {
 		lua_pop(m_L, 1);
 	
 		std::shared_ptr<Regular> newSampler(new Regular(1));
-		worldPtr->m_ViewPlane.SetSampler(newSampler);
+		worldPtr->m_ProjectionPlane.SetSampler(newSampler);
 	}
 }
 
 void LuaState::ParseTracer() {
 	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
 	assert(corePtr);
-	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
+	std::shared_ptr<Scene> worldPtr = corePtr->m_ScenePtr;
 	assert(worldPtr);
 
 	lua_getfield(m_L, -1, "tracer");
@@ -256,7 +256,7 @@ void LuaState::ParseTracer() {
 void LuaState::ParseCamera() {
 	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
 	assert(corePtr);
-	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
+	std::shared_ptr<Scene> worldPtr = corePtr->m_ScenePtr;
 	assert(worldPtr);
 
 	std::shared_ptr<Pinhole> pinhole_ptr(new Pinhole);
@@ -311,7 +311,7 @@ void LuaState::ParseCamera() {
 void LuaState::ParseLights() {
 	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
 	assert(corePtr);
-	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
+	std::shared_ptr<Scene> worldPtr = corePtr->m_ScenePtr;
 	assert(worldPtr);
 
 	lua_getfield(m_L, -1, "light_list");
@@ -412,7 +412,7 @@ void LuaState::ParseLights() {
 void LuaState::ParseObjects() {
 	std::shared_ptr<Core> corePtr = m_CorePtr.lock();
 	assert(corePtr);
-	std::shared_ptr<World> worldPtr = corePtr->m_WorldPtr;
+	std::shared_ptr<Scene> worldPtr = corePtr->m_ScenePtr;
 	assert(worldPtr);
 
 	lua_getfield(m_L, -1, "object_list");

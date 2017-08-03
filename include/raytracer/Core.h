@@ -46,7 +46,7 @@ class Core : public std::enable_shared_from_this<Core> {
 		/**
 		* Scene pointer.
 		*/
-		std::shared_ptr<World> m_WorldPtr;
+		std::shared_ptr<Scene> m_ScenePtr;
 
 	private:
 		/**

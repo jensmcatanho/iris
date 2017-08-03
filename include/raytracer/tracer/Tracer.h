@@ -43,7 +43,7 @@ class Tracer {
 		 * Constructs a Tracer with a pointer to the world.
 		 * @param world_ptr Pointer to the world.
 		 */
-		Tracer(std::shared_ptr<World> world_ptr);
+		Tracer(std::shared_ptr<Scene> world_ptr);
 
 		/**
 		 * Standard ray tracing method.
@@ -57,7 +57,7 @@ class Tracer {
 		 * Reference to the world.
 		 * @see World
 		 */
-		std::weak_ptr<World> m_WorldPtr;
+		std::weak_ptr<Scene> m_WorldPtr;
 };
 
 /**

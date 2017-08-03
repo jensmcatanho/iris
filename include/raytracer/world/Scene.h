@@ -23,12 +23,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -----------------------------------------------------------------------------
 */
-#ifndef WORLD_H
-#define WORLD_H
+#ifndef SCENE_H
+#define SCENE_h
 
 #include "Prerequisites.h"
 #include "RGBColor.h"
-#include "ViewPlane.h"
+#include "ProjectionPlane.h"
 
 /**
  * @addtogroup World
@@ -49,14 +49,14 @@ typedef std::vector<std::shared_ptr<Light>> LightList;
  * TODO.
  * @remarks TODO.
  */
-class World {
+class Scene {
 	friend class LuaState;
 
 	public:
 		/**
 		 * Standard constructor.
 		 */
-		World();
+		Scene();
 
 		/**
 		 * Checks if an object has been hit by a ray.
@@ -79,7 +79,7 @@ class World {
 		/**
 		 * View plane.
 		 */
-		ViewPlane m_ViewPlane;
+		ProjectionPlane m_ProjectionPlane;
 
 		/**
 		 * Background color.
@@ -131,15 +131,15 @@ class World {
 		void AddLight(std::shared_ptr<Light> lightPtr);
 };
 
-inline void World::SetCamera(std::shared_ptr<Camera> camera) {
+inline void Scene::SetCamera(std::shared_ptr<Camera> camera) {
 	m_CameraPtr = camera;
 }
 
-inline void World::AddObject(std::shared_ptr<Object> objPtr) {
+inline void Scene::AddObject(std::shared_ptr<Object> objPtr) {
 	m_Objects.push_back(objPtr);
 }
 
-inline void World::AddLight(std::shared_ptr<Light> lightPtr) {
+inline void Scene::AddLight(std::shared_ptr<Light> lightPtr) {
 	m_Lights.push_back(lightPtr);
 }
 

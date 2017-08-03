@@ -32,7 +32,7 @@ class ThinLens : public Camera {
 	public:
 		ThinLens();
 		
-		virtual void RenderScene(const World &);
+		virtual void RenderScene(const Scene &);
 
 		void SetSampler(std::shared_ptr<Sampler>);
 		void SetLensRadius(const float);

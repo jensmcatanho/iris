@@ -28,13 +28,17 @@ SOFTWARE.
 
 #include <glm/gtc/constants.hpp>
 
-// Mathematical constants.
+/**
+ * Mathematical constants.
+ */
 const float PI = glm::pi<float>();
 const float HALF_PI = glm::half_pi<float>();
 const float TWO_PI = 2 * glm::pi<float>();
 const float INV_PI = 1 / glm::pi<float>();
 
-// Intersection constants.
+/**
+ * Intersection constants.
+ */
 const float kHugeValue = 1.0E10;
 
 #endif
