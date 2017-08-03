@@ -49,7 +49,7 @@ function Image.new()
 		return self
 	end
 
-	function self.shouldSample(flag)
+	function self.turnAntiAliasing(flag)
 		self.should_sample = flag
 		return self
 	end
