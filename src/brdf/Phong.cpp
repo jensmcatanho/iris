@@ -35,7 +35,7 @@ Phong::Phong() :
 }
 
 inline RGBColor Phong::f(const Surface &sr, const glm::vec3 &wi, const glm::vec3 &wo) const {
-	glm::vec3 r = -wi + (2.0f * glm::dot(sr.m_Normal, wo) * sr.m_Normal);
+	glm::vec3 r = -wi + (2.0f * glm::dot(sr.m_Normal, wi) * sr.m_Normal);
 	float rdotwo = glm::dot(r, wo);
 
 	if (rdotwo > 0.0)
